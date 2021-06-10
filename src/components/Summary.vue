@@ -516,15 +516,10 @@
 						]
 					}]
 				}
-        this.rotate();
+
 			},
 			onClick(e) {
 
-			},
-			rotate() {
-        console.log(123123123)
-        //this.rotation.z += 0.01;
-        //requestAnimationFrame( this.rotate );
 			},
 			onProgress(e) {
 				let loaded = e.loaded / e.total * 100+""
