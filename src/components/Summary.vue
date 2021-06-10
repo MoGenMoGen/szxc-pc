@@ -228,8 +228,11 @@
 				</div>
 			</div>
 		</transition>
-		<model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
-			@on-load="onLoad" :lights="lights" @on-click="onClick" @on-progress="onProgress" @on-error="onError">
+		<model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl"
+               :position="position" :scale="scale"
+			          @on-load="onLoad" :lights="lights"
+               :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+               @on-click="onClick" @on-progress="onProgress" @on-error="onError">
 		</model-obj>
 	</div>
 </template>
@@ -314,25 +317,30 @@
 					volume: '2.21'
 				}],
 				cameraPosition: {
-					x: 0,
-					y: 0,
-					z: 0
+					x: 100,
+					y: 3800,
+					z: 5600
 				},
+        cameraRotation:{
+          x: 0,
+          y: 0,
+          z: 0
+        },
 				position: {
-					x: 0,
-					y: 0,
-					z: 0
+					x: 1,
+					y: 1,
+					z: -150
 				},
 				scale: {
 					x: 1,
 					y: 1,
 					z: 1
 				},
-				rotation: {
-					x: 0,
-					y: 0,
-					z: 0
-				},
+        rotation: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
 				lights: [{
 					type: "HemisphereLight",
 					position: {
@@ -342,7 +350,7 @@
 					},
 					skyColor: 0xaaaaff,
 					groundColor: 0x806060,
-					intensity: 1.8
+					intensity: 2.8
 				}, {
 					type: 'DirectionalLight',
 					position: {
@@ -364,6 +372,7 @@
 		},
 		methods: {
 			onLoad() {
+
 				this.show = true
 				this.option = {
 					series: [{
@@ -412,6 +421,7 @@
 							formatter: '{value}\n人流检测数\n据动态干预',
 							color: 'auto'
 						},
+
 						data: [{
 							value: 45000
 						}]
@@ -506,18 +516,15 @@
 						]
 					}]
 				}
-				this.rotate();
+        this.rotate();
 			},
 			onClick(e) {
-				// console.log(e)
+
 			},
 			rotate() {
-				if (this.rotation.z >= Math.PI * 2) {
-					return
-				} else {
-					this.rotation.z += 0.01;
-					requestAnimationFrame(this.rotate);
-				}
+        console.log(123123123)
+        //this.rotation.z += 0.01;
+        //requestAnimationFrame( this.rotate );
 			},
 			onProgress(e) {
 				let loaded = e.loaded / e.total * 100+""
@@ -740,24 +747,24 @@
 			flex-direction: column;
 			font-size: 16px;
 			color: #fff;
-		
+
 			.sk-top {
 				display: flex;
 				justify-content: space-between;
-		
+
 				.sk-top-right {
 					width: 233px;
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-		
+
 					span {
 						width: 33%;
 						text-align: center;
 					}
 				}
 			}
-		
+
 			.sk-bottom {
 				display: flex;
 				align-items: center;
@@ -765,21 +772,21 @@
 					width: 120px;
 					height: 120px;
 				}
-		
+
 				.sk-bottom-info {
 					display: flex;
 					flex-direction: column;
 					margin-bottom: 10px;
 					width: 260px;
-		
+
 					.sk-bottom-inner {
 						display: flex;
 						align-items: center;
-		
+
 						p {
 							margin-right: 14px;
 						}
-		
+
 						span {
 							width: 33%;
 							text-align: center;
