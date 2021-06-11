@@ -1,13 +1,17 @@
 <template>
 	<div class="bigBox">
+
+
 		<div class="loading" v-if="isLoading<100">
 			<el-progress :percentage="isLoading"></el-progress>
 		</div>
+
 		<transition name="fade">
 			<div class="box lt" v-show="show">
 				<div class="box-top">
 					<img src="static/images/icon.png">
 					<span>九龙湖介绍</span>
+
 				</div>
 				<div class="box-bottom lt-bottom">
 					<video src="http://157.122.54.189:9088/uploads/5e0fdfa431f61363bba9bb3e.mp4" autoplay="autoplay"
@@ -179,10 +183,12 @@
 					<img src="static/images/icon.png">
 					<span>每日数据</span>
 				</div>
+
 				<div class="rm-bottom">
+
 					<my-charts :id="rlss" class="rm-item" :data="option"></my-charts>
-					<my-charts :id="rlgy" class="rm-item" :data="option"></my-charts>
-					<my-charts :id="clgy" class="rm-item" :data="option"></my-charts>
+					<my-charts :id="rlgy" class="rm-item" :data="option4"></my-charts>
+					<my-charts :id="clgy" class="rm-item" :data="option5"></my-charts>
 				</div>
 			</div>
 		</transition>
@@ -216,22 +222,29 @@
 					</div>
 					<div class="zzxx">
 						<div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
-						<div class="zzxx-info">
-							<div v-for="(item,index) in zzList" :key="index">
-								<span>{{item.time}}</span>
-								<span class="typeSkyBlue">{{item.add}}</span>
-								<span>{{item.info}}</span>
-								<span>￥{{item.money}}</span>
-							</div>
-						</div>
+<!--						<div class="zzxx-info">-->
+<!--							<div v-for="(item,index) in zzList" :key="index">-->
+<!--								<span>{{item.time}}</span>-->
+<!--								<span class="typeSkyBlue">{{item.add}}</span>-->
+<!--								<span>{{item.info}}</span>-->
+<!--								<span>￥{{item.money}}</span>-->
+<!--							</div>-->
+<!--						</div>-->
 					</div>
 				</div>
 			</div>
 		</transition>
-		<model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
-			@on-load="onLoad" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-			@on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>
-		</model-obj>
+
+
+      <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+                 @on-load="onLoad" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>
+      </model-obj>
+
+
+
+
+
 	</div>
 </template>
 
@@ -256,6 +269,8 @@
 				option: null,
 				option2: null,
 				option3: null,
+				option4: null,
+				option5: null,
 				show: false,
 				introduction: '九龙湖村位于宁波市镇海区西北部是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并...',
 				partyList: [{
@@ -363,7 +378,7 @@
 			}
 		},
 		mounted() {
-
+      this.onLoad()
 		},
 		components: {
 			ModelObj,
@@ -374,58 +389,246 @@
 
 				this.show = true
 				this.option = {
-					series: [{
-						type: 'gauge',
-						startAngle: 180,
-						endAngle: -180,
-						min: 0,
-						max: 100000,
-						itemStyle: {
-							color: '#FFAB91'
-						},
-						progress: {
-							show: true,
-							width: 10
-						},
-						pointer: {
-							show: false,
-						},
-						axisLine: {
-							show: false
-						},
-						axisTick: {
-							show: false
-						},
-						splitLine: {
-							show: false
-						},
-						axisLabel: {
-							show: false
-						},
-						anchor: {
-							show: false
-						},
-						title: {
-							show: false
-						},
-						detail: {
-							valueAnimation: true,
-							width: '50%',
-							lineHeight: 15,
-							height: 15,
-							borderRadius: 8,
-							offsetCenter: [0, 0],
-							fontSize: 15,
-							fontWeight: 'bolder',
-							formatter: '{value}\n人流检测数\n据动态干预',
-							color: 'auto'
-						},
+          title: {
+            text: '{a|2680}\n{c|人流量\n实时监测}',
+            x: 'center',
+            y: 'center',
+            textStyle: {
+              rich:{
+                a: {
+                  fontSize: 20,
+                  color: '#29EEF3'
+                },
+                c: {
+                  fontSize: 14,
+                  color: '#ffffff',
+                  padding: [5,0]
+                }
+              }
+            }
+          },
+          series: [
+            {
+              type: 'gauge',
+              radius: '100%',
+              clockwise: false,
+              startAngle: '90',
+              endAngle: '-269.9999',
+              splitNumber: 25,
+              detail: {
+                offsetCenter: [0, -20],
+                formatter: ' '
+              },
+              pointer: {
+                show: false
+              },
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: [
+                    [62 / 100, '#f70102'],
+                    [1, 'rgba(32,187,252,0.15)']
+                  ],
+                  width: 30
+                }
+              },
+              axisTick: {
+                show: false
+              },
+              splitLine: {
+                show: true,
+                length: 32,
+                lineStyle: {
+                  color: '#051F54',
+                  width: 4
+                }
+              },
+              axisLabel: {
+                show: false
+              }
+            },
 
-						data: [{
-							value: 45000
-						}]
-					}]
+            {
+              type: 'pie',
+              name: '内层环',
+              radius: [0, '83%'],
+              hoverAnimation: false,
+              clockWise: false,
+              itemStyle: {
+                normal: {
+                  color: '#02163F'
+                }
+              },
+              label: {
+                show: false
+              },
+              data: [100]
+            }
+          ]
+
+
 				}
+        this.option4 = {
+          title: {
+            text: '{a|507}\n{c|人流检测数\n据动态干预}',
+            x: 'center',
+            y: 'center',
+            textStyle: {
+              rich:{
+                a: {
+                  fontSize: 20,
+                  color: '#29EEF3'
+                },
+                c: {
+                  fontSize: 14,
+                  color: '#ffffff',
+                  padding: [5,0]
+                }
+              }
+            }
+          },
+          series: [
+            {
+              type: 'gauge',
+              radius: '100%',
+              clockwise: false,
+              startAngle: '90',
+              endAngle: '-269.9999',
+              splitNumber: 25,
+              detail: {
+                offsetCenter: [0, -20],
+                formatter: ' '
+              },
+              pointer: {
+                show: false
+              },
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: [
+                    [52 / 100, '#3cd868'],
+                    [1, 'rgba(32,187,252,0.15)']
+                  ],
+                  width: 30
+                }
+              },
+              axisTick: {
+                show: false
+              },
+              splitLine: {
+                show: true,
+                length: 32,
+                lineStyle: {
+                  color: '#051F54',
+                  width: 4
+                }
+              },
+              axisLabel: {
+                show: false
+              }
+            },
+
+            {
+              type: 'pie',
+              name: '内层环',
+              radius: [0, '83%'],
+              hoverAnimation: false,
+              clockWise: false,
+              itemStyle: {
+                normal: {
+                  color: '#02163F'
+                }
+              },
+              label: {
+                show: false
+              },
+              data: [100]
+            }
+          ]
+
+
+        }
+        this.option5 = {
+          title: {
+            text: '{a|906}\n{c|车流检查数\n据动态干预}',
+            x: 'center',
+            y: 'center',
+            textStyle: {
+              rich:{
+                a: {
+                  fontSize: 20,
+                  color: '#29EEF3'
+                },
+                c: {
+                  fontSize: 14,
+                  color: '#ffffff',
+                  padding: [5,0]
+                }
+              }
+            }
+          },
+          series: [
+            {
+              type: 'gauge',
+              radius: '100%',
+              clockwise: false,
+              startAngle: '90',
+              endAngle: '-269.9999',
+              splitNumber: 25,
+              detail: {
+                offsetCenter: [0, -20],
+                formatter: ' '
+              },
+              pointer: {
+                show: false
+              },
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: [
+                    [72 / 100, '#f7dc46'],
+                    [1, 'rgba(32,187,252,0.15)']
+                  ],
+                  width: 30
+                }
+              },
+              axisTick: {
+                show: false
+              },
+              splitLine: {
+                show: true,
+                length: 32,
+                lineStyle: {
+                  color: '#051F54',
+                  width: 4
+                }
+              },
+              axisLabel: {
+                show: false
+              }
+            },
+
+            {
+              type: 'pie',
+              name: '内层环',
+              radius: [0, '83%'],
+              hoverAnimation: false,
+              clockWise: false,
+              itemStyle: {
+                normal: {
+                  color: '#02163F'
+                }
+              },
+              label: {
+                show: false
+              },
+              data: [100]
+            }
+          ]
+
+
+        }
+
 				this.option2 = {
 					tooltip: {
 						trigger: 'item'
@@ -611,9 +814,9 @@
 	}
 
 	.lt {
-		height: 240px;
+		height: 260px;
 		position: absolute;
-		top: 160px;
+		top: 300px;
 		left: 35px;
 
 		.lt-bottom {
@@ -624,7 +827,7 @@
 
 			video {
 				width: 230px;
-				height: 150px;
+				height: 170px;
 			}
 
 			.introduction {
@@ -645,7 +848,7 @@
 	.lm {
 		height: 273px;
 		position: absolute;
-		top: 420px;
+		top: 580px;
 		left: 35px;
 		z-index: 10000;
 
@@ -743,7 +946,7 @@
 		height: 279px;
 		position: absolute;
 		bottom: 40px;
-		left: 480px;
+		left: 478px;
 		z-index: 10000;
 
 		.ml-bottom {
@@ -881,7 +1084,7 @@
 	.rl {
 		height: 260px;
 		position: absolute;
-		top: 160px;
+		top: 300px;
 		right: 35px;
 		z-index: 10000;
 
@@ -935,9 +1138,9 @@
 	}
 
 	.rm {
-		height: 213px;
+		height: 273px;
 		position: absolute;
-		top: 440px;
+		top: 580px;
 		right: 35px;
 		z-index: 10000;
 
@@ -946,6 +1149,7 @@
 			justify-content: space-between;
 
 			.rm-item {
+        margin-top: 30px;
 				width: 130px;
 				height: 130px;
 			}
@@ -953,7 +1157,7 @@
 	}
 
 	.rb {
-		height: 319px;
+		height: 280px;
 		position: absolute;
 		bottom: 40px;
 		right: 35px;
