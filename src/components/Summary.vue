@@ -1,5 +1,5 @@
 <template>
-	<div style="width: 100%;height: 100%;">
+	<div class="bigBox">
 		<div class="loading" v-if="isLoading<100">
 			<el-progress :percentage="isLoading"></el-progress>
 		</div>
@@ -164,7 +164,7 @@
 					</div>
 					<div class="rl-inner">
 						<span class="rl-inner-title">负氧离子含量：</span>
-						<span ><img src="static/images/NAI.png" style="vertical-align: middle;">2300</span>
+						<span><img src="static/images/NAI.png" style="vertical-align: middle;">2300</span>
 					</div>
 					<div class="rl-summary">
 						<span class="typeGreenLight">优</span>
@@ -228,11 +228,9 @@
 				</div>
 			</div>
 		</transition>
-		<model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl"
-               :position="position" :scale="scale"
-			          @on-load="onLoad" :lights="lights"
-               :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-               @on-click="onClick" @on-progress="onProgress" @on-error="onError">
+		<model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+			@on-load="onLoad" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+			@on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>
 		</model-obj>
 	</div>
 </template>
@@ -263,25 +261,25 @@
 				partyList: [{
 					title: '长胜田央沈、长桥头网格支部',
 					num: 21
-				},{
+				}, {
 					title: '长胜田央沈、长桥头网格支部',
 					num: 21
-				},{
+				}, {
 					title: '长胜田央沈、长桥头网格支部',
 					num: 21
-				},{
+				}, {
 					title: '长胜田央沈、长桥头网格支部',
 					num: 21
 				}],
 				cwList: [{
 					content: '宣传健康常识和卫生知识'
-				},{
+				}, {
 					content: '宣传健康常识和卫生知识'
-				},{
+				}, {
 					content: '宣传健康常识和卫生知识'
-				},{
+				}, {
 					content: '宣传健康常识和卫生知识'
-				},{
+				}, {
 					content: '宣传健康常识和卫生知识'
 				}],
 				zzList: [{
@@ -289,7 +287,7 @@
 					add: '九龙湖桥头街',
 					info: '两室一厅一卫',
 					money: 1500
-				},{
+				}, {
 					time: '2021-04-09',
 					add: '九龙湖桥头街',
 					info: '两室一厅一卫',
@@ -316,16 +314,17 @@
 					area: '0.86',
 					volume: '2.21'
 				}],
+				backgroundAlpha: 0,
 				cameraPosition: {
 					x: 100,
 					y: 3800,
 					z: 5600
 				},
-        cameraRotation:{
-          x: 0,
-          y: 0,
-          z: 0
-        },
+				cameraRotation: {
+					x: 0,
+					y: 0,
+					z: 0
+				},
 				position: {
 					x: 1,
 					y: 1,
@@ -336,11 +335,11 @@
 					y: 1,
 					z: 1
 				},
-        rotation: {
-          x: 0,
-          y: 0,
-          z: 0
-        },
+				rotation: {
+					x: 0,
+					y: 0,
+					z: 0
+				},
 				lights: [{
 					type: "HemisphereLight",
 					position: {
@@ -522,8 +521,8 @@
 
 			},
 			onProgress(e) {
-				let loaded = e.loaded / e.total * 100+""
-				this.isLoading = Number(loaded.substring(0,4))
+				let loaded = e.loaded / e.total * 100 + ""
+				this.isLoading = Number(loaded.substring(0, 4))
 				// console.log(e.loaded / e.total * 100 + "%")
 			},
 			onError(e) {
@@ -535,14 +534,21 @@
 </script>
 
 <style scoped lang="less">
+	.bigBox {
+		width: 100%;
+		height: 100%;
+		background: url(../../public/static/images/dbg.png) no-repeat;
+		background-size: 100% 100%;
+	}
 	.loading {
 		width: 600px;
 		height: 20px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 	}
+
 	.typeBlue {
 		color: #3FECFF;
 	}
@@ -562,9 +568,11 @@
 	.typeYellow {
 		color: #FFEA00;
 	}
+
 	.typeSkyBlue {
 		color: #1AC9FF;
 	}
+
 	.typeGreenLight {
 		color: #4ABA5F;
 	}
@@ -737,6 +745,7 @@
 		bottom: 40px;
 		left: 480px;
 		z-index: 10000;
+
 		.ml-bottom {
 			display: flex;
 			flex-direction: column;
@@ -763,6 +772,7 @@
 			.sk-bottom {
 				display: flex;
 				align-items: center;
+
 				.img {
 					width: 120px;
 					height: 120px;
@@ -801,20 +811,24 @@
 		bottom: 40px;
 		left: 915px;
 		z-index: 10000;
+
 		.mm-bottom {
 			display: flex;
 			flex-direction: column;
 			font-size: 20px;
 			color: #fff;
+
 			.party-title {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				margin-bottom: 10px;
+
 				span:last-child {
 					font-size: 16px;
 				}
 			}
+
 			.party-list {
 				width: 100%;
 				height: 32px;
@@ -827,6 +841,7 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+
 				span:last-child {
 					font-size: 12px;
 				}
@@ -840,9 +855,11 @@
 		bottom: 40px;
 		right: 470px;
 		z-index: 10000;
+
 		.mr-bottom {
 			display: flex;
 			flex-direction: column;
+
 			.cw-list {
 				width: 100%;
 				height: 36px;
@@ -852,6 +869,7 @@
 				background-size: 100% 100%;
 				color: #BCF0FE;
 				font-size: 16px;
+
 				span:first-child {
 					margin-left: 34px;
 					margin-right: 44px;
@@ -866,15 +884,17 @@
 		top: 160px;
 		right: 35px;
 		z-index: 10000;
+
 		.rl-bottom {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
 			align-items: center;
 			position: relative;
+
 			.rl-inner {
 				width: 48%;
-				background:rgba(0, 142, 244, 0.1);
+				background: rgba(0, 142, 244, 0.1);
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -883,11 +903,13 @@
 				border-radius: 5px;
 				font-size: 20px;
 				color: #fff;
+
 				.rl-inner-title {
 					font-size: 18px;
 					align-self: flex-start;
 				}
 			}
+
 			.rl-summary {
 				width: 84px;
 				height: 84px;
@@ -897,12 +919,13 @@
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%,-50%);
+				transform: translate(-50%, -50%);
 				font-size: 22px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
+
 				span:last-child {
 					font-size: 12px;
 					margin-bottom: 10px;
@@ -917,9 +940,11 @@
 		top: 440px;
 		right: 35px;
 		z-index: 10000;
+
 		.rm-bottom {
 			display: flex;
 			justify-content: space-between;
+
 			.rm-item {
 				width: 130px;
 				height: 130px;
@@ -933,35 +958,45 @@
 		bottom: 40px;
 		right: 35px;
 		z-index: 10000;
+
 		.rb-bottom {
 			display: flex;
 			flex-direction: column;
+
 			.fontBig {
 				font-size: 20px;
 			}
+
 			.fontSm {
 				font-size: 14px;
 			}
+
 			.imgStyle {
 				vertical-align: middle;
 				margin-left: 6px;
 			}
+
 			.cwgk {
 				color: #fff;
 				font-size: 16px;
+
 				.flex-end {
 					display: flex;
 					flex-direction: column;
 					text-align: right;
 				}
 			}
+
 			.ywgk {
 				color: #fff;
 			}
+
 			.zzxx {
 				color: #fff;
+
 				.zzxx-info {
 					font-size: 14px;
+
 					div {
 						width: 100%;
 						height: 32px;
@@ -973,7 +1008,9 @@
 						background: url(../../public/static/images/jcbg.png);
 						background-size: 100% 100%;
 						margin-bottom: 5px;
-						span:nth-child(2),span:nth-child(3) {
+
+						span:nth-child(2),
+						span:nth-child(3) {
 							width: 30%;
 							white-space: nowrap;
 							overflow: hidden;
@@ -986,8 +1023,7 @@
 		}
 	}
 
-	.fade-enter-active,
-	.fade-leave-active {
+	.fade-enter-active {
 		transition: opacity 1s;
 	}
 

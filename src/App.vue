@@ -11,6 +11,11 @@
 			<span class="top-time">{{nowTime}}</span>
 		</div>
 		<Summary v-show="isActive==0"></Summary>
+		<Yhyd v-show="isActive==1"></Yhyd>
+		<Zhdj v-show="isActive==2"></Zhdj>
+		<Zhly v-show="isActive==3"></Zhly>
+		<Jczl v-show="isActive==4"></Jczl>
+		<Cwgk v-show="isActive==5"></Cwgk>
 		<!-- <iframe src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
 	</div>
 </template>
@@ -21,6 +26,11 @@
 	} from 'vue-3d-model';
 	import myCharts from '@/components/MyCharts.vue'
 	import Summary from '@/components/Summary.vue'
+	import Yhyd from '@/components/Yhyd.vue'
+	import Zhdj from '@/components/Zhdj.vue'
+	import Zhly from '@/components/Zhly.vue'
+	import Jczl from '@/components/Jczl.vue'
+	import Cwgk from '@/components/Cwgk.vue'
 	export default {
 		data() {
 			return {
@@ -34,7 +44,12 @@
 		components: {
 			ModelObj,
 			myCharts,
-			Summary
+			Summary,
+			Yhyd,
+			Zhdj,
+			Zhly,
+			Jczl,
+			Cwgk
 		},
 		methods: {
 			getDate() {
@@ -93,7 +108,7 @@
 			.top-title {
 				font-size: 46px;
 				margin-left: 28px;
-				margin-right: 198px;
+				margin-right: 148px;
 			}
 			.top-tab-box {
 				width: 900px;
