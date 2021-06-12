@@ -14,7 +14,7 @@
 
 				</div>
 				<div class="box-bottom lt-bottom">
-					<video src="http://157.122.54.189:9088/uploads/5e0fdfa431f61363bba9bb3e.mp4" autoplay="autoplay"
+					<video :src="cameraUrl" autoplay="autoplay"
 						muted loop="loop"></video>
 					<div class="introduction">{{introduction}}</div>
 				</div>
@@ -156,22 +156,22 @@
 				<div class="rl-bottom">
 					<div class="rl-inner" style="margin-bottom: 5px;">
 						<span class="rl-inner-title">天气：</span>
-						<span><img src="static/images/rain.png" style="vertical-align: middle;">下雨</span>
+						<span><img :src="wea_img" style="vertical-align: middle;width: 36px;height: 36px;margin-right: 4px;">{{wea}}</span>
 					</div>
 					<div class="rl-inner" style="margin-bottom: 5px;">
 						<span class="rl-inner-title">气温：</span>
-						<span><img src="static/images/temperature.png" style="vertical-align: middle;">20.0℃</span>
+						<span><img src="static/images/temperature.png" style="vertical-align: middle;">{{tem}}℃</span>
 					</div>
 					<div class="rl-inner">
 						<span class="rl-inner-title">PM2.5：</span>
-						<span><img src="static/images/air.png" style="vertical-align: middle;">12</span>
+						<span><img src="static/images/air.png" style="vertical-align: middle;">{{air_pm25}}</span>
 					</div>
 					<div class="rl-inner">
 						<span class="rl-inner-title">负氧离子含量：</span>
 						<span><img src="static/images/NAI.png" style="vertical-align: middle;">2300</span>
 					</div>
 					<div class="rl-summary">
-						<span class="typeGreenLight">优</span>
+						<span class="typeGreenLight">{{air_level}}</span>
 						<span class="typeGreenLight">空气质量</span>
 					</div>
 				</div>
@@ -222,24 +222,24 @@
 					</div>
 					<div class="zzxx">
 						<div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
-<!--						<div class="zzxx-info">-->
-<!--							<div v-for="(item,index) in zzList" :key="index">-->
-<!--								<span>{{item.time}}</span>-->
-<!--								<span class="typeSkyBlue">{{item.add}}</span>-->
-<!--								<span>{{item.info}}</span>-->
-<!--								<span>￥{{item.money}}</span>-->
-<!--							</div>-->
-<!--						</div>-->
+						<!--						<div class="zzxx-info">-->
+						<!--							<div v-for="(item,index) in zzList" :key="index">-->
+						<!--								<span>{{item.time}}</span>-->
+						<!--								<span class="typeSkyBlue">{{item.add}}</span>-->
+						<!--								<span>{{item.info}}</span>-->
+						<!--								<span>￥{{item.money}}</span>-->
+						<!--							</div>-->
+						<!--						</div>-->
 					</div>
 				</div>
 			</div>
 		</transition>
 
 
-      <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
-                 @on-load="onLoad" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>
-      </model-obj>
+		<!-- <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+			@on-load="onLoad" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+			@on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>
+		</model-obj> -->
 
 
 
@@ -260,6 +260,12 @@
 		},
 		data() {
 			return {
+				cameraUrl: 'http://157.122.54.189:9088/uploads/5e0fdfa431f61363bba9bb3e.mp4',
+				air_level: '优',
+				wea: '晴',
+				wea_img: 'static/images/qing.png',
+				air_pm25: "32",
+				tem: "28",
 				isLoading: 0,
 				rlss: 'rlss',
 				rlgy: 'rlgy',
@@ -378,7 +384,8 @@
 			}
 		},
 		mounted() {
-      this.onLoad()
+			this.getData()
+			this.onLoad()
 		},
 		components: {
 			ModelObj,
@@ -389,245 +396,242 @@
 
 				this.show = true
 				this.option = {
-          title: {
-            text: '{a|2680}\n{c|人流量\n实时监测}',
-            x: 'center',
-            y: 'center',
-            textStyle: {
-              rich:{
-                a: {
-                  fontSize: 20,
-                  color: '#29EEF3'
-                },
-                c: {
-                  fontSize: 14,
-                  color: '#ffffff',
-                  padding: [5,0]
-                }
-              }
-            }
-          },
-          series: [
-            {
-              type: 'gauge',
-              radius: '100%',
-              clockwise: false,
-              startAngle: '90',
-              endAngle: '-269.9999',
-              splitNumber: 25,
-              detail: {
-                offsetCenter: [0, -20],
-                formatter: ' '
-              },
-              pointer: {
-                show: false
-              },
-              axisLine: {
-                show: true,
-                lineStyle: {
-                  color: [
-                    [62 / 100, '#f70102'],
-                    [1, 'rgba(32,187,252,0.15)']
-                  ],
-                  width: 30
-                }
-              },
-              axisTick: {
-                show: false
-              },
-              splitLine: {
-                show: true,
-                length: 32,
-                lineStyle: {
-                  color: '#051F54',
-                  width: 4
-                }
-              },
-              axisLabel: {
-                show: false
-              }
-            },
+					title: {
+						text: '{a|2680}\n{c|人流量\n实时监测}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[62 / 100, '#f70102'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
 
-            {
-              type: 'pie',
-              name: '内层环',
-              radius: [0, '83%'],
-              hoverAnimation: false,
-              clockWise: false,
-              itemStyle: {
-                normal: {
-                  color: '#02163F'
-                }
-              },
-              label: {
-                show: false
-              },
-              data: [100]
-            }
-          ]
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
 
 
 				}
-        this.option4 = {
-          title: {
-            text: '{a|507}\n{c|人流检测数\n据动态干预}',
-            x: 'center',
-            y: 'center',
-            textStyle: {
-              rich:{
-                a: {
-                  fontSize: 20,
-                  color: '#29EEF3'
-                },
-                c: {
-                  fontSize: 14,
-                  color: '#ffffff',
-                  padding: [5,0]
-                }
-              }
-            }
-          },
-          series: [
-            {
-              type: 'gauge',
-              radius: '100%',
-              clockwise: false,
-              startAngle: '90',
-              endAngle: '-269.9999',
-              splitNumber: 25,
-              detail: {
-                offsetCenter: [0, -20],
-                formatter: ' '
-              },
-              pointer: {
-                show: false
-              },
-              axisLine: {
-                show: true,
-                lineStyle: {
-                  color: [
-                    [52 / 100, '#3cd868'],
-                    [1, 'rgba(32,187,252,0.15)']
-                  ],
-                  width: 30
-                }
-              },
-              axisTick: {
-                show: false
-              },
-              splitLine: {
-                show: true,
-                length: 32,
-                lineStyle: {
-                  color: '#051F54',
-                  width: 4
-                }
-              },
-              axisLabel: {
-                show: false
-              }
-            },
+				this.option4 = {
+					title: {
+						text: '{a|507}\n{c|人流检测数\n据动态干预}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[52 / 100, '#3cd868'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
 
-            {
-              type: 'pie',
-              name: '内层环',
-              radius: [0, '83%'],
-              hoverAnimation: false,
-              clockWise: false,
-              itemStyle: {
-                normal: {
-                  color: '#02163F'
-                }
-              },
-              label: {
-                show: false
-              },
-              data: [100]
-            }
-          ]
-
-
-        }
-        this.option5 = {
-          title: {
-            text: '{a|906}\n{c|车流检查数\n据动态干预}',
-            x: 'center',
-            y: 'center',
-            textStyle: {
-              rich:{
-                a: {
-                  fontSize: 20,
-                  color: '#29EEF3'
-                },
-                c: {
-                  fontSize: 14,
-                  color: '#ffffff',
-                  padding: [5,0]
-                }
-              }
-            }
-          },
-          series: [
-            {
-              type: 'gauge',
-              radius: '100%',
-              clockwise: false,
-              startAngle: '90',
-              endAngle: '-269.9999',
-              splitNumber: 25,
-              detail: {
-                offsetCenter: [0, -20],
-                formatter: ' '
-              },
-              pointer: {
-                show: false
-              },
-              axisLine: {
-                show: true,
-                lineStyle: {
-                  color: [
-                    [72 / 100, '#f7dc46'],
-                    [1, 'rgba(32,187,252,0.15)']
-                  ],
-                  width: 30
-                }
-              },
-              axisTick: {
-                show: false
-              },
-              splitLine: {
-                show: true,
-                length: 32,
-                lineStyle: {
-                  color: '#051F54',
-                  width: 4
-                }
-              },
-              axisLabel: {
-                show: false
-              }
-            },
-
-            {
-              type: 'pie',
-              name: '内层环',
-              radius: [0, '83%'],
-              hoverAnimation: false,
-              clockWise: false,
-              itemStyle: {
-                normal: {
-                  color: '#02163F'
-                }
-              },
-              label: {
-                show: false
-              },
-              data: [100]
-            }
-          ]
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
 
 
-        }
+				}
+				this.option5 = {
+					title: {
+						text: '{a|906}\n{c|车流检查数\n据动态干预}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[72 / 100, '#f7dc46'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
+
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
+
+
+				}
 
 				this.option2 = {
 					tooltip: {
@@ -731,7 +735,15 @@
 			onError(e) {
 				console.log(e)
 			},
-
+			getData() {
+				this.$ajax.getWeather().then(res => {
+					this.air_level = res.air_level
+					this.air_pm25 = res.air_pm25
+					this.wea = res.wea
+					this.wea_img = 'static/images/'+res.wea_img+'.png'
+					this.tem = res.tem
+				})
+			}
 		}
 	}
 </script>
@@ -743,6 +755,7 @@
 		background: url(../../public/static/images/dbg.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.loading {
 		width: 600px;
 		height: 20px;
@@ -1149,7 +1162,7 @@
 			justify-content: space-between;
 
 			.rm-item {
-        margin-top: 30px;
+				margin-top: 30px;
 				width: 130px;
 				height: 130px;
 			}

@@ -8,16 +8,16 @@ module.exports = {
 	assetsDir: "static",
 	//indexPath: "index.html", html输出路径 默认 index.html
 	devServer: {
-		// port: 8012,
-		// proxy: {
-		//   // "/api": {
-		//   //   target: "http://localhost:8443",
-		//   //   changeOrigin: true,
-		//   //   pathRewrite: {
-		//   //     "^/api": ""
-		//   //   }
-		//   // }
-		// }
+		port: 8012,
+		proxy: {
+		  "/api": {
+		    target: "http://szxc.jinkworld.com/api",
+		    changeOrigin: true,
+		    pathRewrite: {
+		      "^/api": ""
+		    }
+		  }
+		}
 	},
 	chainWebpack: config => {
 		config.resolve.alias
