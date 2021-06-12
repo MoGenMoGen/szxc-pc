@@ -5,7 +5,7 @@
 		</transition>
 		<transition name="fade">
 			<div class="pop-common szgl" v-show='show2'>
-				<img :src="cwList[imgIndex].url" class="cwImg" v-if="imgShow">
+				<img :src="cwList[imgIndex].img" class="cwImg" v-if="imgShow">
 				<img src="static/images/cancel-B.png" class="cwImg-cancel" v-if="imgShow" @click="close">
 				<div class="pop-title"><span>三资管理</span></div>
 				<span class="pop-item-title"><img src="static/images/szcwgk.png">财务公开</span>
@@ -175,19 +175,7 @@
 					hasUrl: false,
 					title: '线上执法'
 				}],
-				cwList: [{
-					name: '资产负债',
-					url: 'static/images/banner1.png'
-				}, {
-					name: '资产负债',
-					url: 'static/images/banner2.png'
-				}, {
-					name: '资产负债',
-					url: 'static/images/banner1.png'
-				}, {
-					name: '资产负债',
-					url: 'static/images/banner1.png'
-				}],
+				cwList: [],
 				stList: [{
 					name: '石英坎山塘',
 					capacity: 2.21
@@ -235,8 +223,18 @@
 		},
 		mounted() {
 			this.show2 = true
+			this.getSzglData()
 		},
 		methods: {
+			getSzglData() {
+				let data = {
+					current: 1,
+					size: 30
+				}
+				this.$ajax.getCwgk(data).then(res => {
+					this.cwList = res.records
+				})
+			},
 			getIndex(e) {
 				if (e == 0) {
 					// 三资管理
@@ -245,6 +243,7 @@
 					this.show3 = false
 					this.show4 = false
 					this.show5 = false
+					this.getSzglData()
 				} else if (e == 1) {
 					// 山塘统计
 					this.show2 = false

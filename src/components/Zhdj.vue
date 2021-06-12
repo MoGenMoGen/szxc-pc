@@ -11,7 +11,7 @@
 				</div>
 			</div>
 		</transition>
-		<transition>
+		<transition name="fade">
 			<div class="pop-box" v-show="show3">
 				<div class="pop-common cunwei">
 					<div class="pop-title"><span>村两委班子</span></div>

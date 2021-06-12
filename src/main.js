@@ -5,10 +5,12 @@ import ElementUI from 'element-ui';
 import * as echarts from 'echarts';
 import 'element-ui/lib/theme-chalk/index.css';
 import dataV from '@jiaminghi/data-view'
+import {api} from './api/ajax.js'
 Vue.prototype.$echarts = echarts
 Vue.use(echarts)
 Vue.use(ElementUI);
 Vue.use(dataV)
+Vue.prototype.$ajax = new api();
 Vue.config.productionTip = false
 
 new Vue({
