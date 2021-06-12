@@ -228,10 +228,10 @@
     </transition>
 
     <!--三维模型-->
-    <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+    <!-- <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
                :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                @on-click="onClick" @on-progress="onProgress" @on-error="onError" backgroundAlpha='0'>
-    </model-obj>
+    </model-obj> -->
 
 
   </div>

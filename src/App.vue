@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<div class="top-tab">
+		<div class="top-tab" v-if="flag">
 			<img src="static/images/logo.png"/>
 			<span class="top-title">九龙湖数字乡村大屏</span>
 			<div class="top-tab-box">
@@ -10,13 +10,52 @@
 			</div>
 			<span class="top-time">{{nowTime}}</span>
 		</div>
-		<Summary v-show="isActive==0"></Summary>
-		<Yhyd v-show="isActive==1"></Yhyd>
-		<Zhdj v-show="isActive==2"></Zhdj>
-		<Zhly v-show="isActive==3"></Zhly>
-		<Jczl v-show="isActive==4"></Jczl>
-		<Cwgk v-show="isActive==5"></Cwgk>
-		<router-view></router-view>
+		<Summary v-show="isActive==0&&flag"></Summary>
+		<Yhyd v-show="isActive==1&&flag"></Yhyd>
+		<Zhdj v-show="isActive==2&&flag"></Zhdj>
+		<Zhly v-show="isActive==3&&flag"></Zhly>
+		<Jczl v-show="isActive==4&&flag"></Jczl>
+		<Cwgk v-show="isActive==5&&flag"></Cwgk>
+		<!-- 显示综合指挥 -->
+		<div class="imgBtn" v-if="!flag">
+			<img style="width: 100%; height: 100%;" src="../public/static/images/sgptBg.png">
+			<div class="btn btn1" @click="openPop(1)"></div>
+			<div class="btn btn2" @click="openPop(2)"></div>
+			<div class="btn btn3" @click="openPop(3)"></div>
+			<div class="btn btn4" @click="openImg(1)"></div>
+			<div class="btn btn5" @click="openImg(2)"></div>
+			<div class="btn btn6" @click="openImg(3)"></div>
+			<div>
+				<img :src="imgUrl" class="show-img" v-if="showImg">
+				<img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showImg">
+			</div>
+			<div class="sj-pop" v-if="showPop">
+				<img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showPop">
+				<div class="sj-pop-title"><span>{{title}}</span></div>
+				<div class="sj-pop-info">
+					<span style="width: 10%;">事件编号</span>
+					<span style="width: 20%;">内容</span>
+					<span style="width: 10%;">地址</span>
+					<span style="width: 10%;">问题类型</span>
+					<span style="width: 10%;">时间分类</span>
+					<span style="width: 10%;">上报时间</span>
+					<span style="width: 10%;">职能科室/部门</span>
+					<span style="width: 10%;">办结时间</span>
+					<span style="width: 10%;">是否超时关闭</span>
+				</div>
+				<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item">
+					<span style="width: 10%;">{{item.id}}</span>
+					<span style="width: 20%;">{{item.content}}</span>
+					<span style="width: 10%;">{{item.add}}</span>
+					<span style="width: 10%;">{{item.type}}</span>
+					<span style="width: 10%;">{{item.timeType}}</span>
+					<span style="width: 10%;">{{item.reportTime}}</span>
+					<span style="width: 10%;">{{item.department}}</span>
+					<span style="width: 10%;">{{item.overTime}}</span>
+					<span style="width: 10%;">{{item.timeOut}}</span>
+				</div>
+			</div>
+		</div>
 		<!-- <iframe src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
 	</div>
 </template>
@@ -35,10 +74,66 @@
 	export default {
 		data() {
 			return {
+				showImg: false,
+				showPop: true,
+				imgUrl: '../public/static/images/banner3.png',
+				title: '一级事件',
+				flag: true,
 				nowTime: "",
 				timer: "",
 				isActive: 0,
-				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务公开']
+				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务公开'],
+				sjList: [{
+					id: 'jlw202012130102',
+					content: '河头村河西上街网格预征土地上有违章搭建',
+					add: '河头村',
+					type: '治危拆违',
+					timeType: '网格关闭',
+					reportTime: '2020-12-15 10:07:09',
+					department: '镇海区九龙湖镇城建管理服务中心',
+					overTime: '2020-12-15 10:07:09',
+					timeOut: '否'
+				},{
+					id: 'jlw202012130102',
+					content: '河头村河西上街网格预征土地上有违章搭建',
+					add: '河头村',
+					type: '治危拆违',
+					timeType: '网格关闭',
+					reportTime: '2020-12-15 10:07:09',
+					department: '镇海区九龙湖镇城建管理服务中心',
+					overTime: '2020-12-15 10:07:09',
+					timeOut: '否'
+				},{
+					id: 'jlw202012130102',
+					content: '河头村河西上街网格预征土地上有违章搭建',
+					add: '河头村',
+					type: '治危拆违',
+					timeType: '网格关闭',
+					reportTime: '2020-12-15 10:07:09',
+					department: '镇海区九龙湖镇城建管理服务中心',
+					overTime: '2020-12-15 10:07:09',
+					timeOut: '否'
+				},{
+					id: 'jlw202012130102',
+					content: '河头村河西上街网格预征土地上有违章搭建',
+					add: '河头村',
+					type: '治危拆违',
+					timeType: '网格关闭',
+					reportTime: '2020-12-15 10:07:09',
+					department: '镇海区九龙湖镇城建管理服务中心',
+					overTime: '2020-12-15 10:07:09',
+					timeOut: '否'
+				},{
+					id: 'jlw202012130102',
+					content: '河头村河西上街网格预征土地上有违章搭建',
+					add: '河头村',
+					type: '治危拆违',
+					timeType: '网格关闭',
+					reportTime: '2020-12-15 10:07:09',
+					department: '镇海区九龙湖镇城建管理服务中心',
+					overTime: '2020-12-15 10:07:09',
+					timeOut: '否'
+				}]
 			}
 		},
 		name: 'app',
@@ -71,6 +166,10 @@
 			}
 		},
 		mounted() {
+			if(window.location.hash=='#/Sgpt') {
+				this.flag = false
+				console.log(this.flag)
+			}
 			let _this = this
 			this.nowTime = this.getDate()
 			this.timer = setInterval(function() {
@@ -134,6 +233,109 @@
 			}
 			.top-time {
 				font-size: 24px;
+			}
+		}
+		.imgBtn {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			.btn {
+				width: 160px;
+				// background-color: red;
+				position: absolute;
+				opacity: 0;
+			}
+			.btn1 {
+				height: 75px;
+				top: 204px;
+				left: 595px;
+			}
+			.btn2 {
+				height: 75px;
+				top: 204px;
+				left: 775px;
+			}
+			.btn3 {
+				height: 75px;
+				top: 204px;
+				left: 950px;
+			}
+			.btn4 {
+				width: 170px;
+				height: 34px;
+				top: 501px;
+				left: 28px;
+			}
+			.btn5 {
+				width: 170px;
+				height: 34px;
+				top: 501px;
+				left: 206px;
+			}
+			.btn6 {
+				width: 170px;
+				height: 34px;
+				top: 501px;
+				left: 386px;
+			}
+			.show-img {
+				width: 1200px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+			.cancelLogo {
+				position: absolute;
+				top: -20px;
+				right: -20px;
+			}
+			.sj-pop {
+				width: 1200px;
+				border: 1px solid #fff;
+				border-radius: 10px;
+				background-color: rgba(0, 0, 0, 0.64);
+				display: flex;
+				flex-direction: column;
+				padding: 10px;
+				box-sizing: border-box;
+				color: #fff;
+				z-index: 10000;
+				max-height: 700px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				.sj-pop-title {
+					width: 1160px;
+					background: url(../public/static/images/line.png) no-repeat;
+					background-size: 100% 100%;
+					font-size: 20px;
+					padding: 0 20px;
+					margin: 0 auto;
+					box-sizing: border-box;
+					span {
+						margin-left: 60px;
+					}
+				}
+				.sj-pop-info {
+					width: 100%;
+					padding: 10px;
+					box-sizing: border-box;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					text-align: center;
+				}
+				.sj-pop-item {
+					width: 100%;
+					padding: 10px;
+					box-sizing: border-box;
+					display: flex;
+					justify-content: space-between;
+					// align-items: center;
+					text-align: center;
+				}
 			}
 		}
 	}
