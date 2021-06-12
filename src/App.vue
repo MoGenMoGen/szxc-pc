@@ -16,6 +16,7 @@
 		<Zhly v-show="isActive==3"></Zhly>
 		<Jczl v-show="isActive==4"></Jczl>
 		<Cwgk v-show="isActive==5"></Cwgk>
+		<router-view></router-view>
 		<!-- <iframe src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
 	</div>
 </template>

@@ -279,6 +279,8 @@
 					this.show3 = false
 					this.show4 = false
 					this.show5 = false
+					let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
+					window.open(href, '_blank')
 				} else if (e == 7) {
 					// 防溺水
 					this.show2 = false
@@ -332,7 +334,7 @@
 		position: absolute;
 		top: 200px;
 		left: 500px;
-
+		max-height: none;
 		.cwImg {
 			width: 200px;
 			position: absolute;

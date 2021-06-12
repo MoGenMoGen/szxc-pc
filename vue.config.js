@@ -10,13 +10,13 @@ module.exports = {
 	devServer: {
 		port: 8012,
 		proxy: {
-		  "/api": {
-		    target: "http://szxc.jinkworld.com/api",
-		    changeOrigin: true,
-		    pathRewrite: {
-		      "^/api": ""
-		    }
-		  }
+			"/api": {
+				target: "http://szxc.jinkworld.com/api",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/api": ""
+				}
+			}
 		}
 	},
 	chainWebpack: config => {
