@@ -100,6 +100,22 @@ class api {
     });
     return promise;
   }
+  getV2(url,params){
+    let promise = new Promise((resolve,reject)=>{
+      axios.get(url,params).then(res=>{
+        resolve(res.data.data)
+        // if(res.data.code==200){
+        //   resolve(res.data.data)
+        // }else {
+        // }
+      }).catch(err=>{
+        console.log(err.response)
+
+      })
+    });
+    return promise;
+  }
+
   post(url,params){
     let promise = new Promise((resolve,reject)=> {
       axios.post('/api'+url, params).then(res=>{
@@ -193,7 +209,7 @@ class api {
       })
     })
   }
-  //土地征用费发放情况 
+  //土地征用费发放情况
   getTdfy(){
     return new Promise(resolve => {
       get("/blade-desk/notice/detail?id=1403255568414142466",{}).then(res=>{

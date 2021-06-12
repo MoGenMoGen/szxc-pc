@@ -2,24 +2,25 @@
   <div class="bigBox">
 
 
-    <!--    <div class="loading" v-if="isLoading<100">-->
-    <!--      <el-progress :percentage="isLoading"></el-progress>-->
-    <!--    </div>-->
+    <div class="loading" v-if="isLoading<100">
+      <el-progress :percentage="isLoading"></el-progress>
+    </div>
+    <!--   九龙湖介绍 -->
     <transition name="fade">
       <div class="box lt" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
           <span>九龙湖介绍</span>
-
         </div>
         <div class="box-bottom lt-bottom">
-          <video src="http://157.122.54.189:9088/uploads/5e0fdfa431f61363bba9bb3e.mp4" autoplay="autoplay"
+          <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"
+                 autoplay="autoplay"
                  muted loop="loop"></video>
           <div class="introduction">{{ introduction }}</div>
         </div>
       </div>
-      <!-- <my-charts :id="lt" class="lt" v-show="show" :data="option"></my-charts> -->
     </transition>
+    <!--    人口信息-->
     <transition name="fade">
       <div class="box lm" v-show="show">
         <div class="box-top">
@@ -37,19 +38,24 @@
               <span>外来人口：<span class="typeBlue">27</span> 人</span>
               <span>男女比率: <span class="typeBlue">
                 <img src="static/images/boy.png" style="vertical-align: middle;">60%</span>
-								<span class="typePink"><img src="static/images/girl.png"
-                                            style="vertical-align: middle;">40%</span></span>
+								<span class="typePink">
+                  <img src="static/images/girl.png" style="vertical-align: middle;">40%</span></span>
             </div>
-            <my-charts :id="rk" class="rk" :data="option2"></my-charts>
-            <div style="display: flex;flex-direction: column;">
-              <span style="font-size: 16px;">商户<span class="typeOrange">10%</span></span>
-              <span style="font-size: 16px;">农户<span class="typeYellow">5%</span></span>
-            </div>
+
+            <dv-active-ring-chart v-if="show" :config="config7" style="width:140px;height:140px"/>
+
+            <!--            <my-charts :id="rk" class="rk" :data="option2"></my-charts>-->
+            <!--            <dv-charts :option="option2" />-->
+            <!--            <div style="display: flex;flex-direction: column;">-->
+            <!--              <span style="font-size: 16px;">商户<span class="typeOrange">10%</span></span>-->
+            <!--              <span style="font-size: 16px;">农户<span class="typeYellow">5%</span></span>-->
+            <!--            </div>-->
           </div>
           <span>60岁老人数量：<span class="typeBlue">580</span>人 占比<span class="typeGreen">30%</span></span>
         </div>
       </div>
     </transition>
+    <!--  山塘信息  -->
     <transition name="fade">
       <div class="box lb" v-show="show">
         <div class="box-top">
@@ -66,22 +72,14 @@
             </div>
           </div>
           <div class="st-bottom">
-            <my-charts :id="st" class="st" :data="option3"></my-charts>
-            <div>
-              <div v-for="(item,index) in stList" :key="index" class="st-bottom-info">
-                <div class="st-bottom-inner">
-                  <p>{{ index + 1 }}</p>
-                  <span>{{ item.title }}</span>
-                  <span>{{ item.area }}km²</span>
-                  <span>{{ item.volume }}万m³</span>
-                </div>
-              </div>
-            </div>
+
+            <dv-active-ring-chart v-if="show" :config="config6" style="width:150px;height:150px"/>
+            <dv-scroll-board v-if="show" :config="config5" style="width:400px;height:165px"/>
           </div>
         </div>
       </div>
     </transition>
-
+    <!--水库信息-->
     <transition name="fade">
       <div class="box ml" v-show="show">
         <div class="box-top">
@@ -99,24 +97,15 @@
           </div>
 
           <div class="sk-bottom">
-<!--            <img src="static/images/skLogo.png">-->
-            <dv-water-level-pond :config="config3" style="width:150px;height:200px" />
+            <!--水位-->
+            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
 
-<!--            <dv-scroll-board :config="config2" style="width:400px;height:210px"/>-->
-<!--            <div>-->
-<!--              <div v-for="(item,index) in stList" :key="index" class="sk-bottom-info">-->
-<!--                <div class="sk-bottom-inner">-->
-<!--                  <p>{{ index + 1 }}</p>-->
-<!--                  <span>{{ item.title }}</span>-->
-<!--                  <span>{{ item.area }}km²</span>-->
-<!--                  <span>{{ item.volume }}万m³</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+            <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>
           </div>
         </div>
       </div>
     </transition>
+    <!--基层党建-->
     <transition name="fade">
       <div class="box mm" v-show="show">
         <div class="box-top">
@@ -127,9 +116,7 @@
           <div class="party-title">
             <span>党支部名称</span>
             <span>总人数：<span class="typeSkyBlue">109人</span></span>
-
           </div>
-
           <div>
             <div v-for="(item,index) in partyList" class="party-list" :key="index">
               <span class="typeBlue">{{ item.title }}</span>
@@ -139,21 +126,17 @@
         </div>
       </div>
     </transition>
+    <!-- 村务公开 -->
     <transition name="fade">
       <div class="box mr" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
           <span>村务公开</span>
         </div>
-        <dv-scroll-board :config="config" style="width:400px;height:210px"/>
-        <!--        <div class="box-bottom mr-bottom">-->
-        <!--&lt;!&ndash;          <div v-for="(item,index) in cwList" :key="index" class="cw-list">&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span style="color: #fff;">{{ index + 1 }}</span>&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span>{{ item.content }}</span>&ndash;&gt;-->
-        <!--&lt;!&ndash;          </div>&ndash;&gt;-->
-        <!--        </div>-->
+        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>
       </div>
     </transition>
+    <!-- 空气质量-->
     <transition name="fade">
       <div class="box rl" v-show="show">
         <div class="box-top">
@@ -163,19 +146,19 @@
         <div class="rl-bottom">
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">天气：</span>
-            <span><img src="static/images/rain.png" style="vertical-align: middle;">下雨</span>
+            <span><img :src="'static/images/'+tq.wea_img+'.png'" style="vertical-align: middle;"> {{ tq.wea }}</span>
           </div>
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">气温：</span>
-            <span><img src="static/images/temperature.png" style="vertical-align: middle;">20.0℃</span>
+            <span><img src="static/images/temperature.png" style="vertical-align: middle;">{{ tq.tem }}℃</span>
           </div>
           <div class="rl-inner">
             <span class="rl-inner-title">PM2.5：</span>
-            <span><img src="static/images/air.png" style="vertical-align: middle;">12</span>
+            <span><img src="static/images/air.png" style="vertical-align: middle;">{{ tq.air_pm25 }}</span>
           </div>
           <div class="rl-inner">
             <span class="rl-inner-title">负氧离子含量：</span>
-            <span><img src="static/images/NAI.png" style="vertical-align: middle;">2300</span>
+            <span><img src="static/images/NAI.png" style="vertical-align: middle;">12000</span>
           </div>
           <div class="rl-summary">
             <span class="typeGreenLight">优</span>
@@ -184,6 +167,7 @@
         </div>
       </div>
     </transition>
+    <!-- 每日数据 -->
     <transition name="fade">
       <div class="box rm" v-show="show">
         <div class="box-top">
@@ -199,7 +183,7 @@
         </div>
       </div>
     </transition>
-
+    <!--三资公开-->
     <transition name="fade">
       <div class="box rb" v-show="show">
         <div class="box-top">
@@ -244,11 +228,11 @@
       </div>
     </transition>
 
-
-    <!--    <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"-->
-    <!--               @on-load="" :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"-->
-    <!--               @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='backgroundAlpha'>-->
-    <!--    </model-obj>-->
+    <!--三维模型-->
+    <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+               :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+               @on-click="onClick" @on-progress="onProgress" @on-error="onError" backgroundAlpha='0'>
+    </model-obj>
 
 
   </div>
@@ -265,31 +249,107 @@ export default {
   props: {},
   data() {
     return {
-      config3:{
-        data: [66, 55],
+      tq: {},
+      config3: {
+        data: [66, 55, 50],
         shape: 'roundRect',
+        waveHeight: '10',
+        formatter: '15.7',
       },
-
       config2: {
-        // header: ['列1', '列2', '列3'],
         data: [
-          ['劈开猪头','1.82km2','10.84万m³'],
-          ['劈开猪头','1.82km2','10.84万m³'],
-          ['劈开猪头','1.82km2','10.84万m³'],
-          ['劈开猪头','1.82km2','10.84万m³'],
-          ['劈开猪头','1.82km2','10.84万m³'],
-          ['劈开猪头','1.82km2','10.84万m³'],
-
+          ['劈开猪头', '1.89km2', '10.84万m³'],
+          ['杨家', '0.33km2', '5.23万m³'],
+          ['蔡家岙', '0.09km2', '1.84万m³'],
+          ['安基墩', '0.4km2', '6.61万m³'],
+          ['石英坎', '0.86km2', '2.21万m³'],
+          ['三八', '0.53km2', '1.67万m³'],
+          ['应家', '0.13km2', '1.14万m³'],
         ],
         index: true,
-        columnWidth: [50],
+        columnWidth: [35, 80, 80, 90],
         evenRowBGC: "rgba(206,218,222,0)",
-        oddRowBGC: "rgba(206,218,222,0)"
-        // align: ['center']
+        oddRowBGC: "rgba(206,218,222,0)",
+        align: ['center']
 
       },
+      //山塘信息
+      config5: {
+        data: [
+          ['石英坎山塘', '0.86km2', '2.21万m³'],
+          ['浦沙岙山塘', '0.34km2', '5.41万m³'],
+          ['三八山塘', '0.53km2', '1.67万m³'],
+          ['百步山塘', '0.10km2', '0.795万m³'],
+          ['孟家山塘', '0.15km2', '0.466万m³'],
+          ['史夹岙山塘', '0.15km2', '0.46万m³'],
+          ['毛岭山塘', '0.02km2', '0.3万m³'],
+        ],
+        index: true,
+        columnWidth: [35, 80, 80, 90],
+        evenRowBGC: "rgba(206,218,222,0)",
+        oddRowBGC: "rgba(206,218,222,0)",
+        align: ['center']
+
+      },
+      config6: {
+        showOriginValue: true,
+        digitalFlopToFixed: 3,
+        data: [
+          {
+            name: '石英坎山塘',
+            value: 2.21
+          },
+          {
+            name: '浦沙岙山塘',
+            value: 5.41
+          },
+          {
+            name: '三八山塘',
+            value: 1.67
+          },
+          {
+            name: '百步山塘',
+            value: 0.795
+          },
+          {
+            name: '孟家山塘',
+            value: 0.466
+          }, {
+            name: '史夹岙山塘',
+            value: 0.46
+          }, {
+            name: '毛岭山塘',
+            value: 0.3
+          },
+        ],
+        lineWidth: 10,
+        radius: 40,
+        activeRadius: 45,
+        digitalFlopStyle: {
+          fontSize: 12,
+          fill: '#fff'
+        }
+      },
+      config7: {
+        radius: '60%',
+        activeRadius: '65%',
+        data: [
+          {
+            name: '农户',
+            value: 90
+          },
+          {
+            name: '商户',
+            value: 10
+          }
+        ],
+        color: ['#00de37', '#f7e301'],
+        digitalFlopStyle: {
+          fontSize: 15
+        },
+        // showOriginValue: true
+      },
       config: {
-        // header: ['列1', '列2', '列3'],
         data: [
           ['宣传健康常识和卫生知识'],
           ['免费提供电源接通，声控灯维修等'],
@@ -389,8 +449,6 @@ export default {
           }
         ]
       },
-      option2: null,
-      option3: null,
       option4: {
         title: {
           text: '{a|507}\n{c|人流检测数\n据动态干预}',
@@ -554,29 +612,21 @@ export default {
       show: false,
       introduction: '九龙湖村位于宁波市镇海区西北部是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并...',
       partyList: [{
-        title: '长胜田央沈、长桥头网格支部',
-        num: 21
+        title: '长胜周家港，孟家，毛岭网格支部',
+        num: 15
       }, {
         title: '长胜田央沈、长桥头网格支部',
         num: 21
       }, {
-        title: '长胜田央沈、长桥头网格支部',
-        num: 21
+        title: '横溪冷水井，高屋网格支部',
+        num: 28
       }, {
-        title: '长胜田央沈、长桥头网格支部',
-        num: 21
+        title: '朗家坪，十字网格支部',
+        num: 35
+      }, {
+        title: '农家乐联盟支部',
+        num: 10
       }],
-      // cwList: [{
-      //   content: '宣传健康常识和卫生知识'
-      // }, {
-      //   content: '宣传健康常识和卫生知识'
-      // }, {
-      //   content: '宣传健康常识和卫生知识'
-      // }, {
-      //   content: '宣传健康常识和卫生知识'
-      // }, {
-      //   content: '宣传健康常识和卫生知识'
-      // }],
       zzList: [{
         time: '2021-04-09',
         add: '九龙湖桥头街',
@@ -609,7 +659,6 @@ export default {
         area: '0.86',
         volume: '2.21'
       }],
-      backgroundAlpha: 0,
       cameraPosition: {
         x: 100,
         y: 3800,
@@ -666,99 +715,11 @@ export default {
   },
   methods: {
     onLoad() {
-
+      //获取天气
+      this.$ajax.getWeather().then(res => {
+        this.tq = res;
+      })
       this.show = true
-
-      this.option2 = {
-        tooltip: {
-          trigger: 'item'
-        },
-        series: [{
-          name: '人口信息',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: '22',
-              fontWeight: 'bold'
-            }
-          },
-          labelLine: {
-            show: false
-          },
-          data: [{
-            value: 1627,
-            name: '总人口'
-          },
-            {
-              value: 1600,
-              name: '当地人口'
-            },
-            {
-              value: 27,
-              name: '外来人口'
-            },
-            {
-              value: 580,
-              name: '60岁老人'
-            },
-            {
-              value: 722,
-              name: '总户数'
-            }
-          ]
-        }]
-      }
-      this.option3 = {
-        series: [{
-          name: '面积模式',
-          type: 'pie',
-          radius: [10, 50],
-          center: ['50%', '50%'],
-          roseType: 'area',
-          labelLine: false,
-          data: [{
-            value: 40,
-            name: 'rose 1'
-          },
-            {
-              value: 38,
-              name: 'rose 2'
-            },
-            {
-              value: 32,
-              name: 'rose 3'
-            },
-            {
-              value: 30,
-              name: 'rose 4'
-            },
-            {
-              value: 28,
-              name: 'rose 5'
-            },
-            {
-              value: 26,
-              name: 'rose 6'
-            },
-            {
-              value: 22,
-              name: 'rose 7'
-            },
-            {
-              value: 18,
-              name: 'rose 8'
-            }
-          ]
-        }]
-      }
-
     },
     onClick(e) {
 
@@ -794,7 +755,7 @@ export default {
 }
 
 .typeBlue {
-  color: #3FECFF;
+  color: #64beef;
 }
 
 .typePink {
@@ -868,7 +829,7 @@ export default {
 
     video {
       width: 230px;
-      height: 170px;
+      height: 160px;
     }
 
     .introduction {
@@ -896,7 +857,7 @@ export default {
   .lm-bottom {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 17px;
     color: #fff;
 
     .info-top {
@@ -909,6 +870,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      line-height: 2.2;
 
       .rk {
         margin-left: 20px;
@@ -1076,7 +1038,7 @@ export default {
 
     .party-list {
       width: 100%;
-      height: 32px;
+      height: 24px;
       background: url(../../public/static/images/jcbg.png);
       background-size: 100% 100%;
       margin-bottom: 6px;
