@@ -11,25 +11,25 @@
 	export default {
 	  name: 'Yhyd',
 	  props: {
-	    
+
 	  },
 	  data() {
 	  	return {
 			show: false,
 	  		list: [{
-				num: 200,
+				num: 722,
 				url: 'static/images/house.png',
 				title: '总户数'
 			},{
-				num: 200,
+				num: 1627,
 				url: 'static/images/zrs.png',
 				title: '总人数'
 			},{
-				num: 200,
+				num: 27,
 				url: 'static/images/zhs.png',
 				title: '租户数'
 			},{
-				num: 200,
+				num: 109,
 				url: 'static/images/dys.png',
 				title: '党户数'
 			}]
@@ -48,7 +48,7 @@
 	.fade-enter-active {
 		transition: opacity 1s;
 	}
-	
+
 	.fade-enter,
 	.fade-leave-to {
 		opacity: 0;

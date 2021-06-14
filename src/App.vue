@@ -2,7 +2,7 @@
 	<div id="app">
 		<div class="top-tab" v-if="flag">
 			<img src="static/images/logo.png"/>
-			<span class="top-title">九龙湖数字乡村大屏</span>
+			<span class="top-title" @click="test">九龙湖数字乡村大屏</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
 					{{item}}
@@ -56,7 +56,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- <iframe src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
+		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
+<!--		 <iframe width="2236" height="1804" src="http://www.baidu.com" frameborder="0"></iframe>-->
+
 	</div>
 </template>
 
@@ -148,6 +150,12 @@
 			Cwgk
 		},
 		methods: {
+		  test(){
+        console.log("test")
+        document.getElementById('iframe').contentWindow.postMessage("hello world",'*')
+      },
+
+
 			getDate() {
 				let str = new Date()
 				let week = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -290,53 +298,7 @@
 				top: -20px;
 				right: -20px;
 			}
-			.sj-pop {
-				width: 1200px;
-				border: 1px solid #fff;
-				border-radius: 10px;
-				background-color: rgba(0, 0, 0, 0.64);
-				display: flex;
-				flex-direction: column;
-				padding: 10px;
-				box-sizing: border-box;
-				color: #fff;
-				z-index: 10000;
-				max-height: 700px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%,-50%);
-				.sj-pop-title {
-					width: 1160px;
-					background: url(../public/static/images/line.png) no-repeat;
-					background-size: 100% 100%;
-					font-size: 20px;
-					padding: 0 20px;
-					margin: 0 auto;
-					box-sizing: border-box;
-					span {
-						margin-left: 60px;
-					}
-				}
-				.sj-pop-info {
-					width: 100%;
-					padding: 10px;
-					box-sizing: border-box;
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					text-align: center;
-				}
-				.sj-pop-item {
-					width: 100%;
-					padding: 10px;
-					box-sizing: border-box;
-					display: flex;
-					justify-content: space-between;
-					// align-items: center;
-					text-align: center;
-				}
-			}
+
 		}
 	}
 </style>

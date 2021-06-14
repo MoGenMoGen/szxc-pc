@@ -29,13 +29,13 @@
 					<div class="dangfei-info">
 						<div>
 							<span>当月收缴</span>
-							<span>人数：10</span>
-							<span>总额：1000元</span>
+							<span>人次：109</span>
+							<span>总额：3924元</span>
 						</div>
 						<div>
 							<span>年累计</span>
-							<span>人数：10</span>
-							<span>总额：1000元</span>
+							<span>人次：542</span>
+							<span>总额：19512元</span>
 						</div>
 					</div>
 				</div>
@@ -83,19 +83,19 @@
 				show3: false,
 				show4: false,
 				list: [{
-					num: 200,
+					num: 17,
 					url: 'static/images/hslx.png',
 					title: '红色路线'
 				}, {
-					num: 200,
+					num: 109,
 					url: 'static/images/dyrs.png',
 					title: '党员人数'
 				}, {
-					num: 200,
+					num: 1,
 					url: 'static/images/dwgk.png',
 					title: '党务公开'
 				}, {
-					num: 200,
+					num: 3,
 					url: 'static/images/dyhd.png',
 					title: '党员活动'
 				}],
@@ -115,32 +115,32 @@
 				partyInfoList: [{
 					title: '长胜周家港、孟家、毛家网格支部'
 				}, {
-					title: '长胜周家港、孟家、毛家网格支部'
+					title: '长胜田央沈、长桥头网格支部'
 				}, {
-					title: '长胜周家港、孟家、毛家网格支部'
+					title: '横溪冷水井，高屋网格支部'
 				}, {
-					title: '长胜周家港、孟家、毛家网格支部'
+					title: '朗家坪，十字网格支部'
 				}, {
-					title: '长胜周家港、孟家、毛家网格支部'
+					title: '农家乐联盟支部'
 				}],
 				cunweiList: [{
 					name: '杨勇',
 					post: '党委书记、村主任、社长'
 				},{
-					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					name: '翁志元',
+					post: '党委副书记、村副主任、社管会成员'
 				},{
-					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					name: '王丹凤',
+					post: '党委副书记'
 				},{
-					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					name: '黄杰锋',
+					post: '党委委员、副社长'
 				},{
-					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					name: '朱丽红',
+					post: '党委委员、纪委书记、村监会主任'
 				},{
-					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					name: '王佳丹',
+					post: '党委委员、村委委员、社监会主任'
 				}],
 				avctivityList: [{
 					title: '开展共产党员先进性教育活动',
@@ -208,7 +208,7 @@
 		padding: 0 20px;
 		margin: 0 auto;
 		box-sizing: border-box;
-	
+
 		span {
 			margin-left: 20px;
 		}

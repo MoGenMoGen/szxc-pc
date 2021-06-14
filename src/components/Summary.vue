@@ -4,6 +4,7 @@
     <div class="loading" v-if="isLoading<100">
       <el-progress :percentage="isLoading"></el-progress>
     </div>
+
     <!--   九龙湖介绍 -->
     <transition name="fade">
       <div class="box lt" v-show="show">
@@ -15,7 +16,16 @@
           <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"
                  autoplay="autoplay"
                  muted loop="loop"></video>
-          <div class="introduction">{{ introduction }}</div>
+<!--          <div class="introduction">{{ introduction }}</div>-->
+          <div class="demo03">
+            <div class="content">
+              <div>
+                <ul id="bgContent" class="cc rowup">
+                  <li :key="index" v-for="(item, index) in dataLi">{{item}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </transition>
@@ -145,7 +155,7 @@
         <div class="rl-bottom">
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">天气：</span>
-            <span><img :src="'static/images/'+tq.wea_img+'.png'" style="vertical-align: middle;"> {{ tq.wea }}</span>
+            <span><img :src="'static/images/'+tq.wea_img+'.png'" style="vertical-align: middle; width: 37px;height: 37px"> {{ tq.wea }}</span>
           </div>
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">气温：</span>
@@ -160,7 +170,7 @@
             <span><img src="static/images/NAI.png" style="vertical-align: middle;">12000</span>
           </div>
           <div class="rl-summary">
-            <span class="typeGreenLight">优</span>
+            <span class="typeGreenLight">{{tq.air_level}}</span>
             <span class="typeGreenLight">空气质量</span>
           </div>
         </div>
@@ -192,19 +202,19 @@
         </div>
         <div class="box-bottom rb-bottom">
           <div class="cwgk">
-            <div class="fontBig">财务公开<img src="static/images/cwgk.png" class="imgStyle"></div>
+            <div class="fontBig">上季度财务公开<img src="static/images/cwgk.png" class="imgStyle"></div>
             <div style="display: flex;justify-content: space-between;align-items: center;">
               <div class="flex-end" style="color: #FFE347;">
                 <span>总收入</span>
-                <span class="fontSm"><span class="fontBig">62989</span>万元</span>
+                <span class="fontSm"><span class="fontBig">48.88</span>万元</span>
               </div>
               <div class="flex-end typeBlue">
                 <span>总支出</span>
-                <span class="fontSm"><span class="fontBig">47898</span>万元</span>
+                <span class="fontSm"><span class="fontBig">224.99</span>万元</span>
               </div>
               <div class="flex-end" style="color: #3DDD6A;">
-                <span>剩余可支配</span>
-                <span class="fontSm"><span class="fontBig">15000</span>万元</span>
+                <span>收支结余</span>
+                <span class="fontSm"><span class="fontBig">-176.11</span>万元</span>
               </div>
             </div>
           </div>
@@ -214,24 +224,16 @@
           </div>
           <div class="zzxx">
             <div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
-            <!--						<div class="zzxx-info">-->
-            <!--							<div v-for="(item,index) in zzList" :key="index">-->
-            <!--								<span>{{item.time}}</span>-->
-            <!--								<span class="typeSkyBlue">{{item.add}}</span>-->
-            <!--								<span>{{item.info}}</span>-->
-            <!--								<span>￥{{item.money}}</span>-->
-            <!--							</div>-->
-            <!--						</div>-->
           </div>
         </div>
       </div>
     </transition>
 
     <!--三维模型-->
-    <!-- <model-obj src="static/models/jlh.obj" mtl="static/models/jlh.mtl" :position="position" :scale="scale"
+    <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-               @on-click="onClick" @on-progress="onProgress" @on-error="onError" backgroundAlpha='0'>
-    </model-obj> -->
+               @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
+    </model-obj>
 
 
   </div>
@@ -248,6 +250,19 @@ export default {
   props: {},
   data() {
     return {
+      dataLi: [
+        '九龙湖镇地处镇海西北部，辖区拥有丰富的自然山水景观、' +
+        '乡村田园风光、宗教文化圣地、生态农业基地、农业休闲园等旅游资源,' +
+        '素有“宁波后花园”之称，被誉为“浙东的香格里拉”。' +
+        '2001年由原河头、长石、汶溪三乡合并建镇。紧邻镇海新城，' +
+        '距宁波市中心18公里。全镇总面积65.3平方公里，' +
+        '其中，山林5.2万亩（35平方公里）' +
+        '，耕地2.8万亩（19平方公里），' +
+        '主要四个湖水域面积3平方公里。' +
+        '下辖11个行政村、3个社区，户籍人口22540人，' +
+        '外来人口18602人。九龙湖镇河道55条 总长度89公里  ' +
+        '全镇山塘水库33座，其中区管水库4座，镇管水库1座 山塘28座',
+      ],
       tq: {},
       config3: {
         data: [66, 55, 50],
@@ -372,7 +387,7 @@ export default {
       rk: "rk",
       option: {
         title: {
-          text: '{a|2680}\n{c|人流量\n实时监测}',
+          text: '{a|2680}\n{c|人流量}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -450,7 +465,7 @@ export default {
       },
       option4: {
         title: {
-          text: '{a|507}\n{c|人流检测数\n据动态干预}',
+          text: '{a|507}\n{c|人流检测数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -530,7 +545,7 @@ export default {
       },
       option5: {
         title: {
-          text: '{a|906}\n{c|车流检查数\n据动态干预}',
+          text: '{a|906}\n{c|车流检查数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -719,6 +734,7 @@ export default {
         this.tq = res;
       })
       this.show = true
+
     },
     onClick(e) {
 
@@ -726,8 +742,10 @@ export default {
     onProgress(e) {
       let loaded = e.loaded / e.total * 100 + ""
       this.isLoading = Number(loaded.substring(0, 4))
+
       // console.log(e.loaded / e.total * 100 + "%")
     },
+
     onError(e) {
       console.log(e)
     },
@@ -813,11 +831,11 @@ export default {
     background-color: rgba(0, 142, 244, .1);
   }
 }
-
+//介绍
 .lt {
-  height: 260px;
+  height: 300px;
   position: absolute;
-  top: 300px;
+  top: 220px;
   left: 35px;
 
   .lt-bottom {
@@ -827,13 +845,14 @@ export default {
     font-size: 18px;
 
     video {
-      width: 230px;
-      height: 160px;
+      width: 220px;
+      height: 180px;
     }
 
     .introduction {
+      margin-left: 10px;
       width: 150px;
-      height: 150px;
+      height: 220px;
       line-height: 30px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -847,9 +866,9 @@ export default {
 }
 
 .lm {
-  height: 273px;
+  height: 300px;
   position: absolute;
-  top: 580px;
+  top: 540px;
   left: 35px;
   z-index: 10000;
 
@@ -881,7 +900,7 @@ export default {
 }
 
 .lb {
-  height: 279px;
+  height: 300px;
   position: absolute;
   bottom: 40px;
   left: 35px;
@@ -946,10 +965,10 @@ export default {
 }
 
 .ml {
-  height: 279px;
+  height: 300px;
   position: absolute;
   bottom: 40px;
-  left: 478px;
+  left: 472px;
   z-index: 10000;
 
   .ml-bottom {
@@ -1012,10 +1031,10 @@ export default {
 }
 
 .mm {
-  height: 279px;
+  height: 300px;
   position: absolute;
   bottom: 40px;
-  left: 915px;
+  left: 910px;
   z-index: 10000;
 
   .mm-bottom {
@@ -1057,7 +1076,7 @@ export default {
 
 
 .mr {
-  height: 279px;
+  height: 300px;
   position: absolute;
   bottom: 40px;
   right: 470px;
@@ -1087,9 +1106,9 @@ export default {
 
 
 .rl {
-  height: 260px;
+  height: 300px;
   position: absolute;
-  top: 300px;
+  top: 220px;
   right: 35px;
   z-index: 10000;
 
@@ -1143,9 +1162,9 @@ export default {
 }
 
 .rm {
-  height: 273px;
+  height: 300px;
   position: absolute;
-  top: 580px;
+  top: 540px;
   right: 35px;
   z-index: 10000;
 
@@ -1162,7 +1181,7 @@ export default {
 }
 
 .rb {
-  height: 280px;
+  height: 300px;
   position: absolute;
   bottom: 40px;
   right: 35px;
@@ -1244,6 +1263,45 @@ export default {
 model-obj {
   width: 100%;
   height: 100%;
+}
+.demo03 {
+  width: 100%;
+  height: 200px;
+  //background-color: orange;
+  overflow: hidden;
+  margin-left: 10px;
+}
+.demo03 ul {
+  list-style: none;
+  position: relative;
+}
+.demo03 ul li {
+  line-height: 30px;
+  color: #fffefe;
+}
+.demo03 .content {
+  display: flex;
 
+}
+//.demo03 .content span {
+//  margin-left: 20px;
+//  line-height: 40px;
+//}
+
+@keyframes rowup {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -900px, 0);
+    transform: translate3d(0, -900px, 0);
+  }
+}
+
+.demo03 ul.rowup{
+  -webkit-animation: 70s rowup linear infinite normal;
+  animation: 70s rowup linear infinite normal;
+  position: relative;
 }
 </style>

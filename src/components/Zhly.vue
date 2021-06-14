@@ -101,6 +101,7 @@
 		},
 		methods: {
 			getIndex(e) {
+        console.log(e)
 				if (e == 0) {
 					this.show = true
 					this.show2 = false
