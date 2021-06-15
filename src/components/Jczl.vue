@@ -85,14 +85,46 @@
       </div>
     </transition>
 
+<!--    5+x -->
+    <transition name="fade">
+      <div class="sj-pop" v-show="show7">
+        <img src="static/images/cancel.png" class="cancelLogo" @click="show7=false">
+        <u-table :max-height="550"
+            :data="fiveList"
+            :border="false"
+            style="width: 100%">
+          <u-table-column
+              prop="number"
+              label="number"
+              width="140">
+          </u-table-column>
+          <u-table-column
+              prop="shop_name"
+              label="shop_name">
+          </u-table-column>
+          <u-table-column
+              prop="check_man"
+              label="check_man"
+              width="140">
+          </u-table-column>
+          <u-table-column
+              prop="partner"
+              label="partner"
+              width="140">
+          </u-table-column>
+          <u-table-column
+              prop="expire_date"
+              label="expire_date"
+              width="160">
+          </u-table-column>
+        </u-table>
+      </div>
+    </transition>
+
+
     <transition name="fade">
       <img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
            v-show="show6">
-      <!--      <div class="pop-box" v-show="show6">-->
-      <!--        -->
-
-      <!--      </div>-->
-
     </transition>
     <div class="sj-pop" v-if="showP">
       <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false">
@@ -127,12 +159,13 @@
 <script>
 import PopBox from '@/components/PopBox.vue'
 import BottomTab from '@/components/BottomTab.vue'
-
+import xcFive from '@/components/xc_five.json'
 export default {
   name: 'Jczl',
   props: {},
   data() {
     return {
+      fiveList:[],
       title:'',
       imgIndex: 0,
       imgShow: false,
@@ -143,6 +176,7 @@ export default {
       show4: false,
       show5: false,
       show6: false,
+      show7: false,
       list: [{
         num: 200,
         url: 'static/images/house.png',
@@ -586,9 +620,13 @@ export default {
   },
   components: {
     PopBox,
-    BottomTab
+    BottomTab,xcFive
+
   },
   mounted() {
+    //console.log(xcFive)
+    this.fiveList = xcFive.RECORDS
+    console.log(this.fiveList)
     this.show2 = true
     this.getSzglData()
   },
@@ -630,7 +668,7 @@ export default {
         this.show4 = false
         this.show5 = false
         this.show6 = false
-
+        this.show7 = false
         this.getSzglData()
       } else if (e == 1) {
         // 山塘统计
@@ -640,6 +678,7 @@ export default {
         this.show4 = false
         this.show5 = false
         this.show6 = false
+        this.show7 = false
       } else if (e == 2 || e == 4) {
         // 企业，垃圾分类
         this.show2 = false
@@ -648,6 +687,7 @@ export default {
         this.show4 = false
         this.show5 = false
         this.show6 = false
+        this.show7 = false
       } else if (e == 3 || e == 8) {
         // 5+x平台，线上执法
         this.show2 = false
@@ -656,6 +696,9 @@ export default {
         this.show4 = false
         this.show5 = false
         this.show6 = false
+        this.show7 = true
+
+
       } else if (e == 5) {
         // 乡村关爱
         this.show2 = false
@@ -664,6 +707,7 @@ export default {
         this.show4 = true
         this.show5 = false
         this.show6 = false
+        this.show7 = false
       } else if (e == 6) {
         //四个平台 打开新页面
         this.show2 = false
@@ -672,7 +716,7 @@ export default {
         this.show4 = false
         this.show5 = false
         this.show6 = true
-
+        this.show7 = false
         // let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
         // window.open(href, '_blank')
 

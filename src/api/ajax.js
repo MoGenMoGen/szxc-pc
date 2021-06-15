@@ -288,3 +288,4 @@ instance.interceptors.response.use((res) => {
     return Promise.reject(error);
 });
 export {api}
+

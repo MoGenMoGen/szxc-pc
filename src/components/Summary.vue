@@ -230,10 +230,13 @@
     </transition>
 
     <!--三维模型-->
-    <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
-               :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-               @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-    </model-obj>
+    <div style="height: 1004px;width: 2236px; margin-bottom: 200px">
+      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
+      </model-obj>
+
+    </div>
 
 
   </div>
@@ -835,7 +838,7 @@ export default {
 .lt {
   height: 300px;
   position: absolute;
-  top: 220px;
+  top: 180px;
   left: 35px;
 
   .lt-bottom {
@@ -868,7 +871,7 @@ export default {
 .lm {
   height: 300px;
   position: absolute;
-  top: 540px;
+  top: 520px;
   left: 35px;
   z-index: 10000;
 
@@ -1108,7 +1111,7 @@ export default {
 .rl {
   height: 300px;
   position: absolute;
-  top: 220px;
+  top: 180px;
   right: 35px;
   z-index: 10000;
 
@@ -1164,7 +1167,7 @@ export default {
 .rm {
   height: 300px;
   position: absolute;
-  top: 540px;
+  top: 520px;
   right: 35px;
   z-index: 10000;
 
