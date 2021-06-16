@@ -62,22 +62,27 @@ export default {
 
     this_.oWebControl.oDocOffset.top = 208;
     this_.oWebControl.oDocOffset.left = 688;
+
   },
 
   methods: {
+    show() {
+      this.oWebControl.JS_ShowWnd();
+    },
 
     //关闭插件
     off() {
-      console.log("调用关闭组件")
       //let _this = this;
       this.oWebControl.JS_HideWnd();
-      this.oWebControl.JS_Disconnect();
+      //this.oWebControl.JS_Disconnect();
+
+      // this_.oWebControl.JS_DestroyWn();
       //this.oWebControl.JS_DestroyWn();
     },
 
     //   插件初始化
     initPlugin() {
-      //window.resizeTo(2236, 1204);
+      console.log(11111111111)
       let _this = this;
       this.oWebControl = new WebControl({
         szPluginContainer: "divPlugin",
@@ -91,7 +96,7 @@ export default {
             _this.oWebControl.JS_StartService("window", {
               dllPath: "./VideoPluginConnect.dll"
             }).then((res) => {
-              _this.oWebControl.JS_CreateWnd("divPlugin", 1000, 600).then(() => {
+              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 400).then(() => {
                 this.initVideo();
               });
             }, function () {
@@ -134,6 +139,7 @@ export default {
     },
     // 初始化参数
     initVideo() {
+      let _this = this;
       this.getPubKey(() => {
         let appkey = "22976517";                                  //综合安防管理平台提供的appkey，必填
         let secret = this.setEncrypt("kQhUuOaiehTT3vyUkJCt");   //综合安防管理平台提供的secret，必填
@@ -165,8 +171,13 @@ export default {
             showSmart: showSmart,                      //是否显示智能信息
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
-        }).then(
-            this.toPlay
+        }).then((oData) => {
+
+
+
+              this.toPlay()
+
+            }
             //this.startRealPlay()
         );
       })
@@ -195,11 +206,12 @@ export default {
     },
 
     toPlay() {
-      let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803", "27e50449dd0649008aaa28aa6bd18378", "4cf0233765c54aac94ab53f866c4261b", "755c8a96a8b44d7da41331387aa01a48", "4b436bc660ae42809f407bc7ca202229"];
+      // let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803", "27e50449dd0649008aaa28aa6bd18378", "4cf0233765c54aac94ab53f866c4261b", "755c8a96a8b44d7da41331387aa01a48", "4b436bc660ae42809f407bc7ca202229"];
+      let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf",];
       for (let i = 0; i < arr.length; i++) {
-        console.log(i, arr[i]);
         this.startRealPlay2(arr[i], i + 1)
       }
+
     },
     // 视频预览
     startRealPlay() {
@@ -256,8 +268,8 @@ export default {
     // width() {
     //   let _this = this
     //   window.console.log("宽度监听")
-    //   window.console.log(this.width)
-    //   _this.oWebControl.JS_CreateWnd("divPlugin", this.width, this.height).then(() => {
+    //   // window.console.log(this.width)
+    //   _this.oWebControl.JS_CreateWnd("divPlugin", 600, 600).then(() => {
     //     _this.initVideo();
     //   });
     // },

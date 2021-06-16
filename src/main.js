@@ -21,5 +21,11 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  data: function(){
+    return {
+      hsxl: false,
+      zl:false,
+    }
+  },
   render: h => h(App)
 })

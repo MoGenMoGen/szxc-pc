@@ -70,6 +70,8 @@
 <script>
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
+
+
 	export default {
 		name: 'Zhdj',
 		props: {
@@ -166,21 +168,42 @@
 		},
 		methods: {
 			getIndex(e) {
+        console.log(e)
 				if (e == 0) {
-          this.$parent.test("红色景点");
-          this.$parent.test("红色路线");
 
-					this.show = true
+          if (!this.$root.hsxl){
+            this.$parent.test("红色景点");
+            this.$parent.test("红色路线");
+            this.$root.hsxl = true;
+          }else {
+            this.$parent.test("红色景点");
+            this.$parent.test("红色路线");
+            this.$parent.test("红色景点");
+            this.$parent.test("红色路线");
+            this.$root.hsxl = true;
+          }
+
+          this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 1) {
+          this.$parent.test(this.partyInfoList[this.isPartyTab].title);
 					this.show = true
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 2) {
-					this.show = false
+          if (!this.$root.zl){
+            this.$parent.test("总览");
+            this.$root.zl = true;
+          }else {
+            this.$parent.test("总览");
+            this.$parent.test("总览");
+            this.$root.zl = true;
+          }
+
+          this.show = false
 					this.show2 = false
 					this.show3 = true
 					this.show4 = false
@@ -192,7 +215,6 @@
 				}
 			},
 			changePartyTab(e) {
-       // console.log(this.partyInfoList[e].title.replace("、",""))
         this.$parent.test(this.partyInfoList[e].title);
 				this.isPartyTab = e
 			}

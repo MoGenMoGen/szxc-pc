@@ -14,7 +14,7 @@
 		<Yhyd v-show="isActive==1&&flag"></Yhyd>
 		<Zhdj v-show="isActive==2&&flag"></Zhdj>
 		<Zhly v-show="isActive==3&&flag"></Zhly>
-		<Jczl v-show="isActive==4&&flag"></Jczl>
+		<Jczl v-show="isActive==4&&flag" ref="jczl"></Jczl>
 		<Cwgk v-show="isActive==5&&flag"></Cwgk>
 		<!-- 显示综合指挥 -->
 		<div class="imgBtn" v-if="!flag">
@@ -174,6 +174,44 @@
 			},
 			changeIndex(e) {
 				this.isActive = e
+        console.log(e)
+        if (e === 1){
+          if (!this.$root.zl){
+            this.test("总览");
+            this.$root.zl = true;
+          }else {
+            this.test("总览");
+            this.test("总览");
+            this.$root.zl = true;
+          }
+        }
+        // if (e !== 4){
+        //   this.$refs.jczl.offHik()
+        // }
+
+
+        //地图跳转
+        if (e === 2){
+          if (!this.$root.hsxl){
+            this.test("红色景点");
+            this.test("红色路线");
+            this.$root.hsxl = true;
+          }else {
+            this.test("红色景点");
+            this.test("红色路线");
+            this.test("红色景点");
+            this.test("红色路线");
+            this.$root.hsxl = true;
+          }
+        }
+        //旅游
+        if (e === 3){
+          this.test("旅游景点");
+        }
+        //
+        // console.log(e === 2){
+        //
+        // }
 			}
 		},
 		mounted() {
