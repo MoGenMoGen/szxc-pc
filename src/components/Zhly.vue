@@ -1,6 +1,24 @@
 <template>
 	<div>
 		<transition name="fade">
+			<PopBox :list="list" v-show='show'></PopBox>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common pop-list" v-show="show">
+			  <div class="pop-title"><span>农家乐统计</span></div>
+			  <div class="pop-inner-title">
+			    <span>序号</span>
+			    <span>农家乐名称</span>
+			  </div>
+			  <div class="pop-inner-box">
+				  <div v-for="(item,index) in njlList" :key='index' class="pop-inner-item">
+					<span>{{ index + 1 }}</span>
+					<span>{{ item.name }}</span>
+				  </div>
+			  </div>
+			</div>
+		</transition>
+		<transition name="fade">
 			<el-carousel indicator-position='none' v-if="show" class="banner" arrow='hover' :interval='2000'>
 				<el-carousel-item v-for="(item,index) in imgList" :key="index">
 					<img :src="item.url">
@@ -9,10 +27,26 @@
 		</transition>
 		<transition name="fade">
 			<div v-if="show2" class="xingTab">
-				<div v-for="(item,index) in xingList" :key='index' :class="{'xingActive':xingIndex==index}" class="xingTab-item" @click="changeXing(index)">
+				<!-- <div v-for="(item,index) in xingList" :key='index' :class="{'xingActive':xingIndex==index}" class="xingTab-item" @click="changeXing(index)">
 					<img :src="item.url">
 					<span>{{item.title}}</span>
-				</div>
+				</div> -->
+				
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common pop-list" v-show="show2">
+			  <div class="pop-title"><span>景点列表</span></div>
+			  <div class="pop-inner-title">
+			    <span>序号</span>
+			    <span>景点名称</span>
+			  </div>
+			  <div class="pop-inner-box">
+				  <div v-for="(item,index) in jdList" :key='index' class="pop-inner-item">
+					<span>{{ index + 1 }}</span>
+					<span>{{ item.name }}</span>
+				  </div>
+			  </div>
 			</div>
 		</transition>
 		<transition name="fade">
@@ -51,6 +85,19 @@
 				show3: false,
 				labelIndex: 0,
 				xingIndex: 0,
+				list: [{
+				  num: 200,
+				  url: 'static/images/house.png',
+				  title: '农家乐'
+				}, {
+				  num: 120,
+				  url: 'static/images/zrs.png',
+				  title: '群众数'
+				}, {
+				  num: 80,
+				  url: 'static/images/dys.png',
+				  title: '党员数'
+				}],
 				tabList: [{
 					sUrl: 'static/images/chiS.png',
 					url: 'static/images/chi.png',
@@ -62,20 +109,84 @@
 					hasUrl: true,
 					title: '住'
 				}, {
-					sUrl: 'static/images/xingS.png',
-					url: 'static/images/xing.png',
-					hasUrl: true,
-					title: '行'
-				}, {
 					sUrl: 'static/images/youS.png',
 					url: 'static/images/you.png',
 					hasUrl: true,
-					title: '游'
-				}, {
+					title: '玩'
+				},
+				// {
+				// 	sUrl: 'static/images/youS.png',
+				// 	url: 'static/images/you.png',
+				// 	hasUrl: true,
+				// 	title: '游'
+				// }, 
+				{
 					sUrl: 'static/images/gouS.png',
 					url: 'static/images/gou.png',
 					hasUrl: true,
 					title: '购'
+				}],
+				njlList: [{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				},{
+					id: 1,
+					name: '龙居农家乐'
+				}],
+				jdList: [{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
+				},{
+					id: 1,
+					name: '香山教寺'
 				}],
 				imgList: [{
 					url: 'static/images/banner1.png',
@@ -115,14 +226,15 @@
 					this.show2 = true
 					this.show3 = false
 				} else if (e == 3) {
-					this.show = true
-					this.show2 = false
-					this.show3 = false
-				} else if (e == 4) {
 					this.show = false
 					this.show2 = false
 					this.show3 = true
-				}
+				} 
+				// else if (e == 4) {
+				// 	this.show = false
+				// 	this.show2 = false
+				// 	this.show3 = true
+				// }
 			},
 			changeIndex(e) {
 				this.labelIndex = e
@@ -138,12 +250,79 @@
 </script>
 
 <style lang="less" scoped>
+	.pop-title {
+	  width: 485px;
+	  height: 32px;
+	  background: url(../../public/static/images/line.png) no-repeat;
+	  font-size: 20px;
+	  padding: 0 20px;
+	  margin: 0 auto;
+	  box-sizing: border-box;
+	
+	  span {
+	    margin-left: 20px;
+	  }
+	}
+	
+	.pop-common {
+	  width: 520px;
+	  border: 1px solid #fff;
+	  border-radius: 10px;
+	  background-color: rgba(0, 0, 0, 0.64);
+	  display: flex;
+	  flex-direction: column;
+	  padding: 10px;
+	  box-sizing: border-box;
+	  color: #fff;
+	  z-index: 10000;
+	  max-height: 380px;
+	}
+	
+	.pop-list {
+		position: absolute;
+		top: 500px;
+		left: 35px;
+		max-height: 510px;
+		.pop-inner-title {
+			display: flex;
+			width: 90%;
+			margin: 10px auto;
+			font-size: 19px;
+			span:first-child {
+				text-align: center;
+				width: 35%;
+			}
+			span:last-child {
+				text-align: center;
+				width: 65%;
+			}
+		}
+		.pop-inner-box {
+			max-height: 350px;
+			overflow-y: auto;
+			.pop-inner-item {
+				display: flex;
+				width: 90%;
+				margin: 10px auto;
+				font-size: 18px;
+				span:first-child {
+					text-align: center;
+					width: 35%;
+				}
+				span:last-child {
+					text-align: center;
+					width: 65%;
+				}
+			}
+		}
+	}
+	
 	.banner {
 		width: 500px;
 		// height: 333px;
 		position: absolute;
 		top: 200px;
-		left: 35px;
+		right: 35px;
 
 		.el-carousel__item {
 			width: 100%;

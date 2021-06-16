@@ -33,7 +33,7 @@
         </div>
       </div>
     </transition>
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div class="xcga" v-show="show4">
         <div class="xcga-title"><span>乡村关爱</span></div>
         <div class="content">
@@ -51,7 +51,7 @@
           <img :src="item.url">
         </div>
       </div>
-    </transition>
+    </transition> -->
     <transition name="fade">
       <div class="pop-box" v-show="show5">
         <div class="pop-common fns">
@@ -101,6 +101,10 @@
         <span style="width: 10%;">{{ item.timeOut }}</span>
       </div>
     </div>
+<!--    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
+    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button> -->
+
+
 
     <BottomTab :list="tabList" @updata="getIndex"></BottomTab>
   </div>
@@ -176,26 +180,28 @@ export default {
         title: '山塘水库'
       }, {
         hasUrl: false,
-        title: '企业'
-      }, {
-        hasUrl: false,
-        title: '5+X平台'
-      }, {
-        hasUrl: false,
-        title: '垃圾分类'
-      }, {
-        hasUrl: false,
-        title: '乡村关爱'
+        title: '网格管理'
       }, {
         hasUrl: false,
         title: '四个平台'
       }, {
         hasUrl: false,
-        title: '防溺水'
+        title: '5+X'
       }, {
         hasUrl: false,
         title: '线上执法'
-      }],
+      }
+	  // , {
+   //      hasUrl: false,
+   //      title: '四个平台'
+   //    }, {
+   //      hasUrl: false,
+   //      title: '防溺水'
+   //    }, {
+   //      hasUrl: false,
+   //      title: '线上执法'
+   //    },
+	  ],
       stList: [{
         name: '石英坎山塘',
         capacity: 2.21
@@ -618,7 +624,7 @@ export default {
       //   this.getSzglData()
       // } else
 	  if (e == 0) {
-        // 山塘统计
+        // 水库管理
         // this.show2 = false
         this.show = false
         this.show3 = true
@@ -626,8 +632,8 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
-      } else if (e == 1 || e == 3) {
-        // 企业，垃圾分类
+      } else if (e == 1) {
+        // 网格管理
         // this.show2 = false
         this.show = true
         this.show3 = false
@@ -635,31 +641,8 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
-        if (e === 3){
-          this.hikShow =true;
-        }
-      } else if (e == 2 || e == 7) {
-        // 5+x平台，线上执法
-        // this.show2 = false
-        this.show = false
-        this.show3 = false
-        this.show4 = false
-        this.show5 = false
-        this.show6 = false
-        this.show7 = true
-
-
-      } else if (e == 4) {
-        // 乡村关爱
-        // this.show2 = false
-        this.show = false
-        this.show3 = false
-        this.show4 = true
-        this.show5 = false
-        this.show6 = false
-        this.show7 = false
-      } else if (e == 5) {
-        //四个平台 打开新页面
+      } else if (e == 2) {
+        // 4个平台
         // this.show2 = false
         this.show = false
         this.show3 = false
@@ -667,18 +650,38 @@ export default {
         this.show5 = false
         this.show6 = true
         this.show7 = false
-        // let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
-        // window.open(href, '_blank')
-
-      } else if (e == 6) {
-        // 防溺水
+      } else if (e == 3) {
+        // 5+X
+        // this.show2 = false
+		this.hikShow =true;
+        this.show = false
+        this.show3 = false
+        this.show4 = true
+        this.show5 = false
         this.show6 = false
+        this.show7 = false
+      } else if (e == 4) {
+        // 线上执法
         // this.show2 = false
         this.show = false
         this.show3 = false
         this.show4 = false
-        this.show5 = true
-      }
+        this.show5 = false
+        this.show6 = false
+        this.show7 = false
+        // let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
+        // window.open(href, '_blank')
+
+      } 
+	  // else if (e == 6) {
+   //      // 防溺水
+   //      this.show6 = false
+   //      // this.show2 = false
+   //      this.show = false
+   //      this.show3 = false
+   //      this.show4 = false
+   //      this.show5 = true
+   //    }
     },
     showImg(e) {
       this.imgShow = true
