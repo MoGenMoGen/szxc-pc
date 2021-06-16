@@ -36,7 +36,46 @@
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
-					style="position: absolute;top: 220px;left: 333px;z-index: 99;width: 903px;height: 349px;">
+					style="position: absolute;top: 400px;left: 640px;z-index: 1000;width: 903px;height: 349px;"
+					@click="showWg">
+			</div>
+		</transition>
+		<transition name="fade">
+			<div v-show="show8">
+				<div class="pop-common pop-list">
+					<div class="pop-title"><span>垃圾分类</span></div>
+					<div class="pop-inner-title">
+						<span style="width: 100%;text-align: left;">点位名称</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in ljflList" :key='index' class="pop-inner-item">
+							<span style="width: 100%;text-align: left;">{{ item.name }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="pop-common pop-list" style="top: 620px;">
+					<div class="pop-title"><span>乡村关爱</span></div>
+					<div class="pop-inner-title">
+						<span>姓名</span>
+						<span>类别</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in xcgaList" :key='index' class="pop-inner-item">
+							<span>{{ item.name }}</span>
+							<span>{{ item.type }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="pop-top">
+					<div class="pop-top-content">
+						<div v-for="(item,index) in wgList" :key="index" class="pop-top-item">
+							<span>{{item.num}}</span>
+							<img :src="item.url">
+							<span>{{item.title}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="monitorBox"></div>
 			</div>
 		</transition>
 		<!-- <transition name="fade">
@@ -58,23 +97,23 @@
         </div>
       </div>
     </transition> -->
-    <transition name="fade">
-      <div class="pop-box" v-show="show5">
-        <div class="pop-common fns">
-          <div class="pop-title"><span>报警统计</span></div>
-          <div class="pop-inner-title">
-            <span>序号</span>
-            <span>水库名称</span>
-            <span>报警次数</span>
-          </div>
-          <div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item">
-            <span>{{ index + 1 }}</span>
-            <span>{{ item.name }}</span>
-            <span :style="{color:item.capacity>=15?'#D00E00':''}">{{ item.capacity }}</span>
-          </div>
-        </div>
-<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
-			 </div>
+		<transition name="fade">
+			<div class="pop-box" v-show="show5">
+				<div class="pop-common fns">
+					<div class="pop-title"><span>报警统计</span></div>
+					<div class="pop-inner-title">
+						<span>序号</span>
+						<span>水库名称</span>
+						<span>报警次数</span>
+					</div>
+					<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item">
+						<span>{{ index + 1 }}</span>
+						<span>{{ item.name }}</span>
+						<span :style="{color:item.capacity>=15?'#D00E00':''}">{{ item.capacity }}</span>
+					</div>
+				</div>
+				<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
+			</div>
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
 				<div class="pop-inner-title">
@@ -159,6 +198,7 @@
 				show5: false,
 				show6: false,
 				show7: false,
+				show8: false,
 				list: [{
 					num: 5,
 					url: 'static/images/srjf.png',
@@ -167,6 +207,23 @@
 					num: 2,
 					url: 'static/images/wfsl.png',
 					title: '危房数量'
+				}],
+				wgList: [{
+					num: '张某某',
+					url: 'static/images/zhs.png',
+					title: '网格长'
+				}, {
+					num: 60,
+					url: 'static/images/house.png',
+					title: '户数'
+				}, {
+					num: 120,
+					url: 'static/images/zrs.png',
+					title: '人数'
+				}, {
+					num: 20,
+					url: 'static/images/dys.png',
+					title: '党员数'
 				}],
 				// xcgaList: [{
 				//   num: 200,
@@ -194,8 +251,40 @@
 				//   title: '五保户'
 				// }],
 				xcgaList: [{
-					name: '张三',
-					type: '矫正人员',
+					name: '应瑞根',
+					type: '普通',
+				}, {
+					name: '傅正虎',
+					type: '普通',
+				}, {
+					name: '沈振兴',
+					type: '普通',
+				}, {
+					name: '何巧儿',
+					type: '普通',
+				}, {
+					name: '沈立琴',
+					type: '单人户低保',
+				}, {
+					name: '王世辉',
+					type: '单人户低保',
+				}],
+				ljflList: [{
+					name: '横溪垃圾桶1'
+				}, {
+					name: '横溪垃圾桶2'
+				}, {
+					name: '横溪垃圾桶3'
+				}, {
+					name: '横溪垃圾桶4'
+				}, {
+					name: '横溪垃圾桶5'
+				}, {
+					name: '长胜垃圾桶1'
+				}, {
+					name: '长胜垃圾桶2'
+				}, {
+					name: '长胜垃圾桶3'
 				}],
 				tabList: [{
 						hasUrl: false,
@@ -654,7 +743,7 @@
 				// } else
 				if (e == 0) {
 					// 水库管理
-          this.offHik()
+					this.offHik()
 					this.show2 = false
 					this.show3 = false
 					this.show = true
@@ -662,10 +751,11 @@
 					this.show5 = false
 					this.show6 = false
 					this.show7 = false
+					this.show8 = false
 				} else if (e == 1) {
 					// 网格管理
-          this.hikShow = true
-          this.$refs.videoPlayer.show()
+					this.hikShow = true
+					this.$refs.videoPlayer.show()
 					this.show2 = true
 					this.show = false
 					this.show3 = false
@@ -673,6 +763,7 @@
 					this.show5 = false
 					this.show6 = false
 					this.show7 = false
+					this.show8 = false
 				} else if (e == 2) {
 					// 4个平台
 					this.show2 = false
@@ -682,6 +773,7 @@
 					this.show5 = false
 					this.show6 = false
 					this.show7 = false
+					this.show8 = false
 				} else if (e == 3) {
 					// 5+X
 					this.show2 = false
@@ -692,9 +784,10 @@
 					this.show5 = false
 					this.show6 = false
 					this.show7 = false
+					this.show8 = false
 				} else if (e == 4) {
 					// 线上执法
-          this.offHik()
+					this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -702,10 +795,11 @@
 					this.show5 = true
 					this.show6 = false
 					this.show7 = false
+					this.show8 = false
 					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
 					// window.open(href, '_blank')
 
-				} else if (e==5) {
+				} else if (e == 5) {
 					// 危房管理
 					this.show2 = false
 					this.show = false
@@ -714,6 +808,7 @@
 					this.show5 = false
 					this.show6 = false
 					this.show7 = true
+					this.show8 = false
 				}
 				// else if (e == 6) {
 				//      // 防溺水
@@ -731,244 +826,347 @@
 			},
 			close() {
 				this.imgShow = false
+			},
+			showWg(e) {
+				console.log(e)
+				this.show8 = true
 			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
-.pop-title {
-  width: 485px;
-  height: 32px;
-  background: url(../../public/static/images/line.png) no-repeat;
-  font-size: 20px;
-  padding: 0 20px;
-  margin: 0 auto;
-  box-sizing: border-box;
+	.pop-title {
+		width: 485px;
+		height: 32px;
+		background: url(../../public/static/images/line.png) no-repeat;
+		font-size: 20px;
+		padding: 0 20px;
+		margin: 0 auto;
+		box-sizing: border-box;
 
-  span {
-    margin-left: 20px;
-  }
-}
+		span {
+			margin-left: 20px;
+		}
+	}
 
-.pop-common {
-  width: 520px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.64);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #fff;
-  z-index: 10000;
-  max-height: 380px;
-}
+	.pop-common {
+		width: 520px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		z-index: 10000;
+		max-height: 380px;
+	}
 
-.pop-box {
-  position: absolute;
-  top: 200px;
-  left: 35px;
-}
+	.pop-list {
+		position: absolute;
+		top: 200px;
+		left: 35px;
 
-.sttj {
-  margin-bottom: 60px;
-}
+		.pop-inner-title {
+			display: flex;
+			width: 90%;
+			margin: 10px auto;
+			font-size: 19px;
 
-.pop-inner-title {
-  width: 90%;
-  margin: 5px auto;
-  display: flex;
-  align-items: center;
+			span {
+				text-align: center;
+				width: 50%;
+			}
 
-  span {
-    width: 30%;
-    text-align: center;
-    font-size: 19px;
-  }
+			span:last-child {
+				text-align: center;
+				width: 50%;
+			}
+		}
 
-  span:nth-child(2) {
-    width: 40%;
-  }
-}
+		.pop-inner-box {
+			max-height: 350px;
+			overflow-y: auto;
 
-.pop-inner-item {
-  width: 90%;
-  margin: 5px auto;
-  display: flex;
-  align-items: center;
+			.pop-inner-item {
+				display: flex;
+				width: 90%;
+				margin: 10px auto;
+				font-size: 18px;
 
-  span {
-    width: 30%;
-    text-align: center;
-    font-size: 18px;
-  }
+				span {
+					text-align: center;
+					width: 50%;
+				}
 
-  span:nth-child(2) {
-    width: 40%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+				span:last-child {
+					font-size: 18px;
+				}
+			}
+		}
+	}
 
-  span:last-child {
-    font-size: 22px;
-  }
-}
+	.pop-box {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+	}
 
-.xcga {
-  width: 680px;
-  // height: 270px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.64);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #fff;
-  position: absolute;
-  top: 200px;
-  left: 35px;
-  z-index: 10000;
+	.sttj {
+		margin-bottom: 60px;
+	}
 
-  .xcga-title {
-    width: 620px;
-    height: 30px;
-    background: url(../../public/static/images/lineL.png) no-repeat;
-    font-size: 20px;
-    padding: 0 20px;
-    margin: 0 auto;
-    box-sizing: border-box;
+	.pop-inner-title {
+		width: 90%;
+		margin: 5px auto;
+		display: flex;
+		align-items: center;
 
-    span {
-      margin-left: 20px;
-    }
-  }
+		span {
+			width: 30%;
+			text-align: center;
+			font-size: 19px;
+		}
 
-  .content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 32px;
-    margin-top: 30px;
+		span:nth-child(2) {
+			width: 40%;
+		}
+	}
 
-    .item {
-      width: 16.7%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+	.pop-inner-item {
+		width: 90%;
+		margin: 5px auto;
+		display: flex;
+		align-items: center;
 
-      img {
-        // width: 38px;
-        // height: 38px;
-        margin: 20px 0;
-      }
+		span {
+			width: 30%;
+			text-align: center;
+			font-size: 18px;
+		}
 
-      span:last-child {
-        font-size: 18px;
-      }
-    }
-  }
-}
+		span:nth-child(2) {
+			width: 40%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 
-.xcga-tab {
-  position: absolute;
-  bottom: 60px;
-  left: 35px;
-  display: flex;
-  flex-direction: column;
+		span:last-child {
+			font-size: 22px;
+		}
+	}
 
-  .item {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    margin-bottom: 10px;
+	.xcga {
+		width: 680px;
+		// height: 270px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		z-index: 10000;
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
+		.xcga-title {
+			width: 620px;
+			height: 30px;
+			background: url(../../public/static/images/lineL.png) no-repeat;
+			font-size: 20px;
+			padding: 0 20px;
+			margin: 0 auto;
+			box-sizing: border-box;
 
-.fns {
-  position: absolute;
+			span {
+				margin-left: 20px;
+			}
+		}
 
-  .pop-inner-item {
-    span:last-child {
-      font-size: 24px;
-    }
-  }
-}
+		.content {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 32px;
+			margin-top: 30px;
 
-.fade-enter-active {
-  transition: opacity 1s;
-}
+			.item {
+				width: 16.7%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
 
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+				img {
+					// width: 38px;
+					// height: 38px;
+					margin: 20px 0;
+				}
 
-.sj-pop {
+				span:last-child {
+					font-size: 18px;
+				}
+			}
+		}
+	}
 
-  width: 1200px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.64);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #fff;
-  z-index: 20000;
-  max-height: 700px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	.xcga-tab {
+		position: absolute;
+		bottom: 60px;
+		left: 35px;
+		display: flex;
+		flex-direction: column;
 
-  .sj-pop-title {
-    width: 1160px;
-    //background: url(../public/static/images/line.png) no-repeat;
-    background-size: 100% 100%;
-    font-size: 20px;
-    padding: 0 20px;
-    margin: 0 auto;
-    box-sizing: border-box;
+		.item {
+			width: 80px;
+			height: 80px;
+			cursor: pointer;
+			margin-bottom: 10px;
 
-    span {
-      margin-left: 60px;
-    }
-  }
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
 
-  .sj-pop-info {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-  }
+	.fns {
+		position: absolute;
 
-  .sj-pop-item {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    // align-items: center;
-    text-align: center;
-  }
+		.pop-inner-item {
+			span:last-child {
+				font-size: 24px;
+			}
+		}
+	}
 
-  .cancelLogo {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-  }
-}
+	.pop-top {
+		width: 520px;
+		// height: 270px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		z-index: 10000;
+		position: absolute;
+		top: 150px;
+		left: 860px;
+
+		.pop-top-content {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 30px;
+
+			.pop-top-item {
+				width: 25%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				img {
+					// width: 38px;
+					// height: 38px;
+					margin: 10px 0;
+				}
+
+				span:last-child {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+
+	.fade-enter-active {
+		transition: opacity 1s;
+	}
+
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
+	}
+
+	.sj-pop {
+
+		width: 1200px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		z-index: 20000;
+		max-height: 700px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.sj-pop-title {
+			width: 1160px;
+			//background: url(../public/static/images/line.png) no-repeat;
+			background-size: 100% 100%;
+			font-size: 20px;
+			padding: 0 20px;
+			margin: 0 auto;
+			box-sizing: border-box;
+
+			span {
+				margin-left: 60px;
+			}
+		}
+
+		.sj-pop-info {
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			text-align: center;
+		}
+
+		.sj-pop-item {
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+			// align-items: center;
+			text-align: center;
+		}
+
+		.cancelLogo {
+			position: absolute;
+			top: -20px;
+			right: -20px;
+		}
+
+	}
+
+	.monitorBox {
+		width: 550px;
+		height: 420px;
+		position: absolute;
+		top: 200px;
+		right: 35px;
+		border-radius: 10px;
+		border: 2px solid #fff;
+		z-index: 1000;
+	}
 </style>
