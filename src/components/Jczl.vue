@@ -1,5 +1,7 @@
 <template>
   <div>
+<!--    <hik v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>-->
+
     <transition name="fade">
       <PopBox :list="list" v-show='show'></PopBox>
     </transition>
@@ -84,7 +86,7 @@
         </div>
       </div>
     </transition>
-    <hik  v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>
+
 <!--    5+x -->
 <!--    <transition name="fade">-->
 <!--      <div class="sj-pop" v-show="show7">-->
@@ -152,8 +154,8 @@
         <span style="width: 10%;">{{ item.timeOut }}</span>
       </div>
     </div>
-    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
-    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button>
+<!--    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>-->
+<!--    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button>-->
 
 
 
@@ -632,19 +634,15 @@ export default {
 
   },
   mounted() {
-    //console.log(xcFive)
-    // this.fiveList = xcFive.RECORDS
-    //console.log(this.fiveList)
     this.show2 = true
     this.getSzglData()
   },
   methods: {
     offHik(){
-      this.$refs.videoPlayer.off()
+      //this.$refs.videoPlayer.off()
     },
     toMap(item){
       this.$parent.test();
-      console.log(item)
     },
 
     onShowP(e) {
@@ -686,6 +684,7 @@ export default {
         this.show6 = false
         this.show7 = false
         this.getSzglData()
+        this.offHik()
       } else if (e == 1) {
         // 山塘统计
         this.show2 = false
@@ -695,6 +694,7 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
+        this.offHik()
       } else if (e == 2 || e == 4) {
         // 企业，垃圾分类
         this.show2 = false
@@ -704,6 +704,14 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
+        if (e === 2){
+          this.offHik()
+        }
+        if (e === 4){
+
+          //this.hikShow = true
+        }
+
       } else if (e == 3 || e == 8) {
         // 5+x平台，线上执法
         this.show2 = false
@@ -713,7 +721,7 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = true
-
+        this.offHik()
 
       } else if (e == 5) {
         // 乡村关爱
@@ -724,6 +732,7 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
+        this.offHik()
       } else if (e == 6) {
         //四个平台 打开新页面
         this.show2 = false
@@ -735,6 +744,7 @@ export default {
         this.show7 = false
         // let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
         // window.open(href, '_blank')
+        this.offHik()
 
       } else if (e == 7) {
         // 防溺水
@@ -744,6 +754,7 @@ export default {
         this.show3 = false
         this.show4 = false
         this.show5 = true
+        this.offHik()
       }
     },
     showImg(e) {

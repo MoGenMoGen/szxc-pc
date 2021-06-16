@@ -19,8 +19,8 @@ export default {
   },
   data() {
     return {
-      height:window.innerWidth.height -150,
-      width:window.screen.width -600,
+      // height: window.innerWidth.height - 150,
+      // width: window.screen.width - 600,
       plugin: true,
       oWebControl: null,   //插件对象
       initCount: 0,
@@ -30,9 +30,10 @@ export default {
   created() {
   },
   mounted() {
-    // let this_=this
+
+
     // this_.width=this_.$refs.divPlugin.clientWidth
-    // // this_.height=window.innerHeight-150
+    // this_.height=window.innerHeight-150
     //
     // window.addEventListener("resize",e=>{
     //
@@ -55,9 +56,12 @@ export default {
     //   }
     // })
 
-
     //插件初始化
     this.initPlugin();
+    let this_ = this
+
+    this_.oWebControl.oDocOffset.top = 208;
+    this_.oWebControl.oDocOffset.left = 688;
   },
 
   methods: {
@@ -73,7 +77,7 @@ export default {
 
     //   插件初始化
     initPlugin() {
-     //window.resizeTo(2236, 1204);
+      //window.resizeTo(2236, 1204);
       let _this = this;
       this.oWebControl = new WebControl({
         szPluginContainer: "divPlugin",
@@ -247,13 +251,13 @@ export default {
       h = (h < 754) ? 754 : h;
       window.resizeTo(w, h);
     },
-  // },
+  },
   watch: {
-    // width(){
-    //   let _this=this
-    //   window.console.log( "宽度监听" )
+    // width() {
+    //   let _this = this
+    //   window.console.log("宽度监听")
     //   window.console.log(this.width)
-    //   _this.oWebControl.JS_CreateWnd("divPlugin",this.width,this.height).then(() => {
+    //   _this.oWebControl.JS_CreateWnd("divPlugin", this.width, this.height).then(() => {
     //     _this.initVideo();
     //   });
     // },
@@ -264,7 +268,7 @@ export default {
       }
     }
   }
-},
+};
 </script>
 
 

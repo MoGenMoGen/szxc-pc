@@ -113,15 +113,14 @@
 					title: '党员活动'
 				}],
 				partyInfoList: [{
-					title: '长胜周家港、孟家、毛家网格支部'
+					//title: '长胜周家港、孟家、毛家网格支部'
+					title: '横溪党员'
 				}, {
-					title: '长胜田央沈、长桥头网格支部'
+					title: '农家乐支部党员'
 				}, {
-					title: '横溪冷水井，高屋网格支部'
-				}, {
-					title: '朗家坪，十字网格支部'
-				}, {
-					title: '农家乐联盟支部'
+					title: '长胜周家港孟家毛岭党员'
+				},{
+					title: '长胜田央沈长桥头党员'
 				}],
 				cunweiList: [{
 					name: '杨勇',
@@ -168,6 +167,9 @@
 		methods: {
 			getIndex(e) {
 				if (e == 0) {
+          this.$parent.test("红色景点");
+          this.$parent.test("红色路线");
+          
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -190,10 +192,13 @@
 				}
 			},
 			changePartyTab(e) {
+       // console.log(this.partyInfoList[e].title.replace("、",""))
+        this.$parent.test(this.partyInfoList[e].title);
 				this.isPartyTab = e
 			}
 		},
 		mounted() {
+      console.log(123)
 			this.show = true
 		}
 	}

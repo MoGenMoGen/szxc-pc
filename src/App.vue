@@ -59,7 +59,7 @@
 
 
 
-<!--		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>-->
+		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 
 
 	</div>
@@ -154,8 +154,8 @@
 			Cwgk
 		},
 		methods: {
-		  test(){
-        document.getElementById('iframe').contentWindow.postMessage("垃圾点位",'*')
+		  test(val){
+        document.getElementById('iframe').contentWindow.postMessage(val,'*')
       },
 
 
