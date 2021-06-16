@@ -169,7 +169,7 @@
 				if (e == 0) {
           this.$parent.test("红色景点");
           this.$parent.test("红色路线");
-          
+
 					this.show = true
 					this.show2 = false
 					this.show3 = false
