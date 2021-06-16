@@ -11,7 +11,7 @@
 			    <span>农家乐名称</span>
 			  </div>
 			  <div class="pop-inner-box">
-				  <div v-for="(item,index) in njlList" :key='index' class="pop-inner-item">
+				  <div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item.name)">
 					<span>{{ index + 1 }}</span>
 					<span>{{ item.name }}</span>
 				  </div>
@@ -127,66 +127,34 @@
 					title: '购'
 				}],
 				njlList: [{
-					id: 1,
 					name: '龙居农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '月波农家菜馆'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '横溪人家'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '龙源农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '向石头农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '东琴农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '项珍农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '阿飞农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '雅明农家乐'
 				},{
-					id: 1,
-					name: '龙居农家乐'
+					name: '九龙源农家乐'
 				}],
 				jdList: [{
-					id: 1,
 					name: '香山教寺'
 				},{
-					id: 1,
-					name: '香山教寺'
+					name: '九龙源'
 				},{
-					id: 1,
-					name: '香山教寺'
+					name: '滑草场'
 				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
-				},{
-					id: 1,
-					name: '香山教寺'
+					name: '猴岛穿越时空'
 				}],
 				imgList: [{
 					url: 'static/images/banner1.png',
@@ -211,8 +179,11 @@
 			}
 		},
 		methods: {
+			goto(name) {
+				this.$parent.test(name);
+			},
 			getIndex(e) {
-        console.log(e)
+				console.log(e)
 				if (e == 0) {
 					this.show = true
 					this.show2 = false
@@ -282,7 +253,6 @@
 		position: absolute;
 		top: 500px;
 		left: 35px;
-		max-height: 510px;
 		.pop-inner-title {
 			display: flex;
 			width: 90%;
