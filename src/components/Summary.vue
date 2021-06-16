@@ -535,8 +535,6 @@ export default {
             data: [100]
           }
         ]
-
-
       },
       option5: {
         title: {
@@ -615,8 +613,6 @@ export default {
             data: [100]
           }
         ]
-
-
       },
       show: false,
       introduction: '九龙湖村位于宁波市镇海区西北部是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并...',

@@ -5,17 +5,17 @@
 		</transition>
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show">
-			  <div class="pop-title"><span>农家乐统计</span></div>
-			  <div class="pop-inner-title">
-			    <span>序号</span>
-			    <span>农家乐名称</span>
-			  </div>
-			  <div class="pop-inner-box">
-				  <div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item.name)">
-					<span>{{ index + 1 }}</span>
-					<span>{{ item.name }}</span>
-				  </div>
-			  </div>
+				<div class="pop-title"><span>农家乐统计</span></div>
+				<div class="pop-inner-title">
+					<span>序号</span>
+					<span>农家乐名称</span>
+				</div>
+				<div class="pop-inner-box">
+					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item.name)">
+						<span>{{ index + 1 }}</span>
+						<span>{{ item.name }}</span>
+					</div>
+				</div>
 			</div>
 		</transition>
 		<transition name="fade">
@@ -26,27 +26,34 @@
 			</el-carousel>
 		</transition>
 		<transition name="fade">
-			<div v-if="show2" class="xingTab">
+			<div v-if="show2">
 				<!-- <div v-for="(item,index) in xingList" :key='index' :class="{'xingActive':xingIndex==index}" class="xingTab-item" @click="changeXing(index)">
 					<img :src="item.url">
 					<span>{{item.title}}</span>
 				</div> -->
-				
+				<div class="pop-common pop-data">
+					<div class="pop-title"><span>每日数据</span></div>
+					<div class="rm-bottom">
+						<my-charts :id="rlss1" class="rm-item" :data="option"></my-charts>
+						<my-charts :id="rlgy1" class="rm-item" :data="option4"></my-charts>
+						<my-charts :id="clgy1" class="rm-item" :data="option5"></my-charts>
+					</div>
+				</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show2">
-			  <div class="pop-title"><span>景点列表</span></div>
-			  <div class="pop-inner-title">
-			    <span>序号</span>
-			    <span>景点名称</span>
-			  </div>
-			  <div class="pop-inner-box">
-				  <div v-for="(item,index) in jdList" :key='index' class="pop-inner-item">
-					<span>{{ index + 1 }}</span>
-					<span>{{ item.name }}</span>
-				  </div>
-			  </div>
+				<div class="pop-title"><span>景点列表</span></div>
+				<div class="pop-inner-title">
+					<span>序号</span>
+					<span>景点名称</span>
+				</div>
+				<div class="pop-inner-box">
+					<div v-for="(item,index) in jdList" :key='index' class="pop-inner-item">
+						<span>{{ index + 1 }}</span>
+						<span>{{ item.name }}</span>
+					</div>
+				</div>
 			</div>
 		</transition>
 		<transition name="fade">
@@ -69,6 +76,7 @@
 <script>
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
+	import myCharts from '@/components/MyCharts.vue'
 	export default {
 		name: 'Zhly',
 		props: {
@@ -76,103 +84,336 @@
 		},
 		components: {
 			PopBox,
-			BottomTab
+			BottomTab,
+			myCharts
 		},
 		data() {
 			return {
+				option: {
+					title: {
+						text: '{a|57}\n{c|剩余车位}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[52 / 100, '#f70102'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
+
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
+				},
+				option4: {
+					title: {
+						text: '{a|2680}\n{c|人流检测数据}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[52 / 100, '#3cd868'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
+
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
+				},
+				option5: {
+					title: {
+						text: '{a|906}\n{c|车流检查数据}',
+						x: 'center',
+						y: 'center',
+						textStyle: {
+							rich: {
+								a: {
+									fontSize: 20,
+									color: '#29EEF3'
+								},
+								c: {
+									fontSize: 14,
+									color: '#ffffff',
+									padding: [5, 0]
+								}
+							}
+						}
+					},
+					series: [{
+							type: 'gauge',
+							radius: '100%',
+							clockwise: false,
+							startAngle: '90',
+							endAngle: '-269.9999',
+							splitNumber: 25,
+							detail: {
+								offsetCenter: [0, -20],
+								formatter: ' '
+							},
+							pointer: {
+								show: false
+							},
+							axisLine: {
+								show: true,
+								lineStyle: {
+									color: [
+										[72 / 100, '#f7dc46'],
+										[1, 'rgba(32,187,252,0.15)']
+									],
+									width: 30
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							splitLine: {
+								show: true,
+								length: 32,
+								lineStyle: {
+									color: '#051F54',
+									width: 4
+								}
+							},
+							axisLabel: {
+								show: false
+							}
+						},
+
+						{
+							type: 'pie',
+							name: '内层环',
+							radius: [0, '83%'],
+							hoverAnimation: false,
+							clockWise: false,
+							itemStyle: {
+								normal: {
+									color: '#02163F'
+								}
+							},
+							label: {
+								show: false
+							},
+							data: [100]
+						}
+					]
+				},
+				rlss1: 'rlss1',
+				rlgy1: 'rlgy1',
+				clgy1: 'clgy1',
 				show: false,
 				show2: false,
 				show3: false,
 				labelIndex: 0,
 				xingIndex: 0,
 				list: [{
-				  num: 200,
-				  url: 'static/images/house.png',
-				  title: '农家乐'
+					num: 200,
+					url: 'static/images/house.png',
+					title: '农家乐'
 				}, {
-				  num: 120,
-				  url: 'static/images/zrs.png',
-				  title: '群众数'
+					num: 120,
+					url: 'static/images/zrs.png',
+					title: '群众数'
 				}, {
-				  num: 80,
-				  url: 'static/images/dys.png',
-				  title: '党员数'
+					num: 80,
+					url: 'static/images/dys.png',
+					title: '党员数'
 				}],
 				tabList: [{
-					sUrl: 'static/images/chiS.png',
-					url: 'static/images/chi.png',
-					hasUrl: true,
-					title: '吃'
-				}, {
-					sUrl: 'static/images/zhuS.png',
-					url: 'static/images/zhu.png',
-					hasUrl: true,
-					title: '住'
-				}, {
-					sUrl: 'static/images/youS.png',
-					url: 'static/images/you.png',
-					hasUrl: true,
-					title: '玩'
-				},
-				// {
-				// 	sUrl: 'static/images/youS.png',
-				// 	url: 'static/images/you.png',
-				// 	hasUrl: true,
-				// 	title: '游'
-				// }, 
-				{
-					sUrl: 'static/images/gouS.png',
-					url: 'static/images/gou.png',
-					hasUrl: true,
-					title: '购'
-				}],
+						sUrl: 'static/images/chiS.png',
+						url: 'static/images/chi.png',
+						hasUrl: true,
+						title: '吃'
+					}, {
+						sUrl: 'static/images/zhuS.png',
+						url: 'static/images/zhu.png',
+						hasUrl: true,
+						title: '住'
+					}, {
+						sUrl: 'static/images/youS.png',
+						url: 'static/images/you.png',
+						hasUrl: true,
+						title: '玩'
+					},
+					// {
+					// 	sUrl: 'static/images/youS.png',
+					// 	url: 'static/images/you.png',
+					// 	hasUrl: true,
+					// 	title: '游'
+					// }, 
+					{
+						sUrl: 'static/images/gouS.png',
+						url: 'static/images/gou.png',
+						hasUrl: true,
+						title: '购'
+					}
+				],
 				njlList: [{
 					name: '龙居农家乐'
-				},{
+				}, {
 					name: '月波农家菜馆'
-				},{
+				}, {
 					name: '横溪人家'
-				},{
+				}, {
 					name: '龙源农家乐'
-				},{
+				}, {
 					name: '向石头农家乐'
-				},{
+				}, {
 					name: '东琴农家乐'
-				},{
+				}, {
 					name: '项珍农家乐'
-				},{
+				}, {
 					name: '阿飞农家乐'
-				},{
+				}, {
 					name: '雅明农家乐'
-				},{
+				}, {
 					name: '九龙源农家乐'
 				}],
 				jdList: [{
 					name: '香山教寺'
-				},{
+				}, {
 					name: '九龙源'
-				},{
+				}, {
 					name: '滑草场'
-				},{
+				}, {
 					name: '猴岛穿越时空'
 				}],
 				imgList: [{
-					url: 'static/images/banner1.png',
-					des: '111111111111111111111111111111111111aaa'
-				}, {
 					url: 'static/images/banner2.png',
-					des: '222222222222222aaa'
+					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
 				}, {
 					url: 'static/images/banner3.png',
-					des: '33333333333aaa'
+					des: '碱水粽子不单是我们的传统食物，也是历史悠久的传统习俗，是端午文化的重要组成部分，具有传承和发扬的重大意义，横溪碱水粽的独特之处，在于其粽叶用的是本地毛竹山上较大较宽的老黄箬叶，俗称“捏壳”。在每年的5月中旬左右，老板娘总是忙忙碌碌的准备糯米、碱水、和箬壳用古法包成一个个三角形的粽子后用柴火大灶文武火交替煮上四个小时左右，然后余火焖着过夜，这样第二天揭开锅盖时，才能闻到箬壳自带的竹香，混着这糯米清香的金色碱水粽，剥开金色的箬壳。'
 				}, {
 					url: 'static/images/banner4.png',
-					des: '4444444444aaa'
+					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
 				}],
 				xingList: [{
 					url: 'static/images/hslx.png',
 					title: '旅游路线'
-				},{
+				}, {
 					url: 'static/images/jtsk.png',
 					title: '交通实况'
 				}]
@@ -200,7 +441,7 @@
 					this.show = false
 					this.show2 = false
 					this.show3 = true
-				} 
+				}
 				// else if (e == 4) {
 				// 	this.show = false
 				// 	this.show2 = false
@@ -222,63 +463,70 @@
 
 <style lang="less" scoped>
 	.pop-title {
-	  width: 485px;
-	  height: 32px;
-	  background: url(../../public/static/images/line.png) no-repeat;
-	  font-size: 20px;
-	  padding: 0 20px;
-	  margin: 0 auto;
-	  box-sizing: border-box;
-	
-	  span {
-	    margin-left: 20px;
-	  }
+		width: 485px;
+		height: 32px;
+		background: url(../../public/static/images/line.png) no-repeat;
+		font-size: 20px;
+		padding: 0 20px;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		span {
+			margin-left: 20px;
+		}
 	}
-	
+
 	.pop-common {
-	  width: 520px;
-	  border: 1px solid #fff;
-	  border-radius: 10px;
-	  background-color: rgba(0, 0, 0, 0.64);
-	  display: flex;
-	  flex-direction: column;
-	  padding: 10px;
-	  box-sizing: border-box;
-	  color: #fff;
-	  z-index: 10000;
-	  max-height: 380px;
+		width: 520px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		z-index: 10000;
+		max-height: 380px;
 	}
-	
+
 	.pop-list {
 		position: absolute;
 		top: 500px;
 		left: 35px;
+
 		.pop-inner-title {
 			display: flex;
 			width: 90%;
 			margin: 10px auto;
 			font-size: 19px;
+
 			span:first-child {
 				text-align: center;
 				width: 35%;
 			}
+
 			span:last-child {
 				text-align: center;
 				width: 65%;
 			}
 		}
+
 		.pop-inner-box {
 			max-height: 350px;
 			overflow-y: auto;
+
 			.pop-inner-item {
 				display: flex;
 				width: 90%;
 				margin: 10px auto;
 				font-size: 18px;
+
 				span:first-child {
 					text-align: center;
 					width: 35%;
 				}
+
 				span:last-child {
 					text-align: center;
 					width: 65%;
@@ -287,6 +535,22 @@
 		}
 	}
 	
+	.pop-data {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		.rm-bottom {
+			display: flex;
+			justify-content: space-between;
+		
+			.rm-item {
+				margin-top: 30px;
+				width: 130px;
+				height: 130px;
+			}
+		}
+	}
+
 	.banner {
 		width: 500px;
 		// height: 333px;
@@ -318,6 +582,7 @@
 			width: 100%;
 			// height: 333px;
 			margin-bottom: 10px;
+
 			.el-carousel__item {
 				width: 100%;
 				height: 100%;
@@ -331,7 +596,7 @@
 
 		.banner-label {
 			width: 100%;
-			min-height: 300px;
+			min-height: 200px;
 			background-color: rgba(0, 0, 0, 0.3);
 			color: #fff;
 			font-size: 14px;
@@ -347,6 +612,7 @@
 		left: 35px;
 		display: flex;
 		flex-direction: column;
+
 		.xingTab-item {
 			width: 230px;
 			height: 80px;
@@ -361,12 +627,14 @@
 			box-sizing: border-box;
 			display: flex;
 			align-items: center;
+
 			img {
 				width: 46px;
 				height: 46px;
 				margin-right: 10px;
 			}
 		}
+
 		.xingActive {
 			background-color: rgba(207, 21, 8, 0.55);
 		}

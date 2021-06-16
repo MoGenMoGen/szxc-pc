@@ -2,7 +2,7 @@
 	<!-- 村情公示 -->
 	<div>
 		<transition name="fade">
-			<div class="pop-common szgl" v-show='show'>
+			<!-- <div class="pop-common szgl" v-show='show'>
 				<img :src="cwList[imgIndex].img" class="cwImg" v-if="imgShow">
 				<img src="static/images/cancel-B.png" class="cwImg-cancel" v-if="imgShow" @click="close">
 				<div class="pop-title"><span>三资管理</span></div>
@@ -14,7 +14,8 @@
 				</div>
 				<span class="pop-item-title"><img src="static/images/szzzxx.png">招租信息</span>
 				<span class="pop-item-title"><img src="static/images/szywgk.png">业务公开</span>
-			</div>
+			</div> -->
+			<img v-show='show' src="static/images/szglBg.jpg" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0;">
 		</transition>
 		<transition name="fade">
 			<div class="pop-box" v-show="show2">

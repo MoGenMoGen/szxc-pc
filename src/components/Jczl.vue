@@ -97,9 +97,9 @@
         </div>
       </div>
     </transition> -->
-		<transition name="fade">
-			<div class="pop-box" v-show="show5">
-				<div class="pop-common fns">
+		<!-- <transition name="fade">
+			<div class="pop-box" v-show="show5"> -->
+				<!-- <div class="pop-common fns">
 					<div class="pop-title"><span>报警统计</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -111,9 +111,11 @@
 						<span>{{ item.name }}</span>
 						<span :style="{color:item.capacity>=15?'#D00E00':''}">{{ item.capacity }}</span>
 					</div>
-				</div>
+				</div> -->
 				<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
-			</div>
+			<!-- </div> -->
+		<!-- </transition> -->
+		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
 				<div class="pop-inner-title">
@@ -743,7 +745,7 @@
 				// } else
 				if (e == 0) {
 					// 水库管理
-					this.offHik()
+					// this.offHik()
 					this.show2 = false
 					this.show3 = false
 					this.show = true
@@ -755,7 +757,7 @@
 				} else if (e == 1) {
 					// 网格管理
 					this.hikShow = true
-					this.$refs.videoPlayer.show()
+					// this.$refs.videoPlayer.show()
 					this.show2 = true
 					this.show = false
 					this.show3 = false
@@ -787,7 +789,7 @@
 					this.show8 = false
 				} else if (e == 4) {
 					// 线上执法
-					this.offHik()
+					// this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
