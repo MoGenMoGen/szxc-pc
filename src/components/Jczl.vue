@@ -793,15 +793,15 @@ export default {
   max-height: none;
 
   .cwImg {
-    width: 200px;
+    width: 400px;
     position: absolute;
-    right: -220px;
+    right: -420px;
     top: 0;
   }
 
   .cwImg-cancel {
     position: absolute;
-    right: -240px;
+    right: -440px;
     top: -20px;
     cursor: pointer;
   }

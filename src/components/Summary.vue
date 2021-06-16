@@ -21,7 +21,7 @@
             <div class="content">
               <div>
                 <ul id="bgContent" class="cc rowup">
-                  <li :key="index" v-for="(item, index) in dataLi">{{item}}</li>
+                  <li :key="index" v-for="(item, index) in dataLi" style="text-align: justify;">{{item}}</li>
                 </ul>
               </div>
             </div>
@@ -220,7 +220,7 @@
           </div>
           <div class="ywgk">
             <div class="fontBig">业务公开<img src="static/images/ywgk.png" class="imgStyle"></div>
-            <div style="height: 10px;"></div>
+            <div style="height: 30px;"></div>
           </div>
           <div class="zzxx">
             <div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
@@ -230,13 +230,14 @@
     </transition>
 
     <!--三维模型-->
-<!--    <div style="height: 1004px;width: 2236px; margin-bottom: 200px">-->
-<!--      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"-->
-<!--                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"-->
-<!--                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>-->
-<!--      </model-obj>-->
 
-<!--    </div>-->
+    <!-- <div style="height: 1004px;width: 2236px; margin-bottom: 200px">
+      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
+      </model-obj>
+
+    </div> -->
 
 
   </div>
@@ -275,13 +276,13 @@ export default {
       },
       config2: {
         data: [
-          ['劈开猪头', '1.89km2', '10.84万m³'],
-          ['杨家', '0.33km2', '5.23万m³'],
-          ['蔡家岙', '0.09km2', '1.84万m³'],
-          ['安基墩', '0.4km2', '6.61万m³'],
-          ['石英坎', '0.86km2', '2.21万m³'],
-          ['三八', '0.53km2', '1.67万m³'],
-          ['应家', '0.13km2', '1.14万m³'],
+          ['劈开猪头', '1.89km²', '10.84万m³'],
+          ['杨家', '0.33km²', '5.23万m³'],
+          ['蔡家岙', '0.09km²', '1.84万m³'],
+          ['安基墩', '0.4km²', '6.61万m³'],
+          ['石英坎', '0.86km²', '2.21万m³'],
+          ['三八', '0.53km²', '1.67万m³'],
+          ['应家', '0.13km²', '1.14万m³'],
         ],
         index: true,
         columnWidth: [35, 80, 80, 90],
@@ -293,13 +294,13 @@ export default {
       //山塘信息
       config5: {
         data: [
-          ['石英坎山塘', '0.86km2', '2.21万m³'],
-          ['浦沙岙山塘', '0.34km2', '5.41万m³'],
-          ['三八山塘', '0.53km2', '1.67万m³'],
-          ['百步山塘', '0.10km2', '0.795万m³'],
-          ['孟家山塘', '0.15km2', '0.466万m³'],
-          ['史夹岙山塘', '0.15km2', '0.46万m³'],
-          ['毛岭山塘', '0.02km2', '0.3万m³'],
+          ['石英坎山塘', '0.86km²', '2.21万m³'],
+          ['浦沙岙山塘', '0.34km²', '5.41万m³'],
+          ['三八山塘', '0.53km²', '1.67万m³'],
+          ['百步山塘', '0.10km²', '0.795万m³'],
+          ['孟家山塘', '0.15km²', '0.466万m³'],
+          ['史夹岙山塘', '0.15km²', '0.46万m³'],
+          ['毛岭山塘', '0.02km²', '0.3万m³'],
         ],
         index: true,
         columnWidth: [35, 80, 80, 90],
@@ -390,7 +391,7 @@ export default {
       rk: "rk",
       option: {
         title: {
-          text: '{a|2680}\n{c|人流量}',
+          text: '{a|57}\n{c|剩余车位}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -468,7 +469,7 @@ export default {
       },
       option4: {
         title: {
-          text: '{a|507}\n{c|人流检测数据}',
+          text: '{a|2680}\n{c|人流检测数据}',
           x: 'center',
           y: 'center',
           textStyle: {
