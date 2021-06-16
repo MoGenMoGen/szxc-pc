@@ -1009,16 +1009,15 @@
 			right: -20px;
 		}
 
-		.monitorBox {
-			width: 550px;
-			height: 420px;
-			background-color: #0000ED;
-			position: absolute;
-			top: 200px;
-			right: 35px;
-			border-radius: 10px;
-			border: 2px solid #fff;
-			z-index: 1000;
-		}
+	}
+	.monitorBox {
+		width: 550px;
+		height: 420px;
+		position: absolute;
+		top: 200px;
+		right: 35px;
+		border-radius: 10px;
+		border: 2px solid #fff;
+		z-index: 1000;
 	}
 </style>
