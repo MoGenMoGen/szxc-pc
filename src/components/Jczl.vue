@@ -253,7 +253,7 @@ export default {
         name: '孟家山塘',
         capacity: 0.466
       }, {
-        name: '史夹岙山塘',
+        name: '史家岙山塘',
         capacity: 0.46
       }, {
         name: '毛岭山塘',
