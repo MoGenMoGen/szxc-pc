@@ -4,21 +4,6 @@
       <PopBox :list="list" v-show='show'></PopBox>
     </transition>
     <transition name="fade">
-      <div class="pop-common szgl" v-show='show2'>
-        <img :src="cwList[imgIndex].img" class="cwImg" v-if="imgShow">
-        <img src="static/images/cancel-B.png" class="cwImg-cancel" v-if="imgShow" @click="close">
-        <div class="pop-title"><span>三资管理</span></div>
-        <span class="pop-item-title"><img src="static/images/szcwgk.png">财务公开</span>
-        <div class="cwList">
-					<span class="cwList-item" v-for="(item,index) in cwList" :key="index" @click="showImg(index)">
-						{{ item.name }}
-					</span>
-        </div>
-        <span class="pop-item-title"><img src="static/images/szzzxx.png">招租信息</span>
-        <span class="pop-item-title"><img src="static/images/szywgk.png">业务公开</span>
-      </div>
-    </transition>
-    <transition name="fade">
       <div class="pop-box" v-show="show3">
         <div class="pop-common sttj">
           <div class="pop-title"><span>山塘统计</span></div>
@@ -227,10 +212,7 @@ export default {
         url: 'static/images/wbh.png',
         title: '五保户'
       }],
-      tabList: [{
-        hasUrl: false,
-        title: '三资管理'
-      }, {
+      tabList: [ {
         hasUrl: false,
         title: '山塘水库'
       }, {
@@ -255,7 +237,6 @@ export default {
         hasUrl: false,
         title: '线上执法'
       }],
-      cwList: [],
       stList: [{
         name: '石英坎山塘',
         capacity: 2.21
@@ -635,8 +616,8 @@ export default {
     //console.log(xcFive)
     // this.fiveList = xcFive.RECORDS
     //console.log(this.fiveList)
-    this.show2 = true
-    this.getSzglData()
+    this.show3 = true
+    
   },
   methods: {
     offHik(){
@@ -665,48 +646,39 @@ export default {
       }
       this.showP = true
     },
-
-    getSzglData() {
-      let data = {
-        current: 1,
-        size: 30
-      }
-      this.$ajax.getCwgk(data).then(res => {
-        this.cwList = res.records
-      })
-    },
     getIndex(e) {
-      if (e == 0) {
-        // 三资管理
-        this.show2 = true
-        this.show = false
-        this.show3 = false
-        this.show4 = false
-        this.show5 = false
-        this.show6 = false
-        this.show7 = false
-        this.getSzglData()
-      } else if (e == 1) {
+      // if (e == 0) {
+      //   // 三资管理
+      //   this.show2 = true
+      //   this.show = false
+      //   this.show3 = false
+      //   this.show4 = false
+      //   this.show5 = false
+      //   this.show6 = false
+      //   this.show7 = false
+      //   this.getSzglData()
+      // } else 
+	  if (e == 0) {
         // 山塘统计
-        this.show2 = false
+        // this.show2 = false
         this.show = false
         this.show3 = true
         this.show4 = false
         this.show5 = false
         this.show6 = false
         this.show7 = false
-      } else if (e == 2 || e == 4) {
+      } else if (e == 1 || e == 3) {
         // 企业，垃圾分类
-        this.show2 = false
+        // this.show2 = false
         this.show = true
         this.show3 = false
         this.show4 = false
         this.show5 = false
         this.show6 = false
         this.show7 = false
-      } else if (e == 3 || e == 8) {
+      } else if (e == 2 || e == 7) {
         // 5+x平台，线上执法
-        this.show2 = false
+        // this.show2 = false
         this.show = false
         this.show3 = false
         this.show4 = false
@@ -715,18 +687,18 @@ export default {
         this.show7 = true
 
 
-      } else if (e == 5) {
+      } else if (e == 4) {
         // 乡村关爱
-        this.show2 = false
+        // this.show2 = false
         this.show = false
         this.show3 = false
         this.show4 = true
         this.show5 = false
         this.show6 = false
         this.show7 = false
-      } else if (e == 6) {
+      } else if (e == 5) {
         //四个平台 打开新页面
-        this.show2 = false
+        // this.show2 = false
         this.show = false
         this.show3 = false
         this.show4 = false
@@ -736,10 +708,10 @@ export default {
         // let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
         // window.open(href, '_blank')
 
-      } else if (e == 7) {
+      } else if (e == 6) {
         // 防溺水
         this.show6 = false
-        this.show2 = false
+        // this.show2 = false
         this.show = false
         this.show3 = false
         this.show4 = false
@@ -784,52 +756,6 @@ export default {
   color: #fff;
   z-index: 10000;
   max-height: 380px;
-}
-
-.szgl {
-  position: absolute;
-  top: 200px;
-  left: 500px;
-  max-height: none;
-
-  .cwImg {
-    width: 400px;
-    position: absolute;
-    right: -420px;
-    top: 0;
-  }
-
-  .cwImg-cancel {
-    position: absolute;
-    right: -440px;
-    top: -20px;
-    cursor: pointer;
-  }
-
-  .pop-item-title {
-    font-size: 20px;
-    margin: 10px 0;
-
-    img {
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-  }
-
-  .cwList {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-
-    .cwList-item {
-      cursor: pointer;
-      width: 33%;
-      text-decoration: underline;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-  }
 }
 
 .pop-box {
