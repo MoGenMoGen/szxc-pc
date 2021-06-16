@@ -62,7 +62,7 @@
     </transition>
     <transition name="fade">
       <div class="xcga-tab" v-show="show4">
-        <div v-for="(item,index) in xcgaList" :key="index" class="item">
+        <div v-for="(item,index) in xcgaList" :key="index" class="item" @click="toMap(item)">
           <img :src="item.url">
         </div>
       </div>
@@ -84,42 +84,42 @@
         </div>
       </div>
     </transition>
-
+    <hik  v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>
 <!--    5+x -->
-    <transition name="fade">
-      <div class="sj-pop" v-show="show7">
-        <img src="static/images/cancel.png" class="cancelLogo" @click="show7=false">
-        <u-table :max-height="550"
-            :data="fiveList"
-            :border="false"
-            style="width: 100%">
-          <u-table-column
-              prop="number"
-              label="number"
-              width="140">
-          </u-table-column>
-          <u-table-column
-              prop="shop_name"
-              label="shop_name">
-          </u-table-column>
-          <u-table-column
-              prop="check_man"
-              label="check_man"
-              width="140">
-          </u-table-column>
-          <u-table-column
-              prop="partner"
-              label="partner"
-              width="140">
-          </u-table-column>
-          <u-table-column
-              prop="expire_date"
-              label="expire_date"
-              width="160">
-          </u-table-column>
-        </u-table>
-      </div>
-    </transition>
+<!--    <transition name="fade">-->
+<!--      <div class="sj-pop" v-show="show7">-->
+<!--        <img src="static/images/cancel.png" class="cancelLogo" @click="show7=false">-->
+<!--        <u-table :max-height="550"-->
+<!--            :data="fiveList"-->
+<!--            :border="false"-->
+<!--            style="width: 100%">-->
+<!--          <u-table-column-->
+<!--              prop="number"-->
+<!--              label="number"-->
+<!--              width="140">-->
+<!--          </u-table-column>-->
+<!--          <u-table-column-->
+<!--              prop="shop_name"-->
+<!--              label="shop_name">-->
+<!--          </u-table-column>-->
+<!--          <u-table-column-->
+<!--              prop="check_man"-->
+<!--              label="check_man"-->
+<!--              width="140">-->
+<!--          </u-table-column>-->
+<!--          <u-table-column-->
+<!--              prop="partner"-->
+<!--              label="partner"-->
+<!--              width="140">-->
+<!--          </u-table-column>-->
+<!--          <u-table-column-->
+<!--              prop="expire_date"-->
+<!--              label="expire_date"-->
+<!--              width="160">-->
+<!--          </u-table-column>-->
+<!--        </u-table>-->
+<!--      </div>-->
+<!--    </transition>-->
 
 
     <transition name="fade">
@@ -152,6 +152,12 @@
         <span style="width: 10%;">{{ item.timeOut }}</span>
       </div>
     </div>
+    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
+    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button>
+
+
+
+
     <BottomTab :list="tabList" @updata="getIndex"></BottomTab>
   </div>
 </template>
@@ -159,12 +165,14 @@
 <script>
 import PopBox from '@/components/PopBox.vue'
 import BottomTab from '@/components/BottomTab.vue'
-import xcFive from '@/components/xc_five.json'
+import hik from '@/components/hik'
+//import xcFive from '@/components/xc_five.json'
 export default {
   name: 'Jczl',
   props: {},
   data() {
     return {
+      hikShow:false,
       fiveList:[],
       title:'',
       imgIndex: 0,
@@ -620,17 +628,25 @@ export default {
   },
   components: {
     PopBox,
-    BottomTab,xcFive
+    BottomTab,hik
 
   },
   mounted() {
     //console.log(xcFive)
-    this.fiveList = xcFive.RECORDS
-    console.log(this.fiveList)
+    // this.fiveList = xcFive.RECORDS
+    //console.log(this.fiveList)
     this.show2 = true
     this.getSzglData()
   },
   methods: {
+    offHik(){
+      this.$refs.videoPlayer.off()
+    },
+    toMap(item){
+      this.$parent.test();
+      console.log(item)
+    },
+
     onShowP(e) {
       //一级
       if (e.x < 700) {

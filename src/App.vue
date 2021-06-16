@@ -29,35 +29,38 @@
 				<img :src="imgUrl" class="show-img" v-if="showImg">
 				<img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showImg">
 			</div>
-			<div class="sj-pop" v-if="showPop">
-				<img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showPop">
-				<div class="sj-pop-title"><span>{{title}}</span></div>
-				<div class="sj-pop-info">
-					<span style="width: 10%;">事件编号</span>
-					<span style="width: 20%;">内容</span>
-					<span style="width: 10%;">地址</span>
-					<span style="width: 10%;">问题类型</span>
-					<span style="width: 10%;">时间分类</span>
-					<span style="width: 10%;">上报时间</span>
-					<span style="width: 10%;">职能科室/部门</span>
-					<span style="width: 10%;">办结时间</span>
-					<span style="width: 10%;">是否超时关闭</span>
-				</div>
-				<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item">
-					<span style="width: 10%;">{{item.id}}</span>
-					<span style="width: 20%;">{{item.content}}</span>
-					<span style="width: 10%;">{{item.add}}</span>
-					<span style="width: 10%;">{{item.type}}</span>
-					<span style="width: 10%;">{{item.timeType}}</span>
-					<span style="width: 10%;">{{item.reportTime}}</span>
-					<span style="width: 10%;">{{item.department}}</span>
-					<span style="width: 10%;">{{item.overTime}}</span>
-					<span style="width: 10%;">{{item.timeOut}}</span>
-				</div>
-			</div>
+<!--			<div class="sj-pop" v-if="showPop">-->
+<!--				<img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showPop">-->
+<!--				<div class="sj-pop-title"><span>{{title}}</span></div>-->
+<!--				<div class="sj-pop-info">-->
+<!--					<span style="width: 10%;">事件编号</span>-->
+<!--					<span style="width: 20%;">内容</span>-->
+<!--					<span style="width: 10%;">地址</span>-->
+<!--					<span style="width: 10%;">问题类型</span>-->
+<!--					<span style="width: 10%;">时间分类</span>-->
+<!--					<span style="width: 10%;">上报时间</span>-->
+<!--					<span style="width: 10%;">职能科室/部门</span>-->
+<!--					<span style="width: 10%;">办结时间</span>-->
+<!--					<span style="width: 10%;">是否超时关闭</span>-->
+<!--				</div>-->
+<!--				<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item">-->
+<!--					<span style="width: 10%;">{{item.id}}</span>-->
+<!--					<span style="width: 20%;">{{item.content}}</span>-->
+<!--					<span style="width: 10%;">{{item.add}}</span>-->
+<!--					<span style="width: 10%;">{{item.type}}</span>-->
+<!--					<span style="width: 10%;">{{item.timeType}}</span>-->
+<!--					<span style="width: 10%;">{{item.reportTime}}</span>-->
+<!--					<span style="width: 10%;">{{item.department}}</span>-->
+<!--					<span style="width: 10%;">{{item.overTime}}</span>-->
+<!--					<span style="width: 10%;">{{item.timeOut}}</span>-->
+<!--				</div>-->
+<!--			</div>-->
 		</div>
-		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
-<!--		 <iframe width="2236" height="1804" src="http://www.baidu.com" frameborder="0"></iframe>-->
+
+
+
+<!--		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>-->
+
 
 	</div>
 </template>
@@ -73,6 +76,7 @@
 	import Zhly from '@/components/Zhly.vue'
 	import Jczl from '@/components/Jczl.vue'
 	import Cwgk from '@/components/Cwgk.vue'
+
 	export default {
 		data() {
 			return {
@@ -151,8 +155,7 @@
 		},
 		methods: {
 		  test(){
-        console.log("test")
-        document.getElementById('iframe').contentWindow.postMessage("hello world",'*')
+        document.getElementById('iframe').contentWindow.postMessage("垃圾点位",'*')
       },
 
 
