@@ -69,43 +69,7 @@
         </div>
       </div>
     </transition>
-    <hik  v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>
-<!--    5+x -->
-<!--    <transition name="fade">-->
-<!--      <div class="sj-pop" v-show="show7">-->
-<!--        <img src="static/images/cancel.png" class="cancelLogo" @click="show7=false">-->
-<!--        <u-table :max-height="550"-->
-<!--            :data="fiveList"-->
-<!--            :border="false"-->
-<!--            style="width: 100%">-->
-<!--          <u-table-column-->
-<!--              prop="number"-->
-<!--              label="number"-->
-<!--              width="140">-->
-<!--          </u-table-column>-->
-<!--          <u-table-column-->
-<!--              prop="shop_name"-->
-<!--              label="shop_name">-->
-<!--          </u-table-column>-->
-<!--          <u-table-column-->
-<!--              prop="check_man"-->
-<!--              label="check_man"-->
-<!--              width="140">-->
-<!--          </u-table-column>-->
-<!--          <u-table-column-->
-<!--              prop="partner"-->
-<!--              label="partner"-->
-<!--              width="140">-->
-<!--          </u-table-column>-->
-<!--          <u-table-column-->
-<!--              prop="expire_date"-->
-<!--              label="expire_date"-->
-<!--              width="160">-->
-<!--          </u-table-column>-->
-<!--        </u-table>-->
-<!--      </div>-->
-<!--    </transition>-->
-
+<!--    <hik  v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>-->
 
     <transition name="fade">
       <img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -137,11 +101,6 @@
         <span style="width: 10%;">{{ item.timeOut }}</span>
       </div>
     </div>
-    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
-    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button>
-
-
-
 
     <BottomTab :list="tabList" @updata="getIndex"></BottomTab>
   </div>
@@ -676,6 +635,9 @@ export default {
         this.show5 = false
         this.show6 = false
         this.show7 = false
+        if (e === 3){
+          this.hikShow =true;
+        }
       } else if (e == 2 || e == 7) {
         // 5+x平台，线上执法
         // this.show2 = false

@@ -16,12 +16,12 @@
           <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"
                  autoplay="autoplay"
                  muted loop="loop"></video>
-<!--          <div class="introduction">{{ introduction }}</div>-->
+          <!--          <div class="introduction">{{ introduction }}</div>-->
           <div class="demo03">
             <div class="content">
               <div>
                 <ul id="bgContent" class="cc rowup">
-                  <li :key="index" v-for="(item, index) in dataLi" style="text-align: justify;">{{item}}</li>
+                  <li :key="index" v-for="(item, index) in dataLi" style="text-align: justify;">{{ item }}</li>
                 </ul>
               </div>
             </div>
@@ -155,7 +155,8 @@
         <div class="rl-bottom">
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">天气：</span>
-            <span><img :src="'static/images/'+tq.wea_img+'.png'" style="vertical-align: middle; width: 37px;height: 37px"> {{ tq.wea }}</span>
+            <span><img :src="'static/images/'+tq.wea_img+'.png'"
+                       style="vertical-align: middle; width: 37px;height: 37px"> {{ tq.wea }}</span>
           </div>
           <div class="rl-inner" style="margin-bottom: 5px;">
             <span class="rl-inner-title">气温：</span>
@@ -170,7 +171,7 @@
             <span><img src="static/images/NAI.png" style="vertical-align: middle;">12000</span>
           </div>
           <div class="rl-summary">
-            <span class="typeGreenLight">{{tq.air_level}}</span>
+            <span class="typeGreenLight">{{ tq.air_level }}</span>
             <span class="typeGreenLight">空气质量</span>
           </div>
         </div>
@@ -231,13 +232,13 @@
 
     <!--三维模型-->
 
-    <!-- <div style="height: 1004px;width: 2236px; margin-bottom: 200px">
-      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
-                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
-                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+<!--    <div style="height: 1004px;width: 2236px; margin-bottom: 200px">-->
+<!--      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"-->
+<!--                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"-->
+<!--                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>-->
+<!--      </model-obj>-->
 
-    </div> -->
+<!--    </div>-->
 
 
   </div>
@@ -835,6 +836,7 @@ export default {
     background-color: rgba(0, 142, 244, .1);
   }
 }
+
 //介绍
 .lt {
   height: 300px;
@@ -1268,6 +1270,7 @@ model-obj {
   width: 100%;
   height: 100%;
 }
+
 .demo03 {
   width: 100%;
   height: 200px;
@@ -1275,18 +1278,22 @@ model-obj {
   overflow: hidden;
   margin-left: 10px;
 }
+
 .demo03 ul {
   list-style: none;
   position: relative;
 }
+
 .demo03 ul li {
   line-height: 30px;
   color: #fffefe;
 }
+
 .demo03 .content {
   display: flex;
 
 }
+
 //.demo03 .content span {
 //  margin-left: 20px;
 //  line-height: 40px;
@@ -1303,7 +1310,7 @@ model-obj {
   }
 }
 
-.demo03 ul.rowup{
+.demo03 ul.rowup {
   -webkit-animation: 70s rowup linear infinite normal;
   animation: 70s rowup linear infinite normal;
   position: relative;

@@ -142,7 +142,7 @@ export default {
         let port = 444;                                     //综合安防管理平台端口，若启用HTTPS协议，默认443
         let snapDir = "D:\\SnapDir";                       //抓图存储路径
         let videoDir = "D:\\VideoDir";                     //紧急录像或录像剪辑存储路径
-        let layout = "4x6";                                //playMode指定模式的布局
+        let layout = "3x3";                                //playMode指定模式的布局
         let enableHTTPS = 1;                               //是否启用HTTPS协议与综合安防管理平台交互，是为1，否为0
         let encryptedFields = 'secret';					            //加密字段，默认加密领域为secret
         let showToolbar = 1;                               //是否显示工具栏，0-不显示，非0-显示
@@ -195,7 +195,7 @@ export default {
     },
 
     toPlay() {
-      let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "8b732a6db51a419a958f6bf57e33862d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803", "27e50449dd0649008aaa28aa6bd18378", "4cf0233765c54aac94ab53f866c4261b", "755c8a96a8b44d7da41331387aa01a48", "4b436bc660ae42809f407bc7ca202229"];
+      let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803", "27e50449dd0649008aaa28aa6bd18378", "4cf0233765c54aac94ab53f866c4261b", "755c8a96a8b44d7da41331387aa01a48", "4b436bc660ae42809f407bc7ca202229"];
       for (let i = 0; i < arr.length; i++) {
         console.log(i, arr[i]);
         this.startRealPlay2(arr[i], i + 1)
