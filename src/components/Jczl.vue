@@ -116,6 +116,21 @@
 			<!-- </div> -->
 		<!-- </transition> -->
 		<transition name="fade">
+			<div class="pop-common pop-list" v-show="show4">
+				<div class="pop-title"><span>企业统计</span></div>
+				<div class="pop-inner-title">
+					<span>序号</span>
+					<span>企业名称</span>
+				</div>
+				<div class="pop-inner-box">
+					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item">
+						<span>{{ index+1 }}</span>
+						<span>{{ item.name }}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
 				<div class="pop-inner-title">
@@ -688,6 +703,17 @@
 				}, {
 					name: '九龙湖村执法002',
 					area: '横溪'
+				}],
+				qyList: [{
+					name: '一鸣鲜奶'
+				},{
+					name: '一鸣鲜奶'
+				},{
+					name: '一鸣鲜奶'
+				},{
+					name: '一鸣鲜奶'
+				},{
+					name: '一鸣鲜奶'
 				}]
 			}
 		},
@@ -773,7 +799,7 @@
 					this.show3 = false
 					this.show4 = false
 					this.show5 = false
-					this.show6 = false
+					this.show6 = true
 					this.show7 = false
 					this.show8 = false
 				} else if (e == 3) {
