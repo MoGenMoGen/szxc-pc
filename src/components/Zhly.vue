@@ -91,7 +91,7 @@
 			return {
 				option: {
 					title: {
-						text: '{a|57}\n{c|剩余车位}',
+						text: '{a|480}\n{c|剩余车位}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -126,7 +126,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[52 / 100, '#f70102'],
+										[0.48, '#f70102'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -168,7 +168,7 @@
 				},
 				option4: {
 					title: {
-						text: '{a|2680}\n{c|人流检测数据}',
+						text: '{a|12}\n{c|人流检测数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -203,7 +203,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[52 / 100, '#3cd868'],
+										[0.1, '#3cd868'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -245,7 +245,7 @@
 				},
 				option5: {
 					title: {
-						text: '{a|906}\n{c|车流检查数据}',
+						text: '{a|24}\n{c|车流检查数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -280,7 +280,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[72 / 100, '#f7dc46'],
+										[0.2, '#f7dc46'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -460,6 +460,15 @@
 		},
 		mounted() {
 			this.show = true
+			let that = this
+			setInterval(function(){
+				let option4 = (Math.random() * 50).toFixed(0)
+				let option5 = (Math.random() * 50).toFixed(0)
+				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/100)
+				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/100)
+				that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
+				that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
+			},30000)
 		}
 	}
 </script>

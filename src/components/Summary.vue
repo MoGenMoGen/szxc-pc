@@ -233,10 +233,10 @@
     <!--三维模型-->
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+      <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+      </model-obj> -->
 
     </div>
 
@@ -382,7 +382,7 @@ export default {
       rk: "rk",
       option: {
         title: {
-          text: '{a|57}\n{c|剩余车位}',
+          text: '{a|480}\n{c|剩余车位}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -404,8 +404,8 @@ export default {
             type: 'gauge',
             radius: '100%',
             clockwise: false,
-            startAngle: '90',
-            endAngle: '-269.9999',
+            startAngle: '-269.9999',
+            endAngle: '90',
             splitNumber: 25,
             detail: {
               offsetCenter: [0, -20],
@@ -418,7 +418,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [52 / 100, '#f70102'],
+                  [0.48, '#f70102'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -460,7 +460,7 @@ export default {
       },
       option4: {
         title: {
-          text: '{a|2680}\n{c|人流检测数据}',
+          text: '{a|12}\n{c|人流检测数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -482,8 +482,8 @@ export default {
             type: 'gauge',
             radius: '100%',
             clockwise: false,
-            startAngle: '90',
-            endAngle: '-269.9999',
+            startAngle: '-269.9999',
+            endAngle: '90',
             splitNumber: 25,
             detail: {
               offsetCenter: [0, -20],
@@ -496,7 +496,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [52 / 100, '#3cd868'],
+                  [0.1, '#3cd868'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -538,7 +538,7 @@ export default {
       },
       option5: {
         title: {
-          text: '{a|906}\n{c|车流检查数据}',
+          text: '{a|24}\n{c|车流检查数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -560,8 +560,8 @@ export default {
             type: 'gauge',
             radius: '100%',
             clockwise: false,
-            startAngle: '90',
-            endAngle: '-269.9999',
+            startAngle: '-269.9999',
+            endAngle: '90',
             splitNumber: 25,
             detail: {
               offsetCenter: [0, -20],
@@ -574,7 +574,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [72 / 100, '#f7dc46'],
+                  [0.2, '#f7dc46'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -713,6 +713,15 @@ export default {
   },
   mounted() {
     this.onLoad()
+	let that = this
+	setInterval(function(){
+		let option4 = (Math.random() * 50).toFixed(0)
+		let option5 = (Math.random() * 50).toFixed(0)
+		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/100)
+		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/100)
+		that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
+		that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
+	},30000)
   },
   components: {
     ModelObj,
