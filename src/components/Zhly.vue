@@ -57,7 +57,7 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="banner-box" v-if="show3">
+			<!-- <div class="banner-box" v-if="show3">
 				<el-carousel indicator-position='none' class="banner-center" arrow='hover' :interval='2000'
 					@change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
@@ -67,6 +67,22 @@
 				<div class="banner-label">
 					{{imgList[labelIndex].des}}
 				</div>
+			</div> -->
+			<div class="banner-box banner-box-center" v-if="show3">
+				<img :src="imgList[0].url" class="banner-img">
+				<div class="banner-label">{{imgList[0].des}}</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="banner-box banner-box-right" v-if="show3">
+				<img :src="imgList[1].url" class="banner-img">
+				<div class="banner-label">{{imgList[1].des}}</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="banner-box banner-box-left" v-if="show3">
+				<img :src="imgList[2].url" class="banner-img">
+				<div class="banner-label">{{imgList[2].des}}</div>
 			</div>
 		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
@@ -569,7 +585,9 @@
 		position: absolute;
 		top: 200px;
 		right: 35px;
-
+		border: 2px solid #fff;
+		border-radius: 10px;
+		box-sizing: border-box;
 		.el-carousel__item {
 			width: 100%;
 			height: 100%;
@@ -581,12 +599,23 @@
 		}
 	}
 
+	.banner-box-left {
+		left: 35px;
+	}
+	
+	.banner-box-center {
+		left: 900px;
+	}
+	
+	.banner-box-right {
+		right: 35px;
+	}
+
 	.banner-box {
 		width: 500px;
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		top: 200px;
+		// transform: translate(-50%, -50%);
 		display: flex;
 		flex-direction: column;
 
@@ -594,7 +623,9 @@
 			width: 100%;
 			// height: 333px;
 			margin-bottom: 10px;
-
+			border: 2px solid #fff;
+			border-radius: 10px;
+			box-sizing: border-box;
 			.el-carousel__item {
 				width: 100%;
 				height: 100%;
@@ -605,7 +636,14 @@
 				}
 			}
 		}
-
+		.banner-img {
+			width: 500px;
+			height: 333px;
+			margin-bottom: 10px;
+			border: 2px solid #fff;
+			border-radius: 10px;
+			box-sizing: border-box;
+		}
 		.banner-label {
 			width: 100%;
 			min-height: 200px;
