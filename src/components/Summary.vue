@@ -620,14 +620,14 @@ export default {
         title: '横溪网格支部',
         num: 28
       }, {
-        title: '朗家坪、十字路网格支部',
-        num: 36
-      }, {
         title: '周家港、孟家、毛岭网格支部',
         num: 16
       }, {
         title: '田央沈、长桥头网格支部',
         num: 21
+      }, {
+        title: '朗家坪、十字路网格支部',
+        num: 36
       }, {
         title: '农家乐联盟支部',
         num: 10
