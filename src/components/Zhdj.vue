@@ -63,6 +63,13 @@
 				</div>
 			</div>
 		</transition>
+		<transition name="fade">
+			<div class="pop-common qianyi" v-show="show5">
+				<div class="pop-title"><span>党员信息</span></div>
+				<span class="qianyi-tips">此网格支部人员已迁至【九龙家苑】和【骆驼街道】</span>
+				<img src="static/images/cancel.png" class="qianyi-cancel" @click="cancel">
+			</div>
+		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -84,6 +91,7 @@
 				show2: false,
 				show3: false,
 				show4: false,
+				show5: false,
 				list: [{
 					num: 17,
 					url: 'static/images/hslx.png',
@@ -116,15 +124,20 @@
 				}],
 				partyInfoList: [{
 					//title: '长胜周家港、孟家、毛家网格支部'
-					title: '横溪网格支部'
+					title: '横溪网格支部',
+					name: '横溪党员'
 				}, {
-					title: '周家港、孟家、毛岭网格支部'
+					title: '周家港、孟家、毛岭网格支部',
+					name: '长胜周家港孟家毛岭党员'
 				}, {
-					title: '田央沈、长桥头网格支部'
+					title: '田央沈、长桥头网格支部',
+					name: '长胜田央沈长桥头党员'
 				}, {
-					title: '朗家坪、十字路网格支部'
+					title: '朗家坪、十字路网格支部',
+					name: ''
 				},{
-					title: '农家乐联盟支部'
+					title: '农家乐联盟支部',
+					name: '农家乐支部党员'
 				}],
 				cunweiList: [{
 					name: '杨勇',
@@ -192,8 +205,14 @@
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
+					this.show5 = false
 				} else if (e == 1) {
-          this.$parent.test(this.partyInfoList[this.isPartyTab].title);
+					if(this.partyInfoList[this.isPartyTab].name) {
+						this.show5 = false
+						this.$parent.test(this.partyInfoList[this.isPartyTab].name);
+					} else {
+						this.show5 = true
+					}
 					this.show = true
 					this.show2 = true
 					this.show3 = false
@@ -212,16 +231,26 @@
 					this.show2 = false
 					this.show3 = true
 					this.show4 = false
+					this.show5 = false
 				} else if (e == 3) {
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = true
+					this.show5 = false
 				}
 			},
 			changePartyTab(e) {
-        this.$parent.test(this.partyInfoList[e].title);
+				if(e==3) {
+					this.show5 = true
+				} else {
+					this.$parent.test(this.partyInfoList[e].name);
+					this.show5 = false
+				}
 				this.isPartyTab = e
+			},
+			cancel() {
+				this.show5 = false
 			}
 		},
 		mounted() {
@@ -404,6 +433,25 @@
 					}
 				}
 			}
+		}
+	}
+
+	.qianyi{
+		top: 300px;
+		right: 80px;
+		.qianyi-tips {
+			width: 70%;
+			margin: 20px auto;
+			font-size: 28px;
+			color: #CF1508;
+		}
+		.qianyi-cancel {
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: -20px;
+			right: -20px;
+			cursor: pointer;
 		}
 	}
 
