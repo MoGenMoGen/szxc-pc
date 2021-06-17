@@ -192,17 +192,20 @@
 
         //地图跳转
         if (e === 2){
-          if (!this.$root.hsxl){
             this.test("红色景点");
             this.test("红色路线");
-            this.$root.hsxl = true;
-          }else {
-            this.test("红色景点");
-            this.test("红色路线");
-            this.test("红色景点");
-            this.test("红色路线");
-            this.$root.hsxl = true;
-          }
+
+          // if (!this.$root.hsxl){
+          //   this.test("红色景点");
+          //   this.test("红色路线");
+          //   this.$root.hsxl = true;
+          // }else {
+          //   this.test("红色景点");
+          //   this.test("红色路线");
+          //   this.test("红色景点");
+          //   this.test("红色路线");
+          //   this.$root.hsxl = true;
+          // }
         }
         //旅游
         if (e === 3){

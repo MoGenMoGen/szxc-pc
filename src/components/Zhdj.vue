@@ -171,17 +171,20 @@
         console.log(e)
 				if (e == 0) {
 
-          if (!this.$root.hsxl){
-            this.$parent.test("红色景点");
-            this.$parent.test("红色路线");
-            this.$root.hsxl = true;
-          }else {
-            this.$parent.test("红色景点");
-            this.$parent.test("红色路线");
-            this.$parent.test("红色景点");
-            this.$parent.test("红色路线");
-            this.$root.hsxl = true;
-          }
+
+          this.$parent.test("红色景点");
+          this.$parent.test("红色路线");
+          // if (!this.$root.hsxl){
+          //   this.$parent.test("红色景点");
+          //   this.$parent.test("红色路线");
+          //   this.$root.hsxl = true;
+          // }else {
+          //   this.$parent.test("红色景点");
+          //   this.$parent.test("红色路线");
+          //   this.$parent.test("红色景点");
+          //   this.$parent.test("红色路线");
+          //   this.$root.hsxl = true;
+          // }
 
           this.show = true
 					this.show2 = false

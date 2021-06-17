@@ -362,7 +362,7 @@
 					// 	url: 'static/images/you.png',
 					// 	hasUrl: true,
 					// 	title: '游'
-					// }, 
+					// },
 					{
 						sUrl: 'static/images/gouS.png',
 						url: 'static/images/gou.png',
@@ -437,6 +437,9 @@
 					this.show = false
 					this.show2 = true
 					this.show3 = false
+
+          this.$parent.test("旅游景点");
+
 				} else if (e == 3) {
 					this.show = false
 					this.show2 = false
@@ -534,7 +537,7 @@
 			}
 		}
 	}
-	
+
 	.pop-data {
 		position: absolute;
 		top: 200px;
@@ -542,7 +545,7 @@
 		.rm-bottom {
 			display: flex;
 			justify-content: space-between;
-		
+
 			.rm-item {
 				margin-top: 30px;
 				width: 130px;

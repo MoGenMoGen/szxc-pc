@@ -75,7 +75,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="monitorBox"></div>
+<!--				<div class="monitorBox"></div>-->
 			</div>
 		</transition>
 		<!-- <transition name="fade">
@@ -146,11 +146,10 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="show5" class="monitorBox">
-
-			</div>
 		</transition>
-		<!--    <hik  v-if="hikShow"  ref="videoPlayer"  :playMode="1"></hik>-->
+
+
+    <hik :cameraIndexCode="cType"  ref="videoPlayer"  :playMode="1"></hik>
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -202,6 +201,7 @@
 		props: {},
 		data() {
 			return {
+			  cType:"3",
 				hikShow: false,
 				fiveList: [],
 				title: '',
@@ -771,7 +771,7 @@
 				// } else
 				if (e == 0) {
 					// 水库管理
-					// this.offHik()
+          this.offHik()
 					this.show2 = false
 					this.show3 = false
 					this.show = true
@@ -782,8 +782,8 @@
 					this.show8 = false
 				} else if (e == 1) {
 					// 网格管理
-					this.hikShow = true
-					// this.$refs.videoPlayer.show()
+          this.offHik()
+          this.$parent.test("网格");
 					this.show2 = true
 					this.show = false
 					this.show3 = false
@@ -794,6 +794,8 @@
 					this.show8 = false
 				} else if (e == 2) {
 					// 4个平台
+          this.offHik()
+
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -804,8 +806,8 @@
 					this.show8 = false
 				} else if (e == 3) {
 					// 5+X
+          this.$refs.videoPlayer.off()
 					this.show2 = false
-					this.hikShow = true;
 					this.show = false
 					this.show3 = false
 					this.show4 = true
@@ -815,7 +817,7 @@
 					this.show8 = false
 				} else if (e == 4) {
 					// 线上执法
-					// this.offHik()
+					this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -824,11 +826,18 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
+
+          // this.hikShow = true
+          this.cType = "1"
+          this.$refs.videoPlayer.initPlugin()
+
+
 					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
 					// window.open(href, '_blank')
 
-				} else if (e == 5) {
+				} else if (e==5) {
 					// 危房管理
+          this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -856,8 +865,12 @@
 				this.imgShow = false
 			},
 			showWg(e) {
-				console.log(e)
 				this.show8 = true
+        this.hikShow = true
+        this.$refs.videoPlayer.off()
+        this.cType = "0"
+        this.$refs.videoPlayer.initPlugin()
+        // this.$refs.videoPlayer.show()
 			}
 		}
 	}

@@ -8,7 +8,7 @@ export default {
   name: "videoPlayer",
   props: {
     cameraIndexCode: {
-      type: String, default: ''
+      type: String, default: '3'
     },
     layout: {
       type: String, default: '2x2'
@@ -30,51 +30,29 @@ export default {
   created() {
   },
   mounted() {
-
-
-    // this_.width=this_.$refs.divPlugin.clientWidth
-    // this_.height=window.innerHeight-150
-    //
-    // window.addEventListener("resize",e=>{
-    //
-    //   let iWidth=e.target.innerWidth
-    //   let iHeight=e.target.innerHeight
-    //   if (this_.oWebControl != null) {
-    //     this_.oWebControl.JS_Resize((window.innerWidth-250)*0.8,
-    //         window.innerHeight-150);
-    //     // this_.setWndCover(iWidth,iHeight);
-    //   }
-    // })
-    //
-    // window.addEventListener("scroll",e=>{
-    //
-    //   let iWidth=e.target.innerWidth
-    //   let iHeight=e.target.innerHeight
-    //   if (this_.oWebControl != null) {
-    //     this_.oWebControl.JS_Resize((window.innerWidth-250)*0.8,
-    //         window.innerHeight-150);
-    //   }
-    // })
-
+    console.log(this.cameraIndexCode)
     //插件初始化
-    this.initPlugin();
-    let this_ = this
-
-    this_.oWebControl.oDocOffset.top = 208;
-    this_.oWebControl.oDocOffset.left = 688;
-
+    if (this.cameraIndexCode != 3){
+      this.initPlugin();
+      let this_ = this
+      this_.oWebControl.oDocOffset.top = 168;
+      this_.oWebControl.oDocOffset.left = 1798;
+    }
   },
 
   methods: {
     show() {
-      this.oWebControl.JS_ShowWnd();
+      // this.oWebControl.JS_ShowWnd();
     },
 
     //关闭插件
     off() {
-      //let _this = this;
-      this.oWebControl.JS_HideWnd();
-      //this.oWebControl.JS_Disconnect();
+      let _this = this;
+
+      if (_this.oWebControl != null){
+        _this.oWebControl.JS_HideWnd();
+        _this.oWebControl.JS_Disconnect();
+      }
 
       // this_.oWebControl.JS_DestroyWn();
       //this.oWebControl.JS_DestroyWn();
@@ -82,8 +60,15 @@ export default {
 
     //   插件初始化
     initPlugin() {
-      console.log(11111111111)
+
+
       let _this = this;
+      // _this.oWebControl.JS_HideWnd();
+      // _this.oWebControl.JS_Disconnect();
+
+
+
+      console.log(_this.oWebControl)
       this.oWebControl = new WebControl({
         szPluginContainer: "divPlugin",
         iServicePortStart: 15900,
@@ -126,6 +111,10 @@ export default {
           this.oWebControl = null;
         }
       });
+
+
+      _this.oWebControl.oDocOffset.top = 168;
+      _this.oWebControl.oDocOffset.left = 1798;
     },
     // 设置窗口控制回调
     setCallbacks() {
@@ -174,7 +163,6 @@ export default {
         }).then((oData) => {
 
 
-
               this.toPlay()
 
             }
@@ -199,18 +187,30 @@ export default {
     },
     // RSA加密
     setEncrypt(value) {
-      console.log("RSA加密");
       let encrypt = new JSEncrypt();
       encrypt.setPublicKey(this.pubKey);
       return encrypt.encrypt(value);
     },
 
     toPlay() {
-      // let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803", "27e50449dd0649008aaa28aa6bd18378", "4cf0233765c54aac94ab53f866c4261b", "755c8a96a8b44d7da41331387aa01a48", "4b436bc660ae42809f407bc7ca202229"];
-      let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf",];
-      for (let i = 0; i < arr.length; i++) {
-        this.startRealPlay2(arr[i], i + 1)
+      let arr;
+      if (this.cameraIndexCode === "0") {
+        arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
+
+        for (let i = 0; i < arr.length; i++) {
+          this.startRealPlay2(arr[i], i + 1)
+        }
       }
+      // let arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
+      if (this.cameraIndexCode === "1") {
+        arr = ["2c3a354237f149b980f4b4d19697a35f", "e75e11e3598c4868a0e43ae1aa88f44c",];
+
+        for (let i = 0; i < arr.length; i++) {
+          this.startRealPlay2(arr[i], i + 1)
+        }
+      }
+
+
 
     },
     // 视频预览
