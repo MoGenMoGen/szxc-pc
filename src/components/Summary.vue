@@ -38,13 +38,13 @@
         </div>
         <div class="box-bottom lm-bottom">
           <div class="info-top">
-            <span>总人口数：<span class="typeBlue">1627</span>人</span>
-            <span>总 户 数：<span class="typeBlue">722</span>人</span>
+            <span>总人口数：<span class="typeBlue">2015</span>人</span>
+            <span>总 户 数：<span class="typeBlue">722</span>户</span>
           </div>
           <div class="info-middle">
             <div style="display: flex;flex-direction: column;">
-              <span>当地人口：<span class="typeBlue">1600</span>人</span>
-              <span>外来人口：<span class="typeBlue">27</span> 人</span>
+              <span>当地人口：<span class="typeBlue">1627</span>人</span>
+              <span>外来人口：<span class="typeBlue">388</span> 人</span>
               <span>男女比率: <span class="typeBlue">
                 <img src="static/images/boy.png" style="vertical-align: middle;">60%</span>
 								<span class="typePink">
@@ -60,7 +60,7 @@
             <!--              <span style="font-size: 16px;">农户<span class="typeYellow">5%</span></span>-->
             <!--            </div>-->
           </div>
-          <span>60岁老人数量：<span class="typeBlue">580</span>人 占比<span class="typeGreen">30%</span></span>
+          <span>60岁老人数量：<span class="typeBlue">580</span>人 占比<span class="typeGreen">29%</span></span>
         </div>
       </div>
     </transition>
@@ -124,7 +124,7 @@
         <div class="box-bottom mm-bottom">
           <div class="party-title">
             <span>党支部名称</span>
-            <span>总人数：<span class="typeSkyBlue">109人</span></span>
+            <span>总人数：<span class="typeSkyBlue">111人</span></span>
           </div>
           <div>
             <div v-for="(item,index) in partyList" class="party-list" :key="index">
@@ -199,7 +199,7 @@
         <div class="box-top">
           <img src="static/images/icon.png">
 
-          <span>三资公开</span>
+          <span>三资管理</span>
         </div>
         <div class="box-bottom rb-bottom">
           <div class="cwgk">
@@ -232,7 +232,7 @@
 
     <!--三维模型-->
 
-    <div style="height: 1004px;width: 2236px; margin-bottom: 200px">
+    <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
       <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
@@ -344,17 +344,17 @@ export default {
         activeRadius: '65%',
         data: [
           {
-            name: '农户',
-            value: 90
+            name: '当地人口',
+            value: 81
           },
           {
-            name: '商户',
-            value: 10
+            name: '外来人口',
+            value: 19
           }
         ],
         color: ['#00de37', '#f7e301'],
         digitalFlopStyle: {
-          fontSize: 15
+          fontSize: 13
         },
         // showOriginValue: true
       },
@@ -617,17 +617,17 @@ export default {
       show: false,
       introduction: '九龙湖村位于宁波市镇海区西北部是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并...',
       partyList: [{
-        title: '长胜周家港、孟家、毛岭网格支部',
-        num: 15
-      }, {
-        title: '长胜田央沈、长桥头网格支部',
-        num: 21
-      }, {
-        title: '横溪冷水井、高屋网格支部',
+        title: '横溪网格支部',
         num: 28
       }, {
-        title: '朗家坪、十字网格支部',
-        num: 35
+        title: '朗家坪、十字路网格支部',
+        num: 36
+      }, {
+        title: '周家港、孟家、毛岭网格支部',
+        num: 16
+      }, {
+        title: '田央沈、长桥头网格支部',
+        num: 21
       }, {
         title: '农家乐联盟支部',
         num: 10

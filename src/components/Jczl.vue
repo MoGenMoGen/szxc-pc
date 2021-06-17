@@ -1,9 +1,6 @@
 <template>
 	<div>
 		<transition name="fade">
-			<PopBox :list="list" v-show='show7'></PopBox>
-		</transition>
-		<transition name="fade">
 			<div class="pop-box" v-show="show">
 				<div class="pop-common sttj">
 					<div class="pop-title"><span>山塘统计</span></div>
@@ -146,8 +143,27 @@
 			</div>
 		</transition>
 		<transition name="fade">
+			<PopBox :list="list" v-show='show7'></PopBox>
 		</transition>
-
+		<transition name="fade">
+			<div class="pop-common pop-wf" v-show="show7">
+				<div class="pop-title"><span>危房统计</span></div>
+				<div class="pop-wf-title">
+					<span>序号</span>
+					<span>行政村</span>
+					<span>户主姓名</span>
+					<span>建造年代</span>
+				</div>
+				<div class="pop-wf-box">
+					<div v-for="(item,index) in wfList" :key='index' class="pop-wf-item">
+						<span>{{ index+1 }}</span>
+						<span>{{ item.area }}</span>
+						<span>{{ item.name }}</span>
+						<span>{{ item.time }}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
 
     <hik :cameraIndexCode="cType"  ref="videoPlayer"  :playMode="1"></hik>
 
@@ -314,10 +330,10 @@
 						title: '四个平台'
 					}, {
 						hasUrl: false,
-						title: '5+X'
+						title: '综合监管'
 					}, {
 						hasUrl: false,
-						title: '线上执法'
+						title: '线上监管'
 					}, {
 						hasUrl: false,
 						title: '危房管理'
@@ -714,6 +730,15 @@
 					name: '一鸣鲜奶'
 				},{
 					name: '一鸣鲜奶'
+				}],
+				wfList: [{
+					name: '陈雪宝',
+					area: '九龙湖村',
+					time: '1949年以前'
+				},{
+					name: '沈红雷',
+					area: '九龙湖村',
+					time: '1960-1969年'
 				}]
 			}
 		},
@@ -997,6 +1022,42 @@
 
 		span:last-child {
 			font-size: 22px;
+		}
+	}
+
+	.pop-wf {
+		position: absolute;
+		top: 500px;
+		left: 35px;
+		.pop-wf-title {
+			width: 90%;
+			margin: 5px auto;
+			display: flex;
+			align-items: center;
+			font-size: 19px;
+			span {
+				width: 27%;
+				text-align: center;
+			}
+			span:first-child {
+				width: 19%;
+			}
+		}
+		.pop-wf-box {
+			.pop-wf-item {
+				width: 90%;
+				margin: 5px auto;
+				display: flex;
+				align-items: center;
+				font-size: 18px;
+				span {
+					width: 27%;
+					text-align: center;
+				}
+				span:first-child {
+					width: 19%;
+				}
+			}
 		}
 	}
 
