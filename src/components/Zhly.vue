@@ -128,8 +128,8 @@
 							type: 'gauge',
 							radius: '100%',
 							clockwise: false,
-							startAngle: '90',
-							endAngle: '-269.9999',
+							startAngle: '-269.9999',
+							endAngle: '90',
 							splitNumber: 25,
 							detail: {
 								offsetCenter: [0, -20],
@@ -205,8 +205,8 @@
 							type: 'gauge',
 							radius: '100%',
 							clockwise: false,
-							startAngle: '90',
-							endAngle: '-269.9999',
+							startAngle: '-269.9999',
+							endAngle: '90',
 							splitNumber: 25,
 							detail: {
 								offsetCenter: [0, -20],
@@ -282,8 +282,8 @@
 							type: 'gauge',
 							radius: '100%',
 							clockwise: false,
-							startAngle: '90',
-							endAngle: '-269.9999',
+							startAngle: '-269.9999',
+							endAngle: '90',
 							splitNumber: 25,
 							detail: {
 								offsetCenter: [0, -20],
