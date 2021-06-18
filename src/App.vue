@@ -59,7 +59,7 @@
 
 
 
-		 <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
+		 <!-- <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
 
 
 	</div>
@@ -247,7 +247,7 @@
 			width: 100%;
 			height: 130px;
 			background: rgba(6,11,32,0.4);
-			z-index: 10000;
+			z-index: 1999;
 			display: flex;
 			align-items: center;
 			color: #fff;

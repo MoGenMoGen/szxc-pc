@@ -926,7 +926,7 @@
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
-		z-index: 10000;
+		z-index: 1998;
 		max-height: 380px;
 	}
 
@@ -1075,7 +1075,7 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
-		z-index: 10000;
+		z-index: 1998;
 
 		.xcga-title {
 			width: 620px;
@@ -1160,7 +1160,7 @@
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
-		z-index: 10000;
+		z-index: 1998;
 		position: absolute;
 		top: 150px;
 		left: 860px;
@@ -1212,7 +1212,7 @@
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
-		z-index: 20000;
+		z-index: 1998;
 		max-height: 700px;
 		position: absolute;
 		top: 50%;

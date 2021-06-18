@@ -46,7 +46,7 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
-		z-index: 10000;
+		z-index: 1998;
 		.title {
 			width: 485px;
 			height: 32px;

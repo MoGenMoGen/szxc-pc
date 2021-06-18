@@ -41,7 +41,7 @@ export default {
 		align-items: center;
 		position: fixed;
 		bottom: 30px;
-		z-index: 10000;
+		z-index: 1998;
 		.tab-item {
 			min-width: 110px;
 			height: 50px;

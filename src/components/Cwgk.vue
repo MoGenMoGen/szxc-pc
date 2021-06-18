@@ -15,6 +15,33 @@
 				<span class="pop-item-title"><img src="static/images/szzzxx.png">招租信息</span>
 				<span class="pop-item-title"><img src="static/images/szywgk.png">业务公开</span>
 			</div> -->
+			<!-- <div v-show="show" class="szgl-box">
+				<div class="szgl-left">
+					<div class="" style="margin-bottom: 80px;">
+						<img src="" alt="">
+						<div>
+							<el-image 
+							    style="width: 240px; height: 330px"
+							    :src="url" 
+							    :preview-src-list="imgList">
+							  </el-image>
+						</div>
+					</div>
+					<div class="">
+						<img src="" alt="">
+						<div>
+							<el-image 
+							    style="width: 240px; height: 330px"
+							    :src="url" 
+							    :preview-src-list="imgList">
+							  </el-image>
+						</div>
+					</div>
+				</div>
+				<div class="szgl-right">
+					
+				</div>
+			</div> -->
 			<img v-show='show' src="static/images/szglBg.jpg" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0;">
 		</transition>
 		<transition name="fade">
@@ -87,6 +114,8 @@
 					hasUrl: false,
 					title: '村务公开'
 				}],
+				url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+				imgList: ['static/images/banner2.png', 'static/images/banner3.png','static/images/banner4.png'],
 			}
 		},
 		components: {
@@ -235,7 +264,21 @@
 		box-sizing: border-box;
 		color: #fff;
 		position: absolute;
-		z-index: 10000;
+		z-index: 1998;
+	}
+
+	.szgl-box {
+		width: 100%;
+		height: 100%;
+		padding: 180px 50px 110px;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		.szgl-left {
+			width: 520px;
+			display: flex;
+			flex-direction: column;
+		}
 	}
 
 	.szgl {

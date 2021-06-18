@@ -124,7 +124,7 @@
 					url: 'static/images/hslx.png',
 					title: '红色路线'
 				}, {
-					num: 109,
+					num: 111,
 					url: 'static/images/dyrs.png',
 					title: '党员人数'
 				}, {
@@ -319,7 +319,7 @@
 		box-sizing: border-box;
 		color: #fff;
 		position: absolute;
-		z-index: 10000;
+		z-index: 1998;
 	}
 	.party-info {
 		position: absolute;

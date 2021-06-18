@@ -233,10 +233,10 @@
     <!--三维模型-->
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+      <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+      </model-obj> -->
 
     </div>
 
@@ -807,7 +807,7 @@ export default {
   background: linear-gradient(56deg, rgba(40, 63, 138, .3) 0%, rgba(37, 81, 183, .3) 100%);
   padding: 10px;
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 1998;
   overflow: hidden;
 
   .box-top {
@@ -871,7 +871,7 @@ export default {
   position: absolute;
   top: 520px;
   left: 35px;
-  z-index: 10000;
+  z-index: 1998;
 
   .lm-bottom {
     display: flex;
@@ -905,7 +905,7 @@ export default {
   position: absolute;
   bottom: 40px;
   left: 35px;
-  z-index: 10000;
+  z-index: 1998;
 
   .lb-bottom {
     display: flex;
@@ -970,7 +970,7 @@ export default {
   position: absolute;
   bottom: 40px;
   left: 472px;
-  z-index: 10000;
+  z-index: 1998;
 
   .ml-bottom {
     display: flex;
@@ -1036,7 +1036,7 @@ export default {
   position: absolute;
   bottom: 40px;
   left: 910px;
-  z-index: 10000;
+  z-index: 1998;
 
   .mm-bottom {
     display: flex;
@@ -1081,7 +1081,7 @@ export default {
   position: absolute;
   bottom: 40px;
   right: 470px;
-  z-index: 10000;
+  z-index: 1998;
 
   .mr-bottom {
     display: flex;
@@ -1111,7 +1111,7 @@ export default {
   position: absolute;
   top: 180px;
   right: 35px;
-  z-index: 10000;
+  z-index: 1998;
 
   .rl-bottom {
     display: flex;
@@ -1167,7 +1167,7 @@ export default {
   position: absolute;
   top: 520px;
   right: 35px;
-  z-index: 10000;
+  z-index: 1998;
 
   .rm-bottom {
     display: flex;
@@ -1186,7 +1186,7 @@ export default {
   position: absolute;
   bottom: 40px;
   right: 35px;
-  z-index: 10000;
+  z-index: 1998;
 
   .rb-bottom {
     display: flex;

@@ -68,22 +68,27 @@
 					{{imgList[labelIndex].des}}
 				</div>
 			</div> -->
-			<div class="banner-box banner-box-center" v-if="show3">
-				<img :src="imgList2[0].url" class="banner-img">
-				<div class="banner-label">{{imgList2[0].des}}</div>
+			<div class="banner-box-box" v-if="show3">
+				<div class="banner-box banner-box-right" >
+					<img :src="imgList2[1].url" class="banner-img">
+					<div class="banner-label">{{imgList2[1].des}}</div>
+				</div>
+				<div class="banner-box banner-box-left" >
+					<img :src="imgList2[2].url" class="banner-img">
+					<div class="banner-label">{{imgList2[2].des}}</div>
+				</div>
+				<div class="banner-box banner-box-center" >
+					<img :src="imgList2[0].url" class="banner-img">
+					<div class="banner-label">{{imgList2[0].des}}</div>
+				</div>
 			</div>
+			
 		</transition>
 		<transition name="fade">
-			<div class="banner-box banner-box-right" v-if="show3">
-				<img :src="imgList2[1].url" class="banner-img">
-				<div class="banner-label">{{imgList2[1].des}}</div>
-			</div>
+			
 		</transition>
 		<transition name="fade">
-			<div class="banner-box banner-box-left" v-if="show3">
-				<img :src="imgList2[2].url" class="banner-img">
-				<div class="banner-label">{{imgList2[2].des}}</div>
-			</div>
+			
 		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
@@ -524,7 +529,7 @@
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
-		z-index: 10000;
+		z-index: 1998;
 		max-height: 380px;
 	}
 
@@ -620,11 +625,21 @@
 	.banner-box-right {
 		right: 35px;
 	}
+	
+	.banner-box-box {
+		width: 100%;
+		position: absolute;
+		top: 200px;
+		left: 0;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
 
 	.banner-box {
 		width: 500px;
-		position: absolute;
-		top: 200px;
+		// position: absolute;
+		// top: 200px;
 		// transform: translate(-50%, -50%);
 		display: flex;
 		flex-direction: column;
