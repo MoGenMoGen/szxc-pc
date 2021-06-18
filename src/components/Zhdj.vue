@@ -53,7 +53,7 @@
 			<div class="activity pop-common" v-show="show4">
 				<div class="pop-title"><span>党员历次活动</span></div>
 				<div class="activity-info">
-					<div v-for="(item,index) in avctivityList" :key="index" class="activity-item">
+					<div v-for="(item,index) in avctivityList" :key="index" class="activity-item" @click="showDetail(index)">
 						<span>{{index+1}}</span>
 						<div class="item-right">
 							<span class="item-title">{{item.title}}</span>
@@ -61,6 +61,32 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common activity-now" v-show="show4">
+				<div class="pop-title"><span>当前活动</span></div>
+				<div class="activity-now-box">
+					<span class="activity-now-content">活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容</span>
+					<span class="activity-now-content">开始时间: 2021-06-08 08:00</span>
+					<span class="activity-now-content">结束时间: 2021-06-08 08:00</span>
+					<span class="activity-now-content">活动地址: 宁波镇海区九龙湖风景区</span>
+					<span class="activity-now-content">目前参与人数: 50人</span>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common activity-detail" v-show="show6">
+				<div class="pop-title"><span>党员活动</span></div>
+				<div class="activity-detail-box">
+					<span class="activity-detail-title">开展主题实践活动应与加强支部建设</span>
+					<span class="activity-detail-content activity-detail-contentF">活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容</span>
+					<img class="activity-detail-img" src="static/images/banner2.png">
+					<span class="activity-detail-content">开始时间: 2021-06-08 08:00</span>
+					<span class="activity-detail-content">结束时间: 2021-06-08 08:00</span>
+					<span class="activity-detail-content">活动地址: 宁波镇海区九龙湖风景区</span>
+				</div>
+				<img src="static/images/cancel.png" class="detail-cancel" @click="cancelDetail">
 			</div>
 		</transition>
 		<transition name="fade">
@@ -92,6 +118,7 @@
 				show3: false,
 				show4: false,
 				show5: false,
+				show6: false,
 				list: [{
 					num: 17,
 					url: 'static/images/hslx.png',
@@ -251,6 +278,13 @@
 			},
 			cancel() {
 				this.show5 = false
+			},
+			showDetail(index) {
+				console.log(index)
+				this.show6 = true
+			},
+			cancelDetail() {
+				this.show6 = false
 			}
 		},
 		mounted() {
@@ -435,6 +469,77 @@
 					}
 				}
 			}
+		}
+	}
+
+	.activity-now {
+		top: 200px;
+		left: 750px;
+		.activity-now-box {
+			width: 90%;
+			margin: 10px auto;
+			font-size: 16px;
+			display: flex;
+			flex-direction: column;
+			.activity-now-content {
+				margin: 10px 0;
+			}
+			.activity-now-content:first-child {
+				font-size: 19px;
+				letter-spacing: 2px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 5;
+				word-wrap: break-word;
+				/*! autoprefixer: ignore next */
+				-webkit-box-orient: vertical;
+			}
+		}
+	}
+	
+	.activity-detail {
+		top: 200px;
+		right: 35px;
+		.activity-detail-box{
+			width: 90%;
+			margin: 10px auto;
+			font-size: 16px;
+			display: flex;
+			flex-direction: column;
+			.activity-detail-title {
+				margin: 10px 0;
+				font-size: 22px;
+				letter-spacing: 2px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.activity-detail-content {
+				margin: 10px 0;
+			}
+			.activity-detail-contentF {
+				font-size: 19px;
+				letter-spacing: 2px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 5;
+				word-wrap: break-word;
+				/*! autoprefixer: ignore next */
+				-webkit-box-orient: vertical;
+			}
+			.activity-detail-img {
+				width: 100%;
+			}
+		}
+		.detail-cancel {
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: -20px;
+			right: -20px;
+			cursor: pointer;
 		}
 	}
 

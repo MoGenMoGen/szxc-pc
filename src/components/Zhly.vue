@@ -69,20 +69,20 @@
 				</div>
 			</div> -->
 			<div class="banner-box banner-box-center" v-if="show3">
-				<img :src="imgList[0].url" class="banner-img">
-				<div class="banner-label">{{imgList[0].des}}</div>
+				<img :src="imgList2[0].url" class="banner-img">
+				<div class="banner-label">{{imgList2[0].des}}</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div class="banner-box banner-box-right" v-if="show3">
-				<img :src="imgList[1].url" class="banner-img">
-				<div class="banner-label">{{imgList[1].des}}</div>
+				<img :src="imgList2[1].url" class="banner-img">
+				<div class="banner-label">{{imgList2[1].des}}</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div class="banner-box banner-box-left" v-if="show3">
-				<img :src="imgList[2].url" class="banner-img">
-				<div class="banner-label">{{imgList[2].des}}</div>
+				<img :src="imgList2[2].url" class="banner-img">
+				<div class="banner-label">{{imgList2[2].des}}</div>
 			</div>
 		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
@@ -417,6 +417,16 @@
 					name: '猴岛穿越时空'
 				}],
 				imgList: [{
+					url: 'static/images/banner2.png',
+					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
+				}, {
+					url: 'static/images/banner3.png',
+					des: '碱水粽子不单是我们的传统食物，也是历史悠久的传统习俗，是端午文化的重要组成部分，具有传承和发扬的重大意义，横溪碱水粽的独特之处，在于其粽叶用的是本地毛竹山上较大较宽的老黄箬叶，俗称“捏壳”。在每年的5月中旬左右，老板娘总是忙忙碌碌的准备糯米、碱水、和箬壳用古法包成一个个三角形的粽子后用柴火大灶文武火交替煮上四个小时左右，然后余火焖着过夜，这样第二天揭开锅盖时，才能闻到箬壳自带的竹香，混着这糯米清香的金色碱水粽，剥开金色的箬壳。'
+				}, {
+					url: 'static/images/banner4.png',
+					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
+				}],
+				imgList2: [{
 					url: 'static/images/banner2.png',
 					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
 				}, {
