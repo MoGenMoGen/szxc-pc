@@ -24,7 +24,7 @@
 					<div class="pop-title"><span>发展党员</span></div>
 					<span class="fazhan-info">计划1人</span>
 				</div>
-				<div class="pop-common dangfei">
+				<!-- <div class="pop-common dangfei">
 					<div class="pop-title"><span>党费收缴</span></div>
 					<div class="dangfei-info">
 						<div>
@@ -38,7 +38,7 @@
 							<span>总额：19512元</span>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="pop-common xinyuan">
 					<div class="pop-title"><span>微心愿</span></div>
 					<div class="xinyuan-info">
@@ -346,8 +346,10 @@
 
 		.fazhan {
 			height: 150px;
-			bottom: 190px;
-			left: 35px;
+			// bottom: 190px;
+			// left: 35px;
+			top: 200px;
+			right: 35px;
 			.fazhan-info {
 				font-size: 30px;
 				text-align: center;

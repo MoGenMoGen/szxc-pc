@@ -2,7 +2,7 @@
 	<div id="app">
 		<div class="top-tab" v-if="flag">
 			<img src="static/images/logo.png"/>
-			<span class="top-title" @click="test">九龙湖数字乡村大屏</span>
+			<span class="top-title" @click="test">九龙湖数字乡村</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
 					{{item}}
