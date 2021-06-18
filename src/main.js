@@ -25,6 +25,7 @@ new Vue({
     return {
       hsxl: false,
       zl:false,
+      njl:false,
     }
   },
   render: h => h(App)

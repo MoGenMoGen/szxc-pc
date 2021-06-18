@@ -2,7 +2,7 @@
 	<div id="app">
 		<div class="top-tab" v-if="flag">
 			<img src="static/images/logo.png"/>
-			<span class="top-title" @click="test">九龙湖数字乡村</span>
+			<span class="top-title" @click="test2">九龙湖数字乡村大屏</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
 					{{item}}
@@ -59,7 +59,7 @@
 
 
 
-		 <!-- <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
+		  <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 
 
 	</div>
@@ -157,7 +157,14 @@
 		  test(val){
         document.getElementById('iframe').contentWindow.postMessage(val,'*')
       },
-
+      test2(){
+        document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
+        let a = {
+		      type:'农家乐',
+          name:'月波农家菜馆'
+        }
+        document.getElementById('iframe').contentWindow.postMessage(a,'*')
+      },
 
 			getDate() {
 				let str = new Date()

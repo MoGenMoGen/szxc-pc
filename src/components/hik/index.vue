@@ -128,7 +128,6 @@ export default {
     },
     // 初始化参数
     initVideo() {
-      let _this = this;
       this.getPubKey(() => {
         let appkey = "22976517";                                  //综合安防管理平台提供的appkey，必填
         let secret = this.setEncrypt("kQhUuOaiehTT3vyUkJCt");   //综合安防管理平台提供的secret，必填

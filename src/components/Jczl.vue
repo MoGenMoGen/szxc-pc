@@ -851,7 +851,6 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
-
           // this.hikShow = true
           this.cType = "1"
           this.$refs.videoPlayer.initPlugin()

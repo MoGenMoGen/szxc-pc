@@ -233,10 +233,10 @@
     <!--三维模型-->
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-      <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj> -->
+      </model-obj>
 
     </div>
 

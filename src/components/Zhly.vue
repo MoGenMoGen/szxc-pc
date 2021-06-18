@@ -82,13 +82,13 @@
 					<div class="banner-label">{{imgList2[0].des}}</div>
 				</div>
 			</div>
-			
+
 		</transition>
 		<transition name="fade">
-			
+
 		</transition>
 		<transition name="fade">
-			
+
 		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
@@ -452,7 +452,24 @@
 		},
 		methods: {
 			goto(name) {
-				this.$parent.test(name);
+			  if (name === "龙居农家乐" ){
+          this.$parent.test("龙居农家乐")
+        }else {
+          this.$parent.test(name)
+          console.log(this.$root.hsxl)
+          if (this.$root.hsxl === false){
+            this.$parent.test("农家乐");
+            this.$root.hsxl = true
+          }
+          let a = {
+            type:'农家乐',
+            name:name
+          }
+          this.$parent.test(a);
+        }
+
+
+
 			},
 			getIndex(e) {
 				console.log(e)
@@ -617,15 +634,15 @@
 	.banner-box-left {
 		left: 35px;
 	}
-	
+
 	.banner-box-center {
 		left: 900px;
 	}
-	
+
 	.banner-box-right {
 		right: 35px;
 	}
-	
+
 	.banner-box-box {
 		width: 100%;
 		position: absolute;
