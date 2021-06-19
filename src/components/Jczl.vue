@@ -35,7 +35,7 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="show2">
+			<div v-show="show">
 				<img src="static/images/bg.png"
 					style="position: absolute;top: 400px;left: 640px;z-index: 1000;width: 903px;height: 349px;"
 					@click="showWg">
@@ -1005,17 +1005,36 @@
 			showWg(e) {
 				let x = e.x,y = e.y
 				console.log(e.x,e.y)
-				if(800<=x<=940&&470<=y<=610){
+				if(800<x&&x<940 && 470<y&&y<610){
 					this.show8 = true
 					console.log('左边')
-				} else if (800<=x<=970&&410<=y<=440) {
+				} else if (800<x&&x<970 && 410<y&&y<445) {
 					this.show8 = true
+					console.log('左上边')
+				} else if (970<x&&x<1000 && 430<y&&y<610) {
+					this.show8 = true
+					console.log('左中间')
+				} else if (1000<x&&x<1150 && 430<y&&y<650) {
+					this.show8 = true
+					console.log('左右边')
+				} else if (1320<x&&x<1400 && 640<y&&y<730) {
+					this.show8 = true
+					console.log('右左边')
+				} else if (1415<x&&x<1450 && 650<y&&y<675) {
+					this.show8 = true
+					console.log('右中上边')
+				} else if (1415<x&&x<1450 && 680<y&&y<710) {
+					this.show8 = true
+					console.log('右中下边')
+				} else if (1450<x&&x<1530 && 600<y&&y<710) {
+					this.show8 = true
+					console.log('右边')
 				}
-				this.show8 = true
-        this.hikShow = true
-        this.$refs.videoPlayer.off()
-        this.cType = "0"
-        this.$refs.videoPlayer.initPlugin()
+				// this.show8 = true
+    //     this.hikShow = true
+    //     this.$refs.videoPlayer.off()
+    //     this.cType = "0"
+    //     this.$refs.videoPlayer.initPlugin()
         // this.$refs.videoPlayer.show()
 			},
 			getPopIndex(e) {
