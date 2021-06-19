@@ -189,7 +189,7 @@
 				},
 				option4: {
 					title: {
-						text: '{a|12}\n{c|人流检测数据}',
+						text: '{a|113}\n{c|人流检测数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -224,7 +224,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[0.1, '#3cd868'],
+										[113/1000, '#3cd868'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -266,7 +266,7 @@
 				},
 				option5: {
 					title: {
-						text: '{a|24}\n{c|车流检查数据}',
+						text: '{a|187}\n{c|车流检查数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -301,7 +301,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[0.2, '#f7dc46'],
+										[187/1000, '#f7dc46'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
