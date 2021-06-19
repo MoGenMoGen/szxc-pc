@@ -46,9 +46,9 @@
               <span>当地人口：<span class="typeBlue">1627</span>人</span>
               <span>外来人口：<span class="typeBlue">388</span> 人</span>
               <span>男女比率: <span class="typeBlue">
-                <img src="static/images/boy.png" style="vertical-align: middle;">60%</span>
+                <img src="static/images/boy.png" style="vertical-align: middle;">49%</span>
 								<span class="typePink">
-                  <img src="static/images/girl.png" style="vertical-align: middle;">40%</span></span>
+                  <img src="static/images/girl.png" style="vertical-align: middle;">51%</span></span>
             </div>
 
             <dv-active-ring-chart v-if="show" :config="config7" style="width:140px;height:140px"/>
@@ -60,7 +60,7 @@
             <!--              <span style="font-size: 16px;">农户<span class="typeYellow">5%</span></span>-->
             <!--            </div>-->
           </div>
-          <span>60岁老人数量：<span class="typeBlue">580</span>人 占比<span class="typeGreen">29%</span></span>
+          <span>60岁老人数量：<span class="typeBlue">621</span>人 占比<span class="typeGreen">31%</span></span>
         </div>
       </div>
     </transition>
@@ -233,10 +233,10 @@
     <!--三维模型-->
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+   <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+      </model-obj> -->
 
     </div>
 
@@ -715,19 +715,25 @@ export default {
     this.onLoad()
 	let that = this
 	setInterval(function(){
-		let option4 = (Math.random() * 50).toFixed(0)
-		let option5 = (Math.random() * 50).toFixed(0)
-		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/100)
-		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/100)
+		let option = that.random(297,512)
+		let option4 = that.random(187,523)
+		let option5 = that.random(113,286)
+		that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option/1000)
+		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
+		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
+		that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
 		that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
 		that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
-	},30000)
+	},60000)
   },
   components: {
     ModelObj,
     myCharts
   },
   methods: {
+	random(lower, upper) {
+	  return Math.floor(Math.random() * (upper - lower)) + lower;
+	},
     onLoad() {
       //获取天气
       this.$ajax.getWeather().then(res => {

@@ -19,9 +19,9 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<el-carousel indicator-position='none' v-if="show" class="banner" arrow='hover' :interval='2000'>
+			<el-carousel indicator-position='none' v-if="show" class="banner" arrow='hover' :interval='4000'>
 				<el-carousel-item v-for="(item,index) in imgList" :key="index">
-					<img :src="item.url">
+					<img :src="item">
 				</el-carousel-item>
 			</el-carousel>
 		</transition>
@@ -350,17 +350,17 @@
 				labelIndex: 0,
 				xingIndex: 0,
 				list: [{
-					num: 200,
+					num: 34,
 					url: 'static/images/house.png',
 					title: '农家乐'
 				}, {
-					num: 120,
+					num: 9,
 					url: 'static/images/zrs.png',
-					title: '群众数'
+					title: '民宿'
 				}, {
-					num: 80,
+					num: 6,
 					url: 'static/images/dys.png',
-					title: '党员数'
+					title: '景点'
 				}],
 				tabList: [{
 						sUrl: 'static/images/chiS.png',
@@ -420,17 +420,13 @@
 					name: '滑草场'
 				}, {
 					name: '猴岛穿越时空'
-				}],
-				imgList: [{
-					url: 'static/images/banner2.png',
-					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
 				}, {
-					url: 'static/images/banner3.png',
-					des: '碱水粽子不单是我们的传统食物，也是历史悠久的传统习俗，是端午文化的重要组成部分，具有传承和发扬的重大意义，横溪碱水粽的独特之处，在于其粽叶用的是本地毛竹山上较大较宽的老黄箬叶，俗称“捏壳”。在每年的5月中旬左右，老板娘总是忙忙碌碌的准备糯米、碱水、和箬壳用古法包成一个个三角形的粽子后用柴火大灶文武火交替煮上四个小时左右，然后余火焖着过夜，这样第二天揭开锅盖时，才能闻到箬壳自带的竹香，混着这糯米清香的金色碱水粽，剥开金色的箬壳。'
+					name: '香山源'
 				}, {
-					url: 'static/images/banner4.png',
-					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
+					name: '九龙湖景区'
 				}],
+				imgList: ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
+					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG'],
 				imgList2: [{
 					url: 'static/images/banner2.png',
 					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
@@ -474,10 +470,13 @@
 			getIndex(e) {
 				console.log(e)
 				if (e == 0) {
+					this.imgList = ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
+					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG']
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 				} else if (e == 1) {
+					this.imgList = ['static/images/zhu1.png','static/images/zhu2.jpg','static/images/zhu3.jpg']
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -504,19 +503,25 @@
 			},
 			changeXing(e) {
 				this.xingIndex = e
+			},
+			random(lower, upper) {
+			  	return Math.floor(Math.random() * (upper - lower)) + lower;
 			}
 		},
 		mounted() {
 			this.show = true
 			let that = this
 			setInterval(function(){
-				let option4 = (Math.random() * 50).toFixed(0)
-				let option5 = (Math.random() * 50).toFixed(0)
-				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/100)
-				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/100)
+				let option = that.random(297,512)
+				let option4 = that.random(187,523)
+				let option5 = that.random(113,286)
+				that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option/1000)
+				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
+				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
+				that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
 				that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
 				that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
-			},30000)
+			},60000)
 		}
 	}
 </script>

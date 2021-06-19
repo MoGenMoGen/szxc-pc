@@ -114,7 +114,7 @@
 		<!-- </transition> -->
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show4">
-				<div class="pop-title"><span>企业统计</span></div>
+				<div class="pop-title"><span>商家统计</span></div>
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>企业名称</span>
@@ -143,10 +143,10 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<PopBox :list="list" v-show='show7'></PopBox>
+			<PopBox :list="list" v-show='show7' @updata="getPopIndex"></PopBox>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-wf" v-show="show7">
+			<div class="pop-common pop-wf" v-show="show9">
 				<div class="pop-title"><span>危房统计</span></div>
 				<div class="pop-wf-title">
 					<span>序号</span>
@@ -232,6 +232,7 @@
 				show6: false,
 				show7: false,
 				show8: false,
+				show9: false,
 				list: [{
 					num: 5,
 					url: 'static/images/srjf.png',
@@ -336,7 +337,7 @@
 						title: '线上监管'
 					}, {
 						hasUrl: false,
-						title: '危房管理'
+						title: '房屋管理'
 					}
 					// , {
 					//      hasUrl: false,
@@ -805,6 +806,7 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
+					this.show9 = false
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
@@ -817,6 +819,7 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
+					this.show9 = false
 				} else if (e == 2) {
 					// 4个平台
           this.offHik()
@@ -829,6 +832,7 @@
 					this.show6 = true
 					this.show7 = false
 					this.show8 = false
+					this.show9 = false
 				} else if (e == 3) {
 					// 5+X
           this.$refs.videoPlayer.off()
@@ -840,6 +844,7 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
+					this.show9 = false
 				} else if (e == 4) {
 					// 线上执法
 					this.offHik()
@@ -851,6 +856,7 @@
 					this.show6 = false
 					this.show7 = false
 					this.show8 = false
+					this.show9 = false
           // this.hikShow = true
           this.cType = "1"
           this.$refs.videoPlayer.initPlugin()
@@ -870,6 +876,7 @@
 					this.show6 = false
 					this.show7 = true
 					this.show8 = false
+					this.show9 = false
 				}
 				// else if (e == 6) {
 				//      // 防溺水
@@ -895,12 +902,27 @@
         this.cType = "0"
         this.$refs.videoPlayer.initPlugin()
         // this.$refs.videoPlayer.show()
+			},
+			getPopIndex(e) {
+				if(e == 0) {
+					this.show9 = false
+				} else {
+					this.show9 = true
+				}
 			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
+	.pop-box {
+		.content {
+			.item {
+				width: 50%;
+			}
+		}
+	}
+	
 	.pop-title {
 		width: 485px;
 		height: 32px;

@@ -4,7 +4,7 @@
 			<span>{{title}}</span>
 		</div>
 		<div class="content">
-			<div v-for="(item,index) in list" :key="index" class="item">
+			<div v-for="(item,index) in list" :key="index" class="item" @click="getIndex(index)">
 				<span>{{item.num}}</span>
 				<img :src="item.url">
 				<span>{{item.title}}</span>
@@ -26,6 +26,11 @@
 		title:{
 			type: String,
 			default: '概览'
+		}
+	  },
+	  methods:{
+		getIndex(e){
+			this.$emit("updata", e);
 		}
 	  }
 	}
@@ -67,8 +72,9 @@
 			font-size: 30px;
 			margin-top: 30px;
 			.item {
-				width: 25%;
+				// width: 25%;
 				display: flex;
+				flex: 1;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;

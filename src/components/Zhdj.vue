@@ -67,11 +67,11 @@
 			<div class="pop-common activity-now" v-show="show4">
 				<div class="pop-title"><span>当前活动</span></div>
 				<div class="activity-now-box">
-					<span class="activity-now-content">活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容</span>
+					<span class="activity-now-content" v-html="nowContent"></span>
 					<span class="activity-now-content">开始时间: 2021-06-08 08:00</span>
 					<span class="activity-now-content">结束时间: 2021-06-08 08:00</span>
-					<span class="activity-now-content">活动地址: 宁波镇海区九龙湖风景区</span>
-					<span class="activity-now-content">目前参与人数: 50人</span>
+					<span class="activity-now-content">活动地址: {{nowAdd}}</span>
+					<span class="activity-now-content">目前参与人数: <span style="color: red;font-size: 20px;">{{nowNum}}</span>人</span>
 				</div>
 			</div>
 		</transition>
@@ -119,6 +119,9 @@
 				show4: false,
 				show5: false,
 				show6: false,
+				nowContent: '<p>主题：红色旅游路线党史教育活动</p><p>活动流程：</p><p>1、锋领指数测评</p><p>2、党员重温入党誓词</p><p>3、参观红色记忆展览馆以及红色线路</p><p>4、书记上党课</p>',
+				nowAdd: '九龙湖村红色展馆',
+				nowNum: 100,
 				list: [{
 					num: 17,
 					url: 'static/images/hslx.png',
@@ -290,6 +293,10 @@
 		mounted() {
       console.log(123)
 			this.show = true
+			let that = this
+			setInterval(function(){
+				that.nowNum +=1
+			},60000)
 		}
 	}
 </script>
