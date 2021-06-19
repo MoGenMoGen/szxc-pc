@@ -26,7 +26,7 @@
 					</el-carousel-item>
 				</el-carousel>
 				<div class="banner-name">{{imgList[nameIndex].name}}</div>
-				<div class="pop-common banner-tip">
+				<div class="pop-common banner-tip" v-if="show4">
 					<div class="pop-title"><span>透明厨房</span></div>
 					<span class="banner-tip-word">正在建设中！</span>
 				</div>
@@ -354,6 +354,7 @@
 				show: false,
 				show2: false,
 				show3: false,
+				show4: false,
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
@@ -399,7 +400,7 @@
 						title: '购'
 					}
 				],
-        njlList:[{
+				njlList: [{
           name: '龙居农家乐',
           X:'121.50782',
           Y:'30.051656',
@@ -516,6 +517,34 @@
 					name: '九龙湖景区',
           X:'121.527141',
           Y:'30.045825',
+				}],
+				imgList: [{
+					url: 'static/images/jdw1.JPG',
+					name: '暗香疏影'
+				},{
+					url: 'static/images/jdw2.jpg',
+					name: '九龙第一鲜'
+				},{
+					url: 'static/images/jdw3.jpg',
+					name: '九龙云雾'
+				},{
+					url: 'static/images/jdw4.jpg',
+					name: '浪鲫江湖'
+				},{
+					url: 'static/images/jdw5.JPG',
+					name: '蟠青丛翠'
+				},{
+					url: 'static/images/jdw6.jpg',
+					name: '秋月如镜'
+				},{
+					url: 'static/images/jdw7.jpg',
+					name: '神仙烧鸡'
+				},{
+					url: 'static/images/jdw8.jpg',
+					name: '一丛金黄'
+				},{
+					url: 'static/images/jdw9.JPG',
+					name: '珠联璧合'
 				}],
 				imgList: [{
 					url: 'static/images/jdw1.JPG',
@@ -702,6 +731,7 @@
 					this.show = true
 					this.show2 = false
 					this.show3 = false
+					this.show4 = true
 				} else if (e == 1) {
 					this.imgList = [{
 						url: 'static/images/zhu5.png',
@@ -724,7 +754,8 @@
 						name: '龙眼泉农家乐',
 						X:'121.507867',
 						Y:'30.052307',
-					}, {
+						name: '又见山'
+					},{
 						name: '惠英农家乐',
 						X:'121.502735',
 						Y:'30.051085',
@@ -760,10 +791,12 @@
 					this.show = true
 					this.show2 = false
 					this.show3 = false
+					this.show4 = false
 				} else if (e == 2) {
 					this.show = false
 					this.show2 = true
 					this.show3 = false
+					this.show4 = false
           if (this.$root.lyjd === false){
             this.$parent.test("旅游景点");
             this.$root.lyjd = true
@@ -774,6 +807,7 @@
 					this.show = false
 					this.show2 = false
 					this.show3 = true
+					this.show4 = false
 				}
 				// else if (e == 4) {
 				// 	this.show = false
@@ -793,6 +827,7 @@
 		},
 		mounted() {
 			this.show = true
+			this.show4 = true
 			let that = this
 			setInterval(function(){
 				let option = that.random(297,512)
@@ -919,6 +954,28 @@
 			}
 		}
 		
+		.banner-name {
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.3);
+			margin-top: 10px;
+			font-size: 18px;
+			color: #fff;
+			padding: 10px 0;
+			box-sizing: border-box;
+			border-radius: 20px;
+			text-align: center;
+		}
+		.banner-tip {
+			width: 500px;
+			padding: 10px 0;
+			margin-top: 20px;
+			.banner-tip-word {
+				width: 100%;
+				padding: 100px 0;
+				font-size: 28px;
+				text-align: center;
+			}
+		}
 		.banner-name {
 			width: 100%;
 			background-color: rgba(0, 0, 0, 0.3);
