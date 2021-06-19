@@ -546,34 +546,6 @@
 					url: 'static/images/jdw9.JPG',
 					name: '珠联璧合'
 				}],
-				imgList: [{
-					url: 'static/images/jdw1.JPG',
-					name: '暗香疏影'
-				},{
-					url: 'static/images/jdw2.jpg',
-					name: '九龙第一鲜'
-				},{
-					url: 'static/images/jdw3.jpg',
-					name: '九龙云雾'
-				},{
-					url: 'static/images/jdw4.jpg',
-					name: '浪鲫江湖'
-				},{
-					url: 'static/images/jdw5.JPG',
-					name: '蟠青丛翠'
-				},{
-					url: 'static/images/jdw6.jpg',
-					name: '秋月如镜'
-				},{
-					url: 'static/images/jdw7.jpg',
-					name: '神仙烧鸡'
-				},{
-					url: 'static/images/jdw8.jpg',
-					name: '一丛金黄'
-				},{
-					url: 'static/images/jdw9.JPG',
-					name: '珠联璧合'
-				}],
 				imgList2: [{
 					url: 'static/images/banner2.png',
 					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
@@ -802,7 +774,7 @@
             this.$root.lyjd = true
           }
 
-
+          this.$parent.test("旅游路线");
 				} else if (e == 3) {
 					this.show = false
 					this.show2 = false
@@ -939,7 +911,7 @@
 		position: absolute;
 		top: 200px;
 		right: 35px;
-		
+
 		border-radius: 10px;
 		box-sizing: border-box;
 		/deep/ .el-carousel__container {
@@ -953,7 +925,7 @@
 				}
 			}
 		}
-		
+
 		.banner-name {
 			width: 100%;
 			background-color: rgba(0, 0, 0, 0.3);

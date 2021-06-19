@@ -10,7 +10,7 @@
 						<span>总容积 <span style="font-size: 14px;">(万m³)</span></span>
 						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
 					</div>
-					<div v-for="(item,index) in stList" :key='index' class="pop-inner-item">
+					<div v-for="(item,index) in stList" :key='index' @click="toFns(item)" class="pop-inner-item">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.capacity }}</span>
@@ -43,7 +43,7 @@
 						<span style="flex: 2;">所属水库</span>
 					</div>
 					<div style="overflow-y: auto;">
-						<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item">
+						<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item" @click="toFns(item)">
 							<span style="flex: 1;">{{ index + 1 }}</span>
 							<span style="flex: 2;">{{ item.name }}</span>
 							<span style="flex: 2;">{{ item.area }}</span>
@@ -71,7 +71,7 @@
 						<span style="width: 100%;text-align: left;">点位名称</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in ljflList" :key='index' class="pop-inner-item">
+						<div v-for="(item,index) in ljflList" :key='index' class="pop-inner-item" @click="toMap(item)">
 							<span style="width: 100%;text-align: left;">{{ item.name }}</span>
 						</div>
 					</div>
@@ -146,14 +146,14 @@
 					<span>商家名称</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item" @click="toQiye(index)">
+					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item" @click="toQiye(index,item)">
 						<span>{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
 					</div>
 				</div>
 			</div>
 		</transition>
-		<img src="static/images/zhu2.png" v-if="showXmb" style="width: 500px;position: absolute;top: 200px;right: 35px;">
+		<img src="static/images/zhu2.png" v-if="showXmb" style="width: 500px;position: absolute;top: 200px;right: 35px;border: 2px solid white;">
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
@@ -182,7 +182,7 @@
 					<span>建造年代</span>
 				</div>
 				<div class="pop-wf-box">
-					<div v-for="(item,index) in wfList" :key='index' class="pop-wf-item">
+					<div v-for="(item,index) in wfList" :key='index' class="pop-wf-item" @click="toMap(item)">
 						<span>{{ index+1 }}</span>
 						<span>{{ item.area }}</span>
 						<span>{{ item.name }}</span>
@@ -216,8 +216,12 @@
 				</div>
 			</div>
 		</transition>
-<!--    海康监控-->
-    <hik2 :cameraIndexCode="cType"   :codes="codes"  ref="videoPlayer2"  :playMode="1"></hik2>
+<!--  执法仪监控-->
+    <hik2  :codes="codes"  ref="videoPlayer2"  :playMode="1"></hik2>
+    <!--  危房监控-->
+<!--    <hik4 ref="videoPlayer4"  :playMode="1"></hik4>-->
+    <!--  山塘防溺水监控-->
+    <hik5  :codes="codes"  ref="videoPlayer5"  :playMode="1"></hik5>
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -258,40 +262,36 @@
 				<div class="pop-common dzxx">
 					<div class="pop-title"><span>泥石流监控</span></div>
 					<div class="pop-dz-title">
-						<span>序号</span>
-						<span style="flex: 2;">监控点名称</span>
-						<span style="flex: 2;">具体位置</span>
+						<span>监控点名称</span>
+						<span>具体位置</span>
 					</div>
 					<div class="pop-dz-box">
-						<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index">
-							<span>{{index+1}}</span>
-							<span style="flex: 2;">{{item.name}}</span>
-							<span style="flex: 2;">{{item.add}}</span>
+						<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">
+							<span>{{item.name}}</span>
+							<span>{{item.add}}</span>
 						</div>
 					</div>
 				</div>
 				<div class="pop-common dzxx" style="top: 600px;">
 					<div class="pop-title"><span>位移监测点列表</span></div>
 					<div class="pop-dz-title">
-						<span>序号</span>
-						<span style="flex: 3;">监测点名称</span>
+						<span style="flex: 2;">监测点名称</span>
 						<span>位置</span>
-						<span style="flex: 2;">边坡稳定性</span>
+						<span>边坡稳定性</span>
 						<span>状态</span>
 					</div>
 					<div class="pop-dz-box">
 						<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
-							<span>{{index+1}}</span>
-							<span style="flex: 3;">{{item.name}}</span>
+							<span style="flex: 2;">{{item.name}}</span>
 							<span>{{item.add}}</span>
-							<span style="flex: 2;">{{item.stability}}</span>
+							<span>{{item.stability}}</span>
 							<span>{{item.status}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</transition>
-		<img src="static/images/bgBtn.png" style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12">
+		<img src="static/images/bgBtn.png" style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12" @click="toMapA">
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -299,8 +299,13 @@
 <script>
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
-	import hik from '@/components/hik/index.vue'
+  //危房监控
+	import hik4 from '@/components/hik/index4.vue'
+  //执法监控
 	import hik2 from '@/components/hik/index2.vue'
+  //山塘防溺水
+  import hik5 from '@/components/hik/index5.vue'
+
 	//import xcFive from '@/components/xc_five.json'
 	export default {
 		name: 'Jczl',
@@ -420,30 +425,44 @@
 					name: '石英坎山塘',
 					capacity: 2.21,
 					volume: 0.86,
+          X:'121.491468',
+          Y:'30.052496'
 				}, {
 					name: '浦沙岙山塘',
 					capacity: 5.41,
 					volume: 0.34,
+          X:'121.518145',
+          Y:'30.053888'
 				}, {
 					name: '三八山塘',
 					capacity: 1.67,
 					volume: 0.53,
+          X:'121.510891',
+          Y:'30.056056'
 				}, {
 					name: '百步山塘',
 					capacity: 0.795,
 					volume: 0.10,
+          X:'121.509537',
+          Y:'30.057483'
 				}, {
 					name: '孟家山塘',
 					capacity: 0.466,
 					volume: 0.15,
+          X:'121.533866',
+          Y:'30.031042'
 				}, {
 					name: '史家岙山塘',
 					capacity: 0.46,
 					volume: 0.15,
+          X:'121.53172',
+          Y:'30.032429'
 				}, {
 					name: '毛岭山塘',
 					capacity: 0.3,
 					volume: 0.02,
+          X:'121.531245',
+          Y:'30.034203'
 				}],
 				skList: [{
 					name: '劈开猪头',
@@ -453,6 +472,8 @@
 					name: '杨家',
 					capacity: 5.23,
 					volume: 0.33,
+          X:'',
+          Y:''
 				}, {
 					name: '蔡家岙',
 					capacity: 2.21,
@@ -476,40 +497,67 @@
 				}],
 				fnsList: [{
 					name: '十字路水库1',
-					area: '十字路水库'
+					area: '十字路水库',
+          code:'8c2b3483b5e64e3fb9e08db9f9b43c91',
+          X:'121.518536',
+          Y:'30.033852'
 				}, {
 					name: '十字路水库2',
-					area: '十字路水库'
+					area: '十字路水库',
+          code: '157995b2011e4af282a454fee526c143',
+          X:'121.518536',
+          Y:'30.033852'
 				}, {
+          name: '十字路水库3',
+          area: '十字路水库',
+          code:'a66fe6d07d884cedbac9e2a767c15419',
+          X:'121.518583',
+          Y:'30.030125'
+        }, {
 					name: '护栏点位',
-					area: '九龙湖'
+					area: '九龙湖',
+          X:'121.521459',
+          Y:'30.040815'
 				}, {
 					name: '茶室',
-					area: '九龙湖'
+					area: '九龙湖',
+          X:'121.526551',
+          Y:'30.043296'
 				}, {
 					name: '小木屋1',
-					area:'九龙湖'
+					area:'九龙湖',
+          X:'121.528029',
+          Y:'30.048175'
 				}, {
 					name: '小木屋2',
-					area:'九龙湖'
-				}, {
-					name: '十字路水库3',
-					area: '十字路水库'
+					area:'九龙湖',
+          X:'121.528029',
+          Y:'30.048175'
 				}, {
 					name: '十字路水库4',
-					area: '十字路水库'
+					area: '十字路水库',
+          X:'121.518487',
+          Y:'30.030235'
 				}, {
 					name: '十字路水库5',
-					area: '十字路水库'
+					area: '十字路水库',
+          X:'121.517373',
+          Y:'30.02835'
 				}, {
 					name: '厕所点',
-					area: '九龙湖'
+					area: '九龙湖',
+          X:'121.504603',
+          Y:'30.023054'
 				}, {
 					name: '文溪村三圣殿水库',
-					area: '三圣殿水库'
+					area: '三圣殿水库',
+          X:'121.506055',
+          Y:'30.021086'
 				}, {
 					name: '文溪村小洞岙水库',
-					area: '小洞岙水库'
+					area: '小洞岙水库',
+          X:'121.517199',
+          Y:'30.028391'
 				}],
 				sjs: [],
 				sjList: [{
@@ -825,7 +873,9 @@
           code:"e75e11e3598c4868a0e43ae1aa88f44c"
 				}],
 				qyList: [{
-					name: '昱如副食品店'
+					name: '昱如副食品店',
+          X:'121.510998',
+          Y:'30.052114'
 				},{
 					name: '鼎力紧定螺钉有限公司'
 				},{
@@ -872,11 +922,17 @@
 				wfList: [{
 					name: '陈雪宝',
 					area: '九龙湖村',
-					time: '1949年以前'
+					time: '1949年以前',
+          X:'121.502239',
+          Y:'30.051777',
+          code:'4a9e00a6ae8b4517b4afe50d8aa34608'
 				},{
 					name: '沈红雷',
 					area: '九龙湖村',
-					time: '1960-1969年'
+					time: '1960-1969年',
+          X:'121.536912',
+          Y:'30.035209',
+          code:'f3a87f55eb144defadab4e02accaf6ad'
 				}],
 				srjfList: [{
 					name: '周国栋',
@@ -921,20 +977,36 @@
 				}],
 				dzList: [{
 					name: '泥石流监控01',
-					add: '原舍马路边'
+					add: '原舍马路边',
+          X:'121.505709',
+          Y:'30.052134',
+          code:'f7fb34bda82b4a1e90c86f381d59af73'
 				},{
 					name: '泥石流监控02',
-					add: '横溪中间河道'
-				},{
+					add: '横溪中间河道',
+          X:'121.502218',
+          Y:'30.051116',
+          code:'f1bba68174b8401fa4dd5e22440ae1b6'
+        },{
 					name: '泥石流监控03',
-					add: '竹林河道边'
-				},{
+					add: '竹林河道边',
+          X:'121.493231',
+          Y:'30.051141',
+          code:'f7fb34bda82b4a1e90c86f381d59af73'
+        },{
 					name: '泥石流监控04',
-					add: '东沟泥石流'
-				},{
+					add: '东沟泥石流',
+          X:'121.508844',
+          Y:'30.051501',
+          code:'22252acaaaeb47b0887cd0a294a0685b'
+
+        },{
 					name: '泥石流监控05',
-					add: '西沟泥石流'
-				}],
+					add: '西沟泥石流',
+          X:'121.506749',
+          Y:'30.051438',
+          code:'f51d56c92b474494ad262aa67c9c13b2'
+        }],
 				wyList: [{
 					name: '横溪地质防范点01',
 					add: '东沟',
@@ -951,7 +1023,7 @@
 		components: {
 			PopBox,
 			BottomTab,
-			hik2
+			hik2,hik4,hik5
 
 		},
 		mounted() {
@@ -964,17 +1036,50 @@
 		methods: {
 			offHik() {
 				this.$refs.videoPlayer2.off()
+				// this.$refs.videoPlayer4.off()
+				this.$refs.videoPlayer5.off()
 			},
+      //点击小图还原
+      toMapA(){
+			  this.show2 = true
+        this.show12 = false
+        this.show8 = false
+
+        this.$parent.test("网格");
+			  this.offHik()
+      },
 			toMap(item) {
-				this.$parent.test();
+        this.$refs.videoPlayer5.off()
+        this.codes = item.code;
+        this.$refs.videoPlayer5.initPlugin()
+        let a = {
+          X:item.X,
+          Y:item.Y,
+        }
+        this.$parent.test(a);
+        this.show12 = true
+        this.show2 = false
 			},
       //点击执法仪看监控
       toZf(item){
         this.$refs.videoPlayer2.off()
         this.codes = item.code;
         this.$refs.videoPlayer2.initPlugin()
+      },
+      //防溺水
+      toFns(item){
+        this.$refs.videoPlayer5.off()
+        this.codes = item.code;
+        this.$refs.videoPlayer5.initPlugin()
+
+        let a = {
+          X:item.X,
+          Y:item.Y,
+        }
+        this.$parent.test(a);
 
       },
+
 			onShowP(e) {
 				//一级
 				if (e.x < 700) {
@@ -1019,6 +1124,7 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.showXmb = false
 				} else if (e == 1) {
 					// 网格管理
@@ -1051,10 +1157,12 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.showXmb = false
 				} else if (e == 3) {
 					// 5+X
           this.offHik()
+
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1066,6 +1174,7 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.showXmb = false
 				} else if (e == 4) {
 					// 线上执法
@@ -1081,6 +1190,7 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.showXmb = false
           // this.hikShow = true
 
@@ -1092,7 +1202,12 @@
 
 				} else if (e==5) {
 					// 危房管理
+          if (this.$root.wf === false){
+            this.$parent.test("危房");
+            this.$root.wf = true
+          }
           this.offHik()
+          // this.$refs.videoPlayer4.initPlugin()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1104,6 +1219,7 @@
 					this.show9 = true
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.showXmb = false
 				} else if (e == 6) {
           this.offHik()
@@ -1119,6 +1235,7 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = true
+					this.show12 = false
 					this.showXmb = false
 				}
 				// else if (e == 6) {
@@ -1169,13 +1286,25 @@
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 256
 					this.ljflList = [{
-						name: '长胜垃圾投放点01'
+						name: '长胜垃圾投放点01',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
 					},{
-						name: '长胜垃圾投放点02'
+						name: '长胜垃圾投放点02',
+            code:'21b943aa87254d25b10d525c8c64c91c',
+            X:'121.540393',
+            Y:'30.034262'
 					},{
-						name: '长胜垃圾投放点03'
+						name: '长胜垃圾投放点03',
+            code:'',
+            X:'121.541797',
+            Y:'30.035759'
 					},{
-						name: '长胜垃圾投放点04'
+						name: '长胜垃圾投放点04',
+            code:'9e27366459024dfeb9da1d928db2860f',
+            X:'121.540883',
+            Y:'30.035809'
 					}]
 					this.xcgaList = [{
 						name: '翁惠娟',
@@ -1208,12 +1337,19 @@
 			closeVideo() {
 				this.showVideo = false
 			},
-			toQiye(e) {
+			toQiye(e,item) {
 				if(e == 0) {
 					this.showXmb = true
 				} else {
 					this.showXmb = false
 				}
+        let a = {
+          X:item.X,
+          Y:item.Y,
+          heading:230
+        }
+        this.$parent.test(a);
+
 			}
 		}
 	}

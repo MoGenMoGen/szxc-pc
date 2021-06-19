@@ -15,11 +15,11 @@
 			<span class="top-time">{{nowTime}}</span>
 		</div>
 		<Summary ref="summary" v-show="isActive==0&&flag"></Summary>
-		<Yhyd v-show="isActive==1&&flag"></Yhyd>
-		<Zhdj v-show="isActive==2&&flag"></Zhdj>
-		<Zhly v-show="isActive==3&&flag"></Zhly>
-		<Jczl v-show="isActive==4&&flag" ref="jczl"></Jczl>
-		<Cwgk v-show="isActive==5&&flag"></Cwgk>
+		<Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd>
+		<Zhdj ref="Zhdj" v-show="isActive==2&&flag"></Zhdj>
+		<Zhly ref="Zhly" v-show="isActive==3&&flag"></Zhly>
+		<Jczl  v-show="isActive==4&&flag" ref="jczl"></Jczl>
+		<Cwgk  v-show="isActive==5&&flag"></Cwgk>
 		<!-- 显示综合指挥 -->
 		<div class="imgBtn" v-if="!flag">
 			<img style="width: 100%; height: 100%;" src="../public/static/images/sgptBg.png">
@@ -189,16 +189,18 @@
 		    if (e !== 0){
           this.$refs.summary.offHik()
         }
+        if (e !== 4){
+          this.$refs.jczl.offHik()
+        }
 		    if (e == 0){
           this.$refs.summary.onLoad()
         }
-        console.log(e)
 				if(e == 6) {
 					return
 				} else {
 					this.isActive = e
 				}
-        console.log(e)
+
         if (e === 1){
           if (!this.$root.zl){
             this.test("总览");
@@ -209,6 +211,18 @@
             this.$root.zl = true;
           }
         }
+
+        if (e === 4){
+          if (this.$root.fnsjkd === false){
+            this.test("防溺水监控点");
+            this.test("山塘水库");
+            this.test("泥石流");
+            this.test("垃圾点位");
+
+            this.$root.fnsjkd = true
+          }
+        }
+
         // if (e !== 4){
         //   this.$refs.jczl.offHik()
         // }
