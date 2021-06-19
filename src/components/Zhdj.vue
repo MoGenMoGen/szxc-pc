@@ -131,11 +131,11 @@
 					url: 'static/images/dyrs.png',
 					title: '党员人数'
 				}, {
-					num: 1,
+					num: 3,
 					url: 'static/images/dwgk.png',
 					title: '党务公开'
 				}, {
-					num: 3,
+					num: 4,
 					url: 'static/images/dyhd.png',
 					title: '党员活动'
 				}],

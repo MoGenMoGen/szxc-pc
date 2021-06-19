@@ -58,7 +58,7 @@
 							<ul>
 								<li v-for="item in list1" :key="item.id">
 									<div class="border-out">
-										<img :src=item.img>
+										<img :src="item.img">
 									</div>
 <!--									<div class="top-label">-->
 <!--										<img :src="icJts">-->
@@ -77,7 +77,7 @@
 							<ul>
 								<li v-for="item in list3" :key="item.id">
 									<div class="border-out">
-										<img :src=item.img>
+										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img"></el-image>
 									</div>
 									<div class="top-label">
 										<img :src="icJts">
@@ -89,7 +89,6 @@
 						</div>
 					</div>
 					<div class="cun-top">
-
 						<div class="cun-left">
 							<div class="chd">
 								<p>业务公开</p>
@@ -99,7 +98,7 @@
 							<ul>
 								<li v-for="item in list1" :key="item.id">
 									<div class="border-out">
-										<img :src=item.img>
+										<img :src="item.img">
 									</div>
 <!--									<div class="top-label">-->
 <!--										<img :src="icJts">-->
@@ -126,7 +125,7 @@
 							<ul>
 								<li v-for="item in list3" :key="item.id">
 									<div class="border-out">
-										<img :src=item.img>
+										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img"></el-image>
 									</div>
 <!--									<div class="top-label">-->
 <!--										<img :src="icJts">-->
@@ -139,8 +138,6 @@
 
 					</div>
 				</div>
-
-
 			</div>
 		</transition>
 		<transition name="fade">
@@ -230,7 +227,6 @@
 					hasUrl: false,
 					title: '村务公开'
 				}],
-				url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
 				imgList: ['static/images/banner2.png', 'static/images/banner3.png','static/images/banner4.png'],
 				list1:[
 					{
@@ -252,13 +248,6 @@
 		},
 		mounted() {
 			this.getSzglData()
-			this.$ajax.getCwgk({current: 1,
-				size: 12}).then(res=>{
-					console.log("财务报表")
-					console.log(res)
-					this.list3=res.records.splice(0,6)
-				     this.list4=res.records.splice(0,6)
-			})
 			this.show = true
 		},
 		methods: {
@@ -275,7 +264,11 @@
 					size: 30
 				}
 				this.$ajax.getCwgk(data).then(res => {
-					this.cwList = res.records
+					res.records.forEach(item => {
+						item.img = item.img.split(",")
+					})
+					this.list3=res.records.splice(0,6)
+					this.list4=res.records.splice(3,6)
 				})
 			},
 			getGlData() {
@@ -626,7 +619,7 @@
 								display: flex;
 								align-items: center;
 								justify-content: center;
-								img{
+								img,.moreImg{
 									width: 95%;
 									height: 99%;
 								}

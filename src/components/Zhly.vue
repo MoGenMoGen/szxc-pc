@@ -350,11 +350,11 @@
 				labelIndex: 0,
 				xingIndex: 0,
 				list: [{
-					num: 34,
+					num: 37,
 					url: 'static/images/house.png',
 					title: '农家乐'
 				}, {
-					num: 9,
+					num: 10,
 					url: 'static/images/mingsu.png',
 					title: '民宿'
 				}, {
