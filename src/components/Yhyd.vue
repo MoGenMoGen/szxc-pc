@@ -32,7 +32,7 @@ export default {
         url: 'static/images/zhs.png',
         title: '租户数'
       }, {
-        num: 109,
+        num: 111,
         url: 'static/images/dys.png',
         title: '党户数'
       }]

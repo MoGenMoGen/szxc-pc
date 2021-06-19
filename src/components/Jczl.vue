@@ -1003,6 +1003,14 @@
 				this.imgShow = false
 			},
 			showWg(e) {
+				let x = e.x,y = e.y
+				console.log(e.x,e.y)
+				if(800<=x<=940&&470<=y<=610){
+					this.show8 = true
+					console.log('左边')
+				} else if (800<=x<=970&&410<=y<=440) {
+					this.show8 = true
+				}
 				this.show8 = true
         this.hikShow = true
         this.$refs.videoPlayer.off()
