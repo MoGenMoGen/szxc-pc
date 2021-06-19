@@ -15,7 +15,7 @@ export default {
       type: String,
     },
     layout: {
-      type: String, default: '2x2'
+      type: String, default: '1x1'
     },
     videoDialog: {
       type: Boolean, default: true
@@ -168,20 +168,20 @@ export default {
 
     toPlay() {
       let arr;
-      if (this.cameraIndexCode === "0") {
-        arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
-
-        for (let i = 0; i < arr.length; i++) {
-          this.startRealPlay2(arr[i], i + 1)
-        }
-      }
+      // if (this.cameraIndexCode === "0") {
+      //   arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
+      //
+      //   for (let i = 0; i < arr.length; i++) {
+      //     this.startRealPlay2(arr[i], i + 1)
+      //   }
+      // }
       //执法
-      if (this.cameraIndexCode === "1") {
-        arr = ["2c3a354237f149b980f4b4d19697a35f", "e75e11e3598c4868a0e43ae1aa88f44c",];
-        for (let i = 0; i < arr.length; i++) {
-          this.startRealPlay2(arr[i], i + 1)
-        }
-      }
+      // if (this.cameraIndexCode === "1") {
+      //   arr = ["2c3a354237f149b980f4b4d19697a35f", "e75e11e3598c4868a0e43ae1aa88f44c",];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     this.startRealPlay2(arr[i], i + 1)
+      //   }
+      // }
 
       console.log(this.codes)
 

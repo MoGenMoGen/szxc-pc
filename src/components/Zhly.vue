@@ -489,24 +489,8 @@
             Y:item.Y,
           }
         this.$parent.test(a);
-        //this.$parent.test(name)
-			  // if (name === "龙居农家乐" ){
-        //   this.$parent.test("龙居农家乐")
-        // }else {
-        //   this.$parent.test(name)
-        //   if (this.$root.hsxl === false){
-        //     this.$parent.test("农家乐");
-        //     this.$root.hsxl = true
-        //   }
-        //   let a = {
-        //     type:'农家乐',
-        //     name:name
-        //   }
-
-
 			},
 			getIndex(e) {
-				console.log(e)
 				if (e == 0) {
 					this.imgList = ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
 					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG']
@@ -604,8 +588,11 @@
 					this.show = false
 					this.show2 = true
 					this.show3 = false
+          if (this.$root.lyjd === false){
+            this.$parent.test("旅游景点");
+            this.$root.lyjd = true
+          }
 
-          this.$parent.test("旅游景点");
 
 				} else if (e == 3) {
 					this.show = false

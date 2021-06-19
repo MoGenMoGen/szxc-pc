@@ -161,7 +161,7 @@
 					<span>负责区域</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item">
+					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item" @click="toZf(item)">
 						<span>{{ item.name }}</span>
 						<span>{{ item.area }}</span>
 					</div>
@@ -216,7 +216,7 @@
 			</div>
 		</transition>
 <!--    海康监控-->
-<!--    <hik2 :cameraIndexCode="cType"   :codes="codes" :layout="layout"  ref="videoPlayer2"  :playMode="1"></hik2>-->
+    <hik2 :cameraIndexCode="cType"   :codes="codes"  ref="videoPlayer2"  :playMode="1"></hik2>
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -302,6 +302,7 @@
 		props: {},
 		data() {
 			return {
+        codes:'',
 			  cType:"3",
 				hikShow: false,
 				fiveList: [],
@@ -843,10 +844,12 @@
 				}],
 				jkList: [{
 					name: '九龙湖村执法001',
-					area: '长胜'
+					area: '长胜',
+          code:"2c3a354237f149b980f4b4d19697a35f"
 				}, {
 					name: '九龙湖村执法002',
-					area: '横溪'
+					area: '横溪',
+          code:"e75e11e3598c4868a0e43ae1aa88f44c"
 				}],
 				qyList: [{
 					name: '龙居农家乐'
@@ -953,16 +956,16 @@
 		},
 		methods: {
 			offHik() {
-				// this.$refs.videoPlayer2.off()
+				this.$refs.videoPlayer2.off()
 			},
 			toMap(item) {
 				this.$parent.test();
 			},
       //点击执法仪看监控
       toZf(item){
-        // this.$refs.videoPlayer2.off()
-        // this.codes = item.code;
-        // this.$refs.videoPlayer2.initPlugin()
+        this.$refs.videoPlayer2.off()
+        this.codes = item.code;
+        this.$refs.videoPlayer2.initPlugin()
 
       },
 			onShowP(e) {
