@@ -249,6 +249,14 @@ class api {
       })
     })
   }
+  //财务公开
+  caiwuList(data){
+    return new Promise(resolve => {
+      post("/blade-xc/financeopen/list",data).then(res=>{
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
