@@ -189,7 +189,7 @@
 				},
 				option4: {
 					title: {
-						text: '{a|113}\n{c|人流检测数据}',
+						text: '{a|113}\n{c|人流量检测数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -266,7 +266,7 @@
 				},
 				option5: {
 					title: {
-						text: '{a|187}\n{c|车流检查数据}',
+						text: '{a|187}\n{c|车流量检查数据}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -350,11 +350,11 @@
 				labelIndex: 0,
 				xingIndex: 0,
 				list: [{
-					num: 34,
+					num: 37,
 					url: 'static/images/house.png',
 					title: '农家乐'
 				}, {
-					num: 9,
+					num: 10,
 					url: 'static/images/mingsu.png',
 					title: '民宿'
 				}, {
@@ -558,8 +558,8 @@
 				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
 				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
 				that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
-				that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
-				that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
+				that.option4.title.text = '{a|'+option4+'}\n{c|人流量检测数据}'
+				that.option5.title.text = '{a|'+option5+'}\n{c|车流量检查数据}'
 			},60000)
 		}
 	}

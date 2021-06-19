@@ -35,7 +35,7 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="show">
+			<div v-show="show2">
 				<img src="static/images/bg.png"
 					style="position: absolute;top: 400px;left: 640px;z-index: 1000;width: 903px;height: 349px;"
 					@click="showWg">
@@ -139,7 +139,7 @@
 					<span>负责区域</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in jkList" :key='index' @click="toZf(item)" class="pop-inner-item">
+					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item">
 						<span>{{ item.name }}</span>
 						<span>{{ item.area }}</span>
 					</div>
@@ -230,7 +230,40 @@
 		<!--    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
     <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button> -->
 
-
+		<transition name="fade">
+			<div v-show="show11">
+				<div class="pop-common dzxx">
+					<div class="pop-title"><span>地质防范点列表</span></div>
+					<div class="pop-dz-title">
+						<span>地质防范点名称</span>
+						<span>具体位置</span>
+					</div>
+					<div class="pop-dz-box">
+						<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index">
+							<span>{{item.name}}</span>
+							<span>{{item.add}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="pop-common dzxx" style="top: 600px;">
+					<div class="pop-title"><span>位移动监测点列表</span></div>
+					<div class="pop-dz-title">
+						<span style="flex: 2;">监测点名称</span>
+						<span>位置</span>
+						<span>边坡稳定性</span>
+						<span>状态</span>
+					</div>
+					<div class="pop-dz-box">
+						<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
+							<span style="flex: 2;">{{item.name}}</span>
+							<span>{{item.add}}</span>
+							<span>{{item.stability}}</span>
+							<span>{{item.status}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</transition>
 
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
@@ -247,9 +280,7 @@
 		props: {},
 		data() {
 			return {
-        layout:'1x1',
 			  cType:"3",
-        codes:"",
 				hikShow: false,
 				fiveList: [],
 				title: '',
@@ -266,6 +297,7 @@
 				show8: false,
 				show9: false,
 				show10: false,
+				show11: false,
 				list: [{
 					num: 5,
 					url: 'static/images/srjf.png',
@@ -769,12 +801,10 @@
 				}],
 				jkList: [{
 					name: '九龙湖村执法001',
-					area: '长胜',
-          code: '2c3a354237f149b980f4b4d19697a35f'
+					area: '长胜'
 				}, {
 					name: '九龙湖村执法002',
-					area: '横溪',
-          code: 'e75e11e3598c4868a0e43ae1aa88f44c'
+					area: '横溪'
 				}],
 				qyList: [{
 					name: '龙居农家乐'
@@ -836,13 +866,58 @@
 					newAdd: '村庄集镇规划区',
 					schedule: '计划申请',
 					sort: '危房户'
+				}],
+				dzList: [{
+					name: '地质防范点名称',
+					add: '具体位置1'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置2'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置3'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置4'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置5'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置6'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置5'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置6'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置6'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置6'
+				},{
+					name: '地质防范点名称',
+					add: '具体位置6'
+				}],
+				wyList: [{
+					name: '横溪地质防范点01',
+					add: '东沟',
+					stability: '-',
+					status: '安装中'
+				},{
+					name: '横溪地质防范点01',
+					add: '东沟',
+					stability: '-',
+					status: '安装中'
 				}]
 			}
 		},
 		components: {
 			PopBox,
 			BottomTab,
-			hik,hik2
+			hik
 
 		},
 		mounted() {
@@ -909,6 +984,7 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = false
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
@@ -923,6 +999,7 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = false
 				} else if (e == 2) {
 					// 4个平台
           this.offHik()
@@ -937,6 +1014,7 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = false
 				} else if (e == 3) {
 					// 5+X
           this.offHik()
@@ -950,6 +1028,7 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = false
 				} else if (e == 4) {
 					// 线上执法
 					this.offHik()
@@ -963,8 +1042,10 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = false
           // this.hikShow = true
-
+          this.cType = "1"
+          this.$refs.videoPlayer.initPlugin()
 
 
 					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
@@ -983,8 +1064,10 @@
 					this.show8 = false
 					this.show9 = true
 					this.show10 = false
+					this.show11 = false
 				} else if (e == 6) {
           this.offHik()
+					// 地质灾害防范点
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -995,6 +1078,7 @@
 					this.show8 = false
 					this.show9 = false
 					this.show10 = false
+					this.show11 = true
 				}
 				// else if (e == 6) {
 				//      // 防溺水
@@ -1523,6 +1607,41 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+			}
+		}
+	}
+
+	.dzxx {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		.pop-dz-title {
+			width: 90%;
+			display: flex;
+			align-items: center;
+			font-size: 16px;
+			color: #fff;
+			margin: 10px auto;
+			span {
+				flex: 1;
+			}
+		}
+		.pop-dz-box {
+			max-height: 350px;
+			overflow-y: auto;
+			.pop-dz-item {
+				width: 90%;
+				display: flex;
+				align-items: center;
+				font-size: 16px;
+				color: #fff;
+				margin: 5px auto;
+				span {
+					flex: 1;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
 			}
 		}
 	}

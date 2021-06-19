@@ -2,6 +2,7 @@
 	<!-- 村情公示 -->
 	<div>
 		<transition name="fade">
+
 			<!-- <div class="pop-common szgl" v-show='show'>
 				<img :src="cwList[imgIndex].img" class="cwImg" v-if="imgShow">
 				<img src="static/images/cancel-B.png" class="cwImg-cancel" v-if="imgShow" @click="close">
@@ -42,7 +43,102 @@
 
 				</div>
 			</div> -->
-			<img v-show='show' src="static/images/szglBg.jpg" style="width: 100%;height: 100%;position: absolute;top: 0;left: 0;">
+
+<!--			-->
+			<div  class="cun-container" >
+				<img :src="icBj" class="bg">
+				<div class="wrapper">
+					<div class="cun-top">
+						<div class="cun-left">
+							<div class="chd">
+								<p>招租信息</p>
+								<img :src="icChd" >
+							</div>
+
+							<ul>
+								<li v-for="item in list1" :key="item.id">
+									<div class="border-out">
+										<img :src="item.img">
+									</div>
+<!--									<div class="top-label">-->
+<!--										<img :src="icJts">-->
+<!--										<p>资产负债</p>-->
+<!--									</div>-->
+
+								</li>
+							</ul>
+						</div>
+						<div class="cun-left" style="width: 74%">
+							<div class="chd">
+								<p>财务公开</p>
+								<img :src="icChf" >
+							</div>
+
+							<ul>
+								<li v-for="item in list3" :key="item.id">
+									<div class="border-out">
+										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img"></el-image>
+									</div>
+									<div class="top-label">
+										<img :src="icJts">
+										<p>{{item.name}}</p>
+									</div>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="cun-top">
+						<div class="cun-left">
+							<div class="chd">
+								<p>业务公开</p>
+								<img :src="icChd" >
+							</div>
+
+							<ul>
+								<li v-for="item in list1" :key="item.id">
+									<div class="border-out">
+										<img :src="item.img">
+									</div>
+<!--									<div class="top-label">-->
+<!--										<img :src="icJts">-->
+<!--										<p>资产负债</p>-->
+<!--									</div>-->
+
+								</li>
+							</ul>
+						</div>
+						<div class="cun-left" style="width: 74%">
+<!--							<div class="chd">-->
+<!--								<p>招租信息</p>-->
+<!--								<img :src="icChf" >-->
+<!--							</div>-->
+
+							<div class="reverseArrow">
+								<div v-for="item in list3" :key="item.id">
+									<img :src="icJtx">
+									<p>{{item.name}}</p>
+
+								</div>
+							</div>
+
+							<ul>
+								<li v-for="item in list3" :key="item.id">
+									<div class="border-out">
+										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img"></el-image>
+									</div>
+<!--									<div class="top-label">-->
+<!--										<img :src="icJts">-->
+<!--										<p>{{item.name}}</p>-->
+<!--									</div>-->
+
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
 		</transition>
 		<transition name="fade">
 <!--			<div class="pop-box" v-show="show2">-->
@@ -88,12 +184,25 @@
 
 <script>
 	import BottomTab from '@/components/BottomTab.vue'
+	import icBj from '../images/村务管理背景图.png'
+	import icJts from '../images/上箭头.png'
+	import icJtx from '../images/下箭头.png'
+	import icChf from '../images/长横幅.png'
+	import icChd from '../images/短横幅.png'
+	import icBb from '../images/报表.png'
+
 
 	export default {
 		name: 'Cwgk',
 		props: {},
 		data() {
 			return {
+				icBj,
+				icJts,
+				icJtx,
+				icChf,
+				icChd,
+				icBb,
 			  url2:"http://visual.gzvst.top/view/1405180480017412097",
 				cwList: [],
 				imgIndex: 0,
@@ -118,8 +227,20 @@
 					hasUrl: false,
 					title: '村务公开'
 				}],
-				url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
 				imgList: ['static/images/banner2.png', 'static/images/banner3.png','static/images/banner4.png'],
+				list1:[
+					{
+						id:1,
+						img:icBb
+					},
+					{
+						id:2,
+						img:icBb
+					}
+				],
+
+				list3:[],
+				list4:[],
 			}
 		},
 		components: {
@@ -143,7 +264,11 @@
 					size: 30
 				}
 				this.$ajax.getCwgk(data).then(res => {
-					this.cwList = res.records
+					res.records.forEach(item => {
+						item.img = item.img.split(",")
+					})
+					this.list3=res.records.splice(0,6)
+					this.list4=res.records.splice(3,6)
 				})
 			},
 			getGlData() {
@@ -391,4 +516,136 @@
 	.fade-leave-to {
 		opacity: 0;
 	}
+	.cun-container{
+		width: 100%;height: 100%;position: absolute;top: 0;left: 0;
+		.bg{
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+		}
+
+		.wrapper{
+			position: absolute;
+			left: 0;
+			right: 0;
+			top:130px;
+			bottom: 110px;
+			width: 100%;
+			height: calc(100vh - 230px);
+			z-index: 11;
+			.cun-top{
+				height: 50%;
+				display: flex;
+				.cun-left{
+					width: 26%;
+					height: 78%;
+					padding: 30px;
+					/*横幅*/
+					.chd{
+						width: 100%;
+						height: 40px;
+						position: relative;
+						/*margin-bottom: 20px;*/
+						img{
+							position: absolute;
+							left: 0;
+							right: 0;
+							top:0;
+							bottom: 0;
+							width: 100%;
+							height: 100%;
+							z-index: 13;
+						}
+						p{
+							position: absolute;
+							left: 0;
+							right: 0;
+							top:0;
+							bottom: 0;
+							width: 100%;
+							height: 100%;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							z-index: 14;
+							color: white;
+							font-size: 19px;
+							font-weight: 500;
+
+						}
+					}
+					/*反向箭头*/
+					.reverseArrow{
+						width: 100%;
+						height: 40px;
+						position: relative;
+						/*margin-bottom: 20px;*/
+						display: flex;
+
+						div{
+							flex: 1;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							flex-direction: column;
+							/*下箭头*/
+							img{
+								margin: 2px;
+								width: 17px;
+							}
+							font-weight: 500;
+							font-size: 15px;
+						}
+					}
+					ul{
+						width: 100%;
+						height: 100%;
+						display: flex;
+
+						li{
+							width: 50%;
+							height: 100%;
+							padding: 10px;
+							.border-out{
+								border-radius: 5px;
+								border:1px solid #999999;
+								width: 100%;
+								height: 78%;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								img,.moreImg{
+									width: 95%;
+									height: 99%;
+								}
+							}
+							.top-label{
+								height: 22%;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								flex-direction: column;
+								img{
+									margin: 2px;
+									width: 17px;
+								}
+								font-size: 15px;
+								font-weight: 500px;
+							}
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+	}
+
 </style>

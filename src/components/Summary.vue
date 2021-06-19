@@ -235,15 +235,13 @@
 
 
 
+    <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
+   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
+                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
+      </model-obj>
 
-    <!--三维模型-->
-<!--  <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">&ndash;&gt;-->
-<!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"-->
-<!--                 :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"-->
-<!--                 @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>-->
-<!--      </model-obj>-->
-
-<!--    </div>-->
+    </div>
 
 
   </div>
@@ -466,7 +464,7 @@ export default {
       },
       option4: {
         title: {
-          text: '{a|113}\n{c|人流检测数据}',
+          text: '{a|113}\n{c|人流量检测数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -544,7 +542,7 @@ export default {
       },
       option5: {
         title: {
-          text: '{a|187}\n{c|车流检查数据}',
+          text: '{a|187}\n{c|车流量检查数据}',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -728,8 +726,8 @@ export default {
 		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
 		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
 		that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
-		that.option4.title.text = '{a|'+option4+'}\n{c|人流检测数据}'
-		that.option5.title.text = '{a|'+option5+'}\n{c|车流检查数据}'
+		that.option4.title.text = '{a|'+option4+'}\n{c|人流量检测数据}'
+		that.option5.title.text = '{a|'+option5+'}\n{c|车流量检查数据}'
 	},60000)
   },
   components: {

@@ -4,7 +4,8 @@
 			<img src="static/images/logo.png"/>
 			<span class="top-title" @click="test2">九龙湖数字乡村</span>
 			<div class="top-tab-box">
-				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
+				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" 
+				@click="changeIndex(index)" @mouseenter="showChild(index)" @mouseleave="hiddenChild(index)">
 					{{item}}
 				</div>
 				<div class="top-tab-item-child" v-if="isChildShow">
@@ -186,10 +187,8 @@
 			},
 			changeIndex(e) {
 				if(e == 6) {
-					this.isChildShow = true
 					return
 				} else {
-					this.isChildShow = false
 					this.isActive = e
 				}
         console.log(e)
@@ -237,6 +236,14 @@
         // console.log(e === 2){
         //
         // }
+			},
+			showChild(e) {
+				if(e==6) {
+					this.isChildShow = true
+				}
+			},
+			hiddenChild(e) {
+				this.isChildShow = false
 			}
 		},
 		mounted() {
