@@ -904,18 +904,21 @@
 		position: absolute;
 		top: 200px;
 		right: 35px;
-		border: 2px solid #fff;
+		
 		border-radius: 10px;
 		box-sizing: border-box;
-		.el-carousel__item {
-			width: 100%;
-			height: 100%;
-
-			img {
+		/deep/ .el-carousel__container {
+			border: 2px solid #fff;
+			.el-carousel__item {
 				width: 100%;
 				height: 100%;
+				img {
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
+		
 		.banner-name {
 			width: 100%;
 			background-color: rgba(0, 0, 0, 0.3);
