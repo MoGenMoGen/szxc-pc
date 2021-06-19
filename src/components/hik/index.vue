@@ -1,3 +1,4 @@
+<!--地质监控-->
 <template>
   <div class="video-player">
     <div id="divPlugin" ref="divPlugin" v-if="plugin"></div>
@@ -5,12 +6,12 @@
 </template>
 <script>
 export default {
-  name: "videoPlayer",
+  name: "videoPlayer4",
   props: {
     cameraIndexCode: {
       type: String, default: '3'
     },
-    codes:{
+    codes: {
       type: String,
     },
     layout: {
@@ -32,12 +33,7 @@ export default {
   },
   mounted() {
     //插件初始化
-    if (this.cameraIndexCode != 3){
-      this.initPlugin();
-      let this_ = this
-      this_.oWebControl.oDocOffset.top = 168;
-      this_.oWebControl.oDocOffset.left = 1798;
-    }
+    this.initPlugin();
   },
 
   methods: {
@@ -45,9 +41,9 @@ export default {
     //关闭插件
     off() {
       let _this = this;
-      if (_this.oWebControl != null){
+      if (_this.oWebControl != null) {
         _this.oWebControl.JS_HideWnd();
-        // _this.oWebControl.JS_Disconnect();
+        _this.oWebControl.JS_Disconnect();
       }
     },
 
@@ -66,7 +62,7 @@ export default {
             _this.oWebControl.JS_StartService("window", {
               dllPath: "./VideoPluginConnect.dll"
             }).then((res) => {
-              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 400).then(() => {
+              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 250).then(() => {
                 this.initVideo();
               });
             }, function () {
@@ -93,8 +89,8 @@ export default {
           this.oWebControl = null;
         }
       });
-      _this.oWebControl.oDocOffset.top = 168;
-      _this.oWebControl.oDocOffset.left = 1798;
+      _this.oWebControl.oDocOffset.top = 878;
+      _this.oWebControl.oDocOffset.left = 920;
     },
     // 设置窗口控制回调
     setCallbacks() {
@@ -119,8 +115,8 @@ export default {
         let layout = this.layout;                           //playMode指定模式的布局
         let enableHTTPS = 1;                               //是否启用HTTPS协议与综合安防管理平台交互，是为1，否为0
         let encryptedFields = 'secret';					            //加密字段，默认加密领域为secret
-        let showToolbar = 1;                               //是否显示工具栏，0-不显示，非0-显示
-        let showSmart = 1;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
+        let showToolbar = 0;                               //是否显示工具栏，0-不显示，非0-显示
+        let showSmart = 0;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
         let buttonIDs = "0,16,256,257,258,259,260,512,513,514,515,516,517,768,769";  //自定义工具条按钮
         this.oWebControl.JS_RequestInterface({
           funcName: "init",
@@ -140,9 +136,8 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
-            //this.toPlay()
-         }
-            //this.startRealPlay()
+              this.toPlay()
+            }
         );
       })
     },
@@ -170,29 +165,10 @@ export default {
 
     toPlay() {
       let arr;
-      if (this.cameraIndexCode === "0") {
-        arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
-
-        for (let i = 0; i < arr.length; i++) {
-          this.startRealPlay2(arr[i], i + 1)
-        }
+      arr = ["f5c0800820924955bd3192cf65654b8f", "f1bba68174b8401fa4dd5e22440ae1b6", "22252acaaaeb47b0887cd0a294a0685b", "f51d56c92b474494ad262aa67c9c13b2", "f7fb34bda82b4a1e90c86f381d59af73"];
+      for (let i = 0; i < arr.length; i++) {
+        this.startRealPlay2(arr[i], i + 1)
       }
-      //执法
-      if (this.cameraIndexCode === "1") {
-        arr = ["2c3a354237f149b980f4b4d19697a35f", "e75e11e3598c4868a0e43ae1aa88f44c",];
-        for (let i = 0; i < arr.length; i++) {
-          this.startRealPlay2(arr[i], i + 1)
-        }
-      }
-
-      console.log(this.codes)
-
-      // if (this.cameraIndexCode === "4"){
-      //   arr = ["f7fb34bda82b4a1e90c86f381d59af73", "f1bba68174b8401fa4dd5e22440ae1b6","22252acaaaeb47b0887cd0a294a0685b","f51d56c92b474494ad262aa67c9c13b2"];
-      //   for (let i = 0; i < arr.length; i++) {
-      //     this.startRealPlay2(arr[i], i + 1)
-      //   }
-      // }
 
 
     },
@@ -200,7 +176,6 @@ export default {
     startRealPlay() {
       console.log('------开始播放-------');
       let cameraIndexCode = this.cameraIndexCode;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
-      // let cameraIndexCode  =  '17396d5f47a34e288b3c7edfb19e5535'            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
       let gpuMode = 0;                                        //是否启用GPU硬解，0-不启用，1-启用

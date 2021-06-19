@@ -11,7 +11,7 @@
 					<span>农家乐名称</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item.name)">
+					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
 					</div>
@@ -49,7 +49,7 @@
 					<span>景点名称</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in jdList" :key='index' class="pop-inner-item">
+					<div v-for="(item,index) in jdList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
 					</div>
@@ -391,39 +391,71 @@
 						title: '购'
 					}
 				],
-				njlList: [{
-					name: '龙居农家乐'
-				}, {
-					name: '月波农家菜馆'
-				}, {
-					name: '横溪人家'
-				}, {
-					name: '龙源农家乐'
-				}, {
-					name: '向石头农家乐'
-				}, {
-					name: '东琴农家乐'
-				}, {
-					name: '项珍农家乐'
-				}, {
-					name: '阿飞农家乐'
-				}, {
-					name: '雅明农家乐'
-				}, {
-					name: '九龙源农家乐'
-				}],
+        njlList:[{
+          name: '龙居农家乐',
+          X:'121.50782',
+          Y:'30.051656',
+        }, {
+          name: '月波农家菜馆',
+          X:'121.50818',
+          Y:'30.051681',
+        }, {
+          name: '横溪人家',
+          X:'121.508527',
+          Y:'30.052313',
+        }, {
+          name: '龙源农家乐',
+          X:'121.508072',
+          Y:'30.52354',
+        }, {
+          name: '向石头农家乐',
+          X:'121.509869',
+          Y:'30.052034',
+        }, {
+          name: '东琴农家乐',
+          X:'121.512405',
+          Y:'30.052881',
+        }, {
+          name: '项珍农家乐',
+          X:'121.506141',
+          Y:'30.052687',
+        }, {
+          name: '阿飞农家乐',
+          X:'121.506145',
+          Y:'30.052687',
+        }, {
+          name: '雅明农家乐',
+          X:'121.502719',
+          Y:'30.051409',
+        }, {
+          name: '九龙源农家乐',
+          X:'121.502887',
+          Y:'30.051724',
+        }],
 				jdList: [{
-					name: '香山教寺'
+					name: '香山教寺',
+          X:'121.518298',
+          Y:'30.055497',
 				}, {
-					name: '九龙源'
+					name: '九龙源',
+          X:'121.51148',
+          Y:'30.054086',
 				}, {
-					name: '滑草场'
+					name: '滑草场',
+          X:'121.539236',
+          Y:'30.04344',
 				}, {
-					name: '猴岛穿越时空'
+					name: '猴岛穿越时空',
+          X:'121.529372',
+          Y:'30.041006',
 				}, {
-					name: '香山源'
+					name: '香山源',
+          X:'121.518298',
+          Y:'30.055497',
 				}, {
-					name: '九龙湖景区'
+					name: '九龙湖景区',
+          X:'121.527141',
+          Y:'30.045825',
 				}],
 				imgList: ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
 					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG'],
@@ -447,7 +479,16 @@
 			}
 		},
 		methods: {
-			goto(name) {
+			goto(item) {
+          if (this.$root.njl === false){
+            this.$parent.test("农家乐");
+            this.$root.njl = true
+          }
+          let a = {
+            X:item.X,
+            Y:item.Y,
+          }
+        this.$parent.test(a);
         //this.$parent.test(name)
 			  // if (name === "龙居农家乐" ){
         //   this.$parent.test("龙居农家乐")
@@ -457,11 +498,11 @@
         //     this.$parent.test("农家乐");
         //     this.$root.hsxl = true
         //   }
-          let a = {
-            type:'农家乐',
-            name:name
-          }
-          this.$parent.test(a);
+        //   let a = {
+        //     type:'农家乐',
+        //     name:name
+        //   }
+
 
 			},
 			getIndex(e) {
@@ -470,25 +511,45 @@
 					this.imgList = ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
 					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG']
 					this.njlList = [{
-						name: '龙居农家乐'
+						name: '龙居农家乐',
+            X:'121.50782',
+            Y:'30.051656',
 					}, {
-						name: '月波农家菜馆'
+						name: '月波农家菜馆',
+            X:'121.50818',
+            Y:'30.051681',
 					}, {
-						name: '横溪人家'
+						name: '横溪人家',
+            X:'121.508527',
+            Y:'30.052313',
 					}, {
-						name: '龙源农家乐'
+						name: '龙源农家乐',
+            X:'121.508072',
+            Y:'30.52354',
 					}, {
-						name: '向石头农家乐'
+						name: '向石头农家乐',
+            X:'121.509869',
+            Y:'30.052034',
 					}, {
-						name: '东琴农家乐'
+						name: '东琴农家乐',
+            X:'121.512405',
+            Y:'30.052881',
 					}, {
-						name: '项珍农家乐'
+						name: '项珍农家乐',
+            X:'121.506141',
+            Y:'30.052687',
 					}, {
-						name: '阿飞农家乐'
+						name: '阿飞农家乐',
+            X:'121.506145',
+            Y:'30.052687',
 					}, {
-						name: '雅明农家乐'
+						name: '雅明农家乐',
+            X:'121.502719',
+            Y:'30.051409',
 					}, {
-						name: '九龙源农家乐'
+						name: '九龙源农家乐',
+            X:'121.502887',
+            Y:'30.051724',
 					}]
 					this.show = true
 					this.show2 = false
@@ -496,25 +557,45 @@
 				} else if (e == 1) {
 					this.imgList = ['static/images/zhu1.png','static/images/zhu2.jpg','static/images/zhu3.jpg']
 					this.njlList = [{
-						name: '龙眼泉农家乐'
+						name: '龙眼泉农家乐',
+            X:'121.507867',
+            Y:'30.052307',
 					}, {
-						name: '惠英农家乐'
+						name: '惠英农家乐',
+            X:'121.502735',
+            Y:'30.051085',
 					}, {
-						name: '栋兴生态农庄'
+						name: '栋兴生态农庄',
+            X:'121.509037',
+            Y:'30.051842',
 					}, {
-						name: '香石小院'
+						name: '香石小院',
+            X:'121.500984',
+            Y:'30.051311',
 					}, {
-						name: '洪阿三农家乐'
+						name: '洪阿三农家乐',
+            X:'121.50112',
+            Y:'30.051359',
 					}, {
-						name: '钱门客栈'
+						name: '钱门客栈',
+            X:'121.503487',
+            Y:'30.052357',
 					}, {
-						name: '远足农家客栈'
+						name: '远足农家客栈',
+            X:'121.508364',
+            Y:'30.052494',
 					}, {
-						name: '高屋人家'
+						name: '高屋人家',
+            X:'121.50196',
+            Y:'30.051863',
 					}, {
-						name: '氧气生活'
+						name: '氧气生活',
+            X:'121.534009',
+            Y:'30.031686',
 					}, {
-						name: '又见山'
+						name: '又见山',
+            X:'121.50615',
+            Y:'30.052189',
 					}]
 					this.show = true
 					this.show2 = false

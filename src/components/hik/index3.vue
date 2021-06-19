@@ -1,4 +1,4 @@
-<!--执法监控-->
+<!--防溺水监控-->
 <template>
   <div class="video-player">
     <div id="divPlugin" ref="divPlugin" v-if="plugin"></div>
@@ -32,11 +32,7 @@ export default {
   created() {
   },
   mounted() {
-    //插件初始化
-    // this.initPlugin();
-    // let this_ = this
-    // this_.oWebControl.oDocOffset.top = 168;
-    // this_.oWebControl.oDocOffset.left = 798;
+
   },
 
   methods: {
@@ -65,7 +61,7 @@ export default {
             _this.oWebControl.JS_StartService("window", {
               dllPath: "./VideoPluginConnect.dll"
             }).then((res) => {
-              _this.oWebControl.JS_CreateWnd("divPlugin", 800, 800).then(() => {
+              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 250).then(() => {
                 this.initVideo();
               });
             }, function () {
@@ -92,8 +88,8 @@ export default {
           this.oWebControl = null;
         }
       });
-      _this.oWebControl.oDocOffset.top = 168;
-      _this.oWebControl.oDocOffset.left = 798;
+      _this.oWebControl.oDocOffset.top = 878;
+      _this.oWebControl.oDocOffset.left = 1355;
     },
     // 设置窗口控制回调
     setCallbacks() {
@@ -118,8 +114,8 @@ export default {
         let layout = this.layout;                           //playMode指定模式的布局
         let enableHTTPS = 1;                               //是否启用HTTPS协议与综合安防管理平台交互，是为1，否为0
         let encryptedFields = 'secret';					            //加密字段，默认加密领域为secret
-        let showToolbar = 1;                               //是否显示工具栏，0-不显示，非0-显示
-        let showSmart = 1;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
+        let showToolbar = 0;                               //是否显示工具栏，0-不显示，非0-显示
+        let showSmart = 0;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
         let buttonIDs = "0,16,256,257,258,259,260,512,513,514,515,516,517,768,769";  //自定义工具条按钮
         this.oWebControl.JS_RequestInterface({
           funcName: "init",
@@ -139,7 +135,7 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
-              this.startRealPlay()
+              this.toPlay()
             }
         );
       })
@@ -168,22 +164,12 @@ export default {
 
     toPlay() {
       let arr;
-      if (this.cameraIndexCode === "0") {
-        arr = ["9e27366459024dfeb9da1d928db2860f", "32df7576620846e5850153e18d5731cf", "21b943aa87254d25b10d525c8c64c91c", "0fb157b75338412d854145f534eae3ff", "4c4fec8c33f14b05b1220410ff6083b3", "f8e9a9d033d54da6a514284a1e1c73ec", "400f8cd2631146ae86b6836b726e735d", "f5d82fc4b28a4b39b06c08ac64b81063", "2a19f151bffc4a368564879f4bc42803"];
-
+        arr = ["157995b2011e4af282a454fee526c143", "a66fe6d07d884cedbac9e2a767c15419", "8c2b3483b5e64e3fb9e08db9f9b43c91","f7fb34bda82b4a1e90c86f381d59af73"];
         for (let i = 0; i < arr.length; i++) {
           this.startRealPlay2(arr[i], i + 1)
         }
-      }
-      //执法
-      if (this.cameraIndexCode === "1") {
-        arr = ["2c3a354237f149b980f4b4d19697a35f", "e75e11e3598c4868a0e43ae1aa88f44c",];
-        for (let i = 0; i < arr.length; i++) {
-          this.startRealPlay2(arr[i], i + 1)
-        }
-      }
 
-      console.log(this.codes)
+
 
       // if (this.cameraIndexCode === "4"){
       //   arr = ["f7fb34bda82b4a1e90c86f381d59af73", "f1bba68174b8401fa4dd5e22440ae1b6","22252acaaaeb47b0887cd0a294a0685b","f51d56c92b474494ad262aa67c9c13b2"];

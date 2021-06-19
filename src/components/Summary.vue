@@ -136,7 +136,7 @@
         </div>
       </div>
     </transition>
-    <!-- 村务公开 -->
+    <!-- 防溺水监控 -->
      <transition name="fade">
       <div class="box mr" v-show="show">
         <div class="box-top">
@@ -144,10 +144,27 @@
           <span>防溺水监控</span>
         </div>
 
-<!--        <hik cameraIndexCode="0"  ref="videoPlayer"  :playMode="1"></hik>-->
-<!--        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>-->
       </div>
     </transition>
+    <!-- 防溺水监控 -->
+    <hik  ref="videoPlayer"  :playMode="1"></hik>
+    <hik3  ref="videoPlayer3"  :playMode="1"></hik3>
+
+
+    <!-- 地质灾害防范点监控 -->
+    <transition name="fade">
+      <div class="box mr2" v-show="show">
+        <div class="box-top">
+          <img src="static/images/icon.png">
+          <span>地质灾害防范点监控</span>
+        </div>
+        <!--        <hik cameraIndexCode="0"  ref="videoPlayer"  :playMode="1"></hik>-->
+        <!--        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>-->
+      </div>
+    </transition>
+
+
+
     <!-- 空气质量-->
     <transition name="fade">
       <div class="box rl" v-show="show">
@@ -236,11 +253,13 @@
 
 
 
-    <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-   <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+
+    <!--三维模型-->
+  <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">-->
+      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj> -->
+      </model-obj>
 
     </div>
 
@@ -253,7 +272,8 @@ import {
   ModelObj
 } from 'vue-3d-model';
 import myCharts from '@/components/MyCharts.vue'
-import hik from '@/components/hik'
+import hik from '@/components/hik/index.vue'
+import hik3 from '@/components/hik/index3.vue'
 export default {
   name: 'Summary',
   props: {},
@@ -733,17 +753,26 @@ export default {
   },
   components: {
     ModelObj,
-    myCharts
+    myCharts,hik,hik3
   },
   methods: {
 	random(lower, upper) {
 	  return Math.floor(Math.random() * (upper - lower)) + lower;
 	},
+    offHik(){
+      this.$refs.videoPlayer.off()
+      this.$refs.videoPlayer3.off()
+    },
+
     onLoad() {
+      console.log(123)
       //获取天气
       this.$ajax.getWeather().then(res => {
         this.tq = res;
       })
+
+      this.$refs.videoPlayer.initPlugin()
+      this.$refs.videoPlayer3.initPlugin()
       this.show = true
 
     },
@@ -1099,24 +1128,23 @@ export default {
   .mr-bottom {
     display: flex;
     flex-direction: column;
-
-    //.cw-list {
-    //  width: 100%;
-    //  height: 36px;
-    //  display: flex;
-    //  align-items: center;
-    //  background: url(../../public/static/images/cwbg.png);
-    //  background-size: 100% 100%;
-    //  color: #BCF0FE;
-    //  font-size: 16px;
-    //
-    //  span:first-child {
-    //    margin-left: 34px;
-    //    margin-right: 44px;
-    //  }
-    //}
   }
 }
+
+.mr2 {
+  height: 300px;
+  position: absolute;
+  bottom: 40px;
+  right: 905px;
+  z-index: 1998;
+
+  .mr-bottom {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
 
 
 .rl {

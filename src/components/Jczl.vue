@@ -101,7 +101,7 @@
 <!--				<div class="monitorBox"></div>-->
 			</div>
 		</transition>
-		<!-- <transition name="fade">
+		 <transition name="fade">
       <div class="xcga" v-show="show4">
         <div class="xcga-title"><span>乡村关爱</span></div>
         <div class="content">
@@ -119,7 +119,7 @@
           <img :src="item.url">
         </div>
       </div>
-    </transition> -->
+    </transition>
 		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show5"> -->
 				<!-- <div class="pop-common fns">
@@ -216,7 +216,7 @@
 			</div>
 		</transition>
 <!--    海康监控-->
-    <hik2 :cameraIndexCode="cType"   :codes="codes" :layout="layout"  ref="videoPlayer2"  :playMode="1"></hik2>
+<!--    <hik2 :cameraIndexCode="cType"   :codes="codes" :layout="layout"  ref="videoPlayer2"  :playMode="1"></hik2>-->
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -941,7 +941,7 @@
 		components: {
 			PopBox,
 			BottomTab,
-			hik
+			hik2
 
 		},
 		mounted() {
@@ -953,16 +953,16 @@
 		},
 		methods: {
 			offHik() {
-				this.$refs.videoPlayer2.off()
+				// this.$refs.videoPlayer2.off()
 			},
 			toMap(item) {
 				this.$parent.test();
 			},
       //点击执法仪看监控
       toZf(item){
-        this.$refs.videoPlayer2.off()
-        this.codes = item.code;
-        this.$refs.videoPlayer2.initPlugin()
+        // this.$refs.videoPlayer2.off()
+        // this.codes = item.code;
+        // this.$refs.videoPlayer2.initPlugin()
 
       },
 			onShowP(e) {
@@ -1068,8 +1068,8 @@
 					this.show10 = false
 					this.show11 = false
           // this.hikShow = true
-          this.cType = "1"
-          this.$refs.videoPlayer.initPlugin()
+
+
 
 
 					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})

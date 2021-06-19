@@ -1,7 +1,7 @@
 <template>
 	<!-- 村情公示 -->
 	<div>
-		<transition name="fade">
+		<transition name="fade" v-if="show">
 
 			<!-- <div class="pop-common szgl" v-show='show'>
 				<img :src="cwList[imgIndex].img" class="cwImg" v-if="imgShow">
@@ -140,7 +140,7 @@
 				</div>
 			</div>
 		</transition>
-		<transition name="fade">
+		<transition name="fade" >
 <!--			<div class="pop-box" v-show="show2">-->
 <!--				<div class="pop-common pop-gl">-->
 <!--					<div class="pop-title"><span>{{jjData.title}}</span></div>-->
@@ -175,7 +175,7 @@
 <!--					<div class="pop-html" v-html="jfData.content"></div>-->
 <!--				</div>-->
 <!--			</div>-->
-      <iframe v-if="cShow" style="margin-top: 120px" width="2236" height="1104" id="iframe" :src="url2" frameborder="0"></iframe>
+      <iframe v-if="cShow" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" :src="url2" frameborder="0"></iframe>
 		</transition>
 
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
@@ -305,8 +305,9 @@
 					this.getSzglData()
 				} else if (e == 1) {
 					this.show = false
-					this.show2 = true
           this.cShow = true
+					this.show2 = true
+
 					this.getGlData()
 				}
 				//  else if (e == 2) {

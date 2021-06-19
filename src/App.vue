@@ -4,7 +4,7 @@
 			<img src="static/images/logo.png"/>
 			<span class="top-title" @click="test2">九龙湖数字乡村</span>
 			<div class="top-tab-box">
-				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" 
+				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index"
 				@click="changeIndex(index)" @mouseenter="showChild(index)" @mouseleave="hiddenChild(index)">
 					{{item}}
 				</div>
@@ -14,7 +14,7 @@
 			</div>
 			<span class="top-time">{{nowTime}}</span>
 		</div>
-		<Summary v-show="isActive==0&&flag"></Summary>
+		<Summary ref="summary" v-show="isActive==0&&flag"></Summary>
 		<Yhyd v-show="isActive==1&&flag"></Yhyd>
 		<Zhdj v-show="isActive==2&&flag"></Zhdj>
 		<Zhly v-show="isActive==3&&flag"></Zhly>
@@ -63,7 +63,7 @@
 
 
 
-		   <!-- <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
+		    <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 
 
 	</div>
@@ -186,6 +186,13 @@
 				return data
 			},
 			changeIndex(e) {
+		    if (e !== 0){
+          this.$refs.summary.offHik()
+        }
+		    if (e == 0){
+          this.$refs.summary.onLoad()
+        }
+        console.log(e)
 				if(e == 6) {
 					return
 				} else {
