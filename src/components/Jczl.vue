@@ -325,13 +325,13 @@
 				showVideo: false,
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				list: [{
-					num: 5,
-					url: 'static/images/srjf.png',
-					title: '私人建房'
-				}, {
 					num: 2,
 					url: 'static/images/wfsl.png',
 					title: '危房数量'
+				},{
+					num: 5,
+					url: 'static/images/srjf.png',
+					title: '私人建房'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
