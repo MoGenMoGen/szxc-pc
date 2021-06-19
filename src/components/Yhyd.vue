@@ -28,11 +28,11 @@ export default {
         url: 'static/images/zrs.png',
         title: '总人数'
       }, {
-        num: 27,
+        num: 388,
         url: 'static/images/zhs.png',
         title: '租户数'
       }, {
-        num: 109,
+        num: 111,
         url: 'static/images/dys.png',
         title: '党户数'
       }]

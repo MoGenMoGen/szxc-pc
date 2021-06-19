@@ -144,41 +144,43 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="pop-box" v-show="show2">
-				<div class="pop-common pop-gl">
-					<div class="pop-title"><span>{{jjData.title}}</span></div>
-					<div class="pop-html" v-html="jjData.content"></div>
-				</div>
-				<div class="pop-common pop-cm">
-					<div class="pop-title"><span>{{cmData.title}}</span></div>
-					<div class="pop-html" v-html="cmData.content"></div>
-				</div>
-				<div class="pop-common pop-cgc">
-					<div class="pop-titleL"><span>{{cgcData.title}}</span></div>
-					<div class="pop-html" v-html="cgcData.content"></div>
-				</div>
-				<div class="pop-common pop-cb">
-					<div class="pop-titleL"><span>{{cbData.title}}</span></div>
-					<div class="pop-html" v-html="cbData.content"></div>
-				</div>
-				<div class="pop-common pop-td">
-					<div class="pop-title"><span>{{tdData.title}}</span></div>
-					<div class="pop-html" v-html="tdData.content"></div>
-				</div>
-				<div class="pop-common pop-bz">
-					<div class="pop-title"><span>{{bzData.title}}</span></div>
-					<div class="pop-html" v-html="bzData.content"></div>
-				</div>
-				<div class="pop-common pop-bx">
-					<div class="pop-title"><span>{{bxData.title}}</span></div>
-					<div class="pop-html" v-html="bxData.content"></div>
-				</div>
-				<div class="pop-common pop-jf">
-					<div class="pop-title"><span>{{jfData.title}}</span></div>
-					<div class="pop-html" v-html="jfData.content"></div>
-				</div>
-			</div>
+<!--			<div class="pop-box" v-show="show2">-->
+<!--				<div class="pop-common pop-gl">-->
+<!--					<div class="pop-title"><span>{{jjData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="jjData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-cm">-->
+<!--					<div class="pop-title"><span>{{cmData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="cmData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-cgc">-->
+<!--					<div class="pop-titleL"><span>{{cgcData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="cgcData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-cb">-->
+<!--					<div class="pop-titleL"><span>{{cbData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="cbData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-td">-->
+<!--					<div class="pop-title"><span>{{tdData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="tdData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-bz">-->
+<!--					<div class="pop-title"><span>{{bzData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="bzData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-bx">-->
+<!--					<div class="pop-title"><span>{{bxData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="bxData.content"></div>-->
+<!--				</div>-->
+<!--				<div class="pop-common pop-jf">-->
+<!--					<div class="pop-title"><span>{{jfData.title}}</span></div>-->
+<!--					<div class="pop-html" v-html="jfData.content"></div>-->
+<!--				</div>-->
+<!--			</div>-->
+      <iframe v-if="cShow" style="margin-top: 120px" width="2236" height="1104" id="iframe" :src="url2" frameborder="0"></iframe>
 		</transition>
+
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -204,9 +206,11 @@
 				icChf,
 				icChd,
 				icBb,
+			  url2:"http://visual.gzvst.top/view/1405180480017412097",
 				cwList: [],
 				imgIndex: 0,
 				imgShow: false,
+        cShow:false,
 				show: false,
 				show2: false,
 				jjData: {},
@@ -304,10 +308,12 @@
 				if (e == 0) {
 					this.show = true
 					this.show2 = false
+          this.cShow = false
 					this.getSzglData()
 				} else if (e == 1) {
 					this.show = false
 					this.show2 = true
+          this.cShow = true
 					this.getGlData()
 				}
 				//  else if (e == 2) {

@@ -2,10 +2,13 @@
 	<div id="app">
 		<div class="top-tab" v-if="flag">
 			<img src="static/images/logo.png"/>
-			<span class="top-title" @click="test2">九龙湖数字乡村大屏</span>
+			<span class="top-title" @click="test2">九龙湖数字乡村</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
 					{{item}}
+				</div>
+				<div class="top-tab-item-child" v-if="isChildShow">
+					<span v-for="(item,index) in tabChildList" :key="index">{{item}}</span>
 				</div>
 			</div>
 			<span class="top-time">{{nowTime}}</span>
@@ -59,7 +62,7 @@
 
 
 
-		  <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
+		   <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 
 
 	</div>
@@ -82,13 +85,15 @@
 			return {
 				showImg: false,
 				showPop: true,
+				isChildShow: false,
 				imgUrl: '../public/static/images/banner3.png',
 				title: '一级事件',
 				flag: true,
 				nowTime: "",
 				timer: "",
 				isActive: 0,
-				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务管理'],
+				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务管理','便民服务'],
+				tabChildList: ['行政审批','低保申请','建房申请','老兵补助','居家养老'],
 				sjList: [{
 					id: 'jlw202012130102',
 					content: '河头村河西上街网格预征土地上有违章搭建',
@@ -158,10 +163,10 @@
         document.getElementById('iframe').contentWindow.postMessage(val,'*')
       },
       test2(){
-        document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
+        // document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
         let a = {
-		      type:'农家乐',
-          name:'月波农家菜馆'
+		      X:'116.39622',
+          Y:'39.923568'
         }
         document.getElementById('iframe').contentWindow.postMessage(a,'*')
       },
@@ -180,7 +185,13 @@
 				return data
 			},
 			changeIndex(e) {
-				this.isActive = e
+				if(e == 6) {
+					this.isChildShow = true
+					return
+				} else {
+					this.isChildShow = false
+					this.isActive = e
+				}
         console.log(e)
         if (e === 1){
           if (!this.$root.zl){
@@ -216,7 +227,11 @@
         }
         //旅游
         if (e === 3){
-          this.test("旅游景点");
+          if (this.$root.njl === false){
+            this.test("农家乐");
+            this.$root.njl = true
+          }
+
         }
         //
         // console.log(e === 2){
@@ -278,6 +293,7 @@
 				flex: 1;
 				font-size: 22px;
 				margin-right: 78px;
+				position: relative;
 				.top-tab-item {
 					width: 143px;
 					height: 59px;
@@ -288,6 +304,21 @@
 				}
 				.active {
 					background-image: url(../public/static/images/tab-select.png);
+				}
+				.top-tab-item-child {
+					position: absolute;
+					top: 50px;
+					right: 15px;
+					display: flex;
+					flex-direction: column;
+					width: 110px;
+					background-color: #181a28;
+					color: #fff;
+					transition: 0.5s;
+					span {
+						padding: 10px;
+						font-size: 22px;
+					}
 				}
 			}
 			.top-time {
