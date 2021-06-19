@@ -1147,7 +1147,7 @@
         // this.$refs.videoPlayer.show()
 			},
 			getPopIndex(e) {
-				if(e == 0) {
+				if(e == 1) {
 					this.show9 = false
 					this.show10 = true
 				} else {
