@@ -35,7 +35,7 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="show">
+			<div v-show="show2">
 				<img src="static/images/bg.png"
 					style="position: absolute;top: 400px;left: 640px;z-index: 1000;width: 903px;height: 349px;"
 					@click="showWg">

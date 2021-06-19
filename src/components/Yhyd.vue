@@ -24,7 +24,7 @@ export default {
         url: 'static/images/house.png',
         title: '总户数'
       }, {
-        num: 1627,
+        num: 2015,
         url: 'static/images/zrs.png',
         title: '总人数'
       }, {
