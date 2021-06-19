@@ -22,7 +22,7 @@
 				</div>
 				<div class="pop-common fazhan">
 					<div class="pop-title"><span>发展党员</span></div>
-					<span class="fazhan-info">计划1人</span>
+					<span class="fazhan-info">计划2人</span>
 				</div>
 				<!-- <div class="pop-common dangfei">
 					<div class="pop-title"><span>党费收缴</span></div>
@@ -46,6 +46,18 @@
 						<span>总数：3个</span>
 						<span>已领取：3个</span>
 					</div>
+					<div class="xinyuan-title">
+						<span>许愿人</span>
+						<span>心愿标题</span>
+						<span>期望完成时间</span>
+						<span>许愿人联系方式</span>
+					</div>
+					<div class="xinyuan-item" v-for="(item,index) in xyList" :key="index">
+						<span>{{item.name}}</span>
+						<span>{{item.title}}</span>
+						<span>{{item.time}}</span>
+						<span>{{item.phone}}</span>
+					</div>
 				</div>
 			</div>
 		</transition>
@@ -63,7 +75,7 @@
 				</div>
 			</div>
 		</transition>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-common activity-now" v-show="show4">
 				<div class="pop-title"><span>当前活动</span></div>
 				<div class="activity-now-box">
@@ -74,17 +86,16 @@
 					<span class="activity-now-content">目前参与人数: <span style="color: red;font-size: 20px;">{{nowNum}}</span>人</span>
 				</div>
 			</div>
-		</transition>
+		</transition> -->
 		<transition name="fade">
 			<div class="pop-common activity-detail" v-show="show6">
 				<div class="pop-title"><span>党员活动</span></div>
 				<div class="activity-detail-box">
-					<span class="activity-detail-title">开展主题实践活动应与加强支部建设</span>
-					<span class="activity-detail-content activity-detail-contentF">活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容</span>
-					<img class="activity-detail-img" src="static/images/banner2.png">
-					<span class="activity-detail-content">开始时间: 2021-06-08 08:00</span>
-					<span class="activity-detail-content">结束时间: 2021-06-08 08:00</span>
-					<span class="activity-detail-content">活动地址: 宁波镇海区九龙湖风景区</span>
+					<span class="activity-detail-title">{{avctivityList[activityIndex].title}}</span>
+					<span class="activity-detail-content activity-detail-contentF">{{avctivityList[activityIndex].content}}</span>
+					<img class="activity-detail-img" :src="avctivityList[activityIndex].url">
+					<span class="activity-detail-content">时间: {{avctivityList[activityIndex].time}}</span>
+					<span class="activity-detail-content">活动地址: {{avctivityList[activityIndex].add}}</span>
 				</div>
 				<img src="static/images/cancel.png" class="detail-cancel" @click="cancelDetail">
 			</div>
@@ -119,6 +130,7 @@
 				show4: false,
 				show5: false,
 				show6: false,
+				activityIndex: 0,
 				nowContent: '<p>主题：红色旅游路线党史教育活动</p><p>活动流程：</p><p>1、锋领指数测评</p><p>2、党员重温入党誓词</p><p>3、参观红色记忆展览馆以及红色线路</p><p>4、书记上党课</p>',
 				nowAdd: '九龙湖村红色展馆',
 				nowNum: 100,
@@ -163,7 +175,7 @@
 					title: '田央沈、长桥头网格支部',
 					name: '长胜田央沈长桥头党员'
 				}, {
-					title: '朗家坪、十字路网格支部',
+					title: '郎家坪、十字路网格支部',
 					name: ''
 				},{
 					title: '农家乐联盟支部',
@@ -189,21 +201,49 @@
 					post: '党委委员、村委委员、社监会主任'
 				}],
 				avctivityList: [{
-					title: '九龙湖村开展“颗颗元宵、浓浓深情”元宵节党日活动',
+					title: '“颗颗元宵、浓浓深情”元宵节党日活动',
+					content: '九龙湖村横溪网格支部开展“颗颗元宵、浓浓深情”元宵节党日活动。党员们欢聚一堂，开展包汤圆的活动。糯米面、芝麻馅在巧手制作下变成了一个个汤圆。随后我们将汤圆送给年老的党员，让他们感受到温暖。此次活动进一步弘扬中华民族优秀传统文化，让大家在欢声笑语中度过一个快乐难忘的元宵节。',
 					time: '2021-02-26',
-					num: 87
+					num: 23,
+					add: '九龙湖村会议室',
+					url: 'static/images/activity1.png'
 				},{
-					title: '九龙湖村开展红色旅游线路环境卫生整治工作',
+					title: '红色旅游路线环境卫生整治',
+					content: '九龙湖村周家港、孟家、毛岭网格支部开展红色旅游线路环境卫生整治工作。在此次活动中，党员们充分展现了不怕脏、不怕苦、不怕累，敢于冲在前面、敢于抢挑重担的精神风貌。此次卫生整治活动，不仅美化了红色旅游路线，更培养了党员吃苦耐劳、乐于奉献的精神，真正地做到了为人民群众办实事、办好事。',
 					time: '2021-03-13',
-					num: 89
+					num: 16,
+					add: '九龙湖村长胜',
+					url: 'static/images/activity2.png'
 				},{
-					title: '九龙湖村开展5月主题党日活动',
+					title: '参观红色旅游路线',
+					content: '九龙湖村田央沈、长桥头网格支部开展主题党日活动。以“铭党恩、强党性、正党风”为主题，讴歌党的丰功伟绩。有以下四项内容：1、观看红色电影《建国大业》通过重温光辉岁月和交流心得体会，提升党员的责任感。2、参观红色旅游路线，树立党员的坚定信念。3、在红色路线碉堡处，杨勇书记上党课—讲述朱枫的故事，激发党员走前列、当先行、开拓奋进、建功立业的使命感。4、进行反电信诈骗宣传。',
 					time: '2021-05-10',
-					num: 85
+					num: 18,
+					add: '九龙湖村田央沈',
+					url: 'static/images/activity3.png'
 				},{
-					title: '九龙湖村召开党员和村民代表大会',
+					title: '《学党史、忆初心、担使命》党课学习',
+					content: '2021年5月21日，九龙湖村召开党员和村民代表大会，共有以下几项会议内容：1、联村组长高伟平书记主持并领学了《镇海区农村基层组织规范化运行基本规则》。2、高伟平书记为党员上党课—《学党史、忆初心、担使命》3、向党员分发党史学习教育书籍。',
 					time: '2021-05-21',
-					num: 84
+					num: 84,
+					add: '九龙湖村长胜',
+					url: 'static/images/activity4.png'
+				}],
+				xyList: [{
+					name: '钱兴华',
+					title: '想要一盒铁皮枫斗',
+					time: '20210730',
+					phone: '18258771317'
+				},{
+					name: '戎巧芬',
+					title: '想要一个炖锅',
+					time: '20210730',
+					phone: '18069045433'
+				},{
+					name: '严晓芬',
+					title: '想要米油等生活用品',
+					time: '20210730',
+					phone: '13738875923'
 				}]
 			}
 		},
@@ -283,7 +323,7 @@
 				this.show5 = false
 			},
 			showDetail(index) {
-				console.log(index)
+				this.activityIndex = index
 				this.show6 = true
 			},
 			cancelDetail() {
@@ -426,7 +466,7 @@
 		}
 
 		.xinyuan {
-			height: 144px;
+			// height: 144px;
 			top: 480px;
 			right: 35px;
 			.xinyuan-info {
@@ -440,6 +480,39 @@
 					width: 33%;
 					font-size: 20px;
 					text-align: center;
+				}
+			}
+			.xinyuan-title {
+				display: flex;
+				align-items: center;
+				span {
+					width: 20%;
+					font-size: 16px;
+					text-align: center;
+				}
+				span:nth-child(2) {
+					width: 30%;
+				}
+				span:nth-child(4) {
+					width: 30%;
+				}
+			}
+			.xinyuan-item {
+				display: flex;
+				align-items: center;
+				span {
+					width: 20%;
+					font-size: 16px;
+					text-align: center;
+				}
+				span:nth-child(2) {
+					width: 30%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				span:nth-child(4) {
+					width: 30%;
 				}
 			}
 		}
@@ -507,7 +580,7 @@
 	
 	.activity-detail {
 		top: 200px;
-		right: 35px;
+		left: 800px;
 		.activity-detail-box{
 			width: 90%;
 			margin: 10px auto;

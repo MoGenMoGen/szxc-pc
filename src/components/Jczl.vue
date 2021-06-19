@@ -3,7 +3,7 @@
 		<transition name="fade">
 			<div class="pop-box" v-show="show">
 				<div class="pop-common sttj">
-					<div class="pop-title"><span>山塘统计</span></div>
+					<div class="pop-title"><span>山塘水库</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span>山塘名称</span>
@@ -17,7 +17,7 @@
 						<span>{{ item.volume }}</span>
 					</div>
 				</div>
-				<div class="pop-common sktj">
+				<!-- <div class="pop-common sktj">
 					<div class="pop-title"><span>水库统计</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -31,9 +31,31 @@
 						<span>{{ item.capacity }}</span>
 						<span>{{ item.volume }}</span>
 					</div>
+				</div> -->
+				<div class="pop-common sktj">
+					<div class="pop-title" style="display: flex;justify-content: space-between;">
+						<span>防溺水监控</span>
+						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox">示例</span>
+					</div>
+					<div class="pop-inner-title">
+						<span style="flex: 1;">序号</span>
+						<span style="flex: 2;">点位名称</span>
+						<span style="flex: 2;">所属水库</span>
+					</div>
+					<div style="overflow-y: auto;">
+						<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item">
+							<span style="flex: 1;">{{ index + 1 }}</span>
+							<span style="flex: 2;">{{ item.name }}</span>
+							<span style="flex: 2;">{{ item.area }}</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</transition>
+		<div class="videoClass" v-if="showVideo">
+			<video :src="videoUrl" autoplay="autoplay" muted loop="loop"></video>
+			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
+		</div>
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
@@ -233,9 +255,9 @@
 		<transition name="fade">
 			<div v-show="show11">
 				<div class="pop-common dzxx">
-					<div class="pop-title"><span>地质防范点列表</span></div>
+					<div class="pop-title"><span>泥石流监控</span></div>
 					<div class="pop-dz-title">
-						<span>地质防范点名称</span>
+						<span>监控点名称</span>
 						<span>具体位置</span>
 					</div>
 					<div class="pop-dz-box">
@@ -246,7 +268,7 @@
 					</div>
 				</div>
 				<div class="pop-common dzxx" style="top: 600px;">
-					<div class="pop-title"><span>位移动监测点列表</span></div>
+					<div class="pop-title"><span>位移监测点列表</span></div>
 					<div class="pop-dz-title">
 						<span style="flex: 2;">监测点名称</span>
 						<span>位置</span>
@@ -298,6 +320,8 @@
 				show9: false,
 				show10: false,
 				show11: false,
+				showVideo: false,
+				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				list: [{
 					num: 5,
 					url: 'static/images/srjf.png',
@@ -477,23 +501,41 @@
 					volume: 0.13,
 				}],
 				fnsList: [{
-					name: '劈开猪头',
-					capacity: 0
+					name: '十字路水库1',
+					area: '十字路水库'
 				}, {
-					name: '杨家',
-					capacity: 0
+					name: '十字路水库2',
+					area: '十字路水库'
 				}, {
-					name: '蔡家岙',
-					capacity: 0
+					name: '护栏点位',
+					area: '九龙湖'
 				}, {
-					name: '石英坎',
-					capacity: 0
+					name: '茶室',
+					area: '九龙湖'
 				}, {
-					name: '三八',
-					capacity: 0
+					name: '小木屋1',
+					area:'九龙湖'
 				}, {
-					name: '应家',
-					capacity: 0
+					name: '小木屋2',
+					area:'九龙湖'
+				}, {
+					name: '十字路水库3',
+					area: '十字路水库'
+				}, {
+					name: '十字路水库4',
+					area: '十字路水库'
+				}, {
+					name: '十字路水库5',
+					area: '十字路水库'
+				}, {
+					name: '厕所点',
+					area: '九龙湖'
+				}, {
+					name: '文溪村三圣殿水库',
+					area: '三圣殿水库'
+				}, {
+					name: '文溪村小洞岙水库',
+					area: '小洞岙水库'
 				}],
 				sjs: [],
 				sjList: [{
@@ -868,38 +910,20 @@
 					sort: '危房户'
 				}],
 				dzList: [{
-					name: '地质防范点名称',
-					add: '具体位置1'
+					name: '泥石流监控01',
+					add: '原舍马路边'
 				},{
-					name: '地质防范点名称',
-					add: '具体位置2'
+					name: '泥石流监控02',
+					add: '横溪中间河道'
 				},{
-					name: '地质防范点名称',
-					add: '具体位置3'
+					name: '泥石流监控03',
+					add: '竹林河道边'
 				},{
-					name: '地质防范点名称',
-					add: '具体位置4'
+					name: '泥石流监控04',
+					add: '东沟泥石流'
 				},{
-					name: '地质防范点名称',
-					add: '具体位置5'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置6'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置5'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置6'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置6'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置6'
-				},{
-					name: '地质防范点名称',
-					add: '具体位置6'
+					name: '泥石流监控05',
+					add: '西沟泥石流'
 				}],
 				wyList: [{
 					name: '横溪地质防范点01',
@@ -1140,6 +1164,12 @@
 					this.show9 = true
 					this.show10 = false
 				}
+			},
+			showVideoBox() {
+				this.showVideo = true
+			},
+			closeVideo() {
+				this.showVideo = false
 			}
 		}
 	}
@@ -1643,6 +1673,28 @@
 					white-space: nowrap;
 				}
 			}
+		}
+	}
+	.videoClass {
+		width: 700px;
+		// height: 700px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		video {
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.cancelVideo {
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			top: -20px;
+			right: -20px;
+			z-index: 100;
+			cursor: pointer;
 		}
 	}
 </style>
