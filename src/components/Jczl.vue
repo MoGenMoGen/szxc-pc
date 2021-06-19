@@ -53,13 +53,13 @@
 			</div>
 		</transition>
 		<div class="videoClass" v-if="showVideo">
-			<video :src="videoUrl" autoplay="autoplay" loop="loop"></video>
+			<video :src="videoUrl" autoplay="autoplay" muted loop="loop"></video>
 			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
 		</div>
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
-					style="position: absolute;top: 400px;left: 640px;z-index: 1000;width: 903px;height: 349px;"
+					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;"
 					@click="showWg">
 			</div>
 		</transition>
@@ -102,7 +102,7 @@
 			</div>
 		</transition>
 		 <transition name="fade">
-      <div class="xcga" v-show="show4">
+      <!-- <div class="xcga" v-show="show4">
         <div class="xcga-title"><span>乡村关爱</span></div>
         <div class="content">
           <div v-for="(item,index) in xcgaList" :key="index" class="item">
@@ -111,15 +111,15 @@
             <span>{{ item.title }}</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </transition>
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div class="xcga-tab" v-show="show4">
         <div v-for="(item,index) in xcgaList" :key="index" class="item" @click="toMap(item)">
           <img :src="item.url">
         </div>
       </div>
-    </transition>
+    </transition> -->
 		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show5"> -->
 				<!-- <div class="pop-common fns">
@@ -146,14 +146,13 @@
 					<span>商家名称</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item" @click="toQiye(index)">
+					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item">
 						<span>{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
 					</div>
 				</div>
 			</div>
 		</transition>
-		<img src="static/images/zhu2.png" v-if="showXmb" style="width: 500px;position: absolute;top: 200px;right: 35px;">
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
@@ -258,40 +257,36 @@
 				<div class="pop-common dzxx">
 					<div class="pop-title"><span>泥石流监控</span></div>
 					<div class="pop-dz-title">
-						<span>序号</span>
-						<span style="flex: 2;">监控点名称</span>
-						<span style="flex: 2;">具体位置</span>
+						<span>监控点名称</span>
+						<span>具体位置</span>
 					</div>
 					<div class="pop-dz-box">
 						<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index">
-							<span>{{index+1}}</span>
-							<span style="flex: 2;">{{item.name}}</span>
-							<span style="flex: 2;">{{item.add}}</span>
+							<span>{{item.name}}</span>
+							<span>{{item.add}}</span>
 						</div>
 					</div>
 				</div>
 				<div class="pop-common dzxx" style="top: 600px;">
 					<div class="pop-title"><span>位移监测点列表</span></div>
 					<div class="pop-dz-title">
-						<span>序号</span>
-						<span style="flex: 3;">监测点名称</span>
+						<span style="flex: 2;">监测点名称</span>
 						<span>位置</span>
-						<span style="flex: 2;">边坡稳定性</span>
+						<span>边坡稳定性</span>
 						<span>状态</span>
 					</div>
 					<div class="pop-dz-box">
 						<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
-							<span>{{index+1}}</span>
-							<span style="flex: 3;">{{item.name}}</span>
+							<span style="flex: 2;">{{item.name}}</span>
 							<span>{{item.add}}</span>
-							<span style="flex: 2;">{{item.stability}}</span>
+							<span>{{item.stability}}</span>
 							<span>{{item.status}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</transition>
-
+		<img src="static/images/bgBtn.png" style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12">
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -326,8 +321,8 @@
 				show9: false,
 				show10: false,
 				show11: false,
+				show12: false,
 				showVideo: false,
-				showXmb: false,
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				list: [{
 					num: 5,
@@ -339,21 +334,21 @@
 					title: '危房数量'
 				}],
 				wgList: [{
-					num: '张某某',
+					num: '长胜田央沈',
+					url: 'static/images/house.png',
+					title: '网格名'
+				}, {
+					num: '黄杰锋',
 					url: 'static/images/zhs.png',
 					title: '网格长'
+				},  {
+					num: '陈如良',
+					url: 'static/images/zhs.png',
+					title: '网格技术员'
 				}, {
-					num: 60,
-					url: 'static/images/house.png',
-					title: '户数'
-				}, {
-					num: 120,
+					num: 256,
 					url: 'static/images/zrs.png',
-					title: '人数'
-				}, {
-					num: 20,
-					url: 'static/images/dys.png',
-					title: '党员数'
+					title: '网格人口'
 				}],
 				// xcgaList: [{
 				//   num: 200,
@@ -380,42 +375,8 @@
 				//   url: 'static/images/wbh.png',
 				//   title: '五保户'
 				// }],
-				xcgaList: [{
-					name: '应瑞根',
-					type: '普通',
-				}, {
-					name: '傅正虎',
-					type: '普通',
-				}, {
-					name: '沈振兴',
-					type: '普通',
-				}, {
-					name: '何巧儿',
-					type: '普通',
-				}, {
-					name: '沈立琴',
-					type: '单人户低保',
-				}, {
-					name: '王世辉',
-					type: '单人户低保',
-				}],
-				ljflList: [{
-					name: '横溪垃圾桶1'
-				}, {
-					name: '横溪垃圾桶2'
-				}, {
-					name: '横溪垃圾桶3'
-				}, {
-					name: '横溪垃圾桶4'
-				}, {
-					name: '横溪垃圾桶5'
-				}, {
-					name: '长胜垃圾桶1'
-				}, {
-					name: '长胜垃圾桶2'
-				}, {
-					name: '长胜垃圾桶3'
-				}],
+				xcgaList: [],
+				ljflList: [],
 				tabList: [{
 						hasUrl: false,
 						title: '山塘水库'
@@ -858,16 +819,6 @@
           code:"e75e11e3598c4868a0e43ae1aa88f44c"
 				}],
 				qyList: [{
-					name: '昱如副食品店'
-				},{
-					name: '鼎力紧定螺钉有限公司'
-				},{
-					name: '镇海互感器厂有限公司'
-				},{
-					name: '镇海九龙电器成套厂'
-				},{
-					name: '镇海叶大塑料制品厂'
-				},{
 					name: '龙居农家乐'
 				},{
 					name: '月波农家菜馆'
@@ -876,31 +827,7 @@
 				},{
 					name: '龙源农家乐'
 				},{
-					name: '竹之林农家乐'
-				},{
-					name: '东琴农家乐'
-				},{
-					name: '项珍农家乐'
-				},{
-					name: '阿飞农家乐'
-				},{
-					name: '雅明农家乐'
-				},{
-					name: '九龙源农家乐'
-				},{
-					name: '食为天农家乐'
-				},{
-					name: '山里山农家乐'
-				},{
-					name: '赞来农家乐'
-				},{
-					name: '闻溪阁烧烤园'
-				},{
-					name: '青青农家菜馆'
-				},{
-					name: '食泉农家菜馆'
-				},{
-					name: '竹林人家农家菜馆'
+					name: '向石头农家乐'
 				}],
 				wfList: [{
 					name: '陈雪宝',
@@ -1052,7 +979,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
@@ -1068,7 +994,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
 				} else if (e == 2) {
 					// 4个平台
           this.offHik()
@@ -1084,7 +1009,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
 				} else if (e == 3) {
 					// 5+X
           this.offHik()
@@ -1099,7 +1023,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
 				} else if (e == 4) {
 					// 线上执法
 					this.offHik()
@@ -1114,7 +1037,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
           // this.hikShow = true
 
 
@@ -1137,7 +1059,6 @@
 					this.show9 = true
 					this.show10 = false
 					this.show11 = false
-					this.showXmb = false
 				} else if (e == 6) {
           this.offHik()
 					// 地质灾害防范点
@@ -1152,7 +1073,6 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = true
-					this.showXmb = false
 				}
 				// else if (e == 6) {
 				//      // 防溺水
@@ -1195,8 +1115,28 @@
 				} else if (1415<x&&x<1450 && 680<y&&y<710) {
 					this.show8 = true
 					console.log('右中下边')
-				} else if (1450<x&&x<1530 && 600<y&&y<710) {
+				} else if (1590<x&&x<1750 && 580<y&&y<900) {
 					this.show8 = true
+					this.wgList[0].num = '长胜田央沈'
+					this.wgList[1].num = '黄杰锋'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 256
+					this.ljflList = [{
+						name: '长胜垃圾投放点01'
+					},{
+						name: '长胜垃圾投放点02'
+					},{
+						name: '长胜垃圾投放点03'
+					},{
+						name: '长胜垃圾投放点04'
+					}]
+					this.xcgaList = [{
+						name: '翁惠娟',
+						type: '特困人员供养'
+					},{
+						name: '钱黎明',
+						type: '特困人员供养'
+					}]
 					console.log('右边')
 				}
 				// this.show8 = true
@@ -1220,13 +1160,6 @@
 			},
 			closeVideo() {
 				this.showVideo = false
-			},
-			toQiye(e) {
-				if(e == 0) {
-					this.showXmb = true
-				} else {
-					this.showXmb = false
-				}
 			}
 		}
 	}
@@ -1536,7 +1469,7 @@
 	}
 
 	.pop-top {
-		width: 520px;
+		// width: 520px;
 		// height: 270px;
 		border: 1px solid #fff;
 		border-radius: 10px;
@@ -1552,19 +1485,18 @@
 		left: 860px;
 
 		.pop-top-content {
-			width: 100%;
+			// width: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			font-size: 30px;
-
+			font-size: 24px;
 			.pop-top-item {
-				width: 25%;
+				// width: 25%;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-
+				margin-right: 20px;
 				img {
 					// width: 38px;
 					// height: 38px;
@@ -1574,6 +1506,9 @@
 				span:last-child {
 					font-size: 20px;
 				}
+			}
+			.pop-top-item:last-child {
+				margin-right: 0;
 			}
 		}
 	}
