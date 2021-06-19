@@ -355,11 +355,11 @@
 					title: '农家乐'
 				}, {
 					num: 9,
-					url: 'static/images/zrs.png',
+					url: 'static/images/mingsu.png',
 					title: '民宿'
 				}, {
 					num: 6,
-					url: 'static/images/dys.png',
+					url: 'static/images/jingdian.png',
 					title: '景点'
 				}],
 				tabList: [{
@@ -472,11 +472,53 @@
 				if (e == 0) {
 					this.imgList = ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
 					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG']
+					this.njlList = [{
+						name: '龙居农家乐'
+					}, {
+						name: '月波农家菜馆'
+					}, {
+						name: '横溪人家'
+					}, {
+						name: '龙源农家乐'
+					}, {
+						name: '向石头农家乐'
+					}, {
+						name: '东琴农家乐'
+					}, {
+						name: '项珍农家乐'
+					}, {
+						name: '阿飞农家乐'
+					}, {
+						name: '雅明农家乐'
+					}, {
+						name: '九龙源农家乐'
+					}]
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 				} else if (e == 1) {
 					this.imgList = ['static/images/zhu1.png','static/images/zhu2.jpg','static/images/zhu3.jpg']
+					this.njlList = [{
+						name: '龙眼泉农家乐'
+					}, {
+						name: '惠英农家乐'
+					}, {
+						name: '栋兴生态农庄'
+					}, {
+						name: '香石小院'
+					}, {
+						name: '洪阿三农家乐'
+					}, {
+						name: '钱门客栈'
+					}, {
+						name: '远足农家客栈'
+					}, {
+						name: '高屋人家'
+					}, {
+						name: '氧气生活'
+					}, {
+						name: '又见山'
+					}]
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -552,7 +594,6 @@
 		box-sizing: border-box;
 		color: #fff;
 		z-index: 1998;
-		max-height: 380px;
 	}
 
 	.pop-list {
@@ -578,7 +619,7 @@
 		}
 
 		.pop-inner-box {
-			max-height: 350px;
+			max-height: 500px;
 			overflow-y: auto;
 
 			.pop-inner-item {
@@ -696,7 +737,7 @@
 			min-height: 200px;
 			background-color: rgba(0, 0, 0, 0.3);
 			color: #fff;
-			font-size: 14px;
+			font-size: 16px;
 			line-height: 20px;
 			padding: 20px 10px;
 			box-sizing: border-box;

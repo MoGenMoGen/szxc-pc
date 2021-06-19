@@ -8,11 +8,13 @@
 						<span>序号</span>
 						<span>山塘名称</span>
 						<span>总容积 <span style="font-size: 14px;">(万m³)</span></span>
+						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
 					</div>
 					<div v-for="(item,index) in stList" :key='index' class="pop-inner-item">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.capacity }}</span>
+						<span>{{ item.volume }}</span>
 					</div>
 				</div>
 				<div class="pop-common sktj">
@@ -21,11 +23,13 @@
 						<span>序号</span>
 						<span>水库名称</span>
 						<span>库容 <span style="font-size: 14px;">(万m³)</span></span>
+						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
 					</div>
 					<div v-for="(item,index) in skList" :key='index' class="pop-inner-item">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.capacity }}</span>
+						<span>{{ item.volume }}</span>
 					</div>
 				</div>
 			</div>
@@ -117,7 +121,7 @@
 				<div class="pop-title"><span>商家统计</span></div>
 				<div class="pop-inner-title">
 					<span>序号</span>
-					<span>企业名称</span>
+					<span>商家名称</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item">
@@ -164,7 +168,31 @@
 				</div>
 			</div>
 		</transition>
-
+		<transition name="fade">
+			<div class="pop-common srjf" v-show="show10">
+				<div class="pop-title"><span>私人建房统计</span></div>
+				<div class="srjf-title">
+					<span>序号</span>
+					<span>户主姓名</span>
+					<span>户内人口</span>
+					<span>原有宅基地房屋处置方式</span>
+					<span>新申请用地面积</span>
+					<span>预选建房地址</span>
+					<span>办理进展情况</span>
+					<span>优先排序</span>
+				</div>
+				<div class="srjf-item" v-for="(item, index) in srjfList" :key="index">
+					<span>{{index+1}}</span>
+					<span>{{item.name}}</span>
+					<span>{{item.num}}</span>
+					<span>{{item.solve}}</span>
+					<span>{{item.newArea}}</span>
+					<span>{{item.newArea}}</span>
+					<span>{{item.schedule}}</span>
+					<span>{{item.sort}}</span>
+				</div>
+			</div>
+		</transition>
     <hik :cameraIndexCode="cType"  ref="videoPlayer"  :playMode="1"></hik>
 
 		<transition name="fade">
@@ -233,6 +261,7 @@
 				show7: false,
 				show8: false,
 				show9: false,
+				show10: false,
 				list: [{
 					num: 5,
 					url: 'static/images/srjf.png',
@@ -338,6 +367,9 @@
 					}, {
 						hasUrl: false,
 						title: '房屋管理'
+					}, {
+						hasUrl: false,
+						title: '地质灾害防范点'
 					}
 					// , {
 					//      hasUrl: false,
@@ -352,44 +384,61 @@
 				],
 				stList: [{
 					name: '石英坎山塘',
-					capacity: 2.21
+					capacity: 2.21,
+					volume: 0.86,
 				}, {
 					name: '浦沙岙山塘',
-					capacity: 5.41
+					capacity: 5.41,
+					volume: 0.34,
 				}, {
 					name: '三八山塘',
-					capacity: 1.67
+					capacity: 1.67,
+					volume: 0.53,
 				}, {
 					name: '百步山塘',
-					capacity: 0.795
+					capacity: 0.795,
+					volume: 0.10,
 				}, {
 					name: '孟家山塘',
-					capacity: 0.466
+					capacity: 0.466,
+					volume: 0.15,
 				}, {
 					name: '史家岙山塘',
-					capacity: 0.46
+					capacity: 0.46,
+					volume: 0.15,
 				}, {
 					name: '毛岭山塘',
-					capacity: 0.3
+					capacity: 0.3,
+					volume: 0.02,
 				}],
 				skList: [{
 					name: '劈开猪头',
-					capacity: 10.84
+					capacity: 10.84,
+					volume: 1.89,
 				}, {
 					name: '杨家',
-					capacity: 5.23
+					capacity: 5.23,
+					volume: 0.33,
 				}, {
 					name: '蔡家岙',
-					capacity: 2.21
+					capacity: 2.21,
+					volume: 0.09,
+				}, {
+					name: '安基墩',
+					capacity: 6.61,
+					volume: 0.4,
 				}, {
 					name: '石英坎',
-					capacity: 2.21
+					capacity: 2.21,
+					volume: 0.86,
 				}, {
 					name: '三八',
-					capacity: 1.67
+					capacity: 1.67,
+					volume: 0.53,
 				}, {
 					name: '应家',
-					capacity: 1.14
+					capacity: 1.14,
+					volume: 0.13,
 				}],
 				fnsList: [{
 					name: '劈开猪头',
@@ -722,15 +771,15 @@
 					area: '横溪'
 				}],
 				qyList: [{
-					name: '一鸣鲜奶'
+					name: '龙居农家乐'
 				},{
-					name: '一鸣鲜奶'
+					name: '月波农家菜馆'
 				},{
-					name: '一鸣鲜奶'
+					name: '横溪人家'
 				},{
-					name: '一鸣鲜奶'
+					name: '龙源农家乐'
 				},{
-					name: '一鸣鲜奶'
+					name: '向石头农家乐'
 				}],
 				wfList: [{
 					name: '陈雪宝',
@@ -740,6 +789,47 @@
 					name: '沈红雷',
 					area: '九龙湖村',
 					time: '1960-1969年'
+				}],
+				srjfList: [{
+					name: '周国栋',
+					num: 3,
+					solve: '拆除',
+					newArea: 100,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '困难户'
+				},{
+					name: '邱世云',
+					num: 3,
+					solve: '无',
+					newArea: 80,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				},{
+					name: '叶敏华',
+					num: 4,
+					solve: '无',
+					newArea: 120,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				},{
+					name: '项舜',
+					num: 1,
+					solve: '无',
+					newArea: 80,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				},{
+					name: '陈雪宝',
+					num: 2,
+					solve: '村集体回购',
+					newArea: 48,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '危房户'
 				}]
 			}
 		},
@@ -807,6 +897,7 @@
 					this.show7 = false
 					this.show8 = false
 					this.show9 = false
+					this.show10 = false
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
@@ -820,6 +911,7 @@
 					this.show7 = false
 					this.show8 = false
 					this.show9 = false
+					this.show10 = false
 				} else if (e == 2) {
 					// 4个平台
           this.offHik()
@@ -833,6 +925,7 @@
 					this.show7 = false
 					this.show8 = false
 					this.show9 = false
+					this.show10 = false
 				} else if (e == 3) {
 					// 5+X
           this.$refs.videoPlayer.off()
@@ -845,6 +938,7 @@
 					this.show7 = false
 					this.show8 = false
 					this.show9 = false
+					this.show10 = false
 				} else if (e == 4) {
 					// 线上执法
 					this.offHik()
@@ -857,6 +951,7 @@
 					this.show7 = false
 					this.show8 = false
 					this.show9 = false
+					this.show10 = false
           // this.hikShow = true
           this.cType = "1"
           this.$refs.videoPlayer.initPlugin()
@@ -876,7 +971,19 @@
 					this.show6 = false
 					this.show7 = true
 					this.show8 = false
+					this.show9 = true
+					this.show10 = false
+				} else if (e == 6) {
+					this.show2 = false
+					this.show = false
+					this.show3 = false
+					this.show4 = false
+					this.show5 = false
+					this.show6 = false
+					this.show7 = false
+					this.show8 = false
 					this.show9 = false
+					this.show10 = false
 				}
 				// else if (e == 6) {
 				//      // 防溺水
@@ -906,8 +1013,10 @@
 			getPopIndex(e) {
 				if(e == 0) {
 					this.show9 = false
+					this.show10 = true
 				} else {
 					this.show9 = true
+					this.show10 = false
 				}
 			}
 		}
@@ -1000,9 +1109,60 @@
 		top: 200px;
 		left: 35px;
 	}
+	
+	
 
-	.sttj {
+	.sttj, .sktj {
 		margin-bottom: 60px;
+		.pop-inner-title {
+			width: 90%;
+			margin: 5px auto;
+			display: flex;
+			align-items: center;
+		
+			span {
+				width: 30%;
+				text-align: center;
+				font-size: 19px;
+			}
+			
+			span:first-child {
+				width: 10%;
+			}
+		}
+		.pop-inner-item {
+			width: 90%;
+			margin: 5px auto;
+			display: flex;
+			align-items: center;
+		
+			span {
+				width: 30%;
+				text-align: center;
+				font-size: 18px;
+			}
+			span:first-child {
+				width: 10%;
+			}
+		
+			span:nth-child(2) {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		
+			span:nth-child(3) {
+				font-size: 22px;
+			}
+			
+			span:last-child {
+				font-size: 22px;
+			}
+		}
+	}
+
+	.sktj {
+		margin-bottom: 0;
 	}
 
 	.pop-inner-title {
@@ -1015,10 +1175,6 @@
 			width: 30%;
 			text-align: center;
 			font-size: 19px;
-		}
-
-		span:nth-child(2) {
-			width: 40%;
 		}
 	}
 
@@ -1040,7 +1196,7 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
-
+		
 		span:last-child {
 			font-size: 22px;
 		}
@@ -1291,5 +1447,45 @@
 		border-radius: 10px;
 		border: 2px solid #fff;
 		z-index: 1000;
+	}
+	
+	.srjf {
+		position: absolute;
+		width: 1450px;
+		top: 200px;
+		left: 630px;
+		.pop-title {
+			width: 1420px;
+			background: url(../../public/static/images/lineBL.png);
+		}
+		.srjf-title {
+			display: flex;
+			align-items: center;
+			span {
+				margin: 5px 0;
+				text-align: center;
+				flex: 1;
+				font-size: 18px;
+			}
+			span:nth-child(4) {
+				flex: 2;
+			}
+		}
+		.srjf-item {
+			display: flex;
+			align-items: center;
+			span {
+				margin: 5px 0;
+				text-align: center;
+				flex: 1;
+				font-size: 18px;
+			}
+			span:nth-child(4) {
+				flex: 2;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
 	}
 </style>

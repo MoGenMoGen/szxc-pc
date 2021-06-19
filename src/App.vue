@@ -6,6 +6,7 @@
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList" :key="index" @click="changeIndex(index)">
 					{{item}}
+					
 				</div>
 			</div>
 			<span class="top-time">{{nowTime}}</span>
@@ -59,7 +60,7 @@
 
 
 
-		  <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
+		  <!-- <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
 
 
 	</div>
@@ -88,7 +89,7 @@
 				nowTime: "",
 				timer: "",
 				isActive: 0,
-				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务管理'],
+				tabList: ['概要','一户一档','智慧党建','智慧旅游','基层治理','村务管理','便民服务'],
 				sjList: [{
 					id: 'jlw202012130102',
 					content: '河头村河西上街网格预征土地上有违章搭建',
@@ -180,7 +181,11 @@
 				return data
 			},
 			changeIndex(e) {
-				this.isActive = e
+				if(e == 6) {
+					return
+				} else {
+					this.isActive = e
+				}
         console.log(e)
         if (e === 1){
           if (!this.$root.zl){

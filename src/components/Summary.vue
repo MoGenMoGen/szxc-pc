@@ -69,7 +69,7 @@
       <div class="box lb" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>山塘信息</span>
+          <span>山塘水库</span>
         </div>
         <div class="box-bottom lb-bottom">
           <div class="st-top">
@@ -82,14 +82,15 @@
           </div>
           <div class="st-bottom">
 
-            <dv-active-ring-chart v-if="show" :config="config6" style="width:150px;height:150px"/>
+            <!-- <dv-active-ring-chart v-if="show" :config="config6" style="width:150px;height:150px"/> -->
+			<dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
             <dv-scroll-board v-if="show" :config="config5" style="width:400px;height:165px"/>
           </div>
         </div>
       </div>
     </transition>
     <!--水库信息-->
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div class="box ml" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
@@ -106,14 +107,14 @@
           </div>
 
           <div class="sk-bottom">
-            <!--水位-->
+            水位
             <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
 
             <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>
           </div>
         </div>
       </div>
-    </transition>
+    </transition> -->
     <!--基层党建-->
     <transition name="fade">
       <div class="box mm" v-show="show">
@@ -136,7 +137,7 @@
       </div>
     </transition>
     <!-- 村务公开 -->
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div class="box mr" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
@@ -144,13 +145,13 @@
         </div>
         <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>
       </div>
-    </transition>
+    </transition> -->
     <!-- 空气质量-->
     <transition name="fade">
       <div class="box rl" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>空气质量</span>
+          <span>村区环境</span>
         </div>
         <div class="rl-bottom">
           <div class="rl-inner" style="margin-bottom: 5px;">
@@ -233,10 +234,10 @@
     <!--三维模型-->
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+   <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+      </model-obj> -->
 
     </div>
 
@@ -1037,11 +1038,13 @@ export default {
   }
 }
 
+// 基层党建，移到左边
 .mm {
   height: 300px;
   position: absolute;
   bottom: 40px;
-  left: 910px;
+  // left: 910px;
+  left: 472px;
   z-index: 1998;
 
   .mm-bottom {
