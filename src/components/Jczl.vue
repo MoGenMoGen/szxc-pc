@@ -312,6 +312,7 @@
 		props: {},
 		data() {
 			return {
+			  e:'',
         codes:'',
 			  cType:"3",
 				hikShow: false,
@@ -1057,7 +1058,9 @@
           Y:item.Y,
         }
         this.$parent.test(a);
-        this.show12 = true
+        if (this.e == 1){
+          this.show12 = true
+        }
         this.show2 = false
 			},
       //点击执法仪看监控
@@ -1099,6 +1102,7 @@
 				this.showP = true
 			},
 			getIndex(e) {
+			  this.e = e;
 				// if (e == 0) {
 				//   // 三资管理
 				//   this.show2 = true
