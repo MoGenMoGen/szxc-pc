@@ -139,7 +139,7 @@
 					<span>负责区域</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item">
+					<div v-for="(item,index) in jkList" :key='index' @click="toZf(item)" class="pop-inner-item">
 						<span>{{ item.name }}</span>
 						<span>{{ item.area }}</span>
 					</div>
@@ -193,7 +193,8 @@
 				</div>
 			</div>
 		</transition>
-    <hik :cameraIndexCode="cType"  ref="videoPlayer"  :playMode="1"></hik>
+<!--    海康监控-->
+    <hik2 :cameraIndexCode="cType"   :codes="codes" :layout="layout"  ref="videoPlayer2"  :playMode="1"></hik2>
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
@@ -238,14 +239,17 @@
 <script>
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
-	import hik from '@/components/hik'
+	import hik from '@/components/hik/index.vue'
+	import hik2 from '@/components/hik/index2.vue'
 	//import xcFive from '@/components/xc_five.json'
 	export default {
 		name: 'Jczl',
 		props: {},
 		data() {
 			return {
+        layout:'1x1',
 			  cType:"3",
+        codes:"",
 				hikShow: false,
 				fiveList: [],
 				title: '',
@@ -765,10 +769,12 @@
 				}],
 				jkList: [{
 					name: '九龙湖村执法001',
-					area: '长胜'
+					area: '长胜',
+          code: '2c3a354237f149b980f4b4d19697a35f'
 				}, {
 					name: '九龙湖村执法002',
-					area: '横溪'
+					area: '横溪',
+          code: 'e75e11e3598c4868a0e43ae1aa88f44c'
 				}],
 				qyList: [{
 					name: '龙居农家乐'
@@ -836,7 +842,7 @@
 		components: {
 			PopBox,
 			BottomTab,
-			hik
+			hik,hik2
 
 		},
 		mounted() {
@@ -848,13 +854,18 @@
 		},
 		methods: {
 			offHik() {
-				this.$refs.videoPlayer.off()
+				this.$refs.videoPlayer2.off()
 			},
 			toMap(item) {
 				this.$parent.test();
-				console.log(item)
 			},
+      //点击执法仪看监控
+      toZf(item){
+        this.$refs.videoPlayer2.off()
+        this.codes = item.code;
+        this.$refs.videoPlayer2.initPlugin()
 
+      },
 			onShowP(e) {
 				//一级
 				if (e.x < 700) {
@@ -928,7 +939,7 @@
 					this.show10 = false
 				} else if (e == 3) {
 					// 5+X
-          this.$refs.videoPlayer.off()
+          this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -953,8 +964,7 @@
 					this.show9 = false
 					this.show10 = false
           // this.hikShow = true
-          this.cType = "1"
-          this.$refs.videoPlayer.initPlugin()
+
 
 
 					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
@@ -974,6 +984,7 @@
 					this.show9 = true
 					this.show10 = false
 				} else if (e == 6) {
+          this.offHik()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1058,7 +1069,7 @@
 			}
 		}
 	}
-	
+
 	.pop-title {
 		width: 485px;
 		height: 32px;
@@ -1136,8 +1147,8 @@
 		top: 200px;
 		left: 35px;
 	}
-	
-	
+
+
 
 	.sttj, .sktj {
 		margin-bottom: 60px;
@@ -1146,13 +1157,13 @@
 			margin: 5px auto;
 			display: flex;
 			align-items: center;
-		
+
 			span {
 				width: 30%;
 				text-align: center;
 				font-size: 19px;
 			}
-			
+
 			span:first-child {
 				width: 10%;
 			}
@@ -1162,7 +1173,7 @@
 			margin: 5px auto;
 			display: flex;
 			align-items: center;
-		
+
 			span {
 				width: 30%;
 				text-align: center;
@@ -1171,17 +1182,17 @@
 			span:first-child {
 				width: 10%;
 			}
-		
+
 			span:nth-child(2) {
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-		
+
 			span:nth-child(3) {
 				font-size: 22px;
 			}
-			
+
 			span:last-child {
 				font-size: 22px;
 			}
@@ -1223,7 +1234,7 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
-		
+
 		span:last-child {
 			font-size: 22px;
 		}
@@ -1475,7 +1486,7 @@
 		border: 2px solid #fff;
 		z-index: 1000;
 	}
-	
+
 	.srjf {
 		position: absolute;
 		width: 1450px;

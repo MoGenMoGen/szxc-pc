@@ -10,7 +10,7 @@ export default {
     cameraIndexCode: {
       type: String, default: '3'
     },
-    codes:{
+    codes: {
       type: String,
     },
     layout: {
@@ -32,12 +32,10 @@ export default {
   },
   mounted() {
     //插件初始化
-    if (this.cameraIndexCode != 3){
-      this.initPlugin();
-      let this_ = this
-      this_.oWebControl.oDocOffset.top = 168;
-      this_.oWebControl.oDocOffset.left = 1798;
-    }
+    // this.initPlugin();
+    // let this_ = this
+    // this_.oWebControl.oDocOffset.top = 168;
+    // this_.oWebControl.oDocOffset.left = 798;
   },
 
   methods: {
@@ -45,9 +43,9 @@ export default {
     //关闭插件
     off() {
       let _this = this;
-      if (_this.oWebControl != null){
+      if (_this.oWebControl != null) {
         _this.oWebControl.JS_HideWnd();
-        // _this.oWebControl.JS_Disconnect();
+        _this.oWebControl.JS_Disconnect();
       }
     },
 
@@ -66,7 +64,7 @@ export default {
             _this.oWebControl.JS_StartService("window", {
               dllPath: "./VideoPluginConnect.dll"
             }).then((res) => {
-              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 400).then(() => {
+              _this.oWebControl.JS_CreateWnd("divPlugin", 800, 800).then(() => {
                 this.initVideo();
               });
             }, function () {
@@ -94,7 +92,7 @@ export default {
         }
       });
       _this.oWebControl.oDocOffset.top = 168;
-      _this.oWebControl.oDocOffset.left = 1798;
+      _this.oWebControl.oDocOffset.left = 798;
     },
     // 设置窗口控制回调
     setCallbacks() {
@@ -140,9 +138,8 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
-            //this.toPlay()
-         }
-            //this.startRealPlay()
+              this.startRealPlay()
+            }
         );
       })
     },
@@ -199,14 +196,15 @@ export default {
     // 视频预览
     startRealPlay() {
       console.log('------开始播放-------');
-      let cameraIndexCode = this.cameraIndexCode;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
+      let cameraIndexCode = this.codes;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
+      console.log(cameraIndexCode)
       // let cameraIndexCode  =  '17396d5f47a34e288b3c7edfb19e5535'            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
       let gpuMode = 0;                                        //是否启用GPU硬解，0-不启用，1-启用
       let wndId = -1;                                         //播放窗口序号（在2x2以上布局下可指定播放窗口）
-      cameraIndexCode = cameraIndexCode.replace(/(^\s*)/g, "");
-      cameraIndexCode = cameraIndexCode.replace(/(\s*$)/g, "");
+      // cameraIndexCode = cameraIndexCode.replace(/(^\s*)/g, "");
+      // cameraIndexCode = cameraIndexCode.replace(/(\s*$)/g, "");
       this.oWebControl.JS_RequestInterface({
         funcName: "startPreview",
         argument: JSON.stringify({
@@ -219,7 +217,6 @@ export default {
       });
     },
     startRealPlay2(code, i) {
-      console.log(code)
       let cameraIndexCode = code;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
