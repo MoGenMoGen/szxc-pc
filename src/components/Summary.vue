@@ -202,7 +202,7 @@
         <div class="box-top">
           <img src="static/images/icon.png">
 
-          <span>三资管理</span>
+          <span>村务管理</span>
         </div>
         <div class="box-bottom rb-bottom">
           <div class="cwgk">
@@ -224,10 +224,11 @@
           </div>
           <div class="ywgk">
             <div class="fontBig">业务公开<img src="static/images/ywgk.png" class="imgStyle"></div>
-            <div style="height: 30px;"></div>
+			<div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
           </div>
           <div class="zzxx">
-            <div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
+			<div class="fontBig">村务公开<img src="static/images/zzxx.png" class="imgStyle"></div>
+			<dv-scroll-board v-if="show" :config="config" style="width:400px;height:90px;margin-top: 10px;"/>
           </div>
         </div>
       </div>
@@ -236,10 +237,10 @@
 
 
     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+   <!-- <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
-      </model-obj>
+      </model-obj> -->
 
     </div>
 
@@ -630,7 +631,7 @@ export default {
         title: '田央沈、长桥头网格支部',
         num: 21
       }, {
-        title: '朗家坪、十字路网格支部',
+        title: '郎家坪、十字路网格支部',
         num: 36
       }, {
         title: '农家乐联盟支部',
@@ -1230,6 +1231,9 @@ export default {
 
     .ywgk {
       color: #fff;
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
     }
 
     .zzxx {

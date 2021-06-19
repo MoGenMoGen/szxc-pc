@@ -4,8 +4,13 @@
       <div @click="toUserMap">
         <PopBox :list="list" v-show='show'></PopBox>
       </div>
-
     </transition>
+	<transition name="fade">
+		<div v-show="show" class="search-box">
+			<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
+			<img src="static/images/search.png">
+		</div>
+	</transition>
   </div>
 </template>
 
@@ -17,6 +22,7 @@ export default {
   props: {},
   data() {
     return {
+		keyWord: '',
 	  	ydyh:false,
       show: false,
       list: [{
@@ -34,7 +40,7 @@ export default {
       }, {
         num: 111,
         url: 'static/images/dys.png',
-        title: '党户数'
+        title: '党员数'
       }]
     }
   },
@@ -48,10 +54,10 @@ export default {
         this.ydyh =true
       }
       this.$parent.test("长胜38号")
-
-
-
     },
+	searchKey(e) {
+		console.log(e,this.keyWord)
+	}
   },
   mounted() {
     this.show = true
@@ -69,4 +75,29 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+.search-box {
+	width: 520px;
+	position: absolute;
+	top: 490px;
+	left: 35px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.64);
+	display: flex;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #fff;
+	input {
+		flex: 1;
+		background-color: transparent;
+		border: none;
+		color: #fff;
+	}
+	input::-webkit-input-placeholder {
+		color: #fff;
+	}
+}
+
 </style>
