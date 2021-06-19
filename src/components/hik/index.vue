@@ -66,9 +66,6 @@ export default {
       // _this.oWebControl.JS_HideWnd();
       // _this.oWebControl.JS_Disconnect();
 
-
-
-      console.log(_this.oWebControl)
       this.oWebControl = new WebControl({
         szPluginContainer: "divPlugin",
         iServicePortStart: 15900,
@@ -208,7 +205,12 @@ export default {
           this.startRealPlay2(arr[i], i + 1)
         }
       }
-
+      // if (this.cameraIndexCode === "4"){
+      //   arr = ["f7fb34bda82b4a1e90c86f381d59af73", "f1bba68174b8401fa4dd5e22440ae1b6","22252acaaaeb47b0887cd0a294a0685b","f51d56c92b474494ad262aa67c9c13b2"];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     this.startRealPlay2(arr[i], i + 1)
+      //   }
+      // }
 
 
     },

@@ -448,23 +448,20 @@
 		},
 		methods: {
 			goto(name) {
-			  if (name === "龙居农家乐" ){
-          this.$parent.test("龙居农家乐")
-        }else {
-          this.$parent.test(name)
-          console.log(this.$root.hsxl)
-          if (this.$root.hsxl === false){
-            this.$parent.test("农家乐");
-            this.$root.hsxl = true
-          }
+        //this.$parent.test(name)
+			  // if (name === "龙居农家乐" ){
+        //   this.$parent.test("龙居农家乐")
+        // }else {
+        //   this.$parent.test(name)
+        //   if (this.$root.hsxl === false){
+        //     this.$parent.test("农家乐");
+        //     this.$root.hsxl = true
+        //   }
           let a = {
             type:'农家乐',
             name:name
           }
           this.$parent.test(a);
-        }
-
-
 
 			},
 			getIndex(e) {

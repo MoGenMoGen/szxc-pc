@@ -28,7 +28,7 @@ export default {
         url: 'static/images/zrs.png',
         title: '总人数'
       }, {
-        num: 27,
+        num: 388,
         url: 'static/images/zhs.png',
         title: '租户数'
       }, {

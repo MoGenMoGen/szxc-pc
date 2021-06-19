@@ -90,31 +90,31 @@
       </div>
     </transition>
     <!--水库信息-->
-    <!-- <transition name="fade">
-      <div class="box ml" v-show="show">
-        <div class="box-top">
-          <img src="static/images/icon.png">
-          <span>水库信息</span>
-        </div>
-        <div class="box-bottom ml-bottom">
-          <div class="sk-top">
-            <span>总面积：<span class="typeBlue">15.7</span>(km²)</span>
-            <div class="sk-top-right">
-              <span>水库名称</span>
-              <span>积雨面积</span>
-              <span>总容积</span>
-            </div>
-          </div>
+<!--   <transition name="fade">-->
+<!--      <div class="box ml" v-show="show">-->
+<!--        <div class="box-top">-->
+<!--          <img src="static/images/icon.png">-->
+<!--          <span>水库信息</span>-->
+<!--        </div>-->
+<!--        <div class="box-bottom ml-bottom">-->
+<!--          <div class="sk-top">-->
+<!--            <span>总面积：<span class="typeBlue">15.7</span>(km²)</span>-->
+<!--            <div class="sk-top-right">-->
+<!--              <span>水库名称</span>-->
+<!--              <span>积雨面积</span>-->
+<!--              <span>总容积</span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="sk-bottom">
-            水位
-            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
+<!--          <div class="sk-bottom">-->
+<!--            水位-->
+<!--            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>-->
 
-            <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>
-          </div>
-        </div>
-      </div>
-    </transition> -->
+<!--            <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </transition>-->
     <!--基层党建-->
     <transition name="fade">
       <div class="box mm" v-show="show">
@@ -137,15 +137,17 @@
       </div>
     </transition>
     <!-- 村务公开 -->
-    <!-- <transition name="fade">
+     <transition name="fade">
       <div class="box mr" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>村务公开</span>
+          <span>防溺水监控</span>
         </div>
-        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>
+
+<!--        <hik cameraIndexCode="0"  ref="videoPlayer"  :playMode="1"></hik>-->
+<!--        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>-->
       </div>
-    </transition> -->
+    </transition>
     <!-- 空气质量-->
     <transition name="fade">
       <div class="box rl" v-show="show">
@@ -231,10 +233,12 @@
       </div>
     </transition>
 
-    <!--三维模型-->
 
-    <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
-   <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+
+
+    <!--三维模型-->
+  <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">-->
+ <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
       </model-obj>
@@ -250,12 +254,13 @@ import {
   ModelObj
 } from 'vue-3d-model';
 import myCharts from '@/components/MyCharts.vue'
-
+import hik from '@/components/hik'
 export default {
   name: 'Summary',
   props: {},
   data() {
     return {
+      cType:"4",
       dataLi: [
         "九龙湖村位于宁波市镇海区西北部，是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并而成，是一个典型的山区村。全村地域面积15.7平方公里，有山林面积11008亩，耕地面积400亩。现有住户722户，人口1627人，外来人口388人，村党委下设四个党支部和一个农家乐支部，共有党员109人，有十二个村民小组，村民代表52人。2020年村集体收入约120万元。国家AAAA级风景区“九龙湖旅游度假区”就位于九龙湖村内。近年来，我村相继获得了省级旅游特色村、省级卫生村、省百佳美丽乡村、省农村信息化管理示范村省级廉政文化进农村示范点；市级小康村、市级文明村、市级生态村、市级“五好党组织”；区级民主法治村、巾帼示范村、兴林富民示范村、三星级文化礼堂、先进基层党组织、信访工作先进集体等多个省、市、区级荣誉称号。2005年，为了适应乡村旅游发展的需要，九龙湖农家乐协会成立,现有农家乐37家。近两年，随着九龙湖村农家乐乡村旅游发展的不断深入，游客量越来越大，需求也呈多样化趋势发展。为充分发挥党员在经营农家乐方面的先锋模范作用，九龙湖村于2018年1月成立了农家乐联盟党支部，现有农家乐党员经营户9户，正式党员10名。通过党员经营户文明诚信经营的示范，不断引领全镇农家乐产业的健康发展。村民主要以茶叶、笋干、毛竹等为主要经济来源,依托农家乐联盟党支部，提升农家乐整体品质，振兴乡村旅游开发，倾力打造九龙湖村的旅游品牌特色，拓展农业与旅游业的结合点，实现了全村经济的和谐发展，保持村民人均收入每年持续增长。"
       ],

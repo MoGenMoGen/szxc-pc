@@ -62,7 +62,7 @@
 
 
 
-		  <!-- <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe> -->
+		   <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 
 
 	</div>
@@ -163,10 +163,10 @@
         document.getElementById('iframe').contentWindow.postMessage(val,'*')
       },
       test2(){
-        document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
+        // document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
         let a = {
-		      type:'农家乐',
-          name:'月波农家菜馆'
+		      X:'116.39622',
+          Y:'39.923568'
         }
         document.getElementById('iframe').contentWindow.postMessage(a,'*')
       },
@@ -227,7 +227,11 @@
         }
         //旅游
         if (e === 3){
-          this.test("旅游景点");
+          if (this.$root.njl === false){
+            this.test("农家乐");
+            this.$root.njl = true
+          }
+
         }
         //
         // console.log(e === 2){
