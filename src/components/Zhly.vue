@@ -19,11 +19,18 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<el-carousel indicator-position='none' v-if="show" class="banner" arrow='hover' :interval='4000'>
-				<el-carousel-item v-for="(item,index) in imgList" :key="index">
-					<img :src="item">
-				</el-carousel-item>
-			</el-carousel>
+			<div v-if="show"  class="banner">
+				<el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel-item v-for="(item,index) in imgList" :key="index">
+						<img :src="item.url">
+					</el-carousel-item>
+				</el-carousel>
+				<div class="banner-name">{{imgList[nameIndex].name}}</div>
+				<div class="pop-common banner-tip">
+					<div class="pop-title"><span>透明厨房</span></div>
+					<span class="banner-tip-word">正在建设中！</span>
+				</div>
+			</div>
 		</transition>
 		<transition name="fade">
 			<div v-if="show2">
@@ -112,7 +119,7 @@
 			return {
 				option: {
 					title: {
-						text: '{a|480}\n{c|剩余车位}',
+						text: '{a|480}\n{c|剩余车位数}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -189,7 +196,7 @@
 				},
 				option4: {
 					title: {
-						text: '{a|113}\n{c|人流量检测数据}',
+						text: '{a|113}\n{c|人流量}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -266,7 +273,7 @@
 				},
 				option5: {
 					title: {
-						text: '{a|187}\n{c|车流量检查数据}',
+						text: '{a|187}\n{c|车流量}',
 						x: 'center',
 						y: 'center',
 						textStyle: {
@@ -347,6 +354,7 @@
 				show: false,
 				show2: false,
 				show3: false,
+				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
 				list: [{
@@ -431,7 +439,59 @@
           name: '九龙源农家乐',
           X:'121.502887',
           Y:'30.051724',
-        }],
+        },{
+						name: '食为天农家乐'
+					},{
+						name: '竹之林农家乐'
+					},{
+						name: '山里山农家乐'
+					},{
+						name: '赞来农家乐'
+					},{
+						name: '闻溪阁烧烤园'
+					},{
+						name: '青青农家菜馆'
+					},{
+						name: '食泉农家菜馆'
+					},{
+						name: '竹林人家农家菜馆'
+					},{
+						name: '绿色人家农家菜馆'
+					},{
+						name: '沿山苑农家菜馆'
+					},{
+						name: '溢品农家菜馆'
+					},{
+						name: '青山绿水农家菜馆'
+					},{
+						name: '八号农家乐'
+					},{
+						name: '钱家小院'
+					},{
+						name: '老宅私房农家菜'
+					},{
+						name: '竹雅农家乐'
+					},{
+						name: '长胜人家农家菜馆'
+					},{
+						name: '沈家小园'
+					},{
+						name: '小荣农家乐'
+					},{
+						name: '龙眼泉农家乐'
+					},{
+						name: '惠英农家乐'
+					},{
+						name: '栋兴生态农庄'
+					},{
+						name: '香石小院'
+					},{
+						name: '洪阿三农家乐'
+					},{
+						name: '氧气生活'
+					},{
+						name: '又见山'
+					}],
 				jdList: [{
 					name: '香山教寺',
           X:'121.518298',
@@ -457,8 +517,34 @@
           X:'121.527141',
           Y:'30.045825',
 				}],
-				imgList: ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
-					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG'],
+				imgList: [{
+					url: 'static/images/jdw1.JPG',
+					name: '暗香疏影'
+				},{
+					url: 'static/images/jdw2.jpg',
+					name: '九龙第一鲜'
+				},{
+					url: 'static/images/jdw3.jpg',
+					name: '九龙云雾'
+				},{
+					url: 'static/images/jdw4.jpg',
+					name: '浪鲫江湖'
+				},{
+					url: 'static/images/jdw5.JPG',
+					name: '蟠青丛翠'
+				},{
+					url: 'static/images/jdw6.jpg',
+					name: '秋月如镜'
+				},{
+					url: 'static/images/jdw7.jpg',
+					name: '神仙烧鸡'
+				},{
+					url: 'static/images/jdw8.jpg',
+					name: '一丛金黄'
+				},{
+					url: 'static/images/jdw9.JPG',
+					name: '珠联璧合'
+				}],
 				imgList2: [{
 					url: 'static/images/banner2.png',
 					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
@@ -492,8 +578,34 @@
 			},
 			getIndex(e) {
 				if (e == 0) {
-					this.imgList = ['static/images/jdw1.JPG','static/images/jdw2.jpg','static/images/jdw3.jpg','static/images/jdw4.jpg',
-					'static/images/jdw5.JPG','static/images/jdw6.jpg','static/images/jdw7.jpg','static/images/jdw8.jpg','static/images/jdw9.JPG']
+					this.imgList = [{
+						url: 'static/images/jdw1.JPG',
+						name: '暗香疏影'
+					},{
+						url: 'static/images/jdw2.jpg',
+						name: '九龙第一鲜'
+					},{
+						url: 'static/images/jdw3.jpg',
+						name: '九龙云雾'
+					},{
+						url: 'static/images/jdw4.jpg',
+						name: '浪鲫江湖'
+					},{
+						url: 'static/images/jdw5.JPG',
+						name: '蟠青丛翠'
+					},{
+						url: 'static/images/jdw6.jpg',
+						name: '秋月如镜'
+					},{
+						url: 'static/images/jdw7.jpg',
+						name: '神仙烧鸡'
+					},{
+						url: 'static/images/jdw8.jpg',
+						name: '一丛金黄'
+					},{
+						url: 'static/images/jdw9.JPG',
+						name: '珠联璧合'
+					}]
 					this.njlList = [{
 						name: '龙居农家乐',
             X:'121.50782',
@@ -520,66 +632,130 @@
             Y:'30.052881',
 					}, {
 						name: '项珍农家乐',
-            X:'121.506141',
-            Y:'30.052687',
+						X:'121.506141',
+						Y:'30.052687',
 					}, {
 						name: '阿飞农家乐',
-            X:'121.506145',
-            Y:'30.052687',
+						X:'121.506145',
+						Y:'30.052687',
 					}, {
 						name: '雅明农家乐',
-            X:'121.502719',
-            Y:'30.051409',
+						X:'121.502719',
+						Y:'30.051409',
 					}, {
 						name: '九龙源农家乐',
-            X:'121.502887',
-            Y:'30.051724',
+						X:'121.502887',
+						Y:'30.051724',
+					},{
+						name: '食为天农家乐'
+					},{
+						name: '竹之林农家乐'
+					},{
+						name: '山里山农家乐'
+					},{
+						name: '赞来农家乐'
+					},{
+						name: '闻溪阁烧烤园'
+					},{
+						name: '青青农家菜馆'
+					},{
+						name: '食泉农家菜馆'
+					},{
+						name: '竹林人家农家菜馆'
+					},{
+						name: '绿色人家农家菜馆'
+					},{
+						name: '沿山苑农家菜馆'
+					},{
+						name: '溢品农家菜馆'
+					},{
+						name: '青山绿水农家菜馆'
+					},{
+						name: '八号农家乐'
+					},{
+						name: '钱家小院'
+					},{
+						name: '老宅私房农家菜'
+					},{
+						name: '竹雅农家乐'
+					},{
+						name: '长胜人家农家菜馆'
+					},{
+						name: '沈家小园'
+					},{
+						name: '小荣农家乐'
+					},{
+						name: '龙眼泉农家乐'
+					},{
+						name: '惠英农家乐'
+					},{
+						name: '栋兴生态农庄'
+					},{
+						name: '香石小院'
+					},{
+						name: '洪阿三农家乐'
+					},{
+						name: '氧气生活'
+					},{
+						name: '又见山'
 					}]
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 				} else if (e == 1) {
-					this.imgList = ['static/images/zhu1.png','static/images/zhu2.jpg','static/images/zhu3.jpg']
+					this.imgList = [{
+						url: 'static/images/zhu5.png',
+						name: '又见山'
+					},{
+						url: 'static/images/zhu3.png',
+						name: '龙眼泉'
+					},{
+						url: 'static/images/zhu4.png',
+						name: '闻溪阁'
+					},{
+						url: 'static/images/zhu6.png',
+						name: '竹之林'
+					}]
 					this.njlList = [{
+						name: '又见山',
+						X:'121.50615',
+						Y:'30.052189',
+					},{
 						name: '龙眼泉农家乐',
-            X:'121.507867',
-            Y:'30.052307',
+						X:'121.507867',
+						Y:'30.052307',
 					}, {
 						name: '惠英农家乐',
-            X:'121.502735',
-            Y:'30.051085',
+						X:'121.502735',
+						Y:'30.051085',
 					}, {
 						name: '栋兴生态农庄',
-            X:'121.509037',
-            Y:'30.051842',
+						X:'121.509037',
+						Y:'30.051842',
 					}, {
 						name: '香石小院',
-            X:'121.500984',
-            Y:'30.051311',
+						X:'121.500984',
+						Y:'30.051311',
 					}, {
 						name: '洪阿三农家乐',
-            X:'121.50112',
-            Y:'30.051359',
+						X:'121.50112',
+						Y:'30.051359',
 					}, {
 						name: '钱门客栈',
-            X:'121.503487',
-            Y:'30.052357',
+						X:'121.503487',
+						Y:'30.052357',
 					}, {
 						name: '远足农家客栈',
-            X:'121.508364',
-            Y:'30.052494',
+						X:'121.508364',
+						Y:'30.052494',
 					}, {
 						name: '高屋人家',
-            X:'121.50196',
-            Y:'30.051863',
+						X:'121.50196',
+						Y:'30.051863',
 					}, {
 						name: '氧气生活',
-            X:'121.534009',
-            Y:'30.031686',
-					}, {
-						name: '又见山',
-            X:'121.50615',
-            Y:'30.052189',
+						X:'121.534009',
+						Y:'30.031686',
 					}]
 					this.show = true
 					this.show2 = false
@@ -606,7 +782,7 @@
 				// }
 			},
 			changeIndex(e) {
-				this.labelIndex = e
+				this.nameIndex = e
 			},
 			changeXing(e) {
 				this.xingIndex = e
@@ -625,9 +801,9 @@
 				that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option/1000)
 				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
 				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
-				that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
-				that.option4.title.text = '{a|'+option4+'}\n{c|人流量检测数据}'
-				that.option5.title.text = '{a|'+option5+'}\n{c|车流量检查数据}'
+				that.option.title.text = '{a|'+option+'}\n{c|剩余车位数}'
+				that.option4.title.text = '{a|'+option4+'}\n{c|人流量}'
+				that.option5.title.text = '{a|'+option5+'}\n{c|车流量}'
 			},60000)
 		}
 	}
@@ -738,6 +914,28 @@
 			img {
 				width: 100%;
 				height: 100%;
+			}
+		}
+		.banner-name {
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.3);
+			margin-top: 10px;
+			font-size: 18px;
+			color: #fff;
+			padding: 10px 0;
+			box-sizing: border-box;
+			border-radius: 20px;
+			text-align: center;
+		}
+		.banner-tip {
+			width: 500px;
+			padding: 10px 0;
+			margin-top: 20px;
+			.banner-tip-word {
+				width: 100%;
+				padding: 100px 0;
+				font-size: 28px;
+				text-align: center;
 			}
 		}
 	}

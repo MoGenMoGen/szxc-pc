@@ -54,19 +54,26 @@
 								<p>招租信息</p>
 								<img :src="icChd" >
 							</div>
-
-							<ul>
-								<li v-for="item in list1" :key="item.id">
-									<div class="border-out">
-										<img :src="item.img">
+							<div class="zhaozu-info">
+								<div class="zhaozu-title">
+									<!-- <span>序号</span> -->
+									<span>承租方</span>
+									<span>面积</span>
+									<span>租期</span>
+									<span>租金支付</span>
+									<span>联系人</span>
+								</div>
+								<div style="max-height: 400px;overflow-y: auto;">
+									<div v-for="(item,index) in zhaozuList" :key="index" class="zhaozu-item">
+										<!-- <span>{{index+1}}</span> -->
+										<span>{{item.name}}</span>
+										<span>{{item.area}}</span>
+										<span>{{item.time}}</span>
+										<span>{{item.money}}</span>
+										<span>{{item.phone}}</span>
 									</div>
-<!--									<div class="top-label">-->
-<!--										<img :src="icJts">-->
-<!--										<p>资产负债</p>-->
-<!--									</div>-->
-
-								</li>
-							</ul>
+								</div>
+							</div>
 						</div>
 						<div class="cun-left" style="width: 74%">
 							<div class="chd">
@@ -94,19 +101,22 @@
 								<p>业务公开</p>
 								<img :src="icChd" >
 							</div>
-
-							<ul>
-								<li v-for="item in list1" :key="item.id">
-									<div class="border-out">
-										<img :src="item.img">
+							<div class="yewu-info">
+								<div class="yewu-title">
+									<!-- <span>序号</span> -->
+									<span>承租方</span>
+									<span>租期</span>
+									<span>租金支付</span>
+								</div>
+								<div style="max-height: 400px;overflow-y: auto;">
+									<div class="yewu-item" v-for="(item,index) in yewuList" :key="index">
+										<!-- <span>{{index+1}}</span> -->
+										<span>{{item.name}}</span>
+										<span>{{item.time}}</span>
+										<span>{{item.money}}</span>
 									</div>
-<!--									<div class="top-label">-->
-<!--										<img :src="icJts">-->
-<!--										<p>资产负债</p>-->
-<!--									</div>-->
-
-								</li>
-							</ul>
+								</div>
+							</div>
 						</div>
 						<div class="cun-left" style="width: 74%">
 <!--							<div class="chd">-->
@@ -241,6 +251,46 @@
 
 				list3:[],
 				list4:[],
+				zhaozuList: [{
+					name: '长胜毛竹山',
+					area: '229亩',
+					time: '5年以内',
+					money: '租金面议',
+					phone: '86534080(黄)'
+				}],
+				yewuList: [{
+					name: '叶大塑料厂房屋租赁-3年',
+					time: '2019.1.1-2021.12.31',
+					money: '每年11000.00',
+				},{
+					name: '沈忠财-房屋租赁-3年',
+					time: '2020.1.1-2022.12.31',
+					money: '每年8470.00',
+				},{
+					name: '王振兴-毛竹山承包-5年',
+					time: '2019.1.1-2021.12.31',
+					money: '每年500.00',
+				},{
+					name: '杨雷飞-毛竹山承包-5年',
+					time: '2019.1.1-2021.12.31',
+					money: '每年500.00',
+				},{
+					name: '铁塔通讯站址租赁-郎家坪东-5年',
+					time: '2018.3.1-2023.2.28',
+					money: '每年13000.00',
+				},{
+					name: '铁塔通讯站址租赁-开元公寓西-5年',
+					time: '2018.3.1-2023.2.28',
+					money: '每年13000.00',
+				},{
+					name: '铁塔通讯站址租赁-开元公寓北-5年',
+					time: '2018.3.1-2023.2.28',
+					money: '每年13000.00',
+				},{
+					name: '铁塔通讯站址租赁-开元公寓-5年',
+					time: '2018.3.1-2023.2.28',
+					money: '每年13000.00',
+				}]
 			}
 		},
 		components: {
@@ -578,6 +628,76 @@
 							font-size: 19px;
 							font-weight: 500;
 
+						}
+					}
+					.zhaozu-info {
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						margin-top: 20px;
+						.zhaozu-title {
+							display: flex;
+							align-items: center;
+							span {
+								font-size: 16px;
+								color: #333;
+								flex: 1;
+								text-align: center;
+							}
+						}
+						.zhaozu-item {
+							display: flex;
+							align-items: center;
+							span {
+								font-size: 16px;
+								color: #333;
+								flex: 1;
+								text-align: center;
+							}
+						}
+					}
+					.yewu-info {
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						margin-top: 20px;
+						.yewu-title {
+							display: flex;
+							align-items: center;
+							margin: 5px 0;
+							span {
+								font-size: 16px;
+								color: #333;
+								flex: 2;
+								text-align: center;
+							}
+							span:first-child {
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+							}
+							span:last-child {
+								flex: 1;
+							}
+						}
+						.yewu-item {
+							display: flex;
+							align-items: center;
+							margin: 5px 0;
+							span {
+								font-size: 16px;
+								color: #333;
+								flex: 2;
+								text-align: center;
+							}
+							span:first-child {
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+							}
+							span:last-child {
+								flex: 1;
+							}
 						}
 					}
 					/*反向箭头*/

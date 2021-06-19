@@ -43,19 +43,17 @@
 					<div class="pop-title"><span>微心愿</span></div>
 					<div class="xinyuan-info">
 						<span>微心愿</span>
-						<span>总数：3个</span>
-						<span>已领取：3个</span>
+						<span>总数：5个</span>
+						<span>已领取：5个</span>
 					</div>
 					<div class="xinyuan-title">
 						<span>许愿人</span>
 						<span>心愿标题</span>
-						<span>期望完成时间</span>
 						<span>许愿人联系方式</span>
 					</div>
 					<div class="xinyuan-item" v-for="(item,index) in xyList" :key="index">
 						<span>{{item.name}}</span>
 						<span>{{item.title}}</span>
-						<span>{{item.time}}</span>
 						<span>{{item.phone}}</span>
 					</div>
 				</div>
@@ -244,6 +242,16 @@
 					title: '想要米油等生活用品',
 					time: '20210730',
 					phone: '13738875923'
+				},{
+					name: '费爱娥',
+					title: '想要米油等生活用品',
+					time: '20210730',
+					phone: '13738442315'
+				},{
+					name: '张秀菊',
+					title: '想要米油等生活用品',
+					time: '20210730',
+					phone: '26298501'
 				}]
 			}
 		},
@@ -486,33 +494,18 @@
 				display: flex;
 				align-items: center;
 				span {
-					width: 20%;
+					flex: 1;
 					font-size: 16px;
 					text-align: center;
-				}
-				span:nth-child(2) {
-					width: 30%;
-				}
-				span:nth-child(4) {
-					width: 30%;
 				}
 			}
 			.xinyuan-item {
 				display: flex;
 				align-items: center;
 				span {
-					width: 20%;
+					flex: 1;
 					font-size: 16px;
 					text-align: center;
-				}
-				span:nth-child(2) {
-					width: 30%;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
-				}
-				span:nth-child(4) {
-					width: 30%;
 				}
 			}
 		}
@@ -589,11 +582,12 @@
 			flex-direction: column;
 			.activity-detail-title {
 				margin: 10px 0;
-				font-size: 22px;
+				font-size: 23px;
 				letter-spacing: 2px;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				text-align: center;
 			}
 			.activity-detail-content {
 				margin: 10px 0;
