@@ -170,7 +170,7 @@
       <div class="box rl" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>村区环境</span>
+          <span>村居环境</span>
         </div>
         <div class="rl-bottom">
           <div class="rl-inner" style="margin-bottom: 5px;">

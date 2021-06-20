@@ -1138,7 +1138,7 @@
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
-          this.$parent.test("网格");
+          // this.$parent.test("网格");
 					this.show2 = true
 					this.show = false
 					this.show3 = false
@@ -1267,28 +1267,302 @@
 			showWg(e) {
 				let x = e.x,y = e.y
 				console.log(e.x,e.y)
-				if(800<x&&x<940 && 470<y&&y<610){
+				if(510<x&&x<660 && 200<y&&y<370){
+          console.log('横溪冷水井，后厢','左')
 					this.show8 = true
-					console.log('左边')
-				} else if (800<x&&x<970 && 410<y&&y<445) {
+          this.wgList[0].num = '横溪冷水井、后厢'
+          this.wgList[1].num = '王佳丹'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 97
+          this.ljflList = [{
+          	name: '横溪垃圾投放点03',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          }]
+          this.xcgaList = [{
+          	name: '傅正虎',
+          	type: '低保家庭'
+          },{
+          	name: '王世辉',
+          	type: '低保家庭'
+          },{
+            name: '钱佩君',
+            type: '残障人员'
+          },{
+            name: '钱罗囡',
+            type: '残障人员'
+          },{
+            name: '钱丙尧',
+            type: '残障人员'
+          },{
+            name: '王世辉',
+            type: '残障人员'
+          },{
+            name: '茅夏英',
+            type: '残障人员'
+          },{
+            name: '王松根',
+            type: '残障人员'
+          },{
+            name: '王龙振',
+            type: '残障人员'
+          },{
+            name: '王纪南',
+            type: '计生特殊家庭'
+          },{
+            name: '裘爱善',
+            type: '计生特殊家庭'
+          }]
+				} else if (510<x&&x<760 && 140<y&&y<180) {
+          console.log('横溪钱家，大同高屋，大圆地','左上')
 					this.show8 = true
-					console.log('左上边')
-				} else if (970<x&&x<1000 && 430<y&&y<610) {
+          this.wgList[0].num = '横溪钱家、大同高屋、大园地'
+          this.wgList[1].num = '钱亮英'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 231
+          this.ljflList = [{
+          	name: '横溪垃圾投放点02',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          },{
+          	name: '横溪垃圾投放点04',
+            code:'21b943aa87254d25b10d525c8c64c91c',
+            X:'121.540393',
+            Y:'30.034262'
+          },{
+          	name: '横溪垃圾投放点05',
+            code:'',
+            X:'121.541797',
+            Y:'30.035759'
+          }]
+          this.xcgaList = [{
+          	name: '王海明',
+          	type: '计生特殊家庭'
+          },{
+          	name: '陆雪珍',
+          	type: '计生特殊家庭'
+          },{
+          	name: '钱德',
+          	type: '计生特殊家庭'
+          },{
+            name: '王玲娣',
+            type: '残障人员'
+          },{
+            name: '胡君芬',
+            type: '残障人员'
+          },{
+            name: '王琼翠',
+            type: '残障人员'
+          },{
+            name: '方建萍',
+            type: '残障人员'
+          },{
+            name: '姚少春',
+            type: '残障人员'
+          },{
+            name: '周佩佩',
+            type: '残障人员'
+          }]
+				} else if (540<x&&x<690 && 500<y&&y<750) {
+          console.log('横溪坝下桥头','左中')
 					this.show8 = true
-					console.log('左中间')
-				} else if (1000<x&&x<1150 && 430<y&&y<650) {
+          this.wgList[0].num = '横溪坝下、桥头'
+          this.wgList[1].num = '徐佳妙'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 109
+          this.ljflList = [{
+          	name: '横溪垃圾投放点01',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          }]
+          this.xcgaList = [{
+            name: '王昌根',
+            type: '残障人员'
+          },{
+            name: '叶伟国',
+            type: '残障人员'
+          },{
+            name: '胡甫南',
+            type: '残障人员'
+          },{
+            name: '王国雄',
+            type: '残障人员'
+          },{
+            name: '王云南',
+            type: '残障人员'
+          },{
+            name: '王瑞江',
+            type: '残障人员'
+          },{
+            name: '王惠岳',
+            type: '残障人员'
+          }]
+				} else if (760<x&&x<1100 && 310<y&&y<740) {
+          console.log('横溪田中央，墙头，长坂地','左右')
 					this.show8 = true
-					console.log('左右边')
-				} else if (1320<x&&x<1400 && 640<y&&y<730) {
+          this.wgList[0].num = '横溪田中央、墙头、长坂地'
+          this.wgList[1].num = '翁志元'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 226
+          this.ljflList = [{
+          	name: '',
+            code:'',
+            X:'',
+            Y:''
+          }] //没监控，占位用，防止循环报错
+          this.xcgaList = [{
+            name: '钱米达',
+            type: '残障人员'
+          },{
+            name: '陈惠芬',
+            type: '残障人员'
+          },{
+            name: '钱其囡',
+            type: '残障人员'
+          }]
+				} else if (1280<x&&x<1420 && 690<y&&y<970) {
+          console.log('长胜毛岭、孟家','右左')
 					this.show8 = true
-					console.log('右左边')
-				} else if (1415<x&&x<1450 && 650<y&&y<675) {
+          this.wgList[0].num = '长胜毛岭、孟家'
+          this.wgList[1].num = '沈裕琪'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 159
+          this.ljflList = [{
+          	name: '长胜垃圾投放点09',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          },{
+          	name: '长胜垃圾投放点10',
+            code:'21b943aa87254d25b10d525c8c64c91c',
+            X:'121.540393',
+            Y:'30.034262'
+          }]
+          this.xcgaList = [{
+            name: '沈仁平',
+            type: '残障人员'
+          },{
+            name: '严晓芬',
+            type: '残障人员'
+          },{
+            name: '陈根才',
+            type: '残障人员'
+          },{
+            name: '滕学增',
+            type: '残障人员'
+          },{
+            name: '周爱静',
+            type: '残障人员'
+          },{
+            name: '倪道友',
+            type: '残障人员'
+          },{
+            name: '滕学行',
+            type: '残障人员'
+          },{
+            name: '陈慧明',
+            type: '残障人员'
+          },{
+            name: '王品岳',
+            type: '残障人员'
+          },{
+            name: '吴阿凤',
+            type: '残障人员'
+          },{
+            name: '黄华棠',
+            type: '残障人员'
+          }]
+				} else if (1450<x&&x<1580 && 740<y&&y<780) {
+          console.log('长胜长桥头','右中上')
 					this.show8 = true
-					console.log('右中上边')
-				} else if (1415<x&&x<1450 && 680<y&&y<710) {
+          this.wgList[0].num = '长胜长桥头'
+          this.wgList[1].num = '邱雪君'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 147
+          this.ljflList = [{
+          	name: '长胜垃圾投放点06',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          }]
+          this.xcgaList = [{
+            name: '戴文龙',
+            type: '残障人员'
+          },{
+            name: '严静梅',
+            type: '残障人员'
+          },{
+            name: '沈惠祥',
+            type: '残障人员'
+          },{
+            name: '翁东菊',
+            type: '残障人员'
+          },{
+            name: '沈松文',
+            type: '残障人员'
+          }]
+				} else if (1450<x&&x<1580 && 790<y&&y<950) {
+          console.log('长胜周家巷','右中下')
 					this.show8 = true
-					console.log('右中下边')
+          this.wgList[0].num = '长胜周家巷'
+          this.wgList[1].num = '朱丽红'
+          this.wgList[2].num = '陈如良'
+          this.wgList[3].num = 146
+          this.ljflList = [{
+          	name: '长胜垃圾投放点05',
+            code:'32df7576620846e5850153e18d5731cf',
+            X:'121.543364',
+            Y:'30.034804'
+          },{
+          	name: '长胜垃圾投放点07',
+            code:'21b943aa87254d25b10d525c8c64c91c',
+            X:'121.540393',
+            Y:'30.034262'
+          },{
+          	name: '长胜垃圾投放点08',
+            code:'',
+            X:'121.541797',
+            Y:'30.035759'
+          }]
+          this.xcgaList = [{
+            name: '周裕康',
+            type: '残障人员'
+          },{
+            name: '倪仁梅',
+            type: '残障人员'
+          },{
+            name: '周家强',
+            type: '残障人员'
+          },{
+            name: '胡幼丰',
+            type: '残障人员'
+          },{
+            name: '费爱娥',
+            type: '残障人员'
+          },{
+            name: '陈金花',
+            type: '残障人员'
+          },{
+            name: '戎巧芬',
+            type: '残障人员'
+          },{
+            name: '陈依芬',
+            type: '残障人员'
+          },{
+            name: '沈爱珍',
+            type: '残障人员'
+          },{
+            name: '余静国',
+            type: '残障人员'
+          },{
+            name: '周家贤',
+            type: '残障人员'
+          }]
 				} else if (1590<x&&x<1750 && 580<y&&y<900) {
+          console.log('长胜田央沈','右')
 					this.show8 = true
 					this.wgList[0].num = '长胜田央沈'
 					this.wgList[1].num = '黄杰锋'
@@ -1321,8 +1595,70 @@
 					},{
 						name: '钱黎明',
 						type: '特困人员供养'
-					}]
-					console.log('右边')
+					},{
+            name: '倪仁梅',
+            type: '低保家庭'
+          },{
+            name: '沈仁平',
+            type: '低保家庭'
+          },{
+            name: '沈立琴',
+            type: '低保家庭'
+          },{
+            name: '沈振东',
+            type: '低保家庭'
+          },{
+            name: '沈振兴',
+            type: '低保家庭'
+          },{
+            name: '沈振华',
+            type: '低保家庭'
+          },{
+            name: '顾阿多',
+            type: '残障人员'
+          },{
+            name: '钱黎明',
+            type: '残障人员'
+          },{
+            name: '顾静娟',
+            type: '残障人员'
+          },{
+            name: '沈国定',
+            type: '残障人员'
+          },{
+            name: '王时芬',
+            type: '残障人员'
+          },{
+            name: '沈振华',
+            type: '残障人员'
+          },{
+            name: '沈立峰',
+            type: '残障人员'
+          },{
+            name: '曾立平',
+            type: '残障人员'
+          },{
+            name: '陈美飞',
+            type: '残障人员'
+          },{
+            name: '沈荣飞',
+            type: '残障人员'
+          },{
+            name: '沈立琴',
+            type: '残障人员'
+          },{
+            name: '沈仁顺',
+            type: '残障人员'
+          },{
+            name: '叶小芬',
+            type: '残障人员'
+          },{
+            name: '王阿明',
+            type: '残障人员'
+          },{
+            name: '陈翠娥',
+            type: '残障人员'
+          }]
 				}
 				// this.show8 = true
     //     this.hikShow = true
