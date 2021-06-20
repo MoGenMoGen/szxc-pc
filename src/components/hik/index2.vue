@@ -29,14 +29,8 @@ export default {
       pubKey: '',         //公钥加密
     };
   },
-  created() {
-  },
   mounted() {
-    //插件初始化
-    // this.initPlugin();
-    // let this_ = this
-    // this_.oWebControl.oDocOffset.top = 168;
-    // this_.oWebControl.oDocOffset.left = 798;
+
   },
 
   methods: {
@@ -107,6 +101,7 @@ export default {
     },
     // 初始化参数
     initVideo() {
+      let that = this;
       this.getPubKey(() => {
         let appkey = "22976517";                                  //综合安防管理平台提供的appkey，必填
         let secret = this.setEncrypt("kQhUuOaiehTT3vyUkJCt");   //综合安防管理平台提供的secret，必填
@@ -139,6 +134,7 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
+              that.oWebControl.JS_Resize(800,800);
               this.startRealPlay()
             }
         );
@@ -183,7 +179,7 @@ export default {
       //   }
       // }
 
-      console.log(this.codes)
+      // console.log(this.codes)
 
       // if (this.cameraIndexCode === "4"){
       //   arr = ["f7fb34bda82b4a1e90c86f381d59af73", "f1bba68174b8401fa4dd5e22440ae1b6","22252acaaaeb47b0887cd0a294a0685b","f51d56c92b474494ad262aa67c9c13b2"];
@@ -196,9 +192,9 @@ export default {
     },
     // 视频预览
     startRealPlay() {
-      console.log('------开始播放-------');
+      // console.log('------开始播放-------');
       let cameraIndexCode = this.codes;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
-      console.log(cameraIndexCode)
+      // console.log(cameraIndexCode)
       // let cameraIndexCode  =  '17396d5f47a34e288b3c7edfb19e5535'            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
@@ -255,11 +251,11 @@ export default {
     //   });
     // },
 
-    videoDialog(n) {
-      if (n) {
-        this.initPlugin();
-      }
-    }
+    // videoDialog(n) {
+    //   if (n) {
+    //     this.initPlugin();
+    //   }
+    // }
   }
 };
 </script>

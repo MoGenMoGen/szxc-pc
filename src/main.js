@@ -30,6 +30,7 @@ new Vue({
       wf:false,
       fnsjkd:false,
       nsl:false,
+      zhjg:false,
     }
   },
   render: h => h(App)

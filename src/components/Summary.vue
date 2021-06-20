@@ -83,38 +83,38 @@
           <div class="st-bottom">
 
             <!-- <dv-active-ring-chart v-if="show" :config="config6" style="width:150px;height:150px"/> -->
-			<dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
+            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>
             <dv-scroll-board v-if="show" :config="config5" style="width:400px;height:165px"/>
           </div>
         </div>
       </div>
     </transition>
     <!--水库信息-->
-<!--   <transition name="fade">-->
-<!--      <div class="box ml" v-show="show">-->
-<!--        <div class="box-top">-->
-<!--          <img src="static/images/icon.png">-->
-<!--          <span>水库信息</span>-->
-<!--        </div>-->
-<!--        <div class="box-bottom ml-bottom">-->
-<!--          <div class="sk-top">-->
-<!--            <span>总面积：<span class="typeBlue">15.7</span>(km²)</span>-->
-<!--            <div class="sk-top-right">-->
-<!--              <span>水库名称</span>-->
-<!--              <span>积雨面积</span>-->
-<!--              <span>总容积</span>-->
-<!--            </div>-->
-<!--          </div>-->
+    <!--   <transition name="fade">-->
+    <!--      <div class="box ml" v-show="show">-->
+    <!--        <div class="box-top">-->
+    <!--          <img src="static/images/icon.png">-->
+    <!--          <span>水库信息</span>-->
+    <!--        </div>-->
+    <!--        <div class="box-bottom ml-bottom">-->
+    <!--          <div class="sk-top">-->
+    <!--            <span>总面积：<span class="typeBlue">15.7</span>(km²)</span>-->
+    <!--            <div class="sk-top-right">-->
+    <!--              <span>水库名称</span>-->
+    <!--              <span>积雨面积</span>-->
+    <!--              <span>总容积</span>-->
+    <!--            </div>-->
+    <!--          </div>-->
 
-<!--          <div class="sk-bottom">-->
-<!--            水位-->
-<!--            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>-->
+    <!--          <div class="sk-bottom">-->
+    <!--            水位-->
+    <!--            <dv-water-level-pond v-if="show" :config="config3" style="width:130px;height:150px;"/>-->
 
-<!--            <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </transition>-->
+    <!--            <dv-scroll-board v-if="show" :config="config2" style="width:400px;height:165px"/>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </transition>-->
     <!--基层党建-->
     <transition name="fade">
       <div class="box mm" v-show="show">
@@ -137,7 +137,7 @@
       </div>
     </transition>
     <!-- 防溺水监控 -->
-     <transition name="fade">
+    <transition name="fade">
       <div class="box mr" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
@@ -147,8 +147,8 @@
       </div>
     </transition>
     <!-- 防溺水监控 -->
-    <hik  ref="videoPlayer"  :playMode="1"></hik>
-    <hik3  ref="videoPlayer3"  :playMode="1"></hik3>
+    <hik ref="videoPlayer" :playMode="1"></hik>
+    <hik3 ref="videoPlayer3" :playMode="1"></hik3>
 
 
     <!-- 地质灾害防范点监控 -->
@@ -158,11 +158,8 @@
           <img src="static/images/icon.png">
           <span>地质灾害监控</span>
         </div>
-        <!--        <hik cameraIndexCode="0"  ref="videoPlayer"  :playMode="1"></hik>-->
-        <!--        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>-->
       </div>
     </transition>
-
 
 
     <!-- 空气质量-->
@@ -241,24 +238,23 @@
           </div>
           <div class="ywgk">
             <div class="fontBig">业务公开<img src="static/images/ywgk.png" class="imgStyle"></div>
-			<div style="height: 36px;overflow: hidden;">
-				<dv-scroll-board v-if="show" :config="config" style="width:400px;height:180px;margin-top: 10px;"/>
-			</div>
+            <div style="height: 36px;overflow: hidden;">
+              <dv-scroll-board v-if="show" :config="config" style="width:400px;height:180px;margin-top: 10px;"/>
+            </div>
           </div>
           <div class="zzxx">
-			<div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
-			<div class="zzxx-bottom"><span>1</span><span>长胜毛竹山</span><span>229亩</span><span>5年以内</span><span>租金面议</span></div>
+            <div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
+            <div class="zzxx-bottom"><span>1</span><span>长胜毛竹山</span><span>229亩</span><span>5年以内</span><span>租金面议</span>
+            </div>
           </div>
         </div>
       </div>
     </transition>
 
 
-
-
     <!--三维模型-->
-  <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">-->
-    <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
+    <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">-->
+      <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
       </model-obj>
@@ -276,12 +272,13 @@ import {
 import myCharts from '@/components/MyCharts.vue'
 import hik from '@/components/hik/index.vue'
 import hik3 from '@/components/hik/index3.vue'
+
 export default {
   name: 'Summary',
   props: {},
   data() {
     return {
-      cType:"4",
+      cType: "4",
       dataLi: [
         "九龙湖村位于宁波市镇海区西北部，是一个有着光荣历史的革命老区，由原来的横溪、长胜、十字路、郞家坪四个自然村合并而成，是一个典型的山区村。全村地域面积15.7平方公里，有山林面积11008亩，耕地面积400亩。现有住户722户，人口2015人，外来人口388人，村党委下设四个党支部和一个农家乐支部，共有党员111人，有十二个村民小组，村民代表52人。2020年村集体收入约120万元。国家AAAA级风景区“九龙湖旅游度假区”就位于九龙湖村内。近年来，我村相继获得了省级旅游特色村、省级卫生村、省百佳美丽乡村、省农村信息化管理示范村省级廉政文化进农村示范点；市级小康村、市级文明村、市级生态村、市级“五好党组织”；区级民主法治村、巾帼示范村、兴林富民示范村、三星级文化礼堂、先进基层党组织、信访工作先进集体等多个省、市、区级荣誉称号。2005年，为了适应乡村旅游发展的需要，九龙湖农家乐协会成立,现有农家乐37家。近两年，随着九龙湖村农家乐乡村旅游发展的不断深入，游客量越来越大，需求也呈多样化趋势发展。为充分发挥党员在经营农家乐方面的先锋模范作用，九龙湖村于2018年1月成立了农家乐联盟党支部，现有农家乐党员经营户9户，正式党员10名。通过党员经营户文明诚信经营的示范，不断引领全镇农家乐产业的健康发展。村民主要以茶叶、笋干、毛竹等为主要经济来源,依托农家乐联盟党支部，提升农家乐整体品质，振兴乡村旅游开发，倾力打造九龙湖村的旅游品牌特色，拓展农业与旅游业的结合点，实现了全村经济的和谐发展，保持村民人均收入每年持续增长。"
       ],
@@ -393,8 +390,8 @@ export default {
           ['杨雷飞-毛竹山承包-5年'],
           ['铁塔通讯站址租赁--郎家坪东-5年'],
           ['铁塔通讯站址租赁--开元公寓西-5年'],
-		  ['铁塔通讯站址租赁--开元公寓北-5年'],
-		  ['铁塔通讯站址租赁--开元公寓-5年']
+          ['铁塔通讯站址租赁--开元公寓北-5年'],
+          ['铁塔通讯站址租赁--开元公寓-5年']
         ],
         index: true,
         columnWidth: [50],
@@ -525,7 +522,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [113/1000, '#3cd868'],
+                  [113 / 1000, '#3cd868'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -603,7 +600,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [187/1000, '#f7dc46'],
+                  [187 / 1000, '#f7dc46'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -742,43 +739,40 @@ export default {
   },
   mounted() {
     this.onLoad()
-	let that = this
-	setInterval(function(){
-		let option = that.random(297,512)
-		let option4 = that.random(187,523)
-		let option5 = that.random(113,286)
-		that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option/1000)
-		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
-		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
-		that.option.title.text = '{a|'+option+'}\n{c|剩余车位}'
-		that.option4.title.text = '{a|'+option4+'}\n{c|人流量}'
-		that.option5.title.text = '{a|'+option5+'}\n{c|车流量}'
-	},60000)
+    let that = this
+    setInterval(function () {
+      let option = that.random(297, 512)
+      let option4 = that.random(187, 523)
+      let option5 = that.random(113, 286)
+      that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
+      that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4 / 1000)
+      that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5 / 1000)
+      that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
+      that.option4.title.text = '{a|' + option4 + '}\n{c|人流量}'
+      that.option5.title.text = '{a|' + option5 + '}\n{c|车流量}'
+    }, 60000)
   },
   components: {
     ModelObj,
-    myCharts,hik,hik3
+    myCharts, hik, hik3
   },
   methods: {
-	random(lower, upper) {
-	  return Math.floor(Math.random() * (upper - lower)) + lower;
-	},
-    offHik(){
+    random(lower, upper) {
+      return Math.floor(Math.random() * (upper - lower)) + lower;
+    },
+    offHik() {
       this.$refs.videoPlayer.off()
       this.$refs.videoPlayer3.off()
     },
 
     onLoad() {
-      console.log(123)
       //获取天气
       this.$ajax.getWeather().then(res => {
         this.tq = res;
       })
-
       this.$refs.videoPlayer.initPlugin()
       this.$refs.videoPlayer3.initPlugin()
       this.show = true
-
     },
     onClick(e) {
 
@@ -786,10 +780,7 @@ export default {
     onProgress(e) {
       let loaded = e.loaded / e.total * 100 + ""
       this.isLoading = Number(loaded.substring(0, 4))
-
-      // console.log(e.loaded / e.total * 100 + "%")
     },
-
     onError(e) {
       console.log(e)
     },
@@ -1149,8 +1140,6 @@ export default {
 }
 
 
-
-
 .rl {
   height: 300px;
   position: absolute;
@@ -1263,28 +1252,31 @@ export default {
 
     .ywgk {
       color: #fff;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: space-between;
-	  /deep/ .dv-scroll-board {
-		margin-top:0 !important;
-	  }
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      /deep/ .dv-scroll-board {
+        margin-top: 0 !important;
+      }
     }
 
     .zzxx {
       color: #fff;
 
-		.zzxx-bottom {
-			display: flex;
-			font-size: 14px;
-			span {
-				text-align: center;
-				flex: 2;
-			}
-			span:first-child {
-				flex: 1;
-			}
-		}
+      .zzxx-bottom {
+        display: flex;
+        font-size: 14px;
+
+        span {
+          text-align: center;
+          flex: 2;
+        }
+
+        span:first-child {
+          flex: 1;
+        }
+      }
 
       // .zzxx-info {
       //   font-size: 14px;

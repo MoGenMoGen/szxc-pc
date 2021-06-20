@@ -104,6 +104,7 @@ export default {
     },
     // 初始化参数
     initVideo() {
+      let that = this;
       this.getPubKey(() => {
         let appkey = "22976517";                                  //综合安防管理平台提供的appkey，必填
         let secret = this.setEncrypt("kQhUuOaiehTT3vyUkJCt");   //综合安防管理平台提供的secret，必填
@@ -116,7 +117,7 @@ export default {
         let enableHTTPS = 1;                               //是否启用HTTPS协议与综合安防管理平台交互，是为1，否为0
         let encryptedFields = 'secret';					            //加密字段，默认加密领域为secret
         let showToolbar = 0;                               //是否显示工具栏，0-不显示，非0-显示
-        let showSmart = 0;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
+        let showSmart = 1;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
         let buttonIDs = "0,16,256,257,258,259,260,512,513,514,515,516,517,768,769";  //自定义工具条按钮
         this.oWebControl.JS_RequestInterface({
           funcName: "init",
@@ -136,6 +137,7 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
+          that.oWebControl.JS_Resize(400,250);
               this.toPlay()
             }
         );
@@ -178,7 +180,7 @@ export default {
       let cameraIndexCode = this.cameraIndexCode;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
-      let gpuMode = 0;                                        //是否启用GPU硬解，0-不启用，1-启用
+      let gpuMode = 1;                                        //是否启用GPU硬解，0-不启用，1-启用
       let wndId = -1;                                         //播放窗口序号（在2x2以上布局下可指定播放窗口）
       cameraIndexCode = cameraIndexCode.replace(/(^\s*)/g, "");
       cameraIndexCode = cameraIndexCode.replace(/(\s*$)/g, "");
@@ -194,11 +196,11 @@ export default {
       });
     },
     startRealPlay2(code, i) {
-      console.log(code)
+      // console.log(code)
       let cameraIndexCode = code;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
-      let gpuMode = 0;                                        //是否启用GPU硬解，0-不启用，1-启用
+      let gpuMode = 1;                                        //是否启用GPU硬解，0-不启用，1-启用
       let wndId = i;                                         //播放窗口序号（在2x2以上布局下可指定播放窗口）
       cameraIndexCode = cameraIndexCode.replace(/(^\s*)/g, "");
       cameraIndexCode = cameraIndexCode.replace(/(\s*$)/g, "");
@@ -222,22 +224,15 @@ export default {
       window.resizeTo(w, h);
     },
   },
-  watch: {
-    // width() {
-    //   let _this = this
-    //   window.console.log("宽度监听")
-    //   // window.console.log(this.width)
-    //   _this.oWebControl.JS_CreateWnd("divPlugin", 600, 600).then(() => {
-    //     _this.initVideo();
-    //   });
-    // },
-
-    videoDialog(n) {
-      if (n) {
-        this.initPlugin();
-      }
-    }
-  }
+  // watch: {
+  //
+  //
+  //   videoDialog(n) {
+  //     if (n) {
+  //       this.initPlugin();
+  //     }
+  //   }
+  // }
 };
 </script>
 

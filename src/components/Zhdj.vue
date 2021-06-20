@@ -260,34 +260,39 @@
 			BottomTab
 		},
 		methods: {
+
+      //打开关闭图层
+      onOff(type,name){
+        let a = {
+          type: type,
+          name: name
+        }
+        this.$parent.test(a);
+      },
+      offP(){
+        this.onOff("关闭图层","横溪党员")
+        this.onOff("关闭图层","长胜周家港孟家毛岭党员")
+        this.onOff("关闭图层","长胜田央沈长桥头党员")
+        this.onOff("关闭图层","农家乐支部党员")
+      },
 			getIndex(e) {
-        console.log(e)
+        //红色路线
 				if (e == 0) {
-
-
-          this.$parent.test("红色景点");
-          this.$parent.test("红色路线");
-          // if (!this.$root.hsxl){
-          //   this.$parent.test("红色景点");
-          //   this.$parent.test("红色路线");
-          //   this.$root.hsxl = true;
-          // }else {
-          //   this.$parent.test("红色景点");
-          //   this.$parent.test("红色路线");
-          //   this.$parent.test("红色景点");
-          //   this.$parent.test("红色路线");
-          //   this.$root.hsxl = true;
-          // }
-
+          this.onOff("打开图层","红色景点")
+          this.onOff("打开图层","红色路线")
+          this.offP()
           this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
 					this.show5 = false
 				} else if (e == 1) {
+				  //党员信息
 					if(this.partyInfoList[this.isPartyTab].name) {
 						this.show5 = false
-						this.$parent.test(this.partyInfoList[this.isPartyTab].name);
+            this.onOff("打开图层",this.partyInfoList[this.isPartyTab].name)
+            this.onOff("关闭图层","红色景点")
+            this.onOff("关闭图层","红色路线")
 					} else {
 						this.show5 = true
 					}
@@ -296,6 +301,9 @@
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 2) {
+          this.offP()
+          this.onOff("关闭图层","红色景点")
+          this.onOff("关闭图层","红色路线")
           if (!this.$root.zl){
             this.$parent.test("总览");
             this.$root.zl = true;
@@ -311,6 +319,9 @@
 					this.show4 = false
 					this.show5 = false
 				} else if (e == 3) {
+          this.offP()
+          this.onOff("关闭图层","红色景点")
+          this.onOff("关闭图层","红色路线")
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -570,7 +581,7 @@
 			}
 		}
 	}
-	
+
 	.activity-detail {
 		top: 200px;
 		left: 800px;

@@ -216,11 +216,9 @@
 				</div>
 			</div>
 		</transition>
-<!--  执法仪监控-->
+    <!--执法仪监控-->
     <hik2  :codes="codes"  ref="videoPlayer2"  :playMode="1"></hik2>
-    <!--  危房监控-->
-<!--    <hik4 ref="videoPlayer4"  :playMode="1"></hik4>-->
-    <!--  山塘防溺水监控-->
+    <!-- 危房监控 山塘防溺水监控-->
     <hik5  :codes="codes"  ref="videoPlayer5"  :playMode="1"></hik5>
 
 		<transition name="fade">
@@ -253,10 +251,6 @@
 				<span style="width: 10%;">{{ item.timeOut }}</span>
 			</div>
 		</div>
-
-		<!--    <el-button style="margin-top: 600px;margin-left: 100px" type="primary" @click="hikShow = true">主要按钮</el-button>
-    <el-button style="margin-top: 600px;margin-left: 100px"  @click="offHik">主要按钮</el-button> -->
-
 		<transition name="fade">
 			<div v-show="show11">
 				<div class="pop-common dzxx">
@@ -1033,16 +1027,19 @@
 
 		},
 		mounted() {
-			//console.log(xcFive)
-			// this.fiveList = xcFive.RECORDS
-			//console.log(this.fiveList)
 			this.show = true
-
 		},
 		methods: {
+      //打开关闭图层
+      onOff(type,name){
+        let a = {
+          type: type,
+          name: name
+        }
+        this.$parent.test(a);
+      },
 			offHik() {
 				this.$refs.videoPlayer2.off()
-				// this.$refs.videoPlayer4.off()
 				this.$refs.videoPlayer5.off()
 			},
       //点击小图还原
@@ -1050,7 +1047,6 @@
 			  this.show2 = true
         this.show12 = false
         this.show8 = false
-
         this.$parent.test("网格");
 			  this.offHik()
       },
@@ -1066,6 +1062,7 @@
         if (this.e == 1){
           this.show12 = true
         }
+
         this.show2 = false
 			},
       //点击执法仪看监控
@@ -1079,7 +1076,6 @@
         this.$refs.videoPlayer5.off()
         this.codes = item.code;
         this.$refs.videoPlayer5.initPlugin()
-
         let a = {
           X:item.X,
           Y:item.Y,
@@ -1108,19 +1104,16 @@
 			},
 			getIndex(e) {
 			  this.e = e;
-				// if (e == 0) {
-				//   // 三资管理
-				//   this.show2 = true
-				//   this.show = false
-				//   this.show3 = false
-				//   this.show4 = false
-				//   this.show5 = false
-				//   this.show6 = false
-				//   this.show7 = false
-				//   this.getSzglData()
-				// } else
 				if (e == 0) {
 					// 水库管理
+          this.onOff("打开图层","防溺水监控点")
+          this.onOff("打开图层","山塘水库")
+
+          this.onOff("关闭图层","综合监管")
+          // this.onOff("关闭图层","垃圾点位")
+          this.onOff("关闭图层","危房")
+          this.onOff("关闭图层","泥石流")
+
           this.offHik()
 					this.show2 = false
 					this.show3 = false
@@ -1138,6 +1131,13 @@
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
+
+
+          this.onOff("关闭图层","山塘水库")
+          this.onOff("关闭图层","综合监管")
+          this.onOff("关闭图层","危房")
+          this.onOff("关闭图层","防溺水监控点")
+          this.onOff("关闭图层","泥石流")
           this.$parent.test("网格");
 					this.show2 = true
 					this.show = false
@@ -1169,9 +1169,14 @@
 					this.show12 = false
 					this.showXmb = false
 				} else if (e == 3) {
-					// 5+X
+					// 综合监管
           this.offHik()
-
+          this.onOff("打开图层","综合监管")
+          this.onOff("关闭图层","山塘水库")
+          // this.onOff("关闭图层","垃圾点位")
+          this.onOff("关闭图层","危房")
+          this.onOff("关闭图层","防溺水监控点")
+          this.onOff("关闭图层","泥石流")
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1201,22 +1206,16 @@
 					this.show11 = false
 					this.show12 = false
 					this.showXmb = false
-          // this.hikShow = true
-
-
-
-
-					// let {href} = this.$router.resolve({path:'/Sgpt',params:{type: 1}})
-					// window.open(href, '_blank')
-
 				} else if (e==5) {
 					// 危房管理
-          if (this.$root.wf === false){
-            this.$parent.test("危房");
-            this.$root.wf = true
-          }
+          this.onOff("打开图层","危房")
+          this.onOff("关闭图层","防溺水监控点")
+          this.onOff("关闭图层","泥石流")
+          this.onOff("关闭图层","综合监管")
+          this.onOff("关闭图层","山塘水库")
+          // this.onOff("关闭图层","垃圾点位")
+
           this.offHik()
-          // this.$refs.videoPlayer4.initPlugin()
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1231,6 +1230,13 @@
 					this.show12 = false
 					this.showXmb = false
 				} else if (e == 6) {
+          this.onOff("打开图层","防溺水监控点")
+          this.onOff("打开图层","泥石流")
+          this.onOff("关闭图层","危房")
+          this.onOff("关闭图层","综合监管")
+          this.onOff("关闭图层","山塘水库")
+          // this.onOff("关闭图层","垃圾点位")
+
           this.offHik()
 					// 地质灾害防范点
 					this.show2 = false
@@ -1247,15 +1253,6 @@
 					this.show12 = false
 					this.showXmb = false
 				}
-				// else if (e == 6) {
-				//      // 防溺水
-				//      this.show6 = false
-				//      // this.show2 = false
-				//      this.show = false
-				//      this.show3 = false
-				//      this.show4 = false
-				//      this.show5 = true
-				//    }
 			},
 			showImg(e) {
 				this.imgShow = true
@@ -1265,6 +1262,7 @@
 				this.imgShow = false
 			},
 			showWg(e) {
+
 				let x = e.x,y = e.y
 				console.log(e.x,e.y)
 				if(510<x&&x<660 && 200<y&&y<370){

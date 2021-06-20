@@ -387,12 +387,6 @@
 						hasUrl: true,
 						title: '玩'
 					},
-					// {
-					// 	sUrl: 'static/images/youS.png',
-					// 	url: 'static/images/you.png',
-					// 	hasUrl: true,
-					// 	title: '游'
-					// },
 					{
 						sUrl: 'static/images/gouS.png',
 						url: 'static/images/gou.png',
@@ -567,18 +561,26 @@
 		},
 		methods: {
 			goto(item) {
-          if (this.$root.njl === false){
-            this.$parent.test("农家乐");
-            this.$root.njl = true
-          }
           let a = {
             X:item.X,
             Y:item.Y,
           }
         this.$parent.test(a);
 			},
+      //打开关闭图层
+      onOff(type,name){
+        let a = {
+          type: type,
+          name: name
+        }
+        this.$parent.test(a);
+      },
 			getIndex(e) {
 				if (e == 0) {
+          this.onOff("打开图层","农家乐")
+          this.onOff("关闭图层","旅游景点")
+          this.onOff("关闭图层","旅游路线")
+          this.onOff("关闭图层","民宿")
 					this.imgList = [{
 						url: 'static/images/jdw1.png',
 						name: '暗香疏影'
@@ -705,6 +707,12 @@
 					this.show3 = false
 					this.show4 = true
 				} else if (e == 1) {
+          //住
+          this.onOff("打开图层","民宿")
+          this.onOff("关闭图层","旅游景点")
+          this.onOff("关闭图层","旅游路线")
+          this.onOff("关闭图层","农家乐")
+
 					this.imgList = [{
 						url: 'static/images/zhu5.png',
 						name: '又见山'
@@ -764,17 +772,21 @@
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 2) {
-					this.show = false
+				  //玩
+          this.onOff("打开图层","旅游景点")
+          this.onOff("打开图层","旅游路线")
+          this.onOff("关闭图层","农家乐")
+          this.onOff("关闭图层","民宿")
+          this.show = false
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
-          if (this.$root.lyjd === false){
-            this.$parent.test("旅游景点");
-            this.$root.lyjd = true
-          }
-
-          this.$parent.test("旅游路线");
 				} else if (e == 3) {
+				  //购
+          this.onOff("关闭图层","旅游景点")
+          this.onOff("关闭图层","旅游路线")
+          this.onOff("关闭图层","农家乐")
+          this.onOff("关闭图层","民宿")
 					this.show = false
 					this.show2 = false
 					this.show3 = true

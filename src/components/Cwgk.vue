@@ -185,6 +185,7 @@
 <!--					<div class="pop-html" v-html="jfData.content"></div>-->
 <!--				</div>-->
 <!--			</div>-->
+
       <iframe v-if="cShow" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" :src="url2" frameborder="0"></iframe>
 		</transition>
 
@@ -347,18 +348,19 @@
 					this.jfData = res
 				})
 			},
+      offShow(){
+        this.cShow = false
+      },
 			getIndex(e) {
 				if (e == 0) {
 					this.show = true
-					this.show2 = false
+					// this.show2 = false
           this.cShow = false
 					this.getSzglData()
 				} else if (e == 1) {
 					this.show = false
           this.cShow = true
-					this.show2 = true
 
-					this.getGlData()
 				}
 				//  else if (e == 2) {
 				// 	this.show = false

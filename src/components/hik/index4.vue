@@ -15,7 +15,7 @@ export default {
       type: String,
     },
     layout: {
-      type: String, default: '2x2'
+      type: String, default: '1x1'
     },
     videoDialog: {
       type: Boolean, default: true
@@ -116,7 +116,7 @@ export default {
         let enableHTTPS = 1;                               //是否启用HTTPS协议与综合安防管理平台交互，是为1，否为0
         let encryptedFields = 'secret';					            //加密字段，默认加密领域为secret
         let showToolbar = 0;                               //是否显示工具栏，0-不显示，非0-显示
-        let showSmart = 0;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
+        let showSmart = 1;                                 //是否显示智能信息（如配置移动侦测后画面上的线框），0-不显示，非0-显示
         let buttonIDs = "0,16,256,257,258,259,260,512,513,514,515,516,517,768,769";  //自定义工具条按钮
         this.oWebControl.JS_RequestInterface({
           funcName: "init",
@@ -169,8 +169,6 @@ export default {
       for (let i = 0; i < arr.length; i++) {
         this.startRealPlay2(arr[i], i + 1)
       }
-
-
     },
     // 视频预览
     startRealPlay() {
@@ -198,7 +196,7 @@ export default {
       let cameraIndexCode = code;            //"ef7431a9b47c43d0a6c26c2037dcb18b";
       let streamMode = 0;                                     //主子码流标识：0-主码流，1-子码流
       let transMode = 1;                                      //传输协议：0-UDP，1-TCP
-      let gpuMode = 0;                                        //是否启用GPU硬解，0-不启用，1-启用
+      let gpuMode = 1;                                        //是否启用GPU硬解，0-不启用，1-启用
       let wndId = i;                                         //播放窗口序号（在2x2以上布局下可指定播放窗口）
       cameraIndexCode = cameraIndexCode.replace(/(^\s*)/g, "");
       cameraIndexCode = cameraIndexCode.replace(/(\s*$)/g, "");
@@ -222,22 +220,22 @@ export default {
       window.resizeTo(w, h);
     },
   },
-  watch: {
-    // width() {
-    //   let _this = this
-    //   window.console.log("宽度监听")
-    //   // window.console.log(this.width)
-    //   _this.oWebControl.JS_CreateWnd("divPlugin", 600, 600).then(() => {
-    //     _this.initVideo();
-    //   });
-    // },
-
-    videoDialog(n) {
-      if (n) {
-        this.initPlugin();
-      }
-    }
-  }
+  // watch: {
+  //   // width() {
+  //   //   let _this = this
+  //   //   window.console.log("宽度监听")
+  //   //   // window.console.log(this.width)
+  //   //   _this.oWebControl.JS_CreateWnd("divPlugin", 600, 600).then(() => {
+  //   //     _this.initVideo();
+  //   //   });
+  //   // },
+  //
+  //   videoDialog(n) {
+  //     if (n) {
+  //       this.initPlugin();
+  //     }
+  //   }
+  // }
 };
 </script>
 
