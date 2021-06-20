@@ -519,31 +519,31 @@
           Y:'30.045825',
 				}],
 				imgList: [{
-					url: 'static/images/jdw1.JPG',
+					url: 'static/images/jdw1.png',
 					name: '暗香疏影'
 				},{
-					url: 'static/images/jdw2.jpg',
+					url: 'static/images/jdw2.png',
 					name: '九龙第一鲜'
 				},{
-					url: 'static/images/jdw3.jpg',
+					url: 'static/images/jdw3.png',
 					name: '九龙云雾'
 				},{
-					url: 'static/images/jdw4.jpg',
+					url: 'static/images/jdw4.png',
 					name: '浪鲫江湖'
 				},{
-					url: 'static/images/jdw5.JPG',
+					url: 'static/images/jdw5.png',
 					name: '蟠青丛翠'
 				},{
-					url: 'static/images/jdw6.jpg',
+					url: 'static/images/jdw6.png',
 					name: '秋月如镜'
 				},{
-					url: 'static/images/jdw7.jpg',
+					url: 'static/images/jdw7.png',
 					name: '神仙烧鸡'
 				},{
-					url: 'static/images/jdw8.jpg',
+					url: 'static/images/jdw8.png',
 					name: '一丛金黄'
 				},{
-					url: 'static/images/jdw9.JPG',
+					url: 'static/images/jdw9.png',
 					name: '珠联璧合'
 				}],
 				imgList2: [{
@@ -580,31 +580,31 @@
 			getIndex(e) {
 				if (e == 0) {
 					this.imgList = [{
-						url: 'static/images/jdw1.JPG',
+						url: 'static/images/jdw1.png',
 						name: '暗香疏影'
 					},{
-						url: 'static/images/jdw2.jpg',
+						url: 'static/images/jdw2.png',
 						name: '九龙第一鲜'
 					},{
-						url: 'static/images/jdw3.jpg',
+						url: 'static/images/jdw3.png',
 						name: '九龙云雾'
 					},{
-						url: 'static/images/jdw4.jpg',
+						url: 'static/images/jdw4.png',
 						name: '浪鲫江湖'
 					},{
-						url: 'static/images/jdw5.JPG',
+						url: 'static/images/jdw5.png',
 						name: '蟠青丛翠'
 					},{
-						url: 'static/images/jdw6.jpg',
+						url: 'static/images/jdw6.png',
 						name: '秋月如镜'
 					},{
-						url: 'static/images/jdw7.jpg',
+						url: 'static/images/jdw7.png',
 						name: '神仙烧鸡'
 					},{
-						url: 'static/images/jdw8.jpg',
+						url: 'static/images/jdw8.png',
 						name: '一丛金黄'
 					},{
-						url: 'static/images/jdw9.JPG',
+						url: 'static/images/jdw9.png',
 						name: '珠联璧合'
 					}]
 					this.njlList = [{

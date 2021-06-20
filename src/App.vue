@@ -165,11 +165,14 @@
       },
       test2(){
         // document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
-        let a = {
-		      X:'116.39622',
-          Y:'39.923568'
-        }
-        document.getElementById('iframe').contentWindow.postMessage(a,'*')
+        // let a = {
+		    //   X:'116.39622',
+        //   Y:'39.923568'
+        // }
+        // document.getElementById('iframe').contentWindow.postMessage(a,'*')
+
+       // document.getElementById('iframe').contentWindow.postMessage("红色路线",'*')
+
       },
 
 			getDate() {
@@ -211,53 +214,93 @@
             this.$root.zl = true;
           }
         }
-
+        //村务管理
+        if (e === 5){
+          this.offHsxl()
+          this.offNjl()
+          this.offJczl()
+          this.offydyh()
+        }
         if (e === 4){
           if (this.$root.fnsjkd === false){
             this.test("防溺水监控点");
             this.test("山塘水库");
             this.test("泥石流");
             this.test("垃圾点位");
-
             this.$root.fnsjkd = true
           }
+          this.offHsxl()
+          this.offNjl()
+          this.offydyh()
         }
-
-        // if (e !== 4){
-        //   this.$refs.jczl.offHik()
-        // }
-
-
         //地图跳转
         if (e === 2){
+          if (!this.$root.hsxl){
             this.test("红色景点");
             this.test("红色路线");
-
-          // if (!this.$root.hsxl){
-          //   this.test("红色景点");
-          //   this.test("红色路线");
-          //   this.$root.hsxl = true;
-          // }else {
-          //   this.test("红色景点");
-          //   this.test("红色路线");
-          //   this.test("红色景点");
-          //   this.test("红色路线");
-          //   this.$root.hsxl = true;
-          // }
+            this.$root.hsxl = true;
+          }else {
+            this.test("红色景点");
+            this.test("红色路线");
+            this.test("红色景点");
+            this.test("红色路线");
+            this.$root.hsxl = true;
+          }
+          this.offNjl()
+          this.offJczl()
+          this.offydyh()
         }
         //旅游
         if (e === 3){
           if (this.$root.njl === false){
             this.test("农家乐");
             this.$root.njl = true
+          }else {
+            this.test("农家乐");
+            this.test("农家乐");
+            this.$root.hsxl = true;
           }
-
+          //关闭红色线路图层
+         this.offHsxl()
+         this.offJczl()
+         this.offydyh()
         }
-        //
-        // console.log(e === 2){
-        //
-        // }
 			},
+
+      offydyh(){
+        if (this.ydyh){
+          this.$parent.test("一户一档人口");
+          this.ydyh = false
+        }
+      },
+
+      //关闭基层治理
+      offJczl(){
+        if (this.$root.fnsjkd){
+          this.test("防溺水监控点");
+          this.test("山塘水库");
+          this.test("泥石流");
+          this.test("垃圾点位");
+          this.$root.fnsjkd = false
+        }
+      },
+      //关闭农家乐
+      offNjl(){
+        if (this.$root.njl){
+          this.test("农家乐");
+          this.$root.njl = false
+        }
+      },
+
+      //关闭红色线路图层
+      offHsxl(){
+        if (this.$root.hsxl){
+          this.test("红色景点");
+          this.test("红色路线");
+          this.$root.hsxl = false
+        }
+      },
+
 			showChild(e) {
 				if(e==6) {
 					this.isChildShow = true

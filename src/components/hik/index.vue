@@ -89,7 +89,7 @@ export default {
           this.oWebControl = null;
         }
       });
-      _this.oWebControl.oDocOffset.top = 878;
+      _this.oWebControl.oDocOffset.top = 908;
       _this.oWebControl.oDocOffset.left = 920;
     },
     // 设置窗口控制回调

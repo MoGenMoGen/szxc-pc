@@ -305,8 +305,6 @@
 	import hik2 from '@/components/hik/index2.vue'
   //山塘防溺水
   import hik5 from '@/components/hik/index5.vue'
-
-	//import xcFive from '@/components/xc_five.json'
 	export default {
 		name: 'Jczl',
 		props: {},
@@ -427,43 +425,50 @@
 					capacity: 2.21,
 					volume: 0.86,
           X:'121.491468',
-          Y:'30.052496'
+          Y:'30.052496',
+          code:'d847f05054b2409d852d94c03dd1a01d'
 				}, {
 					name: '浦沙岙山塘',
 					capacity: 5.41,
 					volume: 0.34,
           X:'121.518145',
-          Y:'30.053888'
+          Y:'30.053888',
+          code:'0941da18100840c5bdfbaf702fc53a19'
 				}, {
 					name: '三八山塘',
 					capacity: 1.67,
 					volume: 0.53,
           X:'121.510891',
-          Y:'30.056056'
+          Y:'30.056056',
+          code:'6cb1a98f609d4b9d944ee0892e749bfe'
 				}, {
 					name: '百步山塘',
 					capacity: 0.795,
 					volume: 0.10,
           X:'121.509537',
-          Y:'30.057483'
+          Y:'30.057483',
+          code:'5b551dff8d36443099f92b7c579223dd'
 				}, {
 					name: '孟家山塘',
 					capacity: 0.466,
 					volume: 0.15,
           X:'121.533866',
-          Y:'30.031042'
+          Y:'30.031042',
+          code:''
 				}, {
 					name: '史家岙山塘',
 					capacity: 0.46,
 					volume: 0.15,
           X:'121.53172',
-          Y:'30.032429'
+          Y:'30.032429',
+          code:''
 				}, {
 					name: '毛岭山塘',
 					capacity: 0.3,
 					volume: 0.02,
           X:'121.531245',
-          Y:'30.034203'
+          Y:'30.034203',
+          code:''
 				}],
 				skList: [{
 					name: '劈开猪头',
