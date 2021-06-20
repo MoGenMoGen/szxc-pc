@@ -164,15 +164,6 @@
         document.getElementById('iframe').contentWindow.postMessage(val,'*')
       },
       test2(){
-        // document.getElementById('iframe').contentWindow.postMessage("农家乐",'*')
-        // let a = {
-		    //   X:'116.39622',
-        //   Y:'39.923568'
-        // }
-        // document.getElementById('iframe').contentWindow.postMessage(a,'*')
-
-       // document.getElementById('iframe').contentWindow.postMessage("红色路线",'*')
-
       },
 
 			getDate() {
@@ -203,7 +194,7 @@
 				} else {
 					this.isActive = e
 				}
-
+        //一档一户
         if (e === 1){
           if (!this.$root.zl){
             this.test("总览");
@@ -213,27 +204,12 @@
             this.test("总览");
             this.$root.zl = true;
           }
-        }
-        //村务管理
-        if (e === 5){
           this.offHsxl()
           this.offNjl()
           this.offJczl()
           this.offydyh()
         }
-        if (e === 4){
-          if (this.$root.fnsjkd === false){
-            this.test("防溺水监控点");
-            this.test("山塘水库");
-            this.test("泥石流");
-            this.test("垃圾点位");
-            this.$root.fnsjkd = true
-          }
-          this.offHsxl()
-          this.offNjl()
-          this.offydyh()
-        }
-        //地图跳转
+        //智慧党建
         if (e === 2){
           if (!this.$root.hsxl){
             this.test("红色景点");
@@ -260,10 +236,29 @@
             this.test("农家乐");
             this.$root.hsxl = true;
           }
-          //关闭红色线路图层
-         this.offHsxl()
-         this.offJczl()
-         this.offydyh()
+          this.offHsxl()
+          this.offJczl()
+          this.offydyh()
+        }
+        //基层治理
+        if (e === 4){
+          if (this.$root.fnsjkd === false){
+            this.test("防溺水监控点");
+            this.test("山塘水库");
+            this.test("泥石流");
+            this.test("垃圾点位");
+            this.$root.fnsjkd = true
+          }
+          this.offHsxl()
+          this.offNjl()
+          this.offydyh()
+        }
+        //村务管理
+        if (e === 5){
+          this.offHsxl()
+          this.offNjl()
+          this.offJczl()
+          this.offydyh()
         }
 			},
 
