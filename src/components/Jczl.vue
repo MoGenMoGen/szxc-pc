@@ -407,7 +407,7 @@
 						title: '房屋管理'
 					}, {
 						hasUrl: false,
-						title: '地质灾害防范点'
+						title: '地质灾害监管'
 					}
 					// , {
 					//      hasUrl: false,

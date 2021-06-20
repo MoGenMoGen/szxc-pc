@@ -156,7 +156,7 @@
       <div class="box mr2" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>地质灾害防范点监控</span>
+          <span>地质灾害监控</span>
         </div>
         <!--        <hik cameraIndexCode="0"  ref="videoPlayer"  :playMode="1"></hik>-->
         <!--        <dv-scroll-board v-if="show" :config="config" style="width:400px;height:210px"/>-->
