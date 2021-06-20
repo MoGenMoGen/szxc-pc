@@ -51,7 +51,7 @@ export default {
     toUserMap() {
       if (this.ydyh === false){
         this.$parent.test("一户一档人口");
-        this.ydyh =true
+        this.ydyh = true
       }
       this.$parent.test("长胜38号")
     },
