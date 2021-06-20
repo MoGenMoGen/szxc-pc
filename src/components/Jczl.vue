@@ -65,8 +65,8 @@
 		</transition>
 		<transition name="fade">
 			<div v-show="show8">
-				<div class="pop-common pop-list">
-					<div class="pop-title"><span>垃圾分类</span></div>
+				<div class="pop-common pop-list" style="width: 460px;">
+					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>垃圾分类</span></div>
 					<div class="pop-inner-title">
 						<span style="width: 100%;text-align: left;">点位名称</span>
 					</div>
@@ -76,8 +76,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="pop-common pop-list" style="top: 620px;">
-					<div class="pop-title"><span>乡村关爱</span></div>
+				<div class="pop-common pop-list" style="width: 460px;top: 620px;">
+					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>乡村关爱</span></div>
 					<div class="pop-inner-title">
 						<span>姓名</span>
 						<span>类别</span>
@@ -1138,7 +1138,7 @@
 				} else if (e == 1) {
 					// 网格管理
           this.offHik()
-          // this.$parent.test("网格");
+          this.$parent.test("网格");
 					this.show2 = true
 					this.show = false
 					this.show3 = false
