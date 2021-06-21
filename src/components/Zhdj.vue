@@ -17,7 +17,7 @@
 					<div class="pop-title"><span>村两委班子</span></div>
 					<div class="cunwei-info">
 						<div class="cunwei-item"><span>姓名</span><span>职位</span></div>
-						<div v-for="(item,index) in cunweiList" :key="index" class="cunwei-item"><span>{{item.name}}</span><span>{{item.post}}</span></div>
+						<div v-for="(item,index) in cunweiList" :key="index" class="cunwei-item" @click="showImg(index)"><span>{{item.name}}</span><span>{{item.post}}</span></div>
 					</div>
 				</div>
 				<div class="pop-common fazhan">
@@ -43,8 +43,8 @@
 					<div class="pop-title"><span>微心愿</span></div>
 					<div class="xinyuan-info">
 						<span>微心愿</span>
-						<span>总数：5个</span>
-						<span>已领取：5个</span>
+						<span>总数：8个</span>
+						<span>已领取：8个</span>
 					</div>
 					<div class="xinyuan-title">
 						<span>许愿人</span>
@@ -57,6 +57,10 @@
 						<span>{{item.phone}}</span>
 					</div>
 				</div>
+        <div class="leader-img-box">
+          <img :src="leaderImg" v-if="showLeaderImg" style="border: 2px solid #fff;">
+          <img src="static/images/cancel.png" class="cancelLogo" @click="closeImg">
+        </div>
 			</div>
 		</transition>
 		<transition name="fade">
@@ -128,6 +132,8 @@
 				show4: false,
 				show5: false,
 				show6: false,
+        showLeaderImg: false,
+        leaderImg: '',
 				activityIndex: 0,
 				nowContent: '<p>主题：红色旅游路线党史教育活动</p><p>活动流程：</p><p>1、锋领指数测评</p><p>2、党员重温入党誓词</p><p>3、参观红色记忆展览馆以及红色线路</p><p>4、书记上党课</p>',
 				nowAdd: '九龙湖村红色展馆',
@@ -181,22 +187,28 @@
 				}],
 				cunweiList: [{
 					name: '杨勇',
-					post: '党委书记、村主任、社长'
+					post: '党委书记、村主任、社长',
+          url: 'static/images/leaderYy.png'
 				},{
 					name: '翁志元',
-					post: '党委副书记、村副主任、社管会成员'
+					post: '党委副书记、村副主任、社管会成员',
+          url: 'static/images/leaderWzy.png'
 				},{
 					name: '王丹凤',
-					post: '党委副书记'
+					post: '党委副书记',
+          url: 'static/images/leaderWdf.png'
 				},{
 					name: '黄杰锋',
-					post: '党委委员、副社长'
+					post: '党委委员、副社长',
+          url: 'static/images/leaderHjf.png'
 				},{
 					name: '朱丽红',
-					post: '党委委员、纪委书记、村监会主任'
+					post: '党委委员、纪委书记、村监会主任',
+          url: 'static/images/leaderZhl.png'
 				},{
 					name: '王佳丹',
-					post: '党委委员、村委委员、社监会主任'
+					post: '党委委员、村委委员、社监会主任',
+          url: 'static/images/leaderWjd.png'
 				}],
 				avctivityList: [{
 					title: '“颗颗元宵、浓浓深情”元宵节党日活动',
@@ -252,6 +264,21 @@
 					title: '想要米油等生活用品',
 					time: '20210730',
 					phone: '26298501'
+				},{
+					name: '沈振兴',
+					title: '独居老人希望有个电饭煲',
+					time: '20210730',
+					phone: '13116605081'
+				},{
+					name: '方建萍',
+					title: '希望有个空调扇',
+					time: '20210730',
+					phone: '15356095457'
+				},{
+					name: '徐树民',
+					title: '独居老人希望有个空调扇',
+					time: '20210730',
+					phone: '18989305404'
 				}]
 			}
 		},
@@ -260,7 +287,14 @@
 			BottomTab
 		},
 		methods: {
-
+      // 打开村委两班子图片
+      showImg(e) {
+        this.showLeaderImg = true
+        this.leaderImg = this.cunweiList[e].url
+      },
+      closeImg() {
+        this.showLeaderImg = false
+      },
       //打开关闭图层
       onOff(type,name){
         let a = {
@@ -286,6 +320,7 @@
 					this.show3 = false
 					this.show4 = false
 					this.show5 = false
+          this.showLeaderImg = false
 				} else if (e == 1) {
 				  //党员信息
 					if(this.partyInfoList[this.isPartyTab].name) {
@@ -300,6 +335,7 @@
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
+          this.showLeaderImg = false
 				} else if (e == 2) {
           this.offP()
           this.onOff("关闭图层","红色景点")
@@ -318,6 +354,7 @@
 					this.show3 = true
 					this.show4 = false
 					this.show5 = false
+          this.showLeaderImg = false
 				} else if (e == 3) {
           this.offP()
           this.onOff("关闭图层","红色景点")
@@ -327,6 +364,7 @@
 					this.show3 = false
 					this.show4 = true
 					this.show5 = false
+          this.showLeaderImg = false
 				}
 			},
 			changePartyTab(e) {
@@ -520,7 +558,24 @@
 				}
 			}
 		}
-	}
+    
+    .leader-img-box {
+      width: 600px;
+      position: absolute;
+      top: 200px;
+      left: 580px;
+      img {
+        width: 100%;
+      }
+      .cancelLogo {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: -20px;
+        right: -20px;
+      }
+    }
+  }
 
 	.activity {
 		height: 380px;

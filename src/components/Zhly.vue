@@ -77,16 +77,46 @@
 			</div> -->
 			<div class="banner-box-box" v-if="show3">
 				<div class="banner-box banner-box-right" >
-					<img :src="imgList2[1].url" class="banner-img">
-					<div class="banner-label">{{imgList2[1].des}}</div>
+					<!-- <img :src="imgList2[1].url" class="banner-img">
+					<div class="banner-label">{{imgList2[1].des}}</div> -->
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList1" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList2" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
 				</div>
 				<div class="banner-box banner-box-left" >
-					<img :src="imgList2[2].url" class="banner-img">
-					<div class="banner-label">{{imgList2[2].des}}</div>
+					<!-- <img :src="imgList2[2].url" class="banner-img">
+					<div class="banner-label">{{imgList2[2].des}}</div> -->
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList3" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList4" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
 				</div>
 				<div class="banner-box banner-box-center" >
-					<img :src="imgList2[0].url" class="banner-img">
-					<div class="banner-label">{{imgList2[0].des}}</div>
+					<!-- <img :src="imgList2[0].url" class="banner-img">
+					<div class="banner-label">{{imgList2[0].des}}</div> -->
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList5" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
+          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+          	<el-carousel-item v-for="(item,index) in gouImgList6" :key="index">
+          		<img :src="item">
+          	</el-carousel-item>
+          </el-carousel>
 				</div>
 			</div>
 
@@ -550,6 +580,12 @@
 					url: 'static/images/banner4.png',
 					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
 				}],
+        gouImgList1: ['static/images/banner1.png','static/images/banner2.png','static/images/banner3.png'],
+        gouImgList2: ['static/images/banner4.png','static/images/banner5.png','static/images/banner6.png'],
+        gouImgList3: ['static/images/banner7.png','static/images/banner8.png','static/images/banner9.png'],
+        gouImgList4: ['static/images/banner10.png','static/images/banner11.png','static/images/banner12.png'],
+        gouImgList5: ['static/images/banner13.png','static/images/banner14.png'],
+        gouImgList6: ['static/images/banner15.png','static/images/banner16.png'],
 				xingList: [{
 					url: 'static/images/hslx.png',
 					title: '旅游路线'
@@ -725,6 +761,15 @@
 					},{
 						url: 'static/images/zhu6.png',
 						name: '竹之林'
+					},{
+						url: 'static/images/zhu7.png',
+						name: '远足农家客栈'
+					},{
+						url: 'static/images/zhu8.png',
+						name: '香石小院'
+					},{
+						url: 'static/images/zhu9.png',
+						name: '栋兴生态农庄'
 					}]
 					this.njlList = [{
 						name: '又见山',
@@ -1003,6 +1048,18 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+    /deep/ .el-carousel__container {
+    	border: 2px solid #fff;
+      margin-bottom: 100px;
+    	.el-carousel__item {
+    		width: 100%;
+    		height: 100%;
+    		img {
+    			width: 100%;
+    			height: 100%;
+    		}
+    	}
+    }
 	}
 
 	.banner-box {
@@ -1012,7 +1069,6 @@
 		// transform: translate(-50%, -50%);
 		display: flex;
 		flex-direction: column;
-
 		.banner-center {
 			width: 100%;
 			// height: 333px;
