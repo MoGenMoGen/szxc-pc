@@ -37,7 +37,7 @@ export default {
 
     //关闭插件
     off() {
-      console.log("关闭")
+      console.log("关闭视频插件")
       let _this = this;
       if (_this.oWebControl != null) {
         _this.oWebControl.JS_HideWnd();
@@ -47,7 +47,7 @@ export default {
 
     //   插件初始化
     initPlugin() {
-
+      console.log("初始化插件")
       let _this = this;
       this.oWebControl = new WebControl({
         szPluginContainer: "divPlugin",

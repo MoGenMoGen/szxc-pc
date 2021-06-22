@@ -188,7 +188,7 @@
             <span><img src="static/images/NAI.png" style="vertical-align: middle;">12000</span>
           </div>
           <div class="rl-summary">
-            <span class="typeGreenLight">{{ tq.air_level }}</span>
+            <span class="typeGreenLight" style="font-size: 10px;margin-top: 10px">{{ tq.air_level }}</span>
             <span class="typeGreenLight">空气质量</span>
           </div>
         </div>

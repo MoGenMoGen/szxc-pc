@@ -597,6 +597,7 @@
 		},
 		methods: {
 			goto(item) {
+        console.log(item)
           let a = {
             X:item.X,
             Y:item.Y,

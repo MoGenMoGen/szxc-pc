@@ -1053,7 +1053,9 @@
 			toMap(item) {
         this.$refs.videoPlayer5.off()
         this.codes = item.code;
-        this.$refs.videoPlayer5.initPlugin()
+        setTimeout(() =>{
+          this.$refs.videoPlayer5.initPlugin()
+        },2000);
         let a = {
           X:item.X,
           Y:item.Y,
@@ -1075,7 +1077,10 @@
       toFns(item){
         this.$refs.videoPlayer5.off()
         this.codes = item.code;
-        this.$refs.videoPlayer5.initPlugin()
+        setTimeout(() =>{
+          this.$refs.videoPlayer5.initPlugin()
+        },2000);
+
         let a = {
           X:item.X,
           Y:item.Y,
