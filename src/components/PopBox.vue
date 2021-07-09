@@ -53,9 +53,10 @@
 		left: 35px;
 		z-index: 1998;
 		.title {
-			width: 485px;
+			width: 93.2%;
 			height: 32px;
 			background: url(../../public/static/images/line.png) no-repeat;
+			background-size: 100% 32px;
 			font-size: 20px;
 			padding: 0 20px;
 			margin: 0 auto;

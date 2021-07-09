@@ -15,13 +15,13 @@
       <span class="top-time">{{ nowTime }}</span>
     </div>
     <Summary ref="summary" v-show="isActive==0&&flag"></Summary>
-    <Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd>
-    <Zhdj ref="Zhdj" v-show="isActive==2&&flag"></Zhdj>
-    <Zhly ref="Zhly" v-show="isActive==3&&flag"></Zhly>
-    <Jczl v-show="isActive==4&&flag" ref="jczl"></Jczl>
-    <Cwgk v-show="isActive==5&&flag" ref="cwgk"></Cwgk>
+    <!-- <Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd> -->
+    <Zhdj ref="Zhdj" v-show="isActive==1&&flag"></Zhdj>
+    <Zhly ref="Zhly" v-show="isActive==2&&flag"></Zhly>
+    <Jczl v-show="isActive==3&&flag" ref="jczl"></Jczl>
+    <Cwgk v-show="isActive==4&&flag" ref="cwgk"></Cwgk>
     <!-- 显示综合指挥 -->
-    <div class="imgBtn" v-if="!flag">
+    <!-- <div class="imgBtn" v-if="!flag">
       <img style="width: 100%; height: 100%;" src="../public/static/images/sgptBg.png">
       <div class="btn btn1" @click="openPop(1)"></div>
       <div class="btn btn2" @click="openPop(2)"></div>
@@ -33,7 +33,7 @@
         <img :src="imgUrl" class="show-img" v-if="showImg">
         <img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showImg">
       </div>
-    </div>
+    </div> -->
     <iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
   </div>
 </template>
@@ -62,7 +62,7 @@ export default {
       nowTime: "",
       timer: "",
       isActive: 0,
-      tabList: ['概要', '一户一档', '智慧党建', '智慧旅游', '基层治理', '村务管理', '便民服务'],
+      tabList: ['概要', '智慧党建', '智慧旅游', '基层治理', '村务管理', '便民服务'],
       tabChildList: ['行政审批', '低保申请', '建房申请', '老兵补助', '居家养老'],
       sjList: [{
         id: 'jlw202012130102',
@@ -149,32 +149,32 @@ export default {
       return data
     },
     changeIndex(e) {
-      if (e !== 5){
+      if (e !== 4){
         this.$refs.cwgk.offShow()
       }
       if (e !== 0) {
         this.$refs.summary.offHik()
       }
-      if (e !== 4) {
+      if (e !== 3) {
         this.$refs.jczl.offHik()
       }
       if (e == 0) {
         this.$refs.summary.onLoad()
       }
-      if (e == 6) {
+      if (e == 5) {
         return
       } else {
         this.isActive = e
       }
-      //一档一户
-      if (e === 1) {
-        this.onOff("打开图层","总览")
-        this.offAllDj()
-        this.offAllLy()
-        this.offAllJc()
-      }
+      // //一档一户
+      // if (e === 1) {
+      //   this.onOff("打开图层","总览")
+      //   this.offAllDj()
+      //   this.offAllLy()
+      //   this.offAllJc()
+      // }
       //智慧党建
-      if (e === 2) {
+      if (e === 1) {
         this.onOff("打开图层","红色景点")
         this.onOff("打开图层","红色路线")
         this.offAllLy()
@@ -183,23 +183,24 @@ export default {
 
       }
       //旅游
-      if (e === 3) {
+      if (e === 2) {
         this.onOff("打开图层","农家乐")
         this.offAllDj()
         this.offAllJc()
         this.offAllYh()
       }
       //基层治理
-      if (e === 4) {
-        this.onOff("打开图层","山塘水库")
-        this.onOff("打开图层","垃圾点位")
-        this.onOff("打开图层","防溺水监控点")
+      if (e === 3) {
+        // this.onOff("打开图层","山塘水库")
+        // this.onOff("打开图层","垃圾点位")
+        // this.onOff("打开图层","防溺水监控点")
+		this.test("网格")
         this.offAllDj()
         this.offAllLy()
         this.offAllYh()
       }
       //村务管理
-      if (e === 5) {
+      if (e === 4) {
         this.offAllDj()
         this.offAllJc()
         this.offAllYh()
@@ -248,7 +249,7 @@ export default {
 
 
     showChild(e) {
-      if (e == 6) {
+      if (e == 5) {
         this.isChildShow = true
       }
     },

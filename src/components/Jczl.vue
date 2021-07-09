@@ -1,9 +1,20 @@
 <template>
 	<div>
 		<transition name="fade">
+			<div v-show="show13">
+				<div @click="toUserMap">
+					<PopBox :list="list2" style="width: 460px;"></PopBox>
+				</div>
+				<div class="search-box" style="width: 460px;">
+					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
+					<img src="static/images/search.png">
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
 			<div class="pop-box" v-show="show">
 				<div class="pop-common sttj">
-					<div class="pop-title"><span>山塘水库</span></div>
+					<div class="pop-title"><span>山塘统计</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span>山塘名称</span>
@@ -17,22 +28,8 @@
 						<span>{{ item.volume }}</span>
 					</div>
 				</div>
+				
 				<!-- <div class="pop-common sktj">
-					<div class="pop-title"><span>水库统计</span></div>
-					<div class="pop-inner-title">
-						<span>序号</span>
-						<span>水库名称</span>
-						<span>库容 <span style="font-size: 14px;">(万m³)</span></span>
-						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
-					</div>
-					<div v-for="(item,index) in skList" :key='index' class="pop-inner-item">
-						<span>{{ index + 1 }}</span>
-						<span>{{ item.name }}</span>
-						<span>{{ item.capacity }}</span>
-						<span>{{ item.volume }}</span>
-					</div>
-				</div> -->
-				<div class="pop-common sktj">
 					<div class="pop-title" style="display: flex;justify-content: space-between;">
 						<span>防溺水监控</span>
 						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox">示例</span>
@@ -49,6 +46,25 @@
 							<span style="flex: 2;">{{ item.area }}</span>
 						</div>
 					</div>
+				</div> -->
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-box" v-show="show16">
+				<div class="pop-common sktj" >
+					<div class="pop-title"><span>水库统计</span></div>
+					<div class="pop-inner-title">
+						<span>序号</span>
+						<span>水库名称</span>
+						<span>库容 <span style="font-size: 14px;">(万m³)</span></span>
+						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
+					</div>
+					<div v-for="(item,index) in skList" :key='index' class="pop-inner-item">
+						<span>{{ index + 1 }}</span>
+						<span>{{ item.name }}</span>
+						<span>{{ item.capacity }}</span>
+						<span>{{ item.volume }}</span>
+					</div>
 				</div>
 			</div>
 		</transition>
@@ -59,8 +75,7 @@
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
-					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;"
-					@click="showWg">
+					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;" @click="showWg">
 			</div>
 		</transition>
 		<transition name="fade">
@@ -98,11 +113,11 @@
 						</div>
 					</div>
 				</div>
-<!--				<div class="monitorBox"></div>-->
+				<!--				<div class="monitorBox"></div>-->
 			</div>
 		</transition>
-		 <transition name="fade">
-      <!-- <div class="xcga" v-show="show4">
+		<!-- <transition name="fade"> -->
+		<!-- <div class="xcga" v-show="show4">
         <div class="xcga-title"><span>乡村关爱</span></div>
         <div class="content">
           <div v-for="(item,index) in xcgaList" :key="index" class="item">
@@ -112,8 +127,8 @@
           </div>
         </div>
       </div> -->
-    </transition>
-    <!-- <transition name="fade">
+		<!-- </transition> -->
+		<!-- <transition name="fade">
       <div class="xcga-tab" v-show="show4">
         <div v-for="(item,index) in xcgaList" :key="index" class="item" @click="toMap(item)">
           <img :src="item.url">
@@ -122,7 +137,7 @@
     </transition> -->
 		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show5"> -->
-				<!-- <div class="pop-common fns">
+		<!-- <div class="pop-common fns">
 					<div class="pop-title"><span>报警统计</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -135,8 +150,8 @@
 						<span :style="{color:item.capacity>=15?'#D00E00':''}">{{ item.capacity }}</span>
 					</div>
 				</div> -->
-				<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
-			<!-- </div> -->
+		<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
+		<!-- </div> -->
 		<!-- </transition> -->
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show4">
@@ -153,7 +168,8 @@
 				</div>
 			</div>
 		</transition>
-		<img src="static/images/zhu2.png" v-if="showXmb" style="width: 500px;position: absolute;top: 200px;right: 35px;border: 2px solid white;">
+		<img src="static/images/zhu2.png" v-if="showXmb"
+			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;">
 		<transition name="fade">
 			<div class="pop-common pop-list" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
@@ -216,76 +232,109 @@
 				</div>
 			</div>
 		</transition>
-    <!--执法仪监控-->
-    <hik2  :codes="codes"  ref="videoPlayer2"  :playMode="1"></hik2>
-    <!-- 危房监控 山塘防溺水监控-->
-    <hik5  :codes="codes"  ref="videoPlayer5"  :playMode="1"></hik5>
+		<!--执法仪监控-->
+		<hik2 :codes="codes" ref="videoPlayer2" :playMode="1"></hik2>
+		<!-- 危房监控 山塘防溺水监控-->
+		<hik5 :codes="codes" ref="videoPlayer5" :playMode="1"></hik5>
 
 		<transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
 				v-show="show6">
 		</transition>
-		<div class="sj-pop" v-if="showP">
-			<img src="static/images/cancel.png" class="cancelLogo" @click="showP=false">
-			<div class="sj-pop-title"><span>{{ title }}</span></div>
-			<div class="sj-pop-info">
-				<span style="width: 10%;">事件编号</span>
-				<span style="width: 20%;">内容</span>
-				<span style="width: 10%;">地址</span>
-				<span style="width: 10%;">问题类型</span>
-				<span style="width: 10%;">时间分类</span>
-				<span style="width: 10%;">上报时间</span>
-				<span style="width: 10%;">职能科室/部门</span>
-				<span style="width: 10%;">办结时间</span>
-				<span style="width: 10%;">是否超时关闭</span>
-			</div>
-			<div v-for="(item,index) in sjs" :key="index" class="sj-pop-item">
-				<span style="width: 10%;">{{ item.id }}</span>
-				<span style="width: 20%;">{{ item.content }}</span>
-				<span style="width: 10%;">{{ item.add }}</span>
-				<span style="width: 10%;">{{ item.type }}</span>
-				<span style="width: 10%;">{{ item.timeType }}</span>
-				<span style="width: 10%;">{{ item.reportTime }}</span>
-				<span style="width: 10%;">{{ item.department }}</span>
-				<span style="width: 10%;">{{ item.overTime }}</span>
-				<span style="width: 10%;">{{ item.timeOut }}</span>
-			</div>
-		</div>
 		<transition name="fade">
-			<div v-show="show11">
-				<div class="pop-common dzxx">
-					<div class="pop-title"><span>泥石流监控</span></div>
-					<div class="pop-dz-title">
-						<span>监控点名称</span>
-						<span>具体位置</span>
-					</div>
-					<div class="pop-dz-box">
-						<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">
-							<span>{{item.name}}</span>
-							<span>{{item.add}}</span>
-						</div>
-					</div>
+			<div class="sj-pop" v-if="showP">
+				<!-- <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false"> -->
+				<div class="sj-pop-title"><span>事件列表</span></div>
+				<div class="sj-pop-info">
+					<!-- <span style="width: 10%;">事件编号</span> -->
+					<span style="width: 50%;">内容</span>
+					<!-- <span style="width: 10%;">地址</span> -->
+					<span style="width: 20%;">问题类型</span>
+					<!-- <span style="width: 10%;">时间分类</span> -->
+					<span style="width: 30%;">上报时间</span>
+					<!-- <span style="width: 10%;">职能科室/部门</span>
+					<span style="width: 10%;">办结时间</span>
+					<span style="width: 10%;">是否超时关闭</span> -->
 				</div>
-				<div class="pop-common dzxx" style="top: 600px;">
-					<div class="pop-title"><span>位移监测点列表</span></div>
-					<div class="pop-dz-title">
-						<span style="flex: 2;">监测点名称</span>
-						<span>位置</span>
-						<span>边坡稳定性</span>
-						<span>状态</span>
-					</div>
-					<div class="pop-dz-box">
-						<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
-							<span style="flex: 2;">{{item.name}}</span>
-							<span>{{item.add}}</span>
-							<span>{{item.stability}}</span>
-							<span>{{item.status}}</span>
-						</div>
+				<div class="sj-pop-itemBox">
+					<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click="showDetail(index)">
+						<!-- <span style="width: 10%;">{{ item.id }}</span> -->
+						<span style="width: 50%;">{{ item.content }}</span>
+						<!-- <span style="width: 10%;">{{ item.add }}</span> -->
+						<span style="width: 20%;">{{ item.type }}</span>
+						<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
+						<span style="width: 30%;">{{ item.reportTime }}</span>
+						<!-- <span style="width: 10%;">{{ item.department }}</span>
+						<span style="width: 10%;">{{ item.overTime }}</span>
+						<span style="width: 10%;">{{ item.timeOut }}</span> -->
 					</div>
 				</div>
 			</div>
 		</transition>
-		<img src="static/images/bgBtn.png" style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12" @click="toMapA">
+		<transition name="fade">
+			<div class="sj-pop" v-show="showPDetail" style="right: 570px;">
+				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
+				<div class="sj-pop-title"><span>事件编号:{{sjDetail.id}}</span></div>
+				<div class="sj-pop-box">
+					<div><span>内容:</span><span>{{sjDetail.content}}</span></div>
+					<div><span>地址:</span><span>{{sjDetail.add}}</span></div>
+					<div><span>问题类型:</span><span>{{sjDetail.type}}</span></div>
+					<div><span>时间分类:</span><span>{{sjDetail.timeType}}</span></div>
+					<div><span>上报时间:</span><span>{{sjDetail.reportTime}}</span></div>
+					<div><span>职能科室/部门:</span><span>{{sjDetail.department}}</span></div>
+					<div><span>办结时间:</span><span>{{sjDetail.overTime}}</span></div>
+					<div><span>是否超时关闭:</span><span>{{sjDetail.timeOut}}</span></div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common dzxx" v-show="show11">
+				<div class="pop-title"><span>泥石流监控</span></div>
+				<div class="pop-dz-title">
+					<span>监控点名称</span>
+					<span>具体位置</span>
+				</div>
+				<div class="pop-dz-box">
+					<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">
+						<span>{{item.name}}</span>
+						<span>{{item.add}}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common dzxx" v-show="show15">
+				<div class="pop-title"><span>位移监测点列表</span></div>
+				<div class="pop-dz-title">
+					<span style="flex: 2;">监测点名称</span>
+					<span>位置</span>
+					<span>边坡稳定性</span>
+					<span>状态</span>
+				</div>
+				<div class="pop-dz-box">
+					<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
+						<span style="flex: 2;">{{item.name}}</span>
+						<span>{{item.add}}</span>
+						<span>{{item.stability}}</span>
+						<span>{{item.status}}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
+		<img src="static/images/bgBtn.png"
+			style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12"
+			@click="toMapA">
+		<transition name="fade">
+			<div class="pop-common pop-list2" v-show="show14">
+				<div class="pop-title"><span>总览</span></div>
+				<div class="zl-box">
+					<div class="zl-item" v-for="(item,index) in zlList" :key="index" @click="getTabIndex(index)">
+						<img :src="item.url">
+						<span>{{item.name}}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -293,49 +342,73 @@
 <script>
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
-  //危房监控
+	//危房监控
 	import hik4 from '@/components/hik/index4.vue'
-  //执法监控
+	//执法监控
 	import hik2 from '@/components/hik/index2.vue'
-  //山塘防溺水
-  import hik5 from '@/components/hik/index5.vue'
+	//山塘防溺水
+	import hik5 from '@/components/hik/index5.vue'
 	export default {
 		name: 'Jczl',
 		props: {},
 		data() {
 			return {
-			  e:'',
-        codes:'',
-			  cType:"3",
+				e: '',
+				codes: '',
+				cType: "3",
 				hikShow: false,
 				fiveList: [],
 				title: '',
 				imgIndex: 0,
 				imgShow: false,
-				showP: false,
-				show: false,
-				show2: false,
+				showP: false, //四个平台事件列表
+				show: false, //山塘统计
+				show2: false, //网格背景图
 				show3: false,
 				show4: false,
 				show5: false,
 				show6: false,
 				show7: false,
 				show8: false,
-				show9: false,
-				show10: false,
-				show11: false,
-				show12: false,
+				show9: false, //危房
+				show10: false, //私人建房
+				show11: false, //泥石流监控
+				show12: false, //小地图图标，返回
+				show13: false, //一户一档
+				show14: false, //综合监管总览
+				show15: false, //位移监测点
+				show16: false, //水库统计
 				showVideo: false,
 				showXmb: false,
+				showPDetail: false, //四个平台事件详情
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
+				keyWord: '',
+				ydyh:false,
 				list: [{
 					num: 2,
 					url: 'static/images/wfsl.png',
 					title: '危房数量'
-				},{
+				}, {
 					num: 5,
 					url: 'static/images/srjf.png',
 					title: '私人建房'
+				}],
+				list2: [{
+					num: 722,
+					url: 'static/images/house.png',
+					title: '总户数'
+				}, {
+					num: 2015,
+					url: 'static/images/zrs.png',
+					title: '总人数'
+				}, {
+					num: 388,
+					url: 'static/images/zhs.png',
+					title: '租户数'
+				}, {
+					num: 111,
+					url: 'static/images/dys.png',
+					title: '党员数'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
@@ -345,7 +418,7 @@
 					num: '黄杰锋',
 					url: 'static/images/zhs.png',
 					title: '网格长'
-				},  {
+				}, {
 					num: '陈如良',
 					url: 'static/images/zhs.png',
 					title: '网格技术员'
@@ -353,6 +426,28 @@
 					num: 256,
 					url: 'static/images/zrs.png',
 					title: '网格人口'
+				}],
+				zlList: [{
+					url: 'static/images/zl-st.png',
+					name: '山塘'
+				},{
+					url: 'static/images/zl-sk.png',
+					name: '水库'
+				},{
+					url: 'static/images/zl-wf.png',
+					name: '危房'
+				},{
+					url: 'static/images/zl-srjf.png',
+					name: '私人建房'
+				},{
+					url: 'static/images/zl-nsl.png',
+					name: '地址灾害'
+				},{
+					url: 'static/images/zl-wyjcd.png',
+					name: '位移检测点'
+				},{
+					url: 'static/images/zl-sj.png',
+					name: '商家'
 				}],
 				// xcgaList: [{
 				//   num: 200,
@@ -381,88 +476,92 @@
 				// }],
 				xcgaList: [],
 				ljflList: [],
-				tabList: [{
-						hasUrl: false,
-						title: '山塘水库'
-					}, {
+				tabList: [
+					// {
+					// 	hasUrl: false,
+					// 	title: '山塘水库'
+					// }, 
+					{
 						hasUrl: false,
 						title: '网格管理'
-					}, {
-						hasUrl: false,
-						title: '四个平台'
-					}, {
+					},
+					// {
+					// 	hasUrl: false,
+					// 	title: '四个平台'
+					// }, 
+					{
 						hasUrl: false,
 						title: '综合监管'
 					}, {
 						hasUrl: false,
-						title: '线上监管'
-					}, {
-						hasUrl: false,
-						title: '房屋管理'
-					}, {
-						hasUrl: false,
-						title: '地质灾害监管'
+						title: '线上指挥'
 					}
-					// , {
-					//      hasUrl: false,
-					//      title: '四个平台'
-					//    }, {
-					//      hasUrl: false,
-					//      title: '防溺水'
-					//    }, {
-					//      hasUrl: false,
-					//      title: '线上执法'
-					//    },
+					// ,{
+					// 	hasUrl: false,
+					// 	title: '房屋管理'
+					// }, {
+					// 	hasUrl: false,
+					// 	title: '地质灾害监管'
+					// }, {
+					// 	hasUrl: false,
+					// 	title: '四个平台'
+					// }, {
+					// 	hasUrl: false,
+					// 	title: '防溺水'
+					// }, {
+					// 	hasUrl: false,
+					// 	title: '线上执法'
+					// },
 				],
 				stList: [{
 					name: '石英坎山塘',
 					capacity: 2.21,
 					volume: 0.86,
-          X:'121.491468',
-          Y:'30.052496',
-          code:'d847f05054b2409d852d94c03dd1a01d'
+					X: '121.491468',
+					Y: '30.052496',
+					code: 'd847f05054b2409d852d94c03dd1a01d'
 				}, {
 					name: '浦沙岙山塘',
 					capacity: 5.41,
 					volume: 0.34,
-          X:'121.518145',
-          Y:'30.053888',
-          code:'0941da18100840c5bdfbaf702fc53a19'
+					X: '121.518145',
+					Y: '30.053888',
+					code: '0941da18100840c5bdfbaf702fc53a19'
 				}, {
 					name: '三八山塘',
 					capacity: 1.67,
 					volume: 0.53,
-          X:'121.510891',
-          Y:'30.056056',
-          code:'6cb1a98f609d4b9d944ee0892e749bfe'
+					X: '121.510891',
+					Y: '30.056056',
+					code: '6cb1a98f609d4b9d944ee0892e749bfe'
 				}, {
 					name: '百步山塘',
 					capacity: 0.795,
 					volume: 0.10,
-          X:'121.509537',
-          Y:'30.057483',
-          code:'5b551dff8d36443099f92b7c579223dd'
+					X: '121.509537',
+					Y: '30.057483',
+					code: '5b551dff8d36443099f92b7c579223dd'
 				}, {
 					name: '孟家山塘',
 					capacity: 0.466,
 					volume: 0.15,
-          X:'121.533866',
-          Y:'30.031042',
-          code:''
+					X: '121.533866',
+					Y: '30.031042',
+					code: ''
 				}, {
 					name: '史家岙山塘',
 					capacity: 0.46,
 					volume: 0.15,
-          X:'121.53172',
-          Y:'30.032429',
-          code:''
+					X: '121.53172',
+					Y: '30.032429',
+					code: ''
 				}, {
 					name: '毛岭山塘',
 					capacity: 0.3,
 					volume: 0.02,
-          X:'121.531245',
-          Y:'30.034203',
-          code:''
+					X: '121.531245',
+					Y: '30.034203',
+					code: ''
 				}],
 				skList: [{
 					name: '劈开猪头',
@@ -472,8 +571,8 @@
 					name: '杨家',
 					capacity: 5.23,
 					volume: 0.33,
-          X:'',
-          Y:''
+					X: '',
+					Y: ''
 				}, {
 					name: '蔡家岙',
 					capacity: 2.21,
@@ -498,68 +597,69 @@
 				fnsList: [{
 					name: '十字路水库1',
 					area: '十字路水库',
-          code:'8c2b3483b5e64e3fb9e08db9f9b43c91',
-          X:'121.518536',
-          Y:'30.033852'
+					code: '8c2b3483b5e64e3fb9e08db9f9b43c91',
+					X: '121.518536',
+					Y: '30.033852'
 				}, {
 					name: '十字路水库2',
 					area: '十字路水库',
-          code: '157995b2011e4af282a454fee526c143',
-          X:'121.518536',
-          Y:'30.033852'
+					code: '157995b2011e4af282a454fee526c143',
+					X: '121.518536',
+					Y: '30.033852'
 				}, {
-          name: '十字路水库3',
-          area: '十字路水库',
-          code:'a66fe6d07d884cedbac9e2a767c15419',
-          X:'121.518583',
-          Y:'30.030125'
-        }, {
+					name: '十字路水库3',
+					area: '十字路水库',
+					code: 'a66fe6d07d884cedbac9e2a767c15419',
+					X: '121.518583',
+					Y: '30.030125'
+				}, {
 					name: '护栏点位',
 					area: '九龙湖',
-          X:'121.521459',
-          Y:'30.040815'
+					X: '121.521459',
+					Y: '30.040815'
 				}, {
 					name: '茶室',
 					area: '九龙湖',
-          X:'121.526551',
-          Y:'30.043296'
+					X: '121.526551',
+					Y: '30.043296'
 				}, {
 					name: '小木屋1',
-					area:'九龙湖',
-          X:'121.528029',
-          Y:'30.048175'
+					area: '九龙湖',
+					X: '121.528029',
+					Y: '30.048175'
 				}, {
 					name: '小木屋2',
-					area:'九龙湖',
-          X:'121.528029',
-          Y:'30.048175'
+					area: '九龙湖',
+					X: '121.528029',
+					Y: '30.048175'
 				}, {
 					name: '十字路水库4',
 					area: '十字路水库',
-          X:'121.518487',
-          Y:'30.030235'
+					X: '121.518487',
+					Y: '30.030235'
 				}, {
 					name: '十字路水库5',
 					area: '十字路水库',
-          X:'121.517373',
-          Y:'30.02835'
+					X: '121.517373',
+					Y: '30.02835'
 				}, {
 					name: '厕所点',
 					area: '九龙湖',
-          X:'121.504603',
-          Y:'30.023054'
+					X: '121.504603',
+					Y: '30.023054'
 				}, {
 					name: '文溪村三圣殿水库',
 					area: '三圣殿水库',
-          X:'121.506055',
-          Y:'30.021086'
+					X: '121.506055',
+					Y: '30.021086'
 				}, {
 					name: '文溪村小洞岙水库',
 					area: '小洞岙水库',
-          X:'121.517199',
-          Y:'30.028391'
+					X: '121.517199',
+					Y: '30.028391'
 				}],
 				sjs: [],
+				sjDetail: [],
 				sjList: [{
 					id: 'JLW202106110301',
 					content: '走访低保户姚国庆家庭，了解日常生活情况',
@@ -866,73 +966,73 @@
 				jkList: [{
 					name: '九龙湖村执法001',
 					area: '长胜',
-          code:"2c3a354237f149b980f4b4d19697a35f"
+					code: "2c3a354237f149b980f4b4d19697a35f"
 				}, {
 					name: '九龙湖村执法002',
 					area: '横溪',
-          code:"e75e11e3598c4868a0e43ae1aa88f44c"
+					code: "e75e11e3598c4868a0e43ae1aa88f44c"
 				}],
 				qyList: [{
 					name: '昱如副食品店',
-          X:'121.510998',
-          Y:'30.052114'
-				},{
+					X: '121.510998',
+					Y: '30.052114'
+				}, {
 					name: '鼎力紧定螺钉有限公司'
-				},{
+				}, {
 					name: '镇海互感器厂有限公司'
-				},{
+				}, {
 					name: '镇海九龙电器成套厂'
-				},{
+				}, {
 					name: '镇海叶大塑料制品厂'
-				},{
+				}, {
 					name: '龙居农家乐'
-				},{
+				}, {
 					name: '月波农家菜馆'
-				},{
+				}, {
 					name: '横溪人家'
-				},{
+				}, {
 					name: '龙源农家乐'
-				},{
+				}, {
 					name: '竹之林农家乐'
-				},{
+				}, {
 					name: '东琴农家乐'
-				},{
+				}, {
 					name: '项珍农家乐'
-				},{
+				}, {
 					name: '阿飞农家乐'
-				},{
+				}, {
 					name: '雅明农家乐'
-				},{
+				}, {
 					name: '九龙源农家乐'
-				},{
+				}, {
 					name: '食为天农家乐'
-				},{
+				}, {
 					name: '山里山农家乐'
-				},{
+				}, {
 					name: '赞来农家乐'
-				},{
+				}, {
 					name: '闻溪阁烧烤园'
-				},{
+				}, {
 					name: '青青农家菜馆'
-				},{
+				}, {
 					name: '食泉农家菜馆'
-				},{
+				}, {
 					name: '竹林人家农家菜馆'
 				}],
 				wfList: [{
 					name: '陈雪宝',
 					area: '九龙湖村',
 					time: '1949年以前',
-          X:'121.502239',
-          Y:'30.051777',
-          code:'4a9e00a6ae8b4517b4afe50d8aa34608'
-				},{
+					X: '121.502239',
+					Y: '30.051777',
+					code: '4a9e00a6ae8b4517b4afe50d8aa34608'
+				}, {
 					name: '沈红雷',
 					area: '九龙湖村',
 					time: '1960-1969年',
-          X:'121.536912',
-          Y:'30.035209',
-          code:'f3a87f55eb144defadab4e02accaf6ad'
+					X: '121.536912',
+					Y: '30.035209',
+					code: 'f3a87f55eb144defadab4e02accaf6ad'
 				}],
 				srjfList: [{
 					name: '周国栋',
@@ -942,7 +1042,7 @@
 					newAdd: '村庄集镇规划区',
 					schedule: '计划申请',
 					sort: '困难户'
-				},{
+				}, {
 					name: '邱世云',
 					num: 3,
 					solve: '无',
@@ -950,7 +1050,7 @@
 					newAdd: '村庄集镇规划区',
 					schedule: '计划申请',
 					sort: '无房户'
-				},{
+				}, {
 					name: '叶敏华',
 					num: 4,
 					solve: '无',
@@ -958,7 +1058,7 @@
 					newAdd: '村庄集镇规划区',
 					schedule: '计划申请',
 					sort: '无房户'
-				},{
+				}, {
 					name: '项舜',
 					num: 1,
 					solve: '无',
@@ -966,7 +1066,7 @@
 					newAdd: '村庄集镇规划区',
 					schedule: '计划申请',
 					sort: '无房户'
-				},{
+				}, {
 					name: '陈雪宝',
 					num: 2,
 					solve: '村集体回购',
@@ -978,41 +1078,41 @@
 				dzList: [{
 					name: '泥石流监控01',
 					add: '原舍马路边',
-          X:'121.505709',
-          Y:'30.052134',
-          code:'f7fb34bda82b4a1e90c86f381d59af73'
-				},{
+					X: '121.505709',
+					Y: '30.052134',
+					code: 'f7fb34bda82b4a1e90c86f381d59af73'
+				}, {
 					name: '泥石流监控02',
 					add: '横溪中间河道',
-          X:'121.502218',
-          Y:'30.051116',
-          code:'f1bba68174b8401fa4dd5e22440ae1b6'
-        },{
+					X: '121.502218',
+					Y: '30.051116',
+					code: 'f1bba68174b8401fa4dd5e22440ae1b6'
+				}, {
 					name: '泥石流监控03',
 					add: '竹林河道边',
-          X:'121.493231',
-          Y:'30.051141',
-          code:'f7fb34bda82b4a1e90c86f381d59af73'
-        },{
+					X: '121.493231',
+					Y: '30.051141',
+					code: 'f7fb34bda82b4a1e90c86f381d59af73'
+				}, {
 					name: '泥石流监控04',
 					add: '东沟泥石流',
-          X:'121.508844',
-          Y:'30.051501',
-          code:'22252acaaaeb47b0887cd0a294a0685b'
+					X: '121.508844',
+					Y: '30.051501',
+					code: '22252acaaaeb47b0887cd0a294a0685b'
 
-        },{
+				}, {
 					name: '泥石流监控05',
 					add: '西沟泥石流',
-          X:'121.506749',
-          Y:'30.051438',
-          code:'f51d56c92b474494ad262aa67c9c13b2'
-        }],
+					X: '121.506749',
+					Y: '30.051438',
+					code: 'f51d56c92b474494ad262aa67c9c13b2'
+				}],
 				wyList: [{
 					name: '横溪地质防范点01',
 					add: '东沟',
 					stability: '-',
 					status: '安装中'
-				},{
+				}, {
 					name: '横溪地质防范点01',
 					add: '东沟',
 					stability: '-',
@@ -1023,66 +1123,70 @@
 		components: {
 			PopBox,
 			BottomTab,
-			hik2,hik4,hik5
+			hik2,
+			hik4,
+			hik5
 
 		},
 		mounted() {
-			this.show = true
+			this.show13 = true
+			this.show2 = true
+			this.showP = true
 		},
 		methods: {
-      //打开关闭图层
-      onOff(type,name){
-        let a = {
-          type: type,
-          name: name
-        }
-        this.$parent.test(a);
-      },
+			//打开关闭图层
+			onOff(type, name) {
+				let a = {
+					type: type,
+					name: name
+				}
+				this.$parent.test(a);
+			},
 			offHik() {
 				this.$refs.videoPlayer2.off()
 				this.$refs.videoPlayer5.off()
 			},
-      //点击小图还原
-      toMapA(){
-			  this.show2 = true
-        this.show12 = false
-        this.show8 = false
-        this.$parent.test("网格");
-			  this.offHik()
-      },
-			toMap(item) {
-        this.$refs.videoPlayer5.off()
-        this.codes = item.code;
-        this.$refs.videoPlayer5.initPlugin()
-        let a = {
-          X:item.X,
-          Y:item.Y,
-        }
-        this.$parent.test(a);
-        if (this.e == 1){
-          this.show12 = true
-        }
-
-        this.show2 = false
+			//点击小图还原
+			toMapA() {
+				this.show2 = true
+				this.show12 = false
+				this.show8 = false
+				this.$parent.test("网格");
+				this.offHik()
 			},
-      //点击执法仪看监控
-      toZf(item){
-        this.$refs.videoPlayer2.off()
-        this.codes = item.code;
-        this.$refs.videoPlayer2.initPlugin()
-      },
-      //防溺水
-      toFns(item){
-        this.$refs.videoPlayer5.off()
-        this.codes = item.code;
-        this.$refs.videoPlayer5.initPlugin()
-        let a = {
-          X:item.X,
-          Y:item.Y,
-        }
-        this.$parent.test(a);
+			toMap(item) {
+				this.$refs.videoPlayer5.off()
+				this.codes = item.code;
+				this.$refs.videoPlayer5.initPlugin()
+				let a = {
+					X: item.X,
+					Y: item.Y,
+				}
+				this.$parent.test(a);
+				if (this.e == 0) {
+					this.show12 = true
+				}
 
-      },
+				this.show2 = false
+			},
+			//点击执法仪看监控
+			toZf(item) {
+				this.$refs.videoPlayer2.off()
+				this.codes = item.code;
+				this.$refs.videoPlayer2.initPlugin()
+			},
+			//防溺水
+			toFns(item) {
+				this.$refs.videoPlayer5.off()
+				this.codes = item.code;
+				this.$refs.videoPlayer5.initPlugin()
+				let a = {
+					X: item.X,
+					Y: item.Y,
+				}
+				this.$parent.test(a);
+
+			},
 
 			onShowP(e) {
 				//一级
@@ -1103,42 +1207,41 @@
 				this.showP = true
 			},
 			getIndex(e) {
-			  this.e = e;
+				this.e = e;
+				// if (e == 0) {
+				// 	// 水库管理
+				// 	this.onOff("打开图层", "防溺水监控点")
+				// 	this.onOff("打开图层", "山塘水库")
+
+				// 	this.onOff("关闭图层", "综合监管")
+				// 	// this.onOff("关闭图层","垃圾点位")
+				// 	this.onOff("关闭图层", "危房")
+				// 	this.onOff("关闭图层", "泥石流")
+
+				// 	this.offHik()
+				// 	this.show2 = false
+				// 	this.show3 = false
+				// 	this.show = true
+				// 	this.show4 = false
+				// 	this.show5 = false
+				// 	this.show6 = false
+				// 	this.show7 = false
+				// 	this.show8 = false
+				// 	this.show9 = false
+				// 	this.show10 = false
+				// 	this.show11 = false
+				// 	this.show12 = false
+				// 	this.showXmb = false
+				// } else 
 				if (e == 0) {
-					// 水库管理
-          this.onOff("打开图层","防溺水监控点")
-          this.onOff("打开图层","山塘水库")
-
-          this.onOff("关闭图层","综合监管")
-          // this.onOff("关闭图层","垃圾点位")
-          this.onOff("关闭图层","危房")
-          this.onOff("关闭图层","泥石流")
-
-          this.offHik()
-					this.show2 = false
-					this.show3 = false
-					this.show = true
-					this.show4 = false
-					this.show5 = false
-					this.show6 = false
-					this.show7 = false
-					this.show8 = false
-					this.show9 = false
-					this.show10 = false
-					this.show11 = false
-					this.show12 = false
-					this.showXmb = false
-				} else if (e == 1) {
 					// 网格管理
-          this.offHik()
-
-
-          this.onOff("关闭图层","山塘水库")
-          this.onOff("关闭图层","综合监管")
-          this.onOff("关闭图层","危房")
-          this.onOff("关闭图层","防溺水监控点")
-          this.onOff("关闭图层","泥石流")
-          this.$parent.test("网格");
+					this.offHik()
+					this.onOff("关闭图层", "山塘水库")
+					this.onOff("关闭图层", "综合监管")
+					this.onOff("关闭图层", "危房")
+					this.onOff("关闭图层", "防溺水监控点")
+					this.onOff("关闭图层", "泥石流")
+					this.$parent.test("网格");
 					this.show2 = true
 					this.show = false
 					this.show3 = false
@@ -1150,37 +1253,45 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show13 = true
+					this.show14 = false
+					this.show15 = false
+					this.show16 = false
 					this.showXmb = false
-				} else if (e == 2) {
-					// 4个平台
-          this.offHik()
+					this.showP = true
+					this.showPDetail = false
+				}
+				// else if (e == 2) {
+				// 	// 4个平台
+				// 	this.offHik()
 
+				// 	this.show2 = false
+				// 	this.show = false
+				// 	this.show3 = false
+				// 	this.show4 = false
+				// 	this.show5 = false
+				// 	this.show6 = true
+				// 	this.show7 = false
+				// 	this.show8 = false
+				// 	this.show9 = false
+				// 	this.show10 = false
+				// 	this.show11 = false
+				// 	this.show12 = false
+				// 	this.showXmb = false
+				// } 
+				else if (e == 1) {
+					// 综合监管
+					this.offHik()
+					this.onOff("打开图层", "综合监管")
+					this.onOff("关闭图层", "山塘水库")
+					// this.onOff("关闭图层","垃圾点位")
+					this.onOff("关闭图层", "危房")
+					this.onOff("关闭图层", "防溺水监控点")
+					this.onOff("关闭图层", "泥石流")
 					this.show2 = false
 					this.show = false
 					this.show3 = false
 					this.show4 = false
-					this.show5 = false
-					this.show6 = true
-					this.show7 = false
-					this.show8 = false
-					this.show9 = false
-					this.show10 = false
-					this.show11 = false
-					this.show12 = false
-					this.showXmb = false
-				} else if (e == 3) {
-					// 综合监管
-          this.offHik()
-          this.onOff("打开图层","综合监管")
-          this.onOff("关闭图层","山塘水库")
-          // this.onOff("关闭图层","垃圾点位")
-          this.onOff("关闭图层","危房")
-          this.onOff("关闭图层","防溺水监控点")
-          this.onOff("关闭图层","泥石流")
-					this.show2 = false
-					this.show = false
-					this.show3 = false
-					this.show4 = true
 					this.show5 = false
 					this.show6 = false
 					this.show7 = false
@@ -1189,8 +1300,14 @@
 					this.show10 = false
 					this.show11 = false
 					this.show12 = false
+					this.show13 = false
+					this.show14 = true
+					this.show15 = false
+					this.show16 = false
 					this.showXmb = false
-				} else if (e == 4) {
+					this.showP = false
+					this.showPDetail = false
+				} else if (e == 2) {
 					// 线上执法
 					this.offHik()
 					this.show2 = false
@@ -1205,52 +1322,132 @@
 					this.show10 = false
 					this.show11 = false
 					this.show12 = false
+					this.show13 = false
+					this.show14 = false
+					this.show15 = false
+					this.show16 = false
 					this.showXmb = false
-				} else if (e==5) {
-					// 危房管理
-          this.onOff("打开图层","危房")
-          this.onOff("关闭图层","防溺水监控点")
-          this.onOff("关闭图层","泥石流")
-          this.onOff("关闭图层","综合监管")
-          this.onOff("关闭图层","山塘水库")
-          // this.onOff("关闭图层","垃圾点位")
+					this.showP = false
+					this.showPDetail = false
+				}
+				// else if (e == 5) {
+				// 	// 危房管理
+				// 	this.onOff("打开图层", "危房")
+				// 	this.onOff("关闭图层", "防溺水监控点")
+				// 	this.onOff("关闭图层", "泥石流")
+				// 	this.onOff("关闭图层", "综合监管")
+				// 	this.onOff("关闭图层", "山塘水库")
+				// 	// this.onOff("关闭图层","垃圾点位")
 
-          this.offHik()
-					this.show2 = false
-					this.show = false
-					this.show3 = false
+				// 	this.offHik()
+				// 	this.show2 = false
+				// 	this.show = false
+				// 	this.show3 = false
+				// 	this.show4 = false
+				// 	this.show5 = false
+				// 	this.show6 = false
+				// 	this.show7 = true
+				// 	this.show8 = false
+				// 	this.show9 = true
+				// 	this.show10 = false
+				// 	this.show11 = false
+				// 	this.show12 = false
+				// 	this.showXmb = false
+				// } else if (e == 6) {
+				// 	this.onOff("打开图层", "防溺水监控点")
+				// 	this.onOff("打开图层", "泥石流")
+				// 	this.onOff("关闭图层", "危房")
+				// 	this.onOff("关闭图层", "综合监管")
+				// 	this.onOff("关闭图层", "山塘水库")
+				// 	// this.onOff("关闭图层","垃圾点位")
+
+				// 	this.offHik()
+				// 	// 地质灾害防范点
+				// 	this.show2 = false
+				// 	this.show = false
+				// 	this.show3 = false
+				// 	this.show4 = false
+				// 	this.show5 = false
+				// 	this.show6 = false
+				// 	this.show7 = false
+				// 	this.show8 = false
+				// 	this.show9 = false
+				// 	this.show10 = false
+				// 	this.show11 = true
+				// 	this.show12 = false
+				// 	this.showXmb = false
+				// }
+			},
+			getTabIndex(e) {
+				if(e==0) {
+					// 山塘列表
+					this.show = true
 					this.show4 = false
-					this.show5 = false
-					this.show6 = false
-					this.show7 = true
-					this.show8 = false
+					this.show9 = false
+					this.show10 = false
+					this.show11 = false
+					this.show15 = false
+					this.show16 = false
+					this.showXmb = false
+				} else if (e==1) {
+					// 水库列表
+					this.show = false
+					this.show4 = false
+					this.show9 = false
+					this.show10 = false
+					this.show11 = false
+					this.show15 = false
+					this.show16 = true
+					this.showXmb = false
+				} else if (e==2) {
+					// 危房列表
+					this.show = false
+					this.show4 = false
 					this.show9 = true
 					this.show10 = false
 					this.show11 = false
-					this.show12 = false
+					this.show15 = false
+					this.show16 = false
 					this.showXmb = false
-				} else if (e == 6) {
-          this.onOff("打开图层","防溺水监控点")
-          this.onOff("打开图层","泥石流")
-          this.onOff("关闭图层","危房")
-          this.onOff("关闭图层","综合监管")
-          this.onOff("关闭图层","山塘水库")
-          // this.onOff("关闭图层","垃圾点位")
-
-          this.offHik()
-					// 地质灾害防范点
-					this.show2 = false
+				} else if (e==3) {
+					// 私人建房列表
 					this.show = false
-					this.show3 = false
 					this.show4 = false
-					this.show5 = false
-					this.show6 = false
-					this.show7 = false
-					this.show8 = false
+					this.show9 = false
+					this.show10 = true
+					this.show11 = false
+					this.show15 = false
+					this.show16 = false
+					this.showXmb = false
+				} else if (e==4) {
+					// 地质灾害列表
+					this.show = false
+					this.show4 = false
 					this.show9 = false
 					this.show10 = false
 					this.show11 = true
-					this.show12 = false
+					this.show15 = false
+					this.show16 = false
+					this.showXmb = false
+				} else if (e==5) {
+					// 位移监测点列表
+					this.show = false
+					this.show4 = false
+					this.show9 = false
+					this.show10 = false
+					this.show11 = false
+					this.show15 = true
+					this.show16 = false
+					this.showXmb = false
+				} else if (e==6) {
+					// 商家列表
+					this.show = false
+					this.show4 = true
+					this.show9 = false
+					this.show10 = false
+					this.show11 = false
+					this.show15 = false
+					this.show16 = false
 					this.showXmb = false
 				}
 			},
@@ -1263,304 +1460,305 @@
 			},
 			showWg(e) {
 
-				let x = e.x,y = e.y
-				console.log(e.x,e.y)
-				if(510<x&&x<660 && 200<y&&y<370){
-          console.log('横溪冷水井，后厢','左')
+				let x = e.x,
+					y = e.y
+				console.log(e.x, e.y)
+				if (510 < x && x < 660 && 200 < y && y < 370) {
+					console.log('横溪冷水井，后厢', '左')
 					this.show8 = true
-          this.wgList[0].num = '横溪冷水井、后厢'
-          this.wgList[1].num = '王佳丹'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 97
-          this.ljflList = [{
-          	name: '横溪垃圾投放点03',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          }]
-          this.xcgaList = [{
-          	name: '傅正虎',
-          	type: '低保家庭'
-          },{
-          	name: '王世辉',
-          	type: '低保家庭'
-          },{
-            name: '钱佩君',
-            type: '残障人员'
-          },{
-            name: '钱罗囡',
-            type: '残障人员'
-          },{
-            name: '钱丙尧',
-            type: '残障人员'
-          },{
-            name: '王世辉',
-            type: '残障人员'
-          },{
-            name: '茅夏英',
-            type: '残障人员'
-          },{
-            name: '王松根',
-            type: '残障人员'
-          },{
-            name: '王龙振',
-            type: '残障人员'
-          },{
-            name: '王纪南',
-            type: '计生特殊家庭'
-          },{
-            name: '裘爱善',
-            type: '计生特殊家庭'
-          }]
-				} else if (510<x&&x<760 && 140<y&&y<180) {
-          console.log('横溪钱家，大同高屋，大圆地','左上')
+					this.wgList[0].num = '横溪冷水井、后厢'
+					this.wgList[1].num = '王佳丹'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 97
+					this.ljflList = [{
+						name: '横溪垃圾投放点03',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}]
+					this.xcgaList = [{
+						name: '傅正虎',
+						type: '低保家庭'
+					}, {
+						name: '王世辉',
+						type: '低保家庭'
+					}, {
+						name: '钱佩君',
+						type: '残障人员'
+					}, {
+						name: '钱罗囡',
+						type: '残障人员'
+					}, {
+						name: '钱丙尧',
+						type: '残障人员'
+					}, {
+						name: '王世辉',
+						type: '残障人员'
+					}, {
+						name: '茅夏英',
+						type: '残障人员'
+					}, {
+						name: '王松根',
+						type: '残障人员'
+					}, {
+						name: '王龙振',
+						type: '残障人员'
+					}, {
+						name: '王纪南',
+						type: '计生特殊家庭'
+					}, {
+						name: '裘爱善',
+						type: '计生特殊家庭'
+					}]
+				} else if (510 < x && x < 760 && 140 < y && y < 180) {
+					console.log('横溪钱家，大同高屋，大圆地', '左上')
 					this.show8 = true
-          this.wgList[0].num = '横溪钱家、大同高屋、大园地'
-          this.wgList[1].num = '钱亮英'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 231
-          this.ljflList = [{
-          	name: '横溪垃圾投放点02',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          },{
-          	name: '横溪垃圾投放点04',
-            code:'21b943aa87254d25b10d525c8c64c91c',
-            X:'121.540393',
-            Y:'30.034262'
-          },{
-          	name: '横溪垃圾投放点05',
-            code:'',
-            X:'121.541797',
-            Y:'30.035759'
-          }]
-          this.xcgaList = [{
-          	name: '王海明',
-          	type: '计生特殊家庭'
-          },{
-          	name: '陆雪珍',
-          	type: '计生特殊家庭'
-          },{
-          	name: '钱德',
-          	type: '计生特殊家庭'
-          },{
-            name: '王玲娣',
-            type: '残障人员'
-          },{
-            name: '胡君芬',
-            type: '残障人员'
-          },{
-            name: '王琼翠',
-            type: '残障人员'
-          },{
-            name: '方建萍',
-            type: '残障人员'
-          },{
-            name: '姚少春',
-            type: '残障人员'
-          },{
-            name: '周佩佩',
-            type: '残障人员'
-          }]
-				} else if (540<x&&x<690 && 500<y&&y<750) {
-          console.log('横溪坝下桥头','左中')
+					this.wgList[0].num = '横溪钱家、大同高屋、大园地'
+					this.wgList[1].num = '钱亮英'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 231
+					this.ljflList = [{
+						name: '横溪垃圾投放点02',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}, {
+						name: '横溪垃圾投放点04',
+						code: '21b943aa87254d25b10d525c8c64c91c',
+						X: '121.540393',
+						Y: '30.034262'
+					}, {
+						name: '横溪垃圾投放点05',
+						code: '',
+						X: '121.541797',
+						Y: '30.035759'
+					}]
+					this.xcgaList = [{
+						name: '王海明',
+						type: '计生特殊家庭'
+					}, {
+						name: '陆雪珍',
+						type: '计生特殊家庭'
+					}, {
+						name: '钱德',
+						type: '计生特殊家庭'
+					}, {
+						name: '王玲娣',
+						type: '残障人员'
+					}, {
+						name: '胡君芬',
+						type: '残障人员'
+					}, {
+						name: '王琼翠',
+						type: '残障人员'
+					}, {
+						name: '方建萍',
+						type: '残障人员'
+					}, {
+						name: '姚少春',
+						type: '残障人员'
+					}, {
+						name: '周佩佩',
+						type: '残障人员'
+					}]
+				} else if (540 < x && x < 690 && 500 < y && y < 750) {
+					console.log('横溪坝下桥头', '左中')
 					this.show8 = true
-          this.wgList[0].num = '横溪坝下、桥头'
-          this.wgList[1].num = '徐佳妙'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 109
-          this.ljflList = [{
-          	name: '横溪垃圾投放点01',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          }]
-          this.xcgaList = [{
-            name: '王昌根',
-            type: '残障人员'
-          },{
-            name: '叶伟国',
-            type: '残障人员'
-          },{
-            name: '胡甫南',
-            type: '残障人员'
-          },{
-            name: '王国雄',
-            type: '残障人员'
-          },{
-            name: '王云南',
-            type: '残障人员'
-          },{
-            name: '王瑞江',
-            type: '残障人员'
-          },{
-            name: '王惠岳',
-            type: '残障人员'
-          }]
-				} else if (760<x&&x<1100 && 310<y&&y<740) {
-          console.log('横溪田中央，墙头，长坂地','左右')
+					this.wgList[0].num = '横溪坝下、桥头'
+					this.wgList[1].num = '徐佳妙'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 109
+					this.ljflList = [{
+						name: '横溪垃圾投放点01',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}]
+					this.xcgaList = [{
+						name: '王昌根',
+						type: '残障人员'
+					}, {
+						name: '叶伟国',
+						type: '残障人员'
+					}, {
+						name: '胡甫南',
+						type: '残障人员'
+					}, {
+						name: '王国雄',
+						type: '残障人员'
+					}, {
+						name: '王云南',
+						type: '残障人员'
+					}, {
+						name: '王瑞江',
+						type: '残障人员'
+					}, {
+						name: '王惠岳',
+						type: '残障人员'
+					}]
+				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
+					console.log('横溪田中央，墙头，长坂地', '左右')
 					this.show8 = true
-          this.wgList[0].num = '横溪田中央、墙头、长坂地'
-          this.wgList[1].num = '翁志元'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 226
-          this.ljflList = [{
-          	name: '',
-            code:'',
-            X:'',
-            Y:''
-          }] //没监控，占位用，防止循环报错
-          this.xcgaList = [{
-            name: '钱米达',
-            type: '残障人员'
-          },{
-            name: '陈惠芬',
-            type: '残障人员'
-          },{
-            name: '钱其囡',
-            type: '残障人员'
-          }]
-				} else if (1280<x&&x<1420 && 690<y&&y<970) {
-          console.log('长胜毛岭、孟家','右左')
+					this.wgList[0].num = '横溪田中央、墙头、长坂地'
+					this.wgList[1].num = '翁志元'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 226
+					this.ljflList = [{
+						name: '',
+						code: '',
+						X: '',
+						Y: ''
+					}] //没监控，占位用，防止循环报错
+					this.xcgaList = [{
+						name: '钱米达',
+						type: '残障人员'
+					}, {
+						name: '陈惠芬',
+						type: '残障人员'
+					}, {
+						name: '钱其囡',
+						type: '残障人员'
+					}]
+				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
+					console.log('长胜毛岭、孟家', '右左')
 					this.show8 = true
-          this.wgList[0].num = '长胜毛岭、孟家'
-          this.wgList[1].num = '沈裕琪'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 159
-          this.ljflList = [{
-          	name: '长胜垃圾投放点09',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          },{
-          	name: '长胜垃圾投放点10',
-            code:'21b943aa87254d25b10d525c8c64c91c',
-            X:'121.540393',
-            Y:'30.034262'
-          }]
-          this.xcgaList = [{
-            name: '沈仁平',
-            type: '残障人员'
-          },{
-            name: '严晓芬',
-            type: '残障人员'
-          },{
-            name: '陈根才',
-            type: '残障人员'
-          },{
-            name: '滕学增',
-            type: '残障人员'
-          },{
-            name: '周爱静',
-            type: '残障人员'
-          },{
-            name: '倪道友',
-            type: '残障人员'
-          },{
-            name: '滕学行',
-            type: '残障人员'
-          },{
-            name: '陈慧明',
-            type: '残障人员'
-          },{
-            name: '王品岳',
-            type: '残障人员'
-          },{
-            name: '吴阿凤',
-            type: '残障人员'
-          },{
-            name: '黄华棠',
-            type: '残障人员'
-          }]
-				} else if (1450<x&&x<1580 && 740<y&&y<780) {
-          console.log('长胜长桥头','右中上')
+					this.wgList[0].num = '长胜毛岭、孟家'
+					this.wgList[1].num = '沈裕琪'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 159
+					this.ljflList = [{
+						name: '长胜垃圾投放点09',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}, {
+						name: '长胜垃圾投放点10',
+						code: '21b943aa87254d25b10d525c8c64c91c',
+						X: '121.540393',
+						Y: '30.034262'
+					}]
+					this.xcgaList = [{
+						name: '沈仁平',
+						type: '残障人员'
+					}, {
+						name: '严晓芬',
+						type: '残障人员'
+					}, {
+						name: '陈根才',
+						type: '残障人员'
+					}, {
+						name: '滕学增',
+						type: '残障人员'
+					}, {
+						name: '周爱静',
+						type: '残障人员'
+					}, {
+						name: '倪道友',
+						type: '残障人员'
+					}, {
+						name: '滕学行',
+						type: '残障人员'
+					}, {
+						name: '陈慧明',
+						type: '残障人员'
+					}, {
+						name: '王品岳',
+						type: '残障人员'
+					}, {
+						name: '吴阿凤',
+						type: '残障人员'
+					}, {
+						name: '黄华棠',
+						type: '残障人员'
+					}]
+				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
+					console.log('长胜长桥头', '右中上')
 					this.show8 = true
-          this.wgList[0].num = '长胜长桥头'
-          this.wgList[1].num = '邱雪君'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 147
-          this.ljflList = [{
-          	name: '长胜垃圾投放点06',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          }]
-          this.xcgaList = [{
-            name: '戴文龙',
-            type: '残障人员'
-          },{
-            name: '严静梅',
-            type: '残障人员'
-          },{
-            name: '沈惠祥',
-            type: '残障人员'
-          },{
-            name: '翁东菊',
-            type: '残障人员'
-          },{
-            name: '沈松文',
-            type: '残障人员'
-          }]
-				} else if (1450<x&&x<1580 && 790<y&&y<950) {
-          console.log('长胜周家巷','右中下')
+					this.wgList[0].num = '长胜长桥头'
+					this.wgList[1].num = '邱雪君'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 147
+					this.ljflList = [{
+						name: '长胜垃圾投放点06',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}]
+					this.xcgaList = [{
+						name: '戴文龙',
+						type: '残障人员'
+					}, {
+						name: '严静梅',
+						type: '残障人员'
+					}, {
+						name: '沈惠祥',
+						type: '残障人员'
+					}, {
+						name: '翁东菊',
+						type: '残障人员'
+					}, {
+						name: '沈松文',
+						type: '残障人员'
+					}]
+				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
+					console.log('长胜周家巷', '右中下')
 					this.show8 = true
-          this.wgList[0].num = '长胜周家巷'
-          this.wgList[1].num = '朱丽红'
-          this.wgList[2].num = '陈如良'
-          this.wgList[3].num = 146
-          this.ljflList = [{
-          	name: '长胜垃圾投放点05',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-          },{
-          	name: '长胜垃圾投放点07',
-            code:'21b943aa87254d25b10d525c8c64c91c',
-            X:'121.540393',
-            Y:'30.034262'
-          },{
-          	name: '长胜垃圾投放点08',
-            code:'',
-            X:'121.541797',
-            Y:'30.035759'
-          }]
-          this.xcgaList = [{
-            name: '周裕康',
-            type: '残障人员'
-          },{
-            name: '倪仁梅',
-            type: '残障人员'
-          },{
-            name: '周家强',
-            type: '残障人员'
-          },{
-            name: '胡幼丰',
-            type: '残障人员'
-          },{
-            name: '费爱娥',
-            type: '残障人员'
-          },{
-            name: '陈金花',
-            type: '残障人员'
-          },{
-            name: '戎巧芬',
-            type: '残障人员'
-          },{
-            name: '陈依芬',
-            type: '残障人员'
-          },{
-            name: '沈爱珍',
-            type: '残障人员'
-          },{
-            name: '余静国',
-            type: '残障人员'
-          },{
-            name: '周家贤',
-            type: '残障人员'
-          }]
-				} else if (1590<x&&x<1750 && 580<y&&y<900) {
-          console.log('长胜田央沈','右')
+					this.wgList[0].num = '长胜周家巷'
+					this.wgList[1].num = '朱丽红'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 146
+					this.ljflList = [{
+						name: '长胜垃圾投放点05',
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}, {
+						name: '长胜垃圾投放点07',
+						code: '21b943aa87254d25b10d525c8c64c91c',
+						X: '121.540393',
+						Y: '30.034262'
+					}, {
+						name: '长胜垃圾投放点08',
+						code: '',
+						X: '121.541797',
+						Y: '30.035759'
+					}]
+					this.xcgaList = [{
+						name: '周裕康',
+						type: '残障人员'
+					}, {
+						name: '倪仁梅',
+						type: '残障人员'
+					}, {
+						name: '周家强',
+						type: '残障人员'
+					}, {
+						name: '胡幼丰',
+						type: '残障人员'
+					}, {
+						name: '费爱娥',
+						type: '残障人员'
+					}, {
+						name: '陈金花',
+						type: '残障人员'
+					}, {
+						name: '戎巧芬',
+						type: '残障人员'
+					}, {
+						name: '陈依芬',
+						type: '残障人员'
+					}, {
+						name: '沈爱珍',
+						type: '残障人员'
+					}, {
+						name: '余静国',
+						type: '残障人员'
+					}, {
+						name: '周家贤',
+						type: '残障人员'
+					}]
+				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
+					console.log('长胜田央沈', '右')
 					this.show8 = true
 					this.wgList[0].num = '长胜田央沈'
 					this.wgList[1].num = '黄杰锋'
@@ -1568,105 +1766,105 @@
 					this.wgList[3].num = 256
 					this.ljflList = [{
 						name: '长胜垃圾投放点01',
-            code:'32df7576620846e5850153e18d5731cf',
-            X:'121.543364',
-            Y:'30.034804'
-					},{
+						code: '32df7576620846e5850153e18d5731cf',
+						X: '121.543364',
+						Y: '30.034804'
+					}, {
 						name: '长胜垃圾投放点02',
-            code:'21b943aa87254d25b10d525c8c64c91c',
-            X:'121.540393',
-            Y:'30.034262'
-					},{
+						code: '21b943aa87254d25b10d525c8c64c91c',
+						X: '121.540393',
+						Y: '30.034262'
+					}, {
 						name: '长胜垃圾投放点03',
-            code:'',
-            X:'121.541797',
-            Y:'30.035759'
-					},{
+						code: '',
+						X: '121.541797',
+						Y: '30.035759'
+					}, {
 						name: '长胜垃圾投放点04',
-            code:'9e27366459024dfeb9da1d928db2860f',
-            X:'121.540883',
-            Y:'30.035809'
+						code: '9e27366459024dfeb9da1d928db2860f',
+						X: '121.540883',
+						Y: '30.035809'
 					}]
 					this.xcgaList = [{
 						name: '翁惠娟',
 						type: '特困人员供养'
-					},{
+					}, {
 						name: '钱黎明',
 						type: '特困人员供养'
-					},{
-            name: '倪仁梅',
-            type: '低保家庭'
-          },{
-            name: '沈仁平',
-            type: '低保家庭'
-          },{
-            name: '沈立琴',
-            type: '低保家庭'
-          },{
-            name: '沈振东',
-            type: '低保家庭'
-          },{
-            name: '沈振兴',
-            type: '低保家庭'
-          },{
-            name: '沈振华',
-            type: '低保家庭'
-          },{
-            name: '顾阿多',
-            type: '残障人员'
-          },{
-            name: '钱黎明',
-            type: '残障人员'
-          },{
-            name: '顾静娟',
-            type: '残障人员'
-          },{
-            name: '沈国定',
-            type: '残障人员'
-          },{
-            name: '王时芬',
-            type: '残障人员'
-          },{
-            name: '沈振华',
-            type: '残障人员'
-          },{
-            name: '沈立峰',
-            type: '残障人员'
-          },{
-            name: '曾立平',
-            type: '残障人员'
-          },{
-            name: '陈美飞',
-            type: '残障人员'
-          },{
-            name: '沈荣飞',
-            type: '残障人员'
-          },{
-            name: '沈立琴',
-            type: '残障人员'
-          },{
-            name: '沈仁顺',
-            type: '残障人员'
-          },{
-            name: '叶小芬',
-            type: '残障人员'
-          },{
-            name: '王阿明',
-            type: '残障人员'
-          },{
-            name: '陈翠娥',
-            type: '残障人员'
-          }]
+					}, {
+						name: '倪仁梅',
+						type: '低保家庭'
+					}, {
+						name: '沈仁平',
+						type: '低保家庭'
+					}, {
+						name: '沈立琴',
+						type: '低保家庭'
+					}, {
+						name: '沈振东',
+						type: '低保家庭'
+					}, {
+						name: '沈振兴',
+						type: '低保家庭'
+					}, {
+						name: '沈振华',
+						type: '低保家庭'
+					}, {
+						name: '顾阿多',
+						type: '残障人员'
+					}, {
+						name: '钱黎明',
+						type: '残障人员'
+					}, {
+						name: '顾静娟',
+						type: '残障人员'
+					}, {
+						name: '沈国定',
+						type: '残障人员'
+					}, {
+						name: '王时芬',
+						type: '残障人员'
+					}, {
+						name: '沈振华',
+						type: '残障人员'
+					}, {
+						name: '沈立峰',
+						type: '残障人员'
+					}, {
+						name: '曾立平',
+						type: '残障人员'
+					}, {
+						name: '陈美飞',
+						type: '残障人员'
+					}, {
+						name: '沈荣飞',
+						type: '残障人员'
+					}, {
+						name: '沈立琴',
+						type: '残障人员'
+					}, {
+						name: '沈仁顺',
+						type: '残障人员'
+					}, {
+						name: '叶小芬',
+						type: '残障人员'
+					}, {
+						name: '王阿明',
+						type: '残障人员'
+					}, {
+						name: '陈翠娥',
+						type: '残障人员'
+					}]
 				}
 				// this.show8 = true
-    //     this.hikShow = true
-    //     this.$refs.videoPlayer.off()
-    //     this.cType = "0"
-    //     this.$refs.videoPlayer.initPlugin()
-        // this.$refs.videoPlayer.show()
+				//     this.hikShow = true
+				//     this.$refs.videoPlayer.off()
+				//     this.cType = "0"
+				//     this.$refs.videoPlayer.initPlugin()
+				// this.$refs.videoPlayer.show()
 			},
 			getPopIndex(e) {
-				if(e == 1) {
+				if (e == 1) {
 					this.show9 = false
 					this.show10 = true
 				} else {
@@ -1680,19 +1878,33 @@
 			closeVideo() {
 				this.showVideo = false
 			},
-			toQiye(e,item) {
-				if(e == 0) {
+			toQiye(e, item) {
+				if (e == 0) {
 					this.showXmb = true
 				} else {
 					this.showXmb = false
 				}
-        let a = {
-          X:item.X,
-          Y:item.Y,
-          heading:230
-        }
-        this.$parent.test(a);
-
+				let a = {
+					X: item.X,
+					Y: item.Y,
+					heading: 230
+				}
+				this.$parent.test(a);
+			},
+			toUserMap() {
+			  if (this.ydyh === false){
+			    this.$parent.test("一户一档人口");
+				this.show2 = false
+			    this.ydyh = true
+			  }
+			  this.$parent.test("长胜38号")
+			},
+			searchKey(e) {
+				console.log(e,this.keyWord)
+			},
+			showDetail(e) {
+				this.showPDetail = true
+				this.sjDetail = this.sjList[e]
 			}
 		}
 	}
@@ -1738,7 +1950,7 @@
 	.pop-list {
 		position: absolute;
 		top: 200px;
-		left: 35px;
+		right: 35px;
 
 		.pop-inner-title {
 			display: flex;
@@ -1782,13 +1994,19 @@
 	.pop-box {
 		position: absolute;
 		top: 200px;
-		left: 35px;
+		right: 35px;
 	}
 
-
-
-	.sttj, .sktj {
+	.pop-list2 {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+	}
+	
+	.sttj,
+	.sktj {
 		margin-bottom: 60px;
+
 		.pop-inner-title {
 			width: 90%;
 			margin: 5px auto;
@@ -1805,6 +2023,7 @@
 				width: 10%;
 			}
 		}
+
 		.pop-inner-item {
 			width: 90%;
 			margin: 5px auto;
@@ -1816,6 +2035,7 @@
 				text-align: center;
 				font-size: 18px;
 			}
+
 			span:first-child {
 				width: 10%;
 			}
@@ -1879,22 +2099,26 @@
 
 	.pop-wf {
 		position: absolute;
-		top: 500px;
-		left: 35px;
+		top: 200px;
+		right: 35px;
+
 		.pop-wf-title {
 			width: 90%;
 			margin: 5px auto;
 			display: flex;
 			align-items: center;
 			font-size: 19px;
+
 			span {
 				width: 27%;
 				text-align: center;
 			}
+
 			span:first-child {
 				width: 19%;
 			}
 		}
+
 		.pop-wf-box {
 			.pop-wf-item {
 				width: 90%;
@@ -1902,10 +2126,12 @@
 				display: flex;
 				align-items: center;
 				font-size: 18px;
+
 				span {
 					width: 27%;
 					text-align: center;
 				}
+
 				span:first-child {
 					width: 19%;
 				}
@@ -2023,6 +2249,7 @@
 			justify-content: space-between;
 			align-items: center;
 			font-size: 24px;
+
 			.pop-top-item {
 				// width: 25%;
 				display: flex;
@@ -2030,6 +2257,7 @@
 				justify-content: center;
 				align-items: center;
 				margin-right: 20px;
+
 				img {
 					// width: 38px;
 					// height: 38px;
@@ -2040,6 +2268,7 @@
 					font-size: 20px;
 				}
 			}
+
 			.pop-top-item:last-child {
 				margin-right: 0;
 			}
@@ -2057,7 +2286,7 @@
 
 	.sj-pop {
 
-		width: 1200px;
+		width: 520px;
 		border: 1px solid #fff;
 		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.64);
@@ -2067,15 +2296,13 @@
 		box-sizing: border-box;
 		color: #fff;
 		z-index: 1998;
-		max-height: 700px;
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		top: 200px;
+		right: 35px;
 
 		.sj-pop-title {
-			width: 1160px;
-			//background: url(../public/static/images/line.png) no-repeat;
+			width: 485px;
+			background: url(../../public/static/images/line.png) no-repeat;
 			background-size: 100% 100%;
 			font-size: 20px;
 			padding: 0 20px;
@@ -2083,7 +2310,7 @@
 			box-sizing: border-box;
 
 			span {
-				margin-left: 60px;
+				margin-left: 20px;
 			}
 		}
 
@@ -2096,7 +2323,13 @@
 			align-items: center;
 			text-align: center;
 		}
-
+		
+		.sj-pop-itemBox {
+			width: 100%;
+			max-height: 600px;
+			overflow: scroll;
+		}
+		
 		.sj-pop-item {
 			width: 100%;
 			padding: 10px;
@@ -2111,6 +2344,29 @@
 			position: absolute;
 			top: -20px;
 			right: -20px;
+		}
+		
+		.sj-pop-box {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			padding: 10px;
+			box-sizing: border-box;
+			div {
+				display: flex;
+				margin-bottom: 10px;
+				font-size: 16px;
+				color: #fff;
+				span:first-child {
+					width: 30%;
+				}
+				span:last-child {
+					width: 70%;
+				}
+			}
+			div:last-child {
+				margin-bottom: 0;
+			}
 		}
 
 	}
@@ -2130,33 +2386,40 @@
 		position: absolute;
 		width: 1450px;
 		top: 200px;
-		left: 630px;
+		right: 35px;
+
 		.pop-title {
 			width: 1420px;
 			background: url(../../public/static/images/lineBL.png);
 		}
+
 		.srjf-title {
 			display: flex;
 			align-items: center;
+
 			span {
 				margin: 5px 0;
 				text-align: center;
 				flex: 1;
 				font-size: 18px;
 			}
+
 			span:nth-child(4) {
 				flex: 2;
 			}
 		}
+
 		.srjf-item {
 			display: flex;
 			align-items: center;
+
 			span {
 				margin: 5px 0;
 				text-align: center;
 				flex: 1;
 				font-size: 18px;
 			}
+
 			span:nth-child(4) {
 				flex: 2;
 				overflow: hidden;
@@ -2169,7 +2432,8 @@
 	.dzxx {
 		position: absolute;
 		top: 200px;
-		left: 35px;
+		right: 35px;
+
 		.pop-dz-title {
 			width: 90%;
 			display: flex;
@@ -2177,13 +2441,16 @@
 			font-size: 16px;
 			color: #fff;
 			margin: 10px auto;
+
 			span {
 				flex: 1;
 			}
 		}
+
 		.pop-dz-box {
 			max-height: 350px;
 			overflow-y: auto;
+
 			.pop-dz-item {
 				width: 90%;
 				display: flex;
@@ -2191,6 +2458,7 @@
 				font-size: 16px;
 				color: #fff;
 				margin: 5px auto;
+
 				span {
 					flex: 1;
 					overflow: hidden;
@@ -2200,18 +2468,21 @@
 			}
 		}
 	}
+
 	.videoClass {
 		width: 700px;
 		// height: 700px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
+
 		video {
 			width: 100%;
 			height: 100%;
 			position: relative;
 		}
+
 		.cancelVideo {
 			width: 40px;
 			height: 40px;
@@ -2220,6 +2491,51 @@
 			right: -20px;
 			z-index: 100;
 			cursor: pointer;
+		}
+	}
+	
+	.search-box {
+		width: 520px;
+		position: absolute;
+		top: 490px;
+		left: 35px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		padding: 10px 20px;
+		box-sizing: border-box;
+		font-size: 16px;
+		color: #fff;
+		input {
+			flex: 1;
+			background-color: transparent;
+			border: none;
+			color: #fff;
+		}
+		input::-webkit-input-placeholder {
+			color: #fff;
+		}
+	}
+	
+	.zl-box {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 20px 0;
+		box-sizing: border-box;
+		.zl-item {
+			width: 25%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 19px;
+			margin-bottom: 20px;
+			img {
+				width: 100px;
+				height: 100px;
+				margin-bottom: 10px;
+			}
 		}
 	}
 </style>
