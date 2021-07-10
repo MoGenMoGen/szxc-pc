@@ -5,9 +5,24 @@
 				<div @click="toUserMap">
 					<PopBox :list="list2" style="width: 460px;"></PopBox>
 				</div>
-				<div class="search-box" style="width: 460px;">
+				<!-- <div class="search-box" style="width: 460px;">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
 					<img src="static/images/search.png">
+				</div> -->
+				<div class="pop-common wglb" style="width: 460px;">
+					<div class="pop-title"><span>网格列表</span></div>
+					<div class="pop-inner-title">
+						<span>序号</span>
+						<span>网格名称</span>
+						<span>网格长</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in wgzList" :key='index' @click="toFns(item)" class="pop-inner-item">
+							<span>{{ index + 1 }}</span>
+							<span>{{ item.name }}</span>
+							<span>{{ item.leaderName }}</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</transition>
@@ -28,7 +43,7 @@
 						<span>{{ item.volume }}</span>
 					</div>
 				</div>
-				
+
 				<!-- <div class="pop-common sktj">
 					<div class="pop-title" style="display: flex;justify-content: space-between;">
 						<span>防溺水监控</span>
@@ -51,7 +66,7 @@
 		</transition>
 		<transition name="fade">
 			<div class="pop-box" v-show="show16">
-				<div class="pop-common sktj" >
+				<div class="pop-common sktj">
 					<div class="pop-title"><span>水库统计</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -79,8 +94,8 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="show8">
-				<div class="pop-common pop-list" style="width: 460px;">
+			<div class="pop-list2" v-show="show20">
+				<div class="pop-common" style="width: 460px;margin-bottom: 30px;">
 					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>垃圾分类</span></div>
 					<div class="pop-inner-title">
 						<span style="width: 100%;text-align: left;">点位名称</span>
@@ -91,7 +106,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="pop-common pop-list" style="width: 460px;top: 620px;">
+				<div class="pop-common" style="width: 460px;top: 620px;">
 					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>乡村关爱</span></div>
 					<div class="pop-inner-title">
 						<span>姓名</span>
@@ -104,16 +119,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="pop-top">
-					<div class="pop-top-content">
-						<div v-for="(item,index) in wgList" :key="index" class="pop-top-item">
-							<span>{{item.num}}</span>
-							<img :src="item.url">
-							<span>{{item.title}}</span>
-						</div>
+				<!--				<div class="monitorBox"></div>-->
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-top" v-show="show8">
+				<div class="pop-top-content">
+					<div v-for="(item,index) in wgList" :key="index" class="pop-top-item">
+						<span>{{item.num}}</span>
+						<img :src="item.url">
+						<span>{{item.title}}</span>
 					</div>
 				</div>
-				<!--				<div class="monitorBox"></div>-->
 			</div>
 		</transition>
 		<!-- <transition name="fade"> -->
@@ -171,7 +188,7 @@
 		<img src="static/images/zhu2.png" v-if="showXmb"
 			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;">
 		<transition name="fade">
-			<div class="pop-common pop-list" v-show="show5">
+			<div class="pop-common pop-list2" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
 				<div class="pop-inner-title">
 					<span>设备名称</span>
@@ -242,37 +259,109 @@
 				v-show="show6">
 		</transition>
 		<transition name="fade">
-			<div class="sj-pop" v-if="showP">
-				<!-- <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false"> -->
-				<div class="sj-pop-title"><span>事件列表</span></div>
-				<div class="sj-pop-info">
-					<!-- <span style="width: 10%;">事件编号</span> -->
-					<span style="width: 50%;">内容</span>
-					<!-- <span style="width: 10%;">地址</span> -->
-					<span style="width: 20%;">问题类型</span>
-					<!-- <span style="width: 10%;">时间分类</span> -->
-					<span style="width: 30%;">上报时间</span>
-					<!-- <span style="width: 10%;">职能科室/部门</span>
+			<div class="sj" v-if="showP">
+				<div class="sj-pop" style="border-color: #f2272f;background-color: rgba(242,39,47,0.4);">
+					<!-- <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false"> -->
+					<div class="sj-pop-title"><span>一级事件</span></div>
+					<div class="sj-pop-info">
+						<!-- <span style="width: 10%;">事件编号</span> -->
+						<span style="width: 10%;">序号</span>
+						<span style="width: 45%;">内容</span>
+						<!-- <span style="width: 10%;">地址</span> -->
+						<!-- <span style="width: 20%;">问题类型</span> -->
+						<!-- <span style="width: 10%;">时间分类</span> -->
+						<span style="width: 30%;">上报时间</span>
+						<span style="width: 15%;">状态</span>
+						<!-- <span style="width: 10%;">职能科室/部门</span>
 					<span style="width: 10%;">办结时间</span>
 					<span style="width: 10%;">是否超时关闭</span> -->
-				</div>
-				<div class="sj-pop-itemBox">
-					<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click="showDetail(index)">
-						<!-- <span style="width: 10%;">{{ item.id }}</span> -->
-						<span style="width: 50%;">{{ item.content }}</span>
-						<!-- <span style="width: 10%;">{{ item.add }}</span> -->
-						<span style="width: 20%;">{{ item.type }}</span>
-						<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
-						<span style="width: 30%;">{{ item.reportTime }}</span>
-						<!-- <span style="width: 10%;">{{ item.department }}</span>
+					</div>
+					<div class="sj-pop-itemBox">
+						<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click="showDetail(index)">
+							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
+							<span style="width: 10%;">{{ index+1 }}</span>
+							<span style="width: 45%;">{{ item.content }}</span>
+							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
+							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
+							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
+							<span style="width: 30%;">{{ item.reportTime }}</span>
+							<span style="width: 15%;">{{ item.timeType }}</span>
+							<!-- <span style="width: 10%;">{{ item.department }}</span>
 						<span style="width: 10%;">{{ item.overTime }}</span>
 						<span style="width: 10%;">{{ item.timeOut }}</span> -->
+						</div>
+					</div>
+				</div>
+				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.4);">
+					<!-- <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false"> -->
+					<div class="sj-pop-title"><span>二级事件</span></div>
+					<div class="sj-pop-info">
+						<!-- <span style="width: 10%;">事件编号</span> -->
+						<span style="width: 10%;">序号</span>
+						<span style="width: 45%;">内容</span>
+						<!-- <span style="width: 10%;">地址</span> -->
+						<!-- <span style="width: 20%;">问题类型</span> -->
+						<!-- <span style="width: 10%;">时间分类</span> -->
+						<span style="width: 30%;">上报时间</span>
+						<span style="width: 15%;">状态</span>
+						<!-- <span style="width: 10%;">职能科室/部门</span>
+					<span style="width: 10%;">办结时间</span>
+					<span style="width: 10%;">是否超时关闭</span> -->
+					</div>
+					<div class="sj-pop-itemBox">
+						<div v-for="(item,index) in sjList2" :key="index" class="sj-pop-item"
+							@click="showDetail(index)">
+							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
+							<span style="width: 10%;">{{ index+1 }}</span>
+							<span style="width: 45%;">{{ item.content }}</span>
+							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
+							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
+							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
+							<span style="width: 30%;">{{ item.reportTime }}</span>
+							<span style="width: 15%;">{{ item.timeType }}</span>
+							<!-- <span style="width: 10%;">{{ item.department }}</span>
+						<span style="width: 10%;">{{ item.overTime }}</span>
+						<span style="width: 10%;">{{ item.timeOut }}</span> -->
+						</div>
+					</div>
+				</div>
+				<div class="sj-pop" style="border-color: #289721;background-color: rgba(40,151,33,0.4);">
+					<!-- <img src="static/images/cancel.png" class="cancelLogo" @click="showP=false"> -->
+					<div class="sj-pop-title"><span>三级事件</span></div>
+					<div class="sj-pop-info">
+						<!-- <span style="width: 10%;">事件编号</span> -->
+						<span style="width: 10%;">序号</span>
+						<span style="width: 45%;">内容</span>
+						<!-- <span style="width: 10%;">地址</span> -->
+						<!-- <span style="width: 20%;">问题类型</span> -->
+						<!-- <span style="width: 10%;">时间分类</span> -->
+						<span style="width: 30%;">上报时间</span>
+						<span style="width: 15%;">状态</span>
+						<!-- <span style="width: 10%;">职能科室/部门</span>
+					<span style="width: 10%;">办结时间</span>
+					<span style="width: 10%;">是否超时关闭</span> -->
+					</div>
+					<div class="sj-pop-itemBox">
+						<div v-for="(item,index) in sjList3" :key="index" class="sj-pop-item"
+							@click="showDetail(index)">
+							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
+							<span style="width: 10%;">{{ index+1 }}</span>
+							<span style="width: 45%;">{{ item.content }}</span>
+							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
+							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
+							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
+							<span style="width: 30%;">{{ item.reportTime }}</span>
+							<span style="width: 15%;">{{ item.timeType }}</span>
+							<!-- <span style="width: 10%;">{{ item.department }}</span>
+						<span style="width: 10%;">{{ item.overTime }}</span>
+						<span style="width: 10%;">{{ item.timeOut }}</span> -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="sj-pop" v-show="showPDetail" style="right: 570px;">
+			<!-- <div class="sj-pop" v-show="showPDetail" style="right: 570px;">
 				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
 				<div class="sj-pop-title"><span>事件编号:{{sjDetail.id}}</span></div>
 				<div class="sj-pop-box">
@@ -285,6 +374,9 @@
 					<div><span>办结时间:</span><span>{{sjDetail.overTime}}</span></div>
 					<div><span>是否超时关闭:</span><span>{{sjDetail.timeOut}}</span></div>
 				</div>
+			</div> -->
+			<div v-show="showPDetail" style="position: absolute;top: 200px;right:570px;z-index: 10000;">
+				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
 			</div>
 		</transition>
 		<transition name="fade">
@@ -335,7 +427,7 @@
 				</div>
 			</div>
 		</transition>
-		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
+		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
 
@@ -378,12 +470,13 @@
 				show14: false, //综合监管总览
 				show15: false, //位移监测点
 				show16: false, //水库统计
+				show20: false,
 				showVideo: false,
 				showXmb: false,
 				showPDetail: false, //四个平台事件详情
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				keyWord: '',
-				ydyh:false,
+				ydyh: false,
 				list: [{
 					num: 2,
 					url: 'static/images/wfsl.png',
@@ -430,22 +523,22 @@
 				zlList: [{
 					url: 'static/images/zl-st.png',
 					name: '山塘'
-				},{
+				}, {
 					url: 'static/images/zl-sk.png',
 					name: '水库'
-				},{
+				}, {
 					url: 'static/images/zl-wf.png',
 					name: '危房'
-				},{
+				}, {
 					url: 'static/images/zl-srjf.png',
 					name: '私人建房'
-				},{
+				}, {
 					url: 'static/images/zl-nsl.png',
 					name: '地址灾害'
-				},{
+				}, {
 					url: 'static/images/zl-wyjcd.png',
 					name: '位移检测点'
-				},{
+				}, {
 					url: 'static/images/zl-sj.png',
 					name: '商家'
 				}],
@@ -1117,6 +1210,31 @@
 					add: '东沟',
 					stability: '-',
 					status: '安装中'
+				}],
+				wgzList: [{
+					name: '横溪冷水井、后厢',
+					leaderName: '王佳丹'
+				},{
+					name: '横溪钱家，大同高屋，大圆地',
+					leaderName: '钱亮英'
+				},{
+					name: '横溪坝下、桥头',
+					leaderName: '徐佳妙'
+				},{
+					name: '横溪田中央、墙头、长坂地',
+					leaderName: '翁志元'
+				},{
+					name: '长胜毛岭、孟家',
+					leaderName: '沈裕琪'
+				},{
+					name: '长胜长桥头',
+					leaderName: '邱雪君'
+				},{
+					name: '长胜周家巷',
+					leaderName: '朱丽红'
+				},{
+					name: '长胜田央沈',
+					leaderName: '黄杰锋'
 				}]
 			}
 		},
@@ -1129,6 +1247,8 @@
 
 		},
 		mounted() {
+			this.$parent.isChildShow = false
+			this.$parent.tabActive = 0
 			this.show13 = true
 			this.show2 = true
 			this.showP = true
@@ -1235,6 +1355,7 @@
 				// } else 
 				if (e == 0) {
 					// 网格管理
+					this.$parent.isChildShow = false
 					this.offHik()
 					this.onOff("关闭图层", "山塘水库")
 					this.onOff("关闭图层", "综合监管")
@@ -1281,6 +1402,7 @@
 				// } 
 				else if (e == 1) {
 					// 综合监管
+					this.$parent.isChildShow = false
 					this.offHik()
 					this.onOff("打开图层", "综合监管")
 					this.onOff("关闭图层", "山塘水库")
@@ -1309,6 +1431,7 @@
 					this.showPDetail = false
 				} else if (e == 2) {
 					// 线上执法
+					this.$parent.isChildShow = false
 					this.offHik()
 					this.show2 = false
 					this.show = false
@@ -1379,7 +1502,7 @@
 				// }
 			},
 			getTabIndex(e) {
-				if(e==0) {
+				if (e == 0) {
 					// 山塘列表
 					this.show = true
 					this.show4 = false
@@ -1389,7 +1512,7 @@
 					this.show15 = false
 					this.show16 = false
 					this.showXmb = false
-				} else if (e==1) {
+				} else if (e == 1) {
 					// 水库列表
 					this.show = false
 					this.show4 = false
@@ -1399,7 +1522,7 @@
 					this.show15 = false
 					this.show16 = true
 					this.showXmb = false
-				} else if (e==2) {
+				} else if (e == 2) {
 					// 危房列表
 					this.show = false
 					this.show4 = false
@@ -1409,7 +1532,7 @@
 					this.show15 = false
 					this.show16 = false
 					this.showXmb = false
-				} else if (e==3) {
+				} else if (e == 3) {
 					// 私人建房列表
 					this.show = false
 					this.show4 = false
@@ -1419,7 +1542,7 @@
 					this.show15 = false
 					this.show16 = false
 					this.showXmb = false
-				} else if (e==4) {
+				} else if (e == 4) {
 					// 地质灾害列表
 					this.show = false
 					this.show4 = false
@@ -1429,7 +1552,7 @@
 					this.show15 = false
 					this.show16 = false
 					this.showXmb = false
-				} else if (e==5) {
+				} else if (e == 5) {
 					// 位移监测点列表
 					this.show = false
 					this.show4 = false
@@ -1439,7 +1562,7 @@
 					this.show15 = true
 					this.show16 = false
 					this.showXmb = false
-				} else if (e==6) {
+				} else if (e == 6) {
 					// 商家列表
 					this.show = false
 					this.show4 = true
@@ -1458,8 +1581,11 @@
 			close() {
 				this.imgShow = false
 			},
+			
 			showWg(e) {
-
+				this.show13 = false
+				this.showP = false
+				this.showPDetail = false
 				let x = e.x,
 					y = e.y
 				console.log(e.x, e.y)
@@ -1892,15 +2018,15 @@
 				this.$parent.test(a);
 			},
 			toUserMap() {
-			  if (this.ydyh === false){
-			    this.$parent.test("一户一档人口");
-				this.show2 = false
-			    this.ydyh = true
-			  }
-			  this.$parent.test("长胜38号")
+				if (this.ydyh === false) {
+					this.$parent.test("一户一档人口");
+					this.show2 = false
+					this.ydyh = true
+				}
+				this.$parent.test("长胜38号")
 			},
 			searchKey(e) {
-				console.log(e,this.keyWord)
+				console.log(e, this.keyWord)
 			},
 			showDetail(e) {
 				this.showPDetail = true
@@ -1991,6 +2117,61 @@
 		}
 	}
 
+	.wglb {
+		position: absolute;
+		top: 500px;
+		left: 35px;
+		.pop-title {
+			width: 100%;
+			background-size: 100% 32px;
+		}
+		.pop-inner-title {
+			display: flex;
+			width: 90%;
+			margin: 10px auto;
+			font-size: 19px;
+			span {
+				text-align: center;
+				width: 50%;
+			}
+			span:first-child {
+				text-align: center;
+				width: 20%;
+			}
+		
+			span:last-child {
+				text-align: center;
+				width: 30%;
+			}
+		}
+		
+		.pop-inner-box {
+			max-height: 350px;
+			overflow-y: auto;
+		
+			.pop-inner-item {
+				display: flex;
+				width: 90%;
+				margin: 10px auto;
+				font-size: 18px;
+		
+				span {
+					text-align: center;
+					width: 50%;
+				}
+				span:first-child {
+					text-align: center;
+					width: 20%;
+				}
+						
+				span:last-child {
+					text-align: center;
+					width: 30%;
+				}
+			}
+		}
+	}
+
 	.pop-box {
 		position: absolute;
 		top: 200px;
@@ -2001,8 +2182,46 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
+
+		.pop-inner-title {
+			display: flex;
+			width: 90%;
+			margin: 10px auto;
+			font-size: 19px;
+
+			span {
+				text-align: center;
+				width: 50%;
+			}
+
+			span:last-child {
+				text-align: center;
+				width: 50%;
+			}
+		}
+
+		.pop-inner-box {
+			max-height: 350px;
+			overflow-y: auto;
+
+			.pop-inner-item {
+				display: flex;
+				width: 90%;
+				margin: 10px auto;
+				font-size: 18px;
+
+				span {
+					text-align: center;
+					width: 50%;
+				}
+
+				span:last-child {
+					font-size: 18px;
+				}
+			}
+		}
 	}
-	
+
 	.sttj,
 	.sktj {
 		margin-bottom: 60px;
@@ -2284,9 +2503,16 @@
 		opacity: 0;
 	}
 
-	.sj-pop {
-
+	.sj{
 		width: 520px;
+		position: absolute;
+		top: 200px;
+		right: 35px;
+		z-index: 1998;
+	}
+
+	.sj-pop {
+		width: 100%;
 		border: 1px solid #fff;
 		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.64);
@@ -2295,11 +2521,7 @@
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
-		z-index: 1998;
-		position: absolute;
-		top: 200px;
-		right: 35px;
-
+		margin-bottom: 10px;
 		.sj-pop-title {
 			width: 485px;
 			background: url(../../public/static/images/line.png) no-repeat;
@@ -2308,7 +2530,6 @@
 			padding: 0 20px;
 			margin: 0 auto;
 			box-sizing: border-box;
-
 			span {
 				margin-left: 20px;
 			}
@@ -2323,13 +2544,13 @@
 			align-items: center;
 			text-align: center;
 		}
-		
+
 		.sj-pop-itemBox {
 			width: 100%;
-			max-height: 600px;
-			overflow: scroll;
+			max-height: 200px;
+			overflow-y: scroll;
 		}
-		
+
 		.sj-pop-item {
 			width: 100%;
 			padding: 10px;
@@ -2345,25 +2566,29 @@
 			top: -20px;
 			right: -20px;
 		}
-		
+
 		.sj-pop-box {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
 			padding: 10px;
 			box-sizing: border-box;
+
 			div {
 				display: flex;
 				margin-bottom: 10px;
 				font-size: 16px;
 				color: #fff;
+
 				span:first-child {
 					width: 30%;
 				}
+
 				span:last-child {
 					width: 70%;
 				}
 			}
+
 			div:last-child {
 				margin-bottom: 0;
 			}
@@ -2493,7 +2718,7 @@
 			cursor: pointer;
 		}
 	}
-	
+
 	.search-box {
 		width: 520px;
 		position: absolute;
@@ -2507,23 +2732,26 @@
 		box-sizing: border-box;
 		font-size: 16px;
 		color: #fff;
+
 		input {
 			flex: 1;
 			background-color: transparent;
 			border: none;
 			color: #fff;
 		}
+
 		input::-webkit-input-placeholder {
 			color: #fff;
 		}
 	}
-	
+
 	.zl-box {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		padding: 20px 0;
 		box-sizing: border-box;
+
 		.zl-item {
 			width: 25%;
 			display: flex;
@@ -2531,6 +2759,7 @@
 			align-items: center;
 			font-size: 19px;
 			margin-bottom: 20px;
+
 			img {
 				width: 100px;
 				height: 100px;
