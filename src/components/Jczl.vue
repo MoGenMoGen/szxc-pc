@@ -376,6 +376,7 @@
 				</div>
 			</div> -->
 			<div v-show="showPDetail" style="position: absolute;top: 200px;right:570px;z-index: 10000;">
+				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
 				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
 			</div>
 		</transition>
@@ -1582,24 +1583,56 @@
 				this.imgShow = false
 			},
 			showWgz(e) {
+				this.show8 = true
 				if(e==0) {
-					this.show8 = true
 					this.wgList[0].num = '横溪冷水井、后厢'
 					this.wgList[1].num = '王佳丹'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 97
 				} else if (e==1) {
-					
+					this.wgList[0].num = '横溪钱家、大同高屋、大园地'
+					this.wgList[1].num = '钱亮英'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 231
+				} else if (e==2) {
+					this.wgList[0].num = '横溪坝下、桥头'
+					this.wgList[1].num = '徐佳妙'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 109
+				} else if (e==3) {
+					this.wgList[0].num = '横溪田中央、墙头、长坂地'
+					this.wgList[1].num = '翁志元'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 226
+				} else if (e==4) {
+					this.wgList[0].num = '长胜毛岭、孟家'
+					this.wgList[1].num = '沈裕琪'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 159
+				} else if (e==5) {
+					this.wgList[0].num = '长胜长桥头'
+					this.wgList[1].num = '邱雪君'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 147
+				} else if (e==6) {
+					this.wgList[0].num = '长胜周家巷'
+					this.wgList[1].num = '朱丽红'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 146
+				} else if (e==7) {
+					this.wgList[0].num = '长胜田央沈'
+					this.wgList[1].num = '黄杰锋'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 256
 				}
-			}
+			},
 			showWg(e) {
-				this.show13 = false
-				this.showP = false
-				this.showPDetail = false
 				let x = e.x,
 					y = e.y
-				console.log(e.x, e.y)
 				if (510 < x && x < 660 && 200 < y && y < 370) {
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					console.log('横溪冷水井，后厢', '左')
 					this.show8 = true
 					this.wgList[0].num = '横溪冷水井、后厢'
@@ -1648,6 +1681,9 @@
 					}]
 				} else if (510 < x && x < 760 && 140 < y && y < 180) {
 					console.log('横溪钱家，大同高屋，大圆地', '左上')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '横溪钱家、大同高屋、大园地'
 					this.wgList[1].num = '钱亮英'
@@ -1699,6 +1735,9 @@
 					}]
 				} else if (540 < x && x < 690 && 500 < y && y < 750) {
 					console.log('横溪坝下桥头', '左中')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '横溪坝下、桥头'
 					this.wgList[1].num = '徐佳妙'
@@ -1734,6 +1773,9 @@
 					}]
 				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
 					console.log('横溪田中央，墙头，长坂地', '左右')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '横溪田中央、墙头、长坂地'
 					this.wgList[1].num = '翁志元'
@@ -1757,6 +1799,9 @@
 					}]
 				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
 					console.log('长胜毛岭、孟家', '右左')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '长胜毛岭、孟家'
 					this.wgList[1].num = '沈裕琪'
@@ -1809,6 +1854,9 @@
 					}]
 				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
 					console.log('长胜长桥头', '右中上')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '长胜长桥头'
 					this.wgList[1].num = '邱雪君'
@@ -1838,6 +1886,9 @@
 					}]
 				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
 					console.log('长胜周家巷', '右中下')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '长胜周家巷'
 					this.wgList[1].num = '朱丽红'
@@ -1895,6 +1946,9 @@
 					}]
 				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
 					console.log('长胜田央沈', '右')
+					this.show13 = false
+					this.showP = false
+					this.showPDetail = false
 					this.show8 = true
 					this.wgList[0].num = '长胜田央沈'
 					this.wgList[1].num = '黄杰锋'
