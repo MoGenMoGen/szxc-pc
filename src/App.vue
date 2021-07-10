@@ -8,7 +8,7 @@
 					:key="index" @click="changeIndex(index)">
 					{{ item }}
 					<div v-if="(isActive==index&&isChildShow) ||(index==5&&isChildShow2)" class="top-tab-item-child">
-						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click="choose(newindex,index)"
+						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click.stop="choose(newindex,index)"
 							:class="{'tabActive':tabActive==newindex}">{{ newitem }}</span>
 					</div>
 				</div>

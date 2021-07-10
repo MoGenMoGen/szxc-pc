@@ -17,7 +17,7 @@
 						<span>网格长</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in wgzList" :key='index' @click="toFns(item)" class="pop-inner-item">
+						<div v-for="(item,index) in wgzList" :key='index' @click="showWgz(index)" class="pop-inner-item">
 							<span>{{ index + 1 }}</span>
 							<span>{{ item.name }}</span>
 							<span>{{ item.leaderName }}</span>
@@ -457,11 +457,11 @@
 				show: false, //山塘统计
 				show2: false, //网格背景图
 				show3: false,
-				show4: false,
-				show5: false,
-				show6: false,
-				show7: false,
-				show8: false,
+				show4: false, //商家统计
+				show5: false, //执法设备
+				show6: false, //四个平台背景图
+				show7: false, //危房私人建房总览
+				show8: false, //网格长
 				show9: false, //危房
 				show10: false, //私人建房
 				show11: false, //泥石流监控
@@ -470,9 +470,9 @@
 				show14: false, //综合监管总览
 				show15: false, //位移监测点
 				show16: false, //水库统计
-				show20: false,
-				showVideo: false,
-				showXmb: false,
+				show20: false, //乡村关爱垃圾分类点位
+				showVideo: false, //防溺水视频
+				showXmb: false, //小卖部
 				showPDetail: false, //四个平台事件详情
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				keyWord: '',
@@ -1423,7 +1423,7 @@
 					this.show11 = false
 					this.show12 = false
 					this.show13 = false
-					this.show14 = true
+					this.show14 = false
 					this.show15 = false
 					this.show16 = false
 					this.showXmb = false
@@ -1581,7 +1581,17 @@
 			close() {
 				this.imgShow = false
 			},
-			
+			showWgz(e) {
+				if(e==0) {
+					this.show8 = true
+					this.wgList[0].num = '横溪冷水井、后厢'
+					this.wgList[1].num = '王佳丹'
+					this.wgList[2].num = '陈如良'
+					this.wgList[3].num = 97
+				} else if (e==1) {
+					
+				}
+			}
 			showWg(e) {
 				this.show13 = false
 				this.showP = false
@@ -2046,9 +2056,10 @@
 	}
 
 	.pop-title {
-		width: 485px;
+		width: 100%;
 		height: 32px;
 		background: url(../../public/static/images/line.png) no-repeat;
+		background-size: 100% 32px;
 		font-size: 20px;
 		padding: 0 20px;
 		margin: 0 auto;
@@ -2121,6 +2132,7 @@
 		position: absolute;
 		top: 500px;
 		left: 35px;
+		max-height: none;
 		.pop-title {
 			width: 100%;
 			background-size: 100% 32px;
@@ -2146,9 +2158,6 @@
 		}
 		
 		.pop-inner-box {
-			max-height: 350px;
-			overflow-y: auto;
-		
 			.pop-inner-item {
 				display: flex;
 				width: 90%;
