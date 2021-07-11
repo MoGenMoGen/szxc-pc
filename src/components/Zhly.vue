@@ -19,8 +19,9 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-if="show"  class="banner">
-				<el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
+			<div v-if="show" class="banner">
+				<img :src="topImg" class="banner-top-img" v-if="topImg">
+				<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
 						<img :src="item.url">
 					</el-carousel-item>
@@ -76,47 +77,47 @@
 				</div>
 			</div> -->
 			<div class="banner-box-box" v-if="show3">
-				<div class="banner-box banner-box-right" >
+				<div class="banner-box banner-box-right">
 					<!-- <img :src="imgList2[1].url" class="banner-img">
 					<div class="banner-label">{{imgList2[1].des}}</div> -->
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList1" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList2" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList1" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList2" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
 				</div>
-				<div class="banner-box banner-box-left" >
+				<div class="banner-box banner-box-left">
 					<!-- <img :src="imgList2[2].url" class="banner-img">
 					<div class="banner-label">{{imgList2[2].des}}</div> -->
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList3" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList4" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList3" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList4" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
 				</div>
-				<div class="banner-box banner-box-center" >
+				<div class="banner-box banner-box-center">
 					<!-- <img :src="imgList2[0].url" class="banner-img">
 					<div class="banner-label">{{imgList2[0].des}}</div> -->
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList5" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
-          <el-carousel indicator-position='none'  arrow='hover' :interval='4000' @change="changeIndex">
-          	<el-carousel-item v-for="(item,index) in gouImgList6" :key="index">
-          		<img :src="item">
-          	</el-carousel-item>
-          </el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList5" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+						<el-carousel-item v-for="(item,index) in gouImgList6" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
 				</div>
 			</div>
 
@@ -261,7 +262,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[113/1000, '#3cd868'],
+										[113 / 1000, '#3cd868'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -338,7 +339,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[187/1000, '#f7dc46'],
+										[187 / 1000, '#f7dc46'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -388,6 +389,7 @@
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
+				topImg: '',
 				list: [{
 					num: 37,
 					url: 'static/images/house.png',
@@ -425,148 +427,149 @@
 					}
 				],
 				njlList: [{
-          name: '龙居农家乐',
-          X:'121.50782',
-          Y:'30.051656',
-        }, {
-          name: '月波农家菜馆',
-          X:'121.50818',
-          Y:'30.051681',
-        }, {
-          name: '横溪人家',
-          X:'121.508527',
-          Y:'30.052313',
-        }, {
-          name: '龙源农家乐',
-          X:'121.508072',
-          Y:'30.52354',
-        }, {
-          name: '向石头农家乐',
-          X:'121.509869',
-          Y:'30.052034',
-        }, {
-          name: '东琴农家乐',
-          X:'121.512405',
-          Y:'30.052881',
-        }, {
-          name: '项珍农家乐',
-          X:'121.506141',
-          Y:'30.052687',
-        }, {
-          name: '阿飞农家乐',
-          X:'121.506145',
-          Y:'30.052687',
-        }, {
-          name: '雅明农家乐',
-          X:'121.502719',
-          Y:'30.051409',
-        }, {
-          name: '九龙源农家乐',
-          X:'121.502887',
-          Y:'30.051724',
-        },{
-						name: '食为天农家乐'
-					},{
-						name: '竹之林农家乐'
-					},{
-						name: '山里山农家乐'
-					},{
-						name: '赞来农家乐'
-					},{
-						name: '闻溪阁烧烤园'
-					},{
-						name: '青青农家菜馆'
-					},{
-						name: '食泉农家菜馆'
-					},{
-						name: '竹林人家农家菜馆'
-					},{
-						name: '绿色人家农家菜馆'
-					},{
-						name: '沿山苑农家菜馆'
-					},{
-						name: '溢品农家菜馆'
-					},{
-						name: '青山绿水农家菜馆'
-					},{
-						name: '八号农家乐'
-					},{
-						name: '钱家小院'
-					},{
-						name: '老宅私房农家菜'
-					},{
-						name: '竹雅农家乐'
-					},{
-						name: '长胜人家农家菜馆'
-					},{
-						name: '沈家小园'
-					},{
-						name: '小荣农家乐'
-					},{
-						name: '龙眼泉农家乐'
-					},{
-						name: '惠英农家乐'
-					},{
-						name: '栋兴生态农庄'
-					},{
-						name: '香石小院'
-					},{
-						name: '洪阿三农家乐'
-					},{
-						name: '氧气生活'
-					},{
-						name: '又见山'
-					}],
+					name: '龙居农家乐',
+					X: '121.50782',
+					Y: '30.051656',
+					url: 'static/images/jdw1.png'
+				}, {
+					name: '月波农家菜馆',
+					X: '121.50818',
+					Y: '30.051681',
+				}, {
+					name: '横溪人家',
+					X: '121.508527',
+					Y: '30.052313',
+				}, {
+					name: '龙源农家乐',
+					X: '121.508072',
+					Y: '30.52354',
+				}, {
+					name: '向石头农家乐',
+					X: '121.509869',
+					Y: '30.052034',
+				}, {
+					name: '东琴农家乐',
+					X: '121.512405',
+					Y: '30.052881',
+				}, {
+					name: '项珍农家乐',
+					X: '121.506141',
+					Y: '30.052687',
+				}, {
+					name: '阿飞农家乐',
+					X: '121.506145',
+					Y: '30.052687',
+				}, {
+					name: '雅明农家乐',
+					X: '121.502719',
+					Y: '30.051409',
+				}, {
+					name: '九龙源农家乐',
+					X: '121.502887',
+					Y: '30.051724',
+				}, {
+					name: '食为天农家乐'
+				}, {
+					name: '竹之林农家乐'
+				}, {
+					name: '山里山农家乐'
+				}, {
+					name: '赞来农家乐'
+				}, {
+					name: '闻溪阁烧烤园'
+				}, {
+					name: '青青农家菜馆'
+				}, {
+					name: '食泉农家菜馆'
+				}, {
+					name: '竹林人家农家菜馆'
+				}, {
+					name: '绿色人家农家菜馆'
+				}, {
+					name: '沿山苑农家菜馆'
+				}, {
+					name: '溢品农家菜馆'
+				}, {
+					name: '青山绿水农家菜馆'
+				}, {
+					name: '八号农家乐'
+				}, {
+					name: '钱家小院'
+				}, {
+					name: '老宅私房农家菜'
+				}, {
+					name: '竹雅农家乐'
+				}, {
+					name: '长胜人家农家菜馆'
+				}, {
+					name: '沈家小园'
+				}, {
+					name: '小荣农家乐'
+				}, {
+					name: '龙眼泉农家乐'
+				}, {
+					name: '惠英农家乐'
+				}, {
+					name: '栋兴生态农庄'
+				}, {
+					name: '香石小院'
+				}, {
+					name: '洪阿三农家乐'
+				}, {
+					name: '氧气生活'
+				}, {
+					name: '又见山'
+				}],
 				jdList: [{
 					name: '香山教寺',
-          X:'121.518298',
-          Y:'30.055497',
+					X: '121.518298',
+					Y: '30.055497',
 				}, {
 					name: '九龙源',
-          X:'121.51148',
-          Y:'30.054086',
+					X: '121.51148',
+					Y: '30.054086',
 				}, {
 					name: '滑草场',
-          X:'121.539236',
-          Y:'30.04344',
+					X: '121.539236',
+					Y: '30.04344',
 				}, {
 					name: '猴岛穿越时空',
-          X:'121.529372',
-          Y:'30.041006',
+					X: '121.529372',
+					Y: '30.041006',
 				}, {
 					name: '香山源',
-          X:'121.518298',
-          Y:'30.055497',
+					X: '121.518298',
+					Y: '30.055497',
 				}, {
 					name: '九龙湖景区',
-          X:'121.527141',
-          Y:'30.045825',
+					X: '121.527141',
+					Y: '30.045825',
 				}],
 				imgList: [{
 					url: 'static/images/jdw1.png',
 					name: '暗香疏影'
-				},{
+				}, {
 					url: 'static/images/jdw2.png',
 					name: '九龙第一鲜'
-				},{
+				}, {
 					url: 'static/images/jdw3.png',
 					name: '九龙云雾'
-				},{
+				}, {
 					url: 'static/images/jdw4.png',
 					name: '浪鲫江湖'
-				},{
+				}, {
 					url: 'static/images/jdw5.png',
 					name: '蟠青丛翠'
-				},{
+				}, {
 					url: 'static/images/jdw6.png',
 					name: '秋月如镜'
-				},{
+				}, {
 					url: 'static/images/jdw7.png',
 					name: '神仙烧鸡'
-				},{
+				}, {
 					url: 'static/images/jdw8.png',
 					name: '一丛金黄'
-				},{
+				}, {
 					url: 'static/images/jdw9.png',
 					name: '珠联璧合'
 				}],
@@ -580,12 +583,12 @@
 					url: 'static/images/banner4.png',
 					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
 				}],
-        gouImgList1: ['static/images/banner1.png','static/images/banner2.png','static/images/banner3.png'],
-        gouImgList2: ['static/images/banner4.png','static/images/banner5.png','static/images/banner6.png'],
-        gouImgList3: ['static/images/banner7.png','static/images/banner8.png','static/images/banner9.png'],
-        gouImgList4: ['static/images/banner10.png','static/images/banner11.png','static/images/banner12.png'],
-        gouImgList5: ['static/images/banner13.png','static/images/banner14.png'],
-        gouImgList6: ['static/images/banner15.png','static/images/banner16.png'],
+				gouImgList1: ['static/images/banner1.png', 'static/images/banner2.png', 'static/images/banner3.png'],
+				gouImgList2: ['static/images/banner4.png', 'static/images/banner5.png', 'static/images/banner6.png'],
+				gouImgList3: ['static/images/banner7.png', 'static/images/banner8.png', 'static/images/banner9.png'],
+				gouImgList4: ['static/images/banner10.png', 'static/images/banner11.png', 'static/images/banner12.png'],
+				gouImgList5: ['static/images/banner13.png', 'static/images/banner14.png'],
+				gouImgList6: ['static/images/banner15.png', 'static/images/banner16.png'],
 				xingList: [{
 					url: 'static/images/hslx.png',
 					title: '旅游路线'
@@ -597,146 +600,148 @@
 		},
 		methods: {
 			goto(item) {
-        console.log(item)
-          let a = {
-            X:item.X,
-            Y:item.Y,
-          }
-        this.$parent.test(a);
+				let a = {
+					X: item.X,
+					Y: item.Y,
+				}
+				this.topImg = item.url
+				this.$parent.test(a);
 			},
-      //打开关闭图层
-      onOff(type,name){
-        let a = {
-          type: type,
-          name: name
-        }
-        this.$parent.test(a);
-      },
+			//打开关闭图层
+			onOff(type, name) {
+				let a = {
+					type: type,
+					name: name
+				}
+				this.$parent.test(a);
+			},
 			getIndex(e) {
 				if (e == 0) {
-          this.onOff("打开图层","农家乐")
-          this.onOff("关闭图层","旅游景点")
-          this.onOff("关闭图层","旅游路线")
-          this.onOff("关闭图层","民宿")
+					this.onOff("打开图层", "农家乐")
+					this.onOff("关闭图层", "旅游景点")
+					this.onOff("关闭图层", "旅游路线")
+					this.onOff("关闭图层", "民宿")
 					this.imgList = [{
 						url: 'static/images/jdw1.png',
 						name: '暗香疏影'
-					},{
+					}, {
 						url: 'static/images/jdw2.png',
 						name: '九龙第一鲜'
-					},{
+					}, {
 						url: 'static/images/jdw3.png',
 						name: '九龙云雾'
-					},{
+					}, {
 						url: 'static/images/jdw4.png',
 						name: '浪鲫江湖'
-					},{
+					}, {
 						url: 'static/images/jdw5.png',
 						name: '蟠青丛翠'
-					},{
+					}, {
 						url: 'static/images/jdw6.png',
 						name: '秋月如镜'
-					},{
+					}, {
 						url: 'static/images/jdw7.png',
 						name: '神仙烧鸡'
-					},{
+					}, {
 						url: 'static/images/jdw8.png',
 						name: '一丛金黄'
-					},{
+					}, {
 						url: 'static/images/jdw9.png',
 						name: '珠联璧合'
 					}]
+					this.topImg = ""
 					this.njlList = [{
 						name: '龙居农家乐',
-            X:'121.50782',
-            Y:'30.051656',
+						X: '121.50782',
+						Y: '30.051656',
+						url: 'static/images/jdw1.png'
 					}, {
 						name: '月波农家菜馆',
-            X:'121.50818',
-            Y:'30.051681',
+						X: '121.50818',
+						Y: '30.051681',
 					}, {
 						name: '横溪人家',
-            X:'121.508527',
-            Y:'30.052313',
+						X: '121.508527',
+						Y: '30.052313',
 					}, {
 						name: '龙源农家乐',
-            X:'121.508072',
-            Y:'30.52354',
+						X: '121.508072',
+						Y: '30.52354',
 					}, {
 						name: '向石头农家乐',
-            X:'121.509869',
-            Y:'30.052034',
+						X: '121.509869',
+						Y: '30.052034',
 					}, {
 						name: '东琴农家乐',
-            X:'121.512405',
-            Y:'30.052881',
+						X: '121.512405',
+						Y: '30.052881',
 					}, {
 						name: '项珍农家乐',
-						X:'121.506141',
-						Y:'30.052687',
+						X: '121.506141',
+						Y: '30.052687',
 					}, {
 						name: '阿飞农家乐',
-						X:'121.506145',
-						Y:'30.052687',
+						X: '121.506145',
+						Y: '30.052687',
 					}, {
 						name: '雅明农家乐',
-						X:'121.502719',
-						Y:'30.051409',
+						X: '121.502719',
+						Y: '30.051409',
 					}, {
 						name: '九龙源农家乐',
-						X:'121.502887',
-						Y:'30.051724',
-					},{
+						X: '121.502887',
+						Y: '30.051724',
+					}, {
 						name: '食为天农家乐'
-					},{
+					}, {
 						name: '竹之林农家乐'
-					},{
+					}, {
 						name: '山里山农家乐'
-					},{
+					}, {
 						name: '赞来农家乐'
-					},{
+					}, {
 						name: '闻溪阁烧烤园'
-					},{
+					}, {
 						name: '青青农家菜馆'
-					},{
+					}, {
 						name: '食泉农家菜馆'
-					},{
+					}, {
 						name: '竹林人家农家菜馆'
-					},{
+					}, {
 						name: '绿色人家农家菜馆'
-					},{
+					}, {
 						name: '沿山苑农家菜馆'
-					},{
+					}, {
 						name: '溢品农家菜馆'
-					},{
+					}, {
 						name: '青山绿水农家菜馆'
-					},{
+					}, {
 						name: '八号农家乐'
-					},{
+					}, {
 						name: '钱家小院'
-					},{
+					}, {
 						name: '老宅私房农家菜'
-					},{
+					}, {
 						name: '竹雅农家乐'
-					},{
+					}, {
 						name: '长胜人家农家菜馆'
-					},{
+					}, {
 						name: '沈家小园'
-					},{
+					}, {
 						name: '小荣农家乐'
-					},{
+					}, {
 						name: '龙眼泉农家乐'
-					},{
+					}, {
 						name: '惠英农家乐'
-					},{
+					}, {
 						name: '栋兴生态农庄'
-					},{
+					}, {
 						name: '香石小院'
-					},{
+					}, {
 						name: '洪阿三农家乐'
-					},{
+					}, {
 						name: '氧气生活'
-					},{
+					}, {
 						name: '又见山'
 					}]
 					this.show = true
@@ -744,95 +749,96 @@
 					this.show3 = false
 					this.show4 = true
 				} else if (e == 1) {
-          //住
-          this.onOff("打开图层","民宿")
-          this.onOff("关闭图层","旅游景点")
-          this.onOff("关闭图层","旅游路线")
-          this.onOff("关闭图层","农家乐")
-
+					//住
+					this.onOff("打开图层", "民宿")
+					this.onOff("关闭图层", "旅游景点")
+					this.onOff("关闭图层", "旅游路线")
+					this.onOff("关闭图层", "农家乐")
+					this.topImg = ""
 					this.imgList = [{
 						url: 'static/images/zhu5.png',
 						name: '又见山'
-					},{
+					}, {
 						url: 'static/images/zhu3.png',
 						name: '龙眼泉'
-					},{
+					}, {
 						url: 'static/images/zhu4.png',
 						name: '闻溪阁'
-					},{
+					}, {
 						url: 'static/images/zhu6.png',
 						name: '竹之林'
-					},{
+					}, {
 						url: 'static/images/zhu7.png',
 						name: '远足农家客栈'
-					},{
+					}, {
 						url: 'static/images/zhu8.png',
 						name: '香石小院'
-					},{
+					}, {
 						url: 'static/images/zhu9.png',
 						name: '栋兴生态农庄'
 					}]
 					this.njlList = [{
 						name: '又见山',
-						X:'121.50615',
-						Y:'30.052189',
-					},{
+						X: '121.50615',
+						Y: '30.052189',
+						url: 'static/images/jdw1.png'
+					}, {
 						name: '龙眼泉农家乐',
-						X:'121.507867',
-						Y:'30.052307',
-					},{
+						X: '121.507867',
+						Y: '30.052307',
+					}, {
 						name: '惠英农家乐',
-						X:'121.502735',
-						Y:'30.051085',
+						X: '121.502735',
+						Y: '30.051085',
 					}, {
 						name: '栋兴生态农庄',
-						X:'121.509037',
-						Y:'30.051842',
+						X: '121.509037',
+						Y: '30.051842',
 					}, {
 						name: '香石小院',
-						X:'121.500984',
-						Y:'30.051311',
+						X: '121.500984',
+						Y: '30.051311',
 					}, {
 						name: '洪阿三农家乐',
-						X:'121.50112',
-						Y:'30.051359',
+						X: '121.50112',
+						Y: '30.051359',
 					}, {
 						name: '钱门客栈',
-						X:'121.503487',
-						Y:'30.052357',
+						X: '121.503487',
+						Y: '30.052357',
 					}, {
 						name: '远足农家客栈',
-						X:'121.508364',
-						Y:'30.052494',
+						X: '121.508364',
+						Y: '30.052494',
 					}, {
 						name: '高屋人家',
-						X:'121.50196',
-						Y:'30.051863',
+						X: '121.50196',
+						Y: '30.051863',
 					}, {
 						name: '氧气生活',
-						X:'121.534009',
-						Y:'30.031686',
+						X: '121.534009',
+						Y: '30.031686',
 					}]
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 2) {
-				  //玩
-          this.onOff("打开图层","旅游景点")
-          this.onOff("打开图层","旅游路线")
-          this.onOff("关闭图层","农家乐")
-          this.onOff("关闭图层","民宿")
-          this.show = false
+					//玩
+					this.onOff("打开图层", "旅游景点")
+					this.onOff("打开图层", "旅游路线")
+					this.onOff("关闭图层", "农家乐")
+					this.onOff("关闭图层", "民宿")
+					this.show = false
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
 				} else if (e == 3) {
-				  //购
-          this.onOff("关闭图层","旅游景点")
-          this.onOff("关闭图层","旅游路线")
-          this.onOff("关闭图层","农家乐")
-          this.onOff("关闭图层","民宿")
+					//购
+					this.onOff("关闭图层", "旅游景点")
+					this.onOff("关闭图层", "旅游路线")
+					this.onOff("关闭图层", "农家乐")
+					this.onOff("关闭图层", "民宿")
 					this.show = false
 					this.show2 = false
 					this.show3 = true
@@ -851,24 +857,24 @@
 				this.xingIndex = e
 			},
 			random(lower, upper) {
-			  	return Math.floor(Math.random() * (upper - lower)) + lower;
+				return Math.floor(Math.random() * (upper - lower)) + lower;
 			}
 		},
 		mounted() {
 			this.show = true
 			this.show4 = true
 			let that = this
-			setInterval(function(){
-				let option = that.random(297,512)
-				let option4 = that.random(187,523)
-				let option5 = that.random(113,286)
-				that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option/1000)
-				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4/1000)
-				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5/1000)
-				that.option.title.text = '{a|'+option+'}\n{c|剩余车位数}'
-				that.option4.title.text = '{a|'+option4+'}\n{c|人流量}'
-				that.option5.title.text = '{a|'+option5+'}\n{c|车流量}'
-			},60000)
+			setInterval(function() {
+				let option = that.random(297, 512)
+				let option4 = that.random(187, 523)
+				let option5 = that.random(113, 286)
+				that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
+				that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(option4 / 1000)
+				that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5 / 1000)
+				that.option.title.text = '{a|' + option + '}\n{c|剩余车位数}'
+				that.option4.title.text = '{a|' + option4 + '}\n{c|人流量}'
+				that.option5.title.text = '{a|' + option5 + '}\n{c|车流量}'
+			}, 60000)
 		}
 	}
 </script>
@@ -950,6 +956,7 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
+
 		.rm-bottom {
 			display: flex;
 			justify-content: space-between;
@@ -966,16 +973,27 @@
 		width: 500px;
 		// height: 333px;
 		position: absolute;
-		top: 200px;
+		top: 150px;
 		right: 35px;
 
 		border-radius: 10px;
 		box-sizing: border-box;
+		
+		.banner-top-img {
+			width: 100%;
+			height: 304px;
+			margin-bottom: 20px;
+			border: 2px solid #fff;
+			box-sizing: border-box;
+		}
+		
 		/deep/ .el-carousel__container {
 			border: 2px solid #fff;
+
 			.el-carousel__item {
 				width: 100%;
 				height: 100%;
+
 				img {
 					width: 100%;
 					height: 100%;
@@ -994,32 +1012,12 @@
 			border-radius: 20px;
 			text-align: center;
 		}
+
 		.banner-tip {
 			width: 500px;
 			padding: 10px 0;
 			margin-top: 20px;
-			.banner-tip-word {
-				width: 100%;
-				padding: 100px 0;
-				font-size: 28px;
-				text-align: center;
-			}
-		}
-		.banner-name {
-			width: 100%;
-			background-color: rgba(0, 0, 0, 0.3);
-			margin-top: 10px;
-			font-size: 18px;
-			color: #fff;
-			padding: 10px 0;
-			box-sizing: border-box;
-			border-radius: 20px;
-			text-align: center;
-		}
-		.banner-tip {
-			width: 500px;
-			padding: 10px 0;
-			margin-top: 20px;
+
 			.banner-tip-word {
 				width: 100%;
 				padding: 100px 0;
@@ -1049,34 +1047,11 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-    /deep/ .el-carousel__container {
-    	border: 2px solid #fff;
-      margin-bottom: 100px;
-    	.el-carousel__item {
-    		width: 100%;
-    		height: 100%;
-    		img {
-    			width: 100%;
-    			height: 100%;
-    		}
-    	}
-    }
-	}
 
-	.banner-box {
-		width: 500px;
-		// position: absolute;
-		// top: 200px;
-		// transform: translate(-50%, -50%);
-		display: flex;
-		flex-direction: column;
-		.banner-center {
-			width: 100%;
-			// height: 333px;
-			margin-bottom: 10px;
+		/deep/ .el-carousel__container {
 			border: 2px solid #fff;
-			border-radius: 10px;
-			box-sizing: border-box;
+			margin-bottom: 100px;
+
 			.el-carousel__item {
 				width: 100%;
 				height: 100%;
@@ -1087,6 +1062,35 @@
 				}
 			}
 		}
+	}
+
+	.banner-box {
+		width: 500px;
+		// position: absolute;
+		// top: 200px;
+		// transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+
+		.banner-center {
+			width: 100%;
+			// height: 333px;
+			margin-bottom: 10px;
+			border: 2px solid #fff;
+			border-radius: 10px;
+			box-sizing: border-box;
+
+			.el-carousel__item {
+				width: 100%;
+				height: 100%;
+
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+
 		.banner-img {
 			width: 500px;
 			height: 333px;
@@ -1095,6 +1099,7 @@
 			border-radius: 10px;
 			box-sizing: border-box;
 		}
+
 		.banner-label {
 			width: 100%;
 			min-height: 200px;
