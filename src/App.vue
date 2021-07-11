@@ -207,7 +207,7 @@
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-					this.tabChildList = ['网格管理','综合监管','线上指挥']
+					this.tabChildList = ['网格管理','综合监管','线上指挥','综合巡查']
 					this.isChildShow = true
 					this.isChildShow2 = false
 				}

@@ -26,7 +26,7 @@
 				</div>
 			</div>
 		</transition>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show">
 				<div class="pop-common sttj">
 					<div class="pop-title"><span>山塘统计</span></div>
@@ -42,7 +42,7 @@
 						<span>{{ item.capacity }}</span>
 						<span>{{ item.volume }}</span>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- <div class="pop-common sktj">
 					<div class="pop-title" style="display: flex;justify-content: space-between;">
@@ -62,9 +62,9 @@
 						</div>
 					</div>
 				</div> -->
-			</div>
-		</transition>
-		<transition name="fade">
+			<!-- </div>
+		</transition> -->
+		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show16">
 				<div class="pop-common sktj">
 					<div class="pop-title"><span>水库统计</span></div>
@@ -82,18 +82,18 @@
 					</div>
 				</div>
 			</div>
-		</transition>
-		<div class="videoClass" v-if="showVideo">
+		</transition> -->
+		<!-- <div class="videoClass" v-if="showVideo">
 			<video :src="videoUrl" autoplay="autoplay" loop="loop"></video>
 			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
-		</div>
+		</div> -->
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
 					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;" @click="showWg">
 			</div>
 		</transition>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-list2" v-show="show20">
 				<div class="pop-common" style="width: 460px;margin-bottom: 30px;">
 					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>垃圾分类</span></div>
@@ -119,9 +119,9 @@
 						</div>
 					</div>
 				</div>
-				<!--				<div class="monitorBox"></div>-->
+								<div class="monitorBox"></div>
 			</div>
-		</transition>
+		</transition> -->
 		<transition name="fade">
 			<div class="pop-top" v-show="show8">
 				<div class="pop-top-content">
@@ -170,7 +170,7 @@
 		<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
 		<!-- </div> -->
 		<!-- </transition> -->
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-common pop-list" v-show="show4">
 				<div class="pop-title"><span>商家统计</span></div>
 				<div class="pop-inner-title">
@@ -184,9 +184,9 @@
 					</div>
 				</div>
 			</div>
-		</transition>
-		<img src="static/images/zhu2.png" v-if="showXmb"
-			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;">
+		</transition> -->
+		<!-- <img src="static/images/zhu2.png" v-if="showXmb"
+			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
 		<transition name="fade">
 			<div class="pop-common pop-list2" v-show="show5">
 				<div class="pop-title"><span>执法设备</span></div>
@@ -202,10 +202,10 @@
 				</div>
 			</div>
 		</transition>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<PopBox :list="list" v-show='show7' @updata="getPopIndex"></PopBox>
-		</transition>
-		<transition name="fade">
+		</transition> -->
+		<!-- <transition name="fade">
 			<div class="pop-common pop-wf" v-show="show9">
 				<div class="pop-title"><span>危房统计</span></div>
 				<div class="pop-wf-title">
@@ -223,8 +223,8 @@
 					</div>
 				</div>
 			</div>
-		</transition>
-		<transition name="fade">
+		</transition> -->
+		<!-- <transition name="fade">
 			<div class="pop-common srjf" v-show="show10">
 				<div class="pop-title"><span>私人建房统计</span></div>
 				<div class="srjf-title">
@@ -248,16 +248,16 @@
 					<span>{{item.sort}}</span>
 				</div>
 			</div>
-		</transition>
+		</transition> -->
 		<!--执法仪监控-->
 		<hik2 :codes="codes" ref="videoPlayer2" :playMode="1"></hik2>
 		<!-- 危房监控 山塘防溺水监控-->
 		<hik5 :codes="codes" ref="videoPlayer5" :playMode="1"></hik5>
 
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
 				v-show="show6">
-		</transition>
+		</transition> -->
 		<transition name="fade">
 			<div class="sj" v-if="showP">
 				<div class="sj-pop" style="border-color: #f2272f;background-color: rgba(242,39,47,0.4);">
@@ -380,7 +380,7 @@
 				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
 			</div>
 		</transition>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-common dzxx" v-show="show11">
 				<div class="pop-title"><span>泥石流监控</span></div>
 				<div class="pop-dz-title">
@@ -394,8 +394,8 @@
 					</div>
 				</div>
 			</div>
-		</transition>
-		<transition name="fade">
+		</transition> -->
+		<!-- <transition name="fade">
 			<div class="pop-common dzxx" v-show="show15">
 				<div class="pop-title"><span>位移监测点列表</span></div>
 				<div class="pop-dz-title">
@@ -413,11 +413,11 @@
 					</div>
 				</div>
 			</div>
-		</transition>
+		</transition> -->
 		<img src="static/images/bgBtn.png"
 			style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12"
 			@click="toMapA">
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-common pop-list2" v-show="show14">
 				<div class="pop-title"><span>总览</span></div>
 				<div class="zl-box">
@@ -427,7 +427,47 @@
 					</div>
 				</div>
 			</div>
-		</transition>
+		</transition> -->
+    <transition name="fade">
+      <div v-show="show17">
+        <div class="pop-left">
+          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+            <div class="pop-title"><span>一企一档</span></div>
+          </div>
+          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+            <div class="pop-title"><span>危房管理</span></div>
+          </div>
+        </div>
+        <div class="pop-bottom">
+          <div class="pop-common" style="height: 350px;">
+            <div class="pop-title"><span>防溺水管理</span></div>
+          </div>
+          <div class="pop-common" style="width: 250px;height: 350px;">
+            <div class="pop-title"><span>山塘水库</span></div>
+          </div>
+          <div class="pop-common" style="width: 250px;height: 350px;">
+            <div class="pop-title"><span>泥石流监管</span></div>
+          </div>
+          <div class="pop-common" style="width: 250px;height: 350px;">
+            <div class="pop-title"><span>内涝点监管</span></div>
+          </div>
+          <div class="pop-common" style="width: 300px;height: 350px;">
+            <div class="pop-title"><span>边坡位移</span></div>
+          </div>
+          <div class="pop-common" style="height: 350px;">
+            <div class="pop-title"><span>垃圾分类管理</span></div>
+          </div>
+        </div>
+        <div class="pop-right">
+          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+            <div style="display: none;"></div> <!-- 执法仪监控区域 -->
+            <div class="pop-title"><span>线上指挥</span></div>
+          </div>
+          <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
+          </div>
+        </div>
+      </div>
+    </transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -471,6 +511,7 @@
 				show14: false, //综合监管总览
 				show15: false, //位移监测点
 				show16: false, //水库统计
+        show17: false, //综合治理10个框
 				show20: false, //乡村关爱垃圾分类点位
 				showVideo: false, //防溺水视频
 				showXmb: false, //小卖部
@@ -1379,6 +1420,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
+          this.show17 = false
 					this.showXmb = false
 					this.showP = true
 					this.showPDetail = false
@@ -1427,6 +1469,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
+          this.show17 = true
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
@@ -1450,6 +1493,31 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
+          this.show17 = false
+					this.showXmb = false
+					this.showP = false
+					this.showPDetail = false
+				} else if (e == 3) {
+					// 综合巡查
+					this.$parent.isChildShow = false
+					this.offHik()
+					this.show2 = false
+					this.show = false
+					this.show3 = false
+					this.show4 = false
+					this.show5 = false
+					this.show6 = false
+					this.show7 = false
+					this.show8 = false
+					this.show9 = false
+					this.show10 = false
+					this.show11 = false
+					this.show12 = false
+					this.show13 = false
+					this.show14 = false
+					this.show15 = false
+					this.show16 = false
+          this.show17 = false
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
@@ -2830,4 +2898,27 @@
 			}
 		}
 	}
+
+  .pop-left {
+    position: absolute;
+    top: 200px;
+    left: 35px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pop-bottom {
+    width: calc(100% - 70px);
+    position: absolute;
+    bottom: 40px;
+    left: 35px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .pop-right {
+    position: absolute;
+    top: 200px;
+    right: 35px;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
