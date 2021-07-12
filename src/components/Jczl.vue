@@ -617,23 +617,23 @@
 					url: 'static/images/wg-zhs.png',
 					// title: '租户数'
 				}, {
-					num: 111,
+					num: 13,
 					url: 'static/images/wg-dbh.png',
 					// title: '低保户'
 				}, {
-					num: 111,
+					num: 657,
 					url: 'static/images/wg-lnr.png',
 					// title: '老年人'
 				}, {
-					num: 111,
+					num: 104,
 					url: 'static/images/wg-czrs.png',
 					// title: '残障人士'
 				}, {
-					num: 111,
+					num: 7,
 					url: 'static/images/wg-tsjsjt.png',
 					// title: '特殊计生家庭'
 				}, {
-					num: 111,
+					num: 0,
 					url: 'static/images/wg-sqjzry.png',
 					// title: '社区矫正人员'
 				}],
@@ -2369,9 +2369,9 @@
 			toUserMap() {
 				if (this.ydyh === false) {
 					this.$parent.test("一户一档人口");
-					this.show2 = false
 					this.ydyh = true
 				}
+				this.show2 = false
 				this.$parent.test("长胜38号")
 			},
 			searchKey(e) {
