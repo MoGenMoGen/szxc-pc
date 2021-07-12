@@ -26,7 +26,8 @@
 						<span>网格长</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in wgzList" :key='index' @click="showWgz(index)" class="pop-inner-item">
+						<div v-for="(item,index) in wgzList" :key='index' @click="showWgz(index)"
+							class="pop-inner-item">
 							<span>{{ index + 1 }}</span>
 							<span>{{ item.name }}</span>
 							<span>{{ item.leaderName }}</span>
@@ -53,7 +54,7 @@
 					</div>
 				</div> -->
 
-				<!-- <div class="pop-common sktj">
+		<!-- <div class="pop-common sktj">
 					<div class="pop-title" style="display: flex;justify-content: space-between;">
 						<span>防溺水监控</span>
 						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox">示例</span>
@@ -71,7 +72,7 @@
 						</div>
 					</div>
 				</div> -->
-			<!-- </div>
+		<!-- </div>
 		</transition> -->
 		<!-- <transition name="fade">
 			<div class="pop-box" v-show="show16">
@@ -206,7 +207,8 @@
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item" @click="toZf(item)">
 						<span>{{ item.name }}</span>
-						<span style="display: flex;justify-content: space-between;"><span>上午轨迹</span><span>下午未生成</span></span>
+						<span
+							style="display: flex;justify-content: space-between;"><span>上午轨迹</span><span>下午未生成</span></span>
 					</div>
 				</div>
 			</div>
@@ -384,9 +386,74 @@
 					<div><span>是否超时关闭:</span><span>{{sjDetail.timeOut}}</span></div>
 				</div>
 			</div> -->
-			<div v-show="showPDetail" style="position: absolute;top: 200px;right:570px;z-index: 10000;">
-				<img src="static/images/cancel.png" @click="showPDetail=false" style="position: absolute;top: -20px;right: -20px;">
-				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
+			<div class="sgpt-pop" v-show="showPDetail">
+				<div class="sgpt-top">查看<img src="static/images/cancel.png" @click="showPDetail=false"/></div>
+				<div class="sgpt-box">
+					<div class="sgpt-info">
+						<div class="sgpt-left">
+							<span>事件追踪</span>
+							<div class="sgpt-over" style="display: flex;">
+								<div style="width: 10%;">
+									<div style="height: 108px;" v-for="(item,index) in 5" :key="index">{{item}}</div>
+								</div>
+								<el-timeline style="width: 90%;margin-top: 10px;">
+								    <el-timeline-item
+								      v-for="(item, index) in 5"
+								      :key="index">
+								      <div style="height: 80px;"></div>
+								    </el-timeline-item>
+								  </el-timeline>
+							</div>
+						</div>
+						<div class="sgpt-right">
+							<div class="sgpt-right-top">
+								<span>事件详情</span>
+								<div class="sgpt-over">
+									<div class="sgpt-table">
+										<div class="sgpt-line">
+											<div class="sgpt-bg">事件编号</div><div class="sgpt-nbg">JWL202107080208</div><div class="sgpt-bg">上报事件</div><div class="sgpt-nbg">2021-07-08 09:50:24</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">上报人</div><div class="sgpt-nbg">陈露露</div><div class="sgpt-bg">上报网格</div><div class="sgpt-nbg">九龙湖镇河头村金池路上大岙</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">事件类型</div><div class="sgpt-nbg">食品安全</div><div class="sgpt-bg">事件等级</div><div class="sgpt-nbg">一级事件</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">事发地点</div><div class="sgpt-nbg">河头村</div><div class="sgpt-bg">上报事件</div><div class="sgpt-nbg">2021-07-08 09:50:24</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">事件描述</div><div class="sgpt-nbg" style="width: 460px;">对河头村菜场阿雨豆腐摊进行食品安全检查，摊位卫生检查</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">重点场所</div><div class="sgpt-nbg">否</div><div class="sgpt-bg">涉及人数</div><div class="sgpt-nbg">2</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sgpt-right-bottom">
+								<div class="sgpt-right-bottom-item">
+									<div style="display: flex;flex-direction: column;">
+										<span>处理之前</span>
+										<el-image style="width: 100px; height: 100px;margin-top: 10px;" src="static/images/activity2.png" :preview-src-list="srcList"></el-image>
+									</div>
+									<div style="display: flex;flex-direction: column;">
+										<span>处理之后</span>
+										<el-image style="width: 100px; height: 100px;margin-top: 10px;" src="static/images/activity2.png" :preview-src-list="srcList"></el-image>
+									</div>
+								</div>
+								<div class="sgpt-right-bottom-item">
+									<span>事件地点</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sgpt-btn">
+						<span>批示</span>
+						<span>打印批示单</span>
+						<span @click="showPDetail=false">关闭</span>
+					</div>
+				</div>
 			</div>
 		</transition>
 		<!-- <transition name="fade">
@@ -438,111 +505,118 @@
 			</div>
 		</transition> -->
 		<transition name="fade">
-		  <div v-show="show17">
-			<div class="pop-left">
-			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-				<div class="pop-title"><span>一企一档<p class="tip-style">{{qyList.length}}</p></span></div>
-				<div class="pop-common-box">
-					<div class="pop-one-line" v-for="(item,index) in qyList" :key="index" @click="toQiye(index,item)">· {{item.name}}</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-				<div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
-				<div class="pop-common-title">
-					<span></span>
-					<span>行政村</span>
-					<span>户主姓名</span>
-					<span>建造年代</span>
-				</div>
-				<div class="pop-common-box">
-					<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
-						<span>·</span>
-						<span>{{item.area}}</span>
-						<span>{{item.name}}</span>
-						<span>{{item.time}}</span>
+			<div v-show="show17">
+				<div class="pop-left">
+					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+						<div class="pop-title"><span>一企一档<p class="tip-style">{{qyList.length}}</p></span></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in qyList" :key="index"
+								@click="toQiye(index,item)">· {{item.name}}</div>
+						</div>
+					</div>
+					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+						<div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
+						<div class="pop-common-title">
+							<span></span>
+							<span>行政村</span>
+							<span>户主姓名</span>
+							<span>建造年代</span>
+						</div>
+						<div class="pop-common-box">
+							<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
+								<span>·</span>
+								<span>{{item.area}}</span>
+								<span>{{item.name}}</span>
+								<span>{{item.time}}</span>
+							</div>
+						</div>
 					</div>
 				</div>
-			  </div>
+				<div class="pop-bottom">
+					<div class="pop-common" style="height: 350px;">
+						<div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
+						<div class="pop-common-title2">
+							<span></span>
+							<span>水库名称</span>
+							<span>报警次数</span>
+						</div>
+						<div class="pop-common-box">
+							<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
+								<span>·</span>
+								<span>{{item.name}}</span>
+								<span :style="{color:item.num>=15?'#D00E00':''}">{{item.num}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="pop-common" style="width: 250px;height: 350px;">
+						<div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
+								{{item.name}}</div>
+						</div>
+					</div>
+					<div class="pop-common" style="width: 250px;height: 350px;">
+						<div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
+								{{item.add}}</div>
+						</div>
+					</div>
+					<div class="pop-common" style="width: 250px;height: 350px;">
+						<div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">·
+								{{item.name}}</div>
+						</div>
+					</div>
+					<div class="pop-common" style="width: 300px;height: 350px;">
+						<div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
+						<div class="pop-common-title2">
+							<span></span>
+							<span>点位名称</span>
+							<span>位移量</span>
+						</div>
+						<div class="pop-common-box">
+							<div class="pop-two-line" v-for="(item,index) in wyList" :key="index">
+								<span>·</span>
+								<span>{{item.dName}}</span>
+								<span>{{item.num}}mm</span>
+							</div>
+						</div>
+					</div>
+					<div class="pop-common" style="height: 350px;">
+						<div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
+						<div class="pop-common-title">
+							<span></span>
+							<span>点位名称</span>
+							<span style="text-align: center;">督导员姓名</span>
+							<span style="text-align: center;">投放时间</span>
+						</div>
+						<div class="pop-common-box">
+							<div class="pop-three-line" v-for="(item,index) in ljflglList" :key="index"
+								@click="toMap(item)">
+								<span>·</span>
+								<span>{{item.name}}</span>
+								<span style="text-align: center;">{{item.supervisorName}}</span>
+								<span>{{item.putTime}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pop-right">
+					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+						<div style="display: none;"></div> <!-- 执法仪监控区域 -->
+						<div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">·
+								{{item.name}}</div>
+						</div>
+					</div>
+					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+						<!-- 右侧中间监控区域 -->
+					</div>
+				</div>
 			</div>
-			<div class="pop-bottom">
-			  <div class="pop-common" style="height: 350px;">
-				<div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
-				<div class="pop-common-title2">
-					<span></span>
-					<span>水库名称</span>
-					<span>报警次数</span>
-				</div>
-				<div class="pop-common-box">
-					<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
-						<span>·</span>
-						<span>{{item.name}}</span>
-						<span :style="{color:item.num>=15?'#D00E00':''}">{{item.num}}</span>
-					</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="width: 250px;height: 350px;">
-				<div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
-				<div class="pop-common-box">
-					<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">· {{item.name}}</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="width: 250px;height: 350px;">
-				<div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
-				<div class="pop-common-box">
-					<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">· {{item.add}}</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="width: 250px;height: 350px;">
-				<div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
-				<div class="pop-common-box">
-					<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">· {{item.name}}</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="width: 300px;height: 350px;">
-				<div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
-				<div class="pop-common-title2">
-					<span></span>
-					<span>点位名称</span>
-					<span>位移量</span>
-				</div>
-				<div class="pop-common-box">
-					<div class="pop-two-line" v-for="(item,index) in wyList" :key="index">
-						<span>·</span>
-						<span>{{item.dName}}</span>
-						<span>{{item.num}}mm</span>
-					</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="height: 350px;">
-				<div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
-				<div class="pop-common-title">
-					<span></span>
-					<span>点位名称</span>
-					<span style="text-align: center;">督导员姓名</span>
-					<span style="text-align: center;">投放时间</span>
-				</div>
-				<div class="pop-common-box">
-					<div class="pop-three-line" v-for="(item,index) in ljflglList" :key="index" @click="toMap(item)">
-						<span>·</span>
-						<span>{{item.name}}</span>
-						<span style="text-align: center;">{{item.supervisorName}}</span>
-						<span>{{item.putTime}}</span>
-					</div>
-				</div>
-			  </div>
-			</div>
-			<div class="pop-right">
-			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-				<div style="display: none;"></div> <!-- 执法仪监控区域 -->
-				<div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
-				<div class="pop-common-box">
-					<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">· {{item.name}}</div>
-				</div>
-			  </div>
-			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
-			  </div>
-			</div>
-		  </div>
 		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
@@ -562,6 +636,7 @@
 		props: {},
 		data() {
 			return {
+				srcList:['static/images/activity2.png'],
 				e: '',
 				codes: '',
 				cType: "3",
@@ -860,7 +935,7 @@
 					X: '121.528029',
 					Y: '30.048175',
 					num: 0
-					
+
 				}, {
 					name: '小木屋2',
 					area: '九龙湖',
@@ -1365,25 +1440,25 @@
 				wgzList: [{
 					name: '横溪冷水井、后厢',
 					leaderName: '王佳丹'
-				},{
+				}, {
 					name: '横溪钱家，大同高屋，大圆地',
 					leaderName: '钱亮英'
-				},{
+				}, {
 					name: '横溪坝下、桥头',
 					leaderName: '徐佳妙'
-				},{
+				}, {
 					name: '横溪田中央、墙头、长坂地',
 					leaderName: '翁志元'
-				},{
+				}, {
 					name: '长胜毛岭、孟家',
 					leaderName: '沈裕琪'
-				},{
+				}, {
 					name: '长胜长桥头',
 					leaderName: '邱雪君'
-				},{
+				}, {
 					name: '长胜周家巷',
 					leaderName: '朱丽红'
-				},{
+				}, {
 					name: '长胜田央沈',
 					leaderName: '黄杰锋'
 				}],
@@ -1394,98 +1469,98 @@
 					X: '121.543364',
 					Y: '30.034804',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点02',
 					supervisorName: '戎巧芬',
 					code: '21b943aa87254d25b10d525c8c64c91c',
 					X: '121.540393',
 					Y: '30.034262',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点03',
 					supervisorName: '滕学行',
 					code: '',
 					X: '121.541797',
 					Y: '30.035759',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点04',
 					supervisorName: '邱桂玲',
 					code: '9e27366459024dfeb9da1d928db2860f',
 					X: '121.540883',
 					Y: '30.035809',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点05',
 					supervisorName: '沈文陆',
 					code: '4c4fec8c33f14b05b1220410ff6083b3',
 					X: '121.537496',
 					Y: '30.034322',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点06',
 					supervisorName: '陈国定',
 					code: '0fb157b75338412d854145f534eae3ff',
 					X: '121.537497',
 					Y: '30.034919',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点07',
 					supervisorName: '王品岳',
 					code: '400f8cd2631146ae86b6836b726e735d',
 					X: '121.536414',
 					Y: '30.033546',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点08',
 					supervisorName: '沈和娣',
 					code: 'f8e9a9d033d54da6a514284a1e1c73ec',
 					X: '121.535638',
 					Y: '30.03384',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点09',
 					supervisorName: '周银莲',
 					code: 'f5d82fc4b28a4b39b06c08ac64b81063',
 					X: '121.532824',
 					Y: '30.035512',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '长胜垃圾投放点10',
 					supervisorName: '黄珍芬',
 					code: 'f5d82fc4b28a4b39b06c08ac64b81063',
 					X: '121.532824',
 					Y: '30.035512',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '横溪垃圾投放点01',
 					supervisorName: '陈爱琴',
 					code: '2a19f151bffc4a368564879f4bc42803',
 					X: '121.509087',
 					Y: '30.052173',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '横溪垃圾投放点02',
 					supervisorName: '戴芝芬',
 					code: '755c8a96a8b44d7da41331387aa01a48',
 					X: '121.501695',
 					Y: '30.051346',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '横溪垃圾投放点03',
 					supervisorName: '钱佩君',
 					code: '4cf0233765c54aac94ab53f866c4261b',
 					X: '121.503777',
 					Y: '30.05121',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '横溪垃圾投放点04',
 					supervisorName: '戎志萍',
 					code: '4b436bc660ae42809f407bc7ca202229',
 					X: '121.504462',
 					Y: '30.051907',
 					putTime: '6点-8点,17点-19点'
-				},{
+				}, {
 					name: '横溪垃圾投放点05',
 					supervisorName: '方瑞珍',
 					code: '27e50449dd0649008aaa28aa6bd18378',
@@ -1869,42 +1944,42 @@
 				this.showP = false
 				this.showPDetail = false
 				this.show8 = true
-				if(e==0) {
+				if (e == 0) {
 					this.wgList[0].num = '横溪冷水井、后厢'
 					this.wgList[1].num = '王佳丹'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 97
-				} else if (e==1) {
+				} else if (e == 1) {
 					this.wgList[0].num = '横溪钱家、大同高屋、大园地'
 					this.wgList[1].num = '钱亮英'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 231
-				} else if (e==2) {
+				} else if (e == 2) {
 					this.wgList[0].num = '横溪坝下、桥头'
 					this.wgList[1].num = '徐佳妙'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 109
-				} else if (e==3) {
+				} else if (e == 3) {
 					this.wgList[0].num = '横溪田中央、墙头、长坂地'
 					this.wgList[1].num = '翁志元'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 226
-				} else if (e==4) {
+				} else if (e == 4) {
 					this.wgList[0].num = '长胜毛岭、孟家'
 					this.wgList[1].num = '沈裕琪'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 159
-				} else if (e==5) {
+				} else if (e == 5) {
 					this.wgList[0].num = '长胜长桥头'
 					this.wgList[1].num = '邱雪君'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 147
-				} else if (e==6) {
+				} else if (e == 6) {
 					this.wgList[0].num = '长胜周家巷'
 					this.wgList[1].num = '朱丽红'
 					this.wgList[2].num = '陈如良'
 					this.wgList[3].num = 146
-				} else if (e==7) {
+				} else if (e == 7) {
 					this.wgList[0].num = '长胜田央沈'
 					this.wgList[1].num = '黄杰锋'
 					this.wgList[2].num = '陈如良'
@@ -2404,6 +2479,7 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 		line-height: 20px;
+
 		span {
 			margin-left: 20px;
 		}
@@ -2422,24 +2498,28 @@
 		z-index: 1998;
 		max-height: 380px;
 	}
+
 	.pop-zl {
 		position: absolute;
 		top: 200px;
 		left: 35px;
 		max-height: none;
 	}
+
 	.pop-zl-box {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		font-size: 30px;
 		margin-top: 20px;
+
 		.pop-zl-item {
 			width: 33%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+
 			img {
 				width: 38px;
 				height: 38px;
@@ -2497,46 +2577,51 @@
 		top: 670px;
 		left: 35px;
 		max-height: none;
+
 		.pop-title {
 			width: 100%;
 			background-size: 100% 32px;
 		}
+
 		.pop-inner-title {
 			display: flex;
 			width: 90%;
 			margin: 10px auto;
 			font-size: 19px;
+
 			span {
 				text-align: center;
 				width: 50%;
 			}
+
 			span:first-child {
 				text-align: center;
 				width: 20%;
 			}
-		
+
 			span:last-child {
 				text-align: center;
 				width: 30%;
 			}
 		}
-		
+
 		.pop-inner-box {
 			.pop-inner-item {
 				display: flex;
 				width: 90%;
 				margin: 10px auto;
 				font-size: 18px;
-		
+
 				span {
 					text-align: center;
 					width: 50%;
 				}
+
 				span:first-child {
 					text-align: center;
 					width: 20%;
 				}
-						
+
 				span:last-child {
 					text-align: center;
 					width: 30%;
@@ -2876,7 +2961,7 @@
 		opacity: 0;
 	}
 
-	.sj{
+	.sj {
 		width: 520px;
 		position: absolute;
 		top: 200px;
@@ -2895,6 +2980,7 @@
 		box-sizing: border-box;
 		color: #fff;
 		margin-bottom: 10px;
+
 		.sj-pop-title {
 			width: 485px;
 			background: url(../../public/static/images/line.png) no-repeat;
@@ -2903,6 +2989,7 @@
 			padding: 0 20px;
 			margin: 0 auto;
 			box-sizing: border-box;
+
 			span {
 				margin-left: 20px;
 			}
@@ -3141,110 +3228,262 @@
 		}
 	}
 
-  .pop-left {
-    position: absolute;
-    top: 200px;
-    left: 35px;
-    display: flex;
-    flex-direction: column;
-  }
-  .pop-bottom {
-    width: calc(100% - 70px);
-    position: absolute;
-    bottom: 40px;
-    left: 35px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .pop-right {
-    position: absolute;
-    top: 200px;
-    right: 35px;
-    display: flex;
-    flex-direction: column;
-  }
-  .pop-common-title {
-	  display: flex;
-	  align-items: center;
-	  font-size: 18px;
-	  margin-top: 10px;
-	  span {
-		width: 32%;
-	  }
-	  span:first-child {
-		width: 4%;
-	  }
-  }
-  .pop-common-title2 {
-	  display: flex;
-	  align-items: center;
-	  font-size: 18px;
-	  margin-top: 10px;
-	  span {
-	  		width: 48%;
-	  }
-	  span:first-child {
-	  		width: 4%;
-	  }
-  }
-  .pop-common-box {
-	flex: 1;
-	overflow-y: scroll;
-	padding: 10px 0;
-	box-sizing: border-box;
-	font-size: 18px;
-	.pop-one-line {
-		margin-bottom: 15px;
+	.pop-left {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		display: flex;
+		flex-direction: column;
 	}
-	.pop-one-line:last-child {
-	  	margin-bottom: 0;
+
+	.pop-bottom {
+		width: calc(100% - 70px);
+		position: absolute;
+		bottom: 40px;
+		left: 35px;
+		display: flex;
+		justify-content: space-between;
 	}
-	.pop-two-line {
+
+	.pop-right {
+		position: absolute;
+		top: 200px;
+		right: 35px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.pop-common-title {
 		display: flex;
 		align-items: center;
-		margin-bottom: 15px;
-		span {
-			width: 48%;
-			overflow: hidden;
-			word-break: keep-all;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-		span:first-child {
-			width: 4%;
-		}
-	}
-	.pop-two-line:last-child {
-		margin-bottom: 0;
-	}
-	.pop-three-line {
-		display: flex;
-		align-items: center;
-		margin-bottom: 15px;
+		font-size: 18px;
+		margin-top: 10px;
+
 		span {
 			width: 32%;
-			overflow: hidden;
-			word-break: keep-all;
-			white-space: nowrap;
-			text-overflow: ellipsis;
 		}
+
 		span:first-child {
 			width: 4%;
 		}
 	}
-	.pop-three-line:last-child {
-		margin-bottom: 0;
+
+	.pop-common-title2 {
+		display: flex;
+		align-items: center;
+		font-size: 18px;
+		margin-top: 10px;
+
+		span {
+			width: 48%;
 		}
-	  }
-  .tip-style {
-	  background-color: #f2272f;
-	  width: 26px;
-	  height: 26px;
-	  font-size: 16px;
-	  line-height: 26px;
-	  text-align: center;
-	  border-radius: 50%;
-	  display: inline-block;
-	  margin-left: 20px;
-  }
+
+		span:first-child {
+			width: 4%;
+		}
+	}
+
+	.pop-common-box {
+		flex: 1;
+		overflow-y: scroll;
+		padding: 10px 0;
+		box-sizing: border-box;
+		font-size: 18px;
+
+		.pop-one-line {
+			margin-bottom: 15px;
+		}
+
+		.pop-one-line:last-child {
+			margin-bottom: 0;
+		}
+
+		.pop-two-line {
+			display: flex;
+			align-items: center;
+			margin-bottom: 15px;
+
+			span {
+				width: 48%;
+				overflow: hidden;
+				word-break: keep-all;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+
+			span:first-child {
+				width: 4%;
+			}
+		}
+
+		.pop-two-line:last-child {
+			margin-bottom: 0;
+		}
+
+		.pop-three-line {
+			display: flex;
+			align-items: center;
+			margin-bottom: 15px;
+
+			span {
+				width: 32%;
+				overflow: hidden;
+				word-break: keep-all;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+
+			span:first-child {
+				width: 4%;
+			}
+		}
+
+		.pop-three-line:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.tip-style {
+		background-color: #f2272f;
+		width: 26px;
+		height: 26px;
+		font-size: 16px;
+		line-height: 26px;
+		text-align: center;
+		border-radius: 50%;
+		display: inline-block;
+		margin-left: 20px;
+	}
+	
+	.sgpt-pop {
+		width: 990px;
+		height: 680px;
+		background-color: deepskyblue;
+		font-size: 16px;
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		position: absolute;
+		top: 200px;
+		left: 570px;
+		z-index: 1998;
+		border-radius: 10px;
+		.sgpt-top {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			img {
+				width: 20px;
+				height: 20px;
+			}
+		}
+		.sgpt-box {
+			flex: 1;
+			color: #000;
+			font-size: 20px;
+			background-color: lightgray;
+			display: flex;
+			flex-direction: column;
+			margin-top: 20px;
+			.sgpt-info {
+				flex: 1;
+				display: flex;
+				justify-content: space-between;
+				padding: 10px 20px;
+				margin-bottom: 10px;
+				box-sizing: border-box;
+				.sgpt-left {
+					width: 36%;
+					height: 100%;
+					background-color: #fff;
+					padding: 10px 0 0 10px;
+					border-radius: 5px;
+					display: flex;
+					flex-direction: column;
+					.sgpt-over {
+						flex: 1;
+						overflow-y: scroll;
+					}
+				}
+				.sgpt-right {
+					width: 60%;
+					height: 100%;
+					background-color: #fff;
+					padding: 10px 0 0 10px;
+					border-radius: 5px;
+					display: flex;
+					flex-direction: column;
+					.sgpt-right-top {
+						.sgpt-over {
+							height: 200px;
+							overflow-y: scroll;
+							.sgpt-table {
+								width: 540px;
+								border-bottom: 1px solid gray;
+								border-right: 1px solid gray;
+							}
+							.sgpt-line {
+								display: flex;
+							}
+							.sgpt-bg {
+								width: 80px;
+								height: 30px;
+								line-height: 30px;
+								font-size: 16px;
+								text-align: center;
+								background-color: gray;
+								box-sizing: border-box;
+								border-top: 1px solid gray;
+								border-left: 1px solid gray;
+							}
+							.sgpt-nbg {
+								width: 190px;
+								height: 30px;
+								line-height: 30px;
+								background-color: #fff;
+								padding-left: 10px;
+								font-size: 16px;
+								box-sizing: border-box;
+								border-top: 1px solid gray;
+								border-left: 1px solid gray;
+								overflow: hidden;
+							}
+						}
+					}
+					.sgpt-right-bottom {
+						display: flex;
+						.sgpt-right-bottom-item {
+							width: 50%;
+							display: flex;
+							flex-direction: column;
+						}
+					}
+				}
+			}
+			.sgpt-btn {
+				border-top: 2px solid deepskyblue;
+				width: 100%;
+				height: 60px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				padding: 10px 30px;
+				box-sizing: border-box;
+				span {
+					width: 100px;
+					height: 50px;
+					font-size: 18px;
+					color: #fff;
+					line-height: 55px;
+					background-color: deepskyblue;
+					border-radius: 4px;
+					text-align: center;
+					margin-right: 20px;
+				}
+			}
+		}
+	}
 </style>
