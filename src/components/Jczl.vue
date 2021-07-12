@@ -3,7 +3,16 @@
 		<transition name="fade">
 			<div v-show="show13">
 				<div @click="toUserMap">
-					<PopBox :list="list2" style="width: 460px;"></PopBox>
+					<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
+					<div class="pop-common pop-zl" style="width: 460px;">
+						<div class="pop-title"><span>概览</span></div>
+						<div class="pop-zl-box">
+							<div class="pop-zl-item" v-for="(item,index) in list2" :key="index">
+								<span>{{item.num}}</span>
+								<img :src="item.url">
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- <div class="search-box" style="width: 460px;">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
@@ -192,12 +201,12 @@
 				<div class="pop-title"><span>线上指挥</span></div>
 				<div class="pop-inner-title">
 					<span>巡查序号</span>
-					<span>负责区域</span>
+					<span>查看今日轨迹</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item" @click="toZf(item)">
 						<span>{{ item.name }}</span>
-						<span>{{ item.area }}</span>
+						<span style="display: flex;justify-content: space-between;"><span>上午轨迹</span><span>下午未生成</span></span>
 					</div>
 				</div>
 			</div>
@@ -376,7 +385,7 @@
 				</div>
 			</div> -->
 			<div v-show="showPDetail" style="position: absolute;top: 200px;right:570px;z-index: 10000;">
-				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
+				<img src="static/images/cancel.png" @click="showPDetail=false" style="position: absolute;top: -20px;right: -20px;">
 				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
 			</div>
 		</transition>
@@ -428,113 +437,113 @@
 				</div>
 			</div>
 		</transition> -->
-    <transition name="fade">
-      <div v-show="show17">
-        <div class="pop-left">
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div class="pop-title"><span>一企一档<p class="tip-style">{{qyList.length}}</p></span></div>
-			<div class="pop-common-box">
-				<div class="pop-one-line" v-for="(item,index) in qyList" :key="index" @click="toQiye(index,item)">· {{item.name}}</div>
-			</div>
-          </div>
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
-			<div class="pop-common-title">
-				<span></span>
-				<span>行政村</span>
-				<span>户主姓名</span>
-				<span>建造年代</span>
-			</div>
-			<div class="pop-common-box">
-				<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
-					<span>·</span>
-					<span>{{item.area}}</span>
-					<span>{{item.name}}</span>
-					<span>{{item.time}}</span>
+		<transition name="fade">
+		  <div v-show="show17">
+			<div class="pop-left">
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div class="pop-title"><span>一企一档<p class="tip-style">{{qyList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in qyList" :key="index" @click="toQiye(index,item)">· {{item.name}}</div>
 				</div>
-			</div>
-          </div>
-        </div>
-        <div class="pop-bottom">
-          <div class="pop-common" style="height: 350px;">
-            <div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
-			<div class="pop-common-title2">
-				<span></span>
-				<span>水库名称</span>
-				<span>报警次数</span>
-			</div>
-			<div class="pop-common-box">
-				<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
-					<span>·</span>
-					<span>{{item.name}}</span>
-					<span :style="{color:item.num>=15?'#D00E00':''}">{{item.num}}</span>
+			  </div>
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
+				<div class="pop-common-title">
+					<span></span>
+					<span>行政村</span>
+					<span>户主姓名</span>
+					<span>建造年代</span>
 				</div>
-			</div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
-			<div class="pop-common-box">
-				<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">· {{item.name}}</div>
-			</div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
-			<div class="pop-common-box">
-				<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">· {{item.add}}</div>
-			</div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
-			<div class="pop-common-box">
-				<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">· {{item.name}}</div>
-			</div>
-          </div>
-          <div class="pop-common" style="width: 300px;height: 350px;">
-            <div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
-			<div class="pop-common-title2">
-				<span></span>
-				<span>点位名称</span>
-				<span>位移量</span>
-			</div>
-			<div class="pop-common-box">
-				<div class="pop-two-line" v-for="(item,index) in wyList" :key="index">
-					<span>·</span>
-					<span>{{item.dName}}</span>
-					<span>{{item.num}}mm</span>
+				<div class="pop-common-box">
+					<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
+						<span>·</span>
+						<span>{{item.area}}</span>
+						<span>{{item.name}}</span>
+						<span>{{item.time}}</span>
+					</div>
 				</div>
+			  </div>
 			</div>
-          </div>
-          <div class="pop-common" style="height: 350px;">
-            <div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
-			<div class="pop-common-title">
-				<span></span>
-				<span>点位名称</span>
-				<span style="text-align: center;">督导员姓名</span>
-				<span style="text-align: center;">投放时间</span>
-			</div>
-			<div class="pop-common-box">
-				<div class="pop-three-line" v-for="(item,index) in ljflglList" :key="index" @click="toMap(item)">
-					<span>·</span>
-					<span>{{item.name}}</span>
-					<span style="text-align: center;">{{item.supervisorName}}</span>
-					<span>{{item.putTime}}</span>
+			<div class="pop-bottom">
+			  <div class="pop-common" style="height: 350px;">
+				<div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
+				<div class="pop-common-title2">
+					<span></span>
+					<span>水库名称</span>
+					<span>报警次数</span>
 				</div>
+				<div class="pop-common-box">
+					<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
+						<span>·</span>
+						<span>{{item.name}}</span>
+						<span :style="{color:item.num>=15?'#D00E00':''}">{{item.num}}</span>
+					</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">· {{item.add}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 300px;height: 350px;">
+				<div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
+				<div class="pop-common-title2">
+					<span></span>
+					<span>点位名称</span>
+					<span>位移量</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-two-line" v-for="(item,index) in wyList" :key="index">
+						<span>·</span>
+						<span>{{item.dName}}</span>
+						<span>{{item.num}}mm</span>
+					</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="height: 350px;">
+				<div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
+				<div class="pop-common-title">
+					<span></span>
+					<span>点位名称</span>
+					<span style="text-align: center;">督导员姓名</span>
+					<span style="text-align: center;">投放时间</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-three-line" v-for="(item,index) in ljflglList" :key="index" @click="toMap(item)">
+						<span>·</span>
+						<span>{{item.name}}</span>
+						<span style="text-align: center;">{{item.supervisorName}}</span>
+						<span>{{item.putTime}}</span>
+					</div>
+				</div>
+			  </div>
 			</div>
-          </div>
-        </div>
-        <div class="pop-right">
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div style="display: none;"></div> <!-- 执法仪监控区域 -->
-            <div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
-			<div class="pop-common-box">
-				<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">· {{item.name}}</div>
+			<div class="pop-right">
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div style="display: none;"></div> <!-- 执法仪监控区域 -->
+				<div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
+			  </div>
 			</div>
-          </div>
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
-          </div>
-        </div>
-      </div>
-    </transition>
+		  </div>
+		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -597,20 +606,36 @@
 				}],
 				list2: [{
 					num: 722,
-					url: 'static/images/house.png',
-					title: '总户数'
+					url: 'static/images/wg-zhs.png',
+					// title: '总户数'
 				}, {
 					num: 2015,
-					url: 'static/images/zrs.png',
-					title: '总人数'
+					url: 'static/images/wg-zrs.png',
+					// title: '总人数'
 				}, {
 					num: 388,
-					url: 'static/images/zhs.png',
-					title: '租户数'
+					url: 'static/images/wg-zhs.png',
+					// title: '租户数'
 				}, {
 					num: 111,
-					url: 'static/images/dys.png',
-					title: '党员数'
+					url: 'static/images/wg-dbh.png',
+					// title: '低保户'
+				}, {
+					num: 111,
+					url: 'static/images/wg-lnr.png',
+					// title: '老年人'
+				}, {
+					num: 111,
+					url: 'static/images/wg-czrs.png',
+					// title: '残障人士'
+				}, {
+					num: 111,
+					url: 'static/images/wg-tsjsjt.png',
+					// title: '特殊计生家庭'
+				}, {
+					num: 111,
+					url: 'static/images/wg-sqjzry.png',
+					// title: '社区矫正人员'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
@@ -1841,6 +1866,8 @@
 				this.imgShow = false
 			},
 			showWgz(e) {
+				this.showP = false
+				this.showPDetail = false
 				this.show8 = true
 				if(e==0) {
 					this.wgList[0].num = '横溪冷水井、后厢'
@@ -1888,7 +1915,7 @@
 				let x = e.x,
 					y = e.y
 				if (510 < x && x < 660 && 200 < y && y < 370) {
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					console.log('横溪冷水井，后厢', '左')
@@ -1939,7 +1966,7 @@
 					}]
 				} else if (510 < x && x < 760 && 140 < y && y < 180) {
 					console.log('横溪钱家，大同高屋，大圆地', '左上')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1993,7 +2020,7 @@
 					}]
 				} else if (540 < x && x < 690 && 500 < y && y < 750) {
 					console.log('横溪坝下桥头', '左中')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2031,7 +2058,7 @@
 					}]
 				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
 					console.log('横溪田中央，墙头，长坂地', '左右')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2057,7 +2084,7 @@
 					}]
 				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
 					console.log('长胜毛岭、孟家', '右左')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2112,7 +2139,7 @@
 					}]
 				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
 					console.log('长胜长桥头', '右中上')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2144,7 +2171,7 @@
 					}]
 				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
 					console.log('长胜周家巷', '右中下')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2204,7 +2231,7 @@
 					}]
 				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
 					console.log('长胜田央沈', '右')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2395,6 +2422,31 @@
 		z-index: 1998;
 		max-height: 380px;
 	}
+	.pop-zl {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		max-height: none;
+	}
+	.pop-zl-box {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 30px;
+		margin-top: 20px;
+		.pop-zl-item {
+			width: 33%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			img {
+				width: 38px;
+				height: 38px;
+				margin: 20px 0;
+			}
+		}
+	}
 
 	.pop-list {
 		position: absolute;
@@ -2442,7 +2494,7 @@
 
 	.wglb {
 		position: absolute;
-		top: 500px;
+		top: 670px;
 		left: 35px;
 		max-height: none;
 		.pop-title {
@@ -3182,8 +3234,8 @@
 	}
 	.pop-three-line:last-child {
 		margin-bottom: 0;
-	}
-  }
+		}
+	  }
   .tip-style {
 	  background-color: #f2272f;
 	  width: 26px;
