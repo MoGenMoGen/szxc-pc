@@ -3,7 +3,16 @@
 		<transition name="fade">
 			<div v-show="show13">
 				<div @click="toUserMap">
-					<PopBox :list="list2" style="width: 460px;"></PopBox>
+					<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
+					<div class="pop-common pop-zl" style="width: 460px;">
+						<div class="pop-title"><span>概览</span></div>
+						<div class="pop-zl-box">
+							<div class="pop-zl-item" v-for="(item,index) in list2" :key="index">
+								<span>{{item.num}}</span>
+								<img :src="item.url">
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- <div class="search-box" style="width: 460px;">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
@@ -189,15 +198,15 @@
 			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
 		<transition name="fade">
 			<div class="pop-common pop-list2" v-show="show5">
-				<div class="pop-title"><span>执法设备</span></div>
+				<div class="pop-title"><span>线上指挥</span></div>
 				<div class="pop-inner-title">
-					<span>设备名称</span>
-					<span>负责区域</span>
+					<span>巡查序号</span>
+					<span>查看今日轨迹</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item" @click="toZf(item)">
 						<span>{{ item.name }}</span>
-						<span>{{ item.area }}</span>
+						<span style="display: flex;justify-content: space-between;"><span>上午轨迹</span><span>下午未生成</span></span>
 					</div>
 				</div>
 			</div>
@@ -376,7 +385,7 @@
 				</div>
 			</div> -->
 			<div v-show="showPDetail" style="position: absolute;top: 200px;right:570px;z-index: 10000;">
-				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
+				<img src="static/images/cancel.png" @click="showPDetail=false" style="position: absolute;top: -20px;right: -20px;">
 				<img src="static/images/bglogo.JPG" @click="showPDetail=false">
 			</div>
 		</transition>
@@ -428,46 +437,113 @@
 				</div>
 			</div>
 		</transition> -->
-    <transition name="fade">
-      <div v-show="show17">
-        <div class="pop-left">
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div class="pop-title"><span>一企一档</span></div>
-          </div>
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div class="pop-title"><span>危房管理</span></div>
-          </div>
-        </div>
-        <div class="pop-bottom">
-          <div class="pop-common" style="height: 350px;">
-            <div class="pop-title"><span>防溺水管理</span></div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>山塘水库</span></div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>泥石流监管</span></div>
-          </div>
-          <div class="pop-common" style="width: 250px;height: 350px;">
-            <div class="pop-title"><span>内涝点监管</span></div>
-          </div>
-          <div class="pop-common" style="width: 300px;height: 350px;">
-            <div class="pop-title"><span>边坡位移</span></div>
-          </div>
-          <div class="pop-common" style="height: 350px;">
-            <div class="pop-title"><span>垃圾分类管理</span></div>
-          </div>
-        </div>
-        <div class="pop-right">
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
-            <div style="display: none;"></div> <!-- 执法仪监控区域 -->
-            <div class="pop-title"><span>线上指挥</span></div>
-          </div>
-          <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
-          </div>
-        </div>
-      </div>
-    </transition>
+		<transition name="fade">
+		  <div v-show="show17">
+			<div class="pop-left">
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div class="pop-title"><span>一企一档<p class="tip-style">{{qyList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in qyList" :key="index" @click="toQiye(index,item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
+				<div class="pop-common-title">
+					<span></span>
+					<span>行政村</span>
+					<span>户主姓名</span>
+					<span>建造年代</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
+						<span>·</span>
+						<span>{{item.area}}</span>
+						<span>{{item.name}}</span>
+						<span>{{item.time}}</span>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="pop-bottom">
+			  <div class="pop-common" style="height: 350px;">
+				<div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
+				<div class="pop-common-title2">
+					<span></span>
+					<span>水库名称</span>
+					<span>报警次数</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
+						<span>·</span>
+						<span>{{item.name}}</span>
+						<span :style="{color:item.num>=15?'#D00E00':''}">{{item.num}}</span>
+					</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">· {{item.add}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 250px;height: 350px;">
+				<div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="width: 300px;height: 350px;">
+				<div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
+				<div class="pop-common-title2">
+					<span></span>
+					<span>点位名称</span>
+					<span>位移量</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-two-line" v-for="(item,index) in wyList" :key="index">
+						<span>·</span>
+						<span>{{item.dName}}</span>
+						<span>{{item.num}}mm</span>
+					</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="height: 350px;">
+				<div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
+				<div class="pop-common-title">
+					<span></span>
+					<span>点位名称</span>
+					<span style="text-align: center;">督导员姓名</span>
+					<span style="text-align: center;">投放时间</span>
+				</div>
+				<div class="pop-common-box">
+					<div class="pop-three-line" v-for="(item,index) in ljflglList" :key="index" @click="toMap(item)">
+						<span>·</span>
+						<span>{{item.name}}</span>
+						<span style="text-align: center;">{{item.supervisorName}}</span>
+						<span>{{item.putTime}}</span>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="pop-right">
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+				<div style="display: none;"></div> <!-- 执法仪监控区域 -->
+				<div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
+				<div class="pop-common-box">
+					<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">· {{item.name}}</div>
+				</div>
+			  </div>
+			  <div class="pop-common" style="height: 300px;margin-bottom: 10px;"><!-- 右侧中间监控区域 -->
+			  </div>
+			</div>
+		  </div>
+		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -511,7 +587,7 @@
 				show14: false, //综合监管总览
 				show15: false, //位移监测点
 				show16: false, //水库统计
-        show17: false, //综合治理10个框
+				show17: false, //综合治理10个框
 				show20: false, //乡村关爱垃圾分类点位
 				showVideo: false, //防溺水视频
 				showXmb: false, //小卖部
@@ -530,20 +606,36 @@
 				}],
 				list2: [{
 					num: 722,
-					url: 'static/images/house.png',
-					title: '总户数'
+					url: 'static/images/wg-zhs.png',
+					// title: '总户数'
 				}, {
 					num: 2015,
-					url: 'static/images/zrs.png',
-					title: '总人数'
+					url: 'static/images/wg-zrs.png',
+					// title: '总人数'
 				}, {
 					num: 388,
-					url: 'static/images/zhs.png',
-					title: '租户数'
+					url: 'static/images/wg-zhs.png',
+					// title: '租户数'
 				}, {
 					num: 111,
-					url: 'static/images/dys.png',
-					title: '党员数'
+					url: 'static/images/wg-dbh.png',
+					// title: '低保户'
+				}, {
+					num: 111,
+					url: 'static/images/wg-lnr.png',
+					// title: '老年人'
+				}, {
+					num: 111,
+					url: 'static/images/wg-czrs.png',
+					// title: '残障人士'
+				}, {
+					num: 111,
+					url: 'static/images/wg-tsjsjt.png',
+					// title: '特殊计生家庭'
+				}, {
+					num: 111,
+					url: 'static/images/wg-sqjzry.png',
+					// title: '社区矫正人员'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
@@ -701,7 +793,7 @@
 				skList: [{
 					name: '劈开猪头',
 					capacity: 10.84,
-					volume: 1.89,
+					volume: 1.89
 				}, {
 					name: '杨家',
 					capacity: 5.23,
@@ -734,64 +826,77 @@
 					area: '十字路水库',
 					code: '8c2b3483b5e64e3fb9e08db9f9b43c91',
 					X: '121.518536',
-					Y: '30.033852'
+					Y: '30.033852',
+					num: 56
 				}, {
 					name: '十字路水库2',
 					area: '十字路水库',
 					code: '157995b2011e4af282a454fee526c143',
 					X: '121.518536',
-					Y: '30.033852'
+					Y: '30.033852',
+					num: 10
 				}, {
 					name: '十字路水库3',
 					area: '十字路水库',
 					code: 'a66fe6d07d884cedbac9e2a767c15419',
 					X: '121.518583',
-					Y: '30.030125'
+					Y: '30.030125',
+					num: 3
 				}, {
 					name: '护栏点位',
 					area: '九龙湖',
 					X: '121.521459',
-					Y: '30.040815'
+					Y: '30.040815',
+					num: 2
 				}, {
 					name: '茶室',
 					area: '九龙湖',
 					X: '121.526551',
-					Y: '30.043296'
+					Y: '30.043296',
+					num: 1
 				}, {
 					name: '小木屋1',
 					area: '九龙湖',
 					X: '121.528029',
-					Y: '30.048175'
+					Y: '30.048175',
+					num: 0
+					
 				}, {
 					name: '小木屋2',
 					area: '九龙湖',
 					X: '121.528029',
-					Y: '30.048175'
+					Y: '30.048175',
+					num: 0
 				}, {
 					name: '十字路水库4',
 					area: '十字路水库',
 					X: '121.518487',
-					Y: '30.030235'
+					Y: '30.030235',
+					num: 0
 				}, {
 					name: '十字路水库5',
 					area: '十字路水库',
 					X: '121.517373',
-					Y: '30.02835'
+					Y: '30.02835',
+					num: 0
 				}, {
 					name: '厕所点',
 					area: '九龙湖',
 					X: '121.504603',
-					Y: '30.023054'
+					Y: '30.023054',
+					num: 0
 				}, {
 					name: '文溪村三圣殿水库',
 					area: '三圣殿水库',
 					X: '121.506055',
-					Y: '30.021086'
+					Y: '30.021086',
+					num: 0
 				}, {
 					name: '文溪村小洞岙水库',
 					area: '小洞岙水库',
 					X: '121.517199',
-					Y: '30.028391'
+					Y: '30.028391',
+					num: 0
 				}],
 				sjs: [],
 				sjDetail: [],
@@ -1246,12 +1351,16 @@
 					name: '横溪地质防范点01',
 					add: '东沟',
 					stability: '-',
-					status: '安装中'
+					status: '安装中',
+					dName: '监测点1',
+					num: 0
 				}, {
-					name: '横溪地质防范点01',
+					name: '横溪地质防范点02',
 					add: '东沟',
 					stability: '-',
-					status: '安装中'
+					status: '安装中',
+					dName: '监测点2',
+					num: 0
 				}],
 				wgzList: [{
 					name: '横溪冷水井、后厢',
@@ -1277,6 +1386,112 @@
 				},{
 					name: '长胜田央沈',
 					leaderName: '黄杰锋'
+				}],
+				ljflglList: [{
+					name: '长胜垃圾投放点01',
+					supervisorName: '林素珍',
+					code: '32df7576620846e5850153e18d5731cf',
+					X: '121.543364',
+					Y: '30.034804',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点02',
+					supervisorName: '戎巧芬',
+					code: '21b943aa87254d25b10d525c8c64c91c',
+					X: '121.540393',
+					Y: '30.034262',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点03',
+					supervisorName: '滕学行',
+					code: '',
+					X: '121.541797',
+					Y: '30.035759',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点04',
+					supervisorName: '邱桂玲',
+					code: '9e27366459024dfeb9da1d928db2860f',
+					X: '121.540883',
+					Y: '30.035809',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点05',
+					supervisorName: '沈文陆',
+					code: '4c4fec8c33f14b05b1220410ff6083b3',
+					X: '121.537496',
+					Y: '30.034322',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点06',
+					supervisorName: '陈国定',
+					code: '0fb157b75338412d854145f534eae3ff',
+					X: '121.537497',
+					Y: '30.034919',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点07',
+					supervisorName: '王品岳',
+					code: '400f8cd2631146ae86b6836b726e735d',
+					X: '121.536414',
+					Y: '30.033546',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点08',
+					supervisorName: '沈和娣',
+					code: 'f8e9a9d033d54da6a514284a1e1c73ec',
+					X: '121.535638',
+					Y: '30.03384',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点09',
+					supervisorName: '周银莲',
+					code: 'f5d82fc4b28a4b39b06c08ac64b81063',
+					X: '121.532824',
+					Y: '30.035512',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '长胜垃圾投放点10',
+					supervisorName: '黄珍芬',
+					code: 'f5d82fc4b28a4b39b06c08ac64b81063',
+					X: '121.532824',
+					Y: '30.035512',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '横溪垃圾投放点01',
+					supervisorName: '陈爱琴',
+					code: '2a19f151bffc4a368564879f4bc42803',
+					X: '121.509087',
+					Y: '30.052173',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '横溪垃圾投放点02',
+					supervisorName: '戴芝芬',
+					code: '755c8a96a8b44d7da41331387aa01a48',
+					X: '121.501695',
+					Y: '30.051346',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '横溪垃圾投放点03',
+					supervisorName: '钱佩君',
+					code: '4cf0233765c54aac94ab53f866c4261b',
+					X: '121.503777',
+					Y: '30.05121',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '横溪垃圾投放点04',
+					supervisorName: '戎志萍',
+					code: '4b436bc660ae42809f407bc7ca202229',
+					X: '121.504462',
+					Y: '30.051907',
+					putTime: '6点-8点,17点-19点'
+				},{
+					name: '横溪垃圾投放点05',
+					supervisorName: '方瑞珍',
+					code: '27e50449dd0649008aaa28aa6bd18378',
+					X: '121.503156',
+					Y: '30.051609',
+					putTime: '6点-8点,17点-19点'
 				}]
 			}
 		},
@@ -1420,7 +1635,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
-          this.show17 = false
+					this.show17 = false
 					this.showXmb = false
 					this.showP = true
 					this.showPDetail = false
@@ -1469,7 +1684,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
-          this.show17 = true
+					this.show17 = true
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
@@ -1493,7 +1708,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
-          this.show17 = false
+					this.show17 = false
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
@@ -1517,7 +1732,7 @@
 					this.show14 = false
 					this.show15 = false
 					this.show16 = false
-          this.show17 = false
+					this.show17 = false
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
@@ -1651,6 +1866,8 @@
 				this.imgShow = false
 			},
 			showWgz(e) {
+				this.showP = false
+				this.showPDetail = false
 				this.show8 = true
 				if(e==0) {
 					this.wgList[0].num = '横溪冷水井、后厢'
@@ -1698,7 +1915,7 @@
 				let x = e.x,
 					y = e.y
 				if (510 < x && x < 660 && 200 < y && y < 370) {
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					console.log('横溪冷水井，后厢', '左')
@@ -1749,7 +1966,7 @@
 					}]
 				} else if (510 < x && x < 760 && 140 < y && y < 180) {
 					console.log('横溪钱家，大同高屋，大圆地', '左上')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1803,7 +2020,7 @@
 					}]
 				} else if (540 < x && x < 690 && 500 < y && y < 750) {
 					console.log('横溪坝下桥头', '左中')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1841,7 +2058,7 @@
 					}]
 				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
 					console.log('横溪田中央，墙头，长坂地', '左右')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1867,7 +2084,7 @@
 					}]
 				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
 					console.log('长胜毛岭、孟家', '右左')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1922,7 +2139,7 @@
 					}]
 				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
 					console.log('长胜长桥头', '右中上')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -1954,7 +2171,7 @@
 					}]
 				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
 					console.log('长胜周家巷', '右中下')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2014,7 +2231,7 @@
 					}]
 				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
 					console.log('长胜田央沈', '右')
-					this.show13 = false
+					// this.show13 = false
 					this.showP = false
 					this.showPDetail = false
 					this.show8 = true
@@ -2186,7 +2403,7 @@
 		padding: 0 20px;
 		margin: 0 auto;
 		box-sizing: border-box;
-
+		line-height: 20px;
 		span {
 			margin-left: 20px;
 		}
@@ -2204,6 +2421,31 @@
 		color: #fff;
 		z-index: 1998;
 		max-height: 380px;
+	}
+	.pop-zl {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		max-height: none;
+	}
+	.pop-zl-box {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 30px;
+		margin-top: 20px;
+		.pop-zl-item {
+			width: 33%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			img {
+				width: 38px;
+				height: 38px;
+				margin: 20px 0;
+			}
+		}
 	}
 
 	.pop-list {
@@ -2252,7 +2494,7 @@
 
 	.wglb {
 		position: absolute;
-		top: 500px;
+		top: 670px;
 		left: 35px;
 		max-height: none;
 		.pop-title {
@@ -2920,5 +3162,89 @@
     right: 35px;
     display: flex;
     flex-direction: column;
+  }
+  .pop-common-title {
+	  display: flex;
+	  align-items: center;
+	  font-size: 18px;
+	  margin-top: 10px;
+	  span {
+		width: 32%;
+	  }
+	  span:first-child {
+		width: 4%;
+	  }
+  }
+  .pop-common-title2 {
+	  display: flex;
+	  align-items: center;
+	  font-size: 18px;
+	  margin-top: 10px;
+	  span {
+	  		width: 48%;
+	  }
+	  span:first-child {
+	  		width: 4%;
+	  }
+  }
+  .pop-common-box {
+	flex: 1;
+	overflow-y: scroll;
+	padding: 10px 0;
+	box-sizing: border-box;
+	font-size: 18px;
+	.pop-one-line {
+		margin-bottom: 15px;
+	}
+	.pop-one-line:last-child {
+	  	margin-bottom: 0;
+	}
+	.pop-two-line {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+		span {
+			width: 48%;
+			overflow: hidden;
+			word-break: keep-all;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		span:first-child {
+			width: 4%;
+		}
+	}
+	.pop-two-line:last-child {
+		margin-bottom: 0;
+	}
+	.pop-three-line {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+		span {
+			width: 32%;
+			overflow: hidden;
+			word-break: keep-all;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		span:first-child {
+			width: 4%;
+		}
+	}
+	.pop-three-line:last-child {
+		margin-bottom: 0;
+		}
+	  }
+  .tip-style {
+	  background-color: #f2272f;
+	  width: 26px;
+	  height: 26px;
+	  font-size: 16px;
+	  line-height: 26px;
+	  text-align: center;
+	  border-radius: 50%;
+	  display: inline-block;
+	  margin-left: 20px;
   }
 </style>
