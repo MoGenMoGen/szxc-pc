@@ -93,10 +93,10 @@
 				</div>
 			</div>
 		</transition> -->
-		<!-- <div class="videoClass" v-if="showVideo">
+		<div class="videoClass" v-if="showVideo">
 			<video :src="videoUrl" autoplay="autoplay" loop="loop"></video>
 			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
-		</div> -->
+		</div>
 		<transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
@@ -288,15 +288,15 @@
 					<span style="width: 10%;">是否超时关闭</span> -->
 					</div>
 					<div class="sj-pop-itemBox">
-						<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click="showDetail(index)">
+						<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click="showDetail(item.id)">
 							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
 							<span style="width: 10%;">{{ index+1 }}</span>
-							<span style="width: 45%;">{{ item.content }}</span>
+							<span style="width: 45%;">{{ item.description }}</span>
 							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
 							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
 							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
 							<span style="width: 30%;">{{ item.reportTime }}</span>
-							<span style="width: 15%;">{{ item.timeType }}</span>
+							<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							<!-- <span style="width: 10%;">{{ item.department }}</span>
 						<span style="width: 10%;">{{ item.overTime }}</span>
 						<span style="width: 10%;">{{ item.timeOut }}</span> -->
@@ -321,15 +321,15 @@
 					</div>
 					<div class="sj-pop-itemBox">
 						<div v-for="(item,index) in sjList2" :key="index" class="sj-pop-item"
-							@click="showDetail(index)">
+							@click="showDetail(item.id)">
 							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
 							<span style="width: 10%;">{{ index+1 }}</span>
-							<span style="width: 45%;">{{ item.content }}</span>
+							<span style="width: 45%;">{{ item.description }}</span>
 							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
 							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
 							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
 							<span style="width: 30%;">{{ item.reportTime }}</span>
-							<span style="width: 15%;">{{ item.timeType }}</span>
+							<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							<!-- <span style="width: 10%;">{{ item.department }}</span>
 						<span style="width: 10%;">{{ item.overTime }}</span>
 						<span style="width: 10%;">{{ item.timeOut }}</span> -->
@@ -354,15 +354,15 @@
 					</div>
 					<div class="sj-pop-itemBox">
 						<div v-for="(item,index) in sjList3" :key="index" class="sj-pop-item"
-							@click="showDetail(index)">
+							@click="showDetail(item.id)">
 							<!-- <span style="width: 10%;">{{ item.id }}</span> -->
 							<span style="width: 10%;">{{ index+1 }}</span>
-							<span style="width: 45%;">{{ item.content }}</span>
+							<span style="width: 45%;">{{ item.description }}</span>
 							<!-- <span style="width: 10%;">{{ item.add }}</span> -->
 							<!-- <span style="width: 20%;">{{ item.type }}</span> -->
 							<!-- <span style="width: 10%;">{{ item.timeType }}</span> -->
 							<span style="width: 30%;">{{ item.reportTime }}</span>
-							<span style="width: 15%;">{{ item.timeType }}</span>
+							<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							<!-- <span style="width: 10%;">{{ item.department }}</span>
 						<span style="width: 10%;">{{ item.overTime }}</span>
 						<span style="width: 10%;">{{ item.timeOut }}</span> -->
@@ -393,14 +393,19 @@
 						<div class="sgpt-left">
 							<span>事件追踪</span>
 							<div class="sgpt-over" style="display: flex;">
-								<div style="width: 10%;">
-									<div style="height: 108px;" v-for="(item,index) in 5" :key="index">{{item}}</div>
+								<div style="width: 20%;">
+									<div style="height: 108px;" v-for="(item,index) in pointsList" :key="index">{{item}}</div>
 								</div>
-								<el-timeline style="width: 90%;margin-top: 10px;">
+								<el-timeline style="width: 80%;margin-top: 10px;">
 								    <el-timeline-item
 								      v-for="(item, index) in 5"
 								      :key="index">
-								      <div style="height: 80px;"></div>
+								      <div class="sgpt-info-box" v-if="index==0">
+										  <div><span style="color: #6AB1CF;">2021-7-8</span><span>陈露露 13184340311</span></div>
+										  <div><span>【九龙湖镇河头村金池路上大岙】</span></div>
+										  <div><span>上报：网格上报</span><span style="color: #4E467A;cursor: pointer;" @click="showDetails(item)">详情</span></div>
+									  </div>
+									  <div v-else style="height: 80px;"></div>
 								    </el-timeline-item>
 								  </el-timeline>
 							</div>
@@ -411,22 +416,34 @@
 								<div class="sgpt-over">
 									<div class="sgpt-table">
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件编号</div><div class="sgpt-nbg">JWL202107080208</div><div class="sgpt-bg">上报事件</div><div class="sgpt-nbg">2021-07-08 09:50:24</div>
+											<div class="sgpt-bg">事件编号</div><div class="sgpt-nbg">{{sjDetail.cd}}</div><div class="sgpt-bg">上报时间</div><div class="sgpt-nbg">{{sjDetail.reportTime}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">上报人</div><div class="sgpt-nbg">陈露露</div><div class="sgpt-bg">上报网格</div><div class="sgpt-nbg">九龙湖镇河头村金池路上大岙</div>
+											<div class="sgpt-bg">上报人</div><div class="sgpt-nbg">{{sjDetail.reporter}}</div><div class="sgpt-bg">上报网格</div><div class="sgpt-nbg">九龙湖镇河头村金池路上大岙</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件类型</div><div class="sgpt-nbg">食品安全</div><div class="sgpt-bg">事件等级</div><div class="sgpt-nbg">一级事件</div>
+											<div class="sgpt-bg">事件类型</div><div class="sgpt-nbg">{{sjTypeList[Number(sjDetail.eventType)-1]}}</div><div class="sgpt-bg">事件等级</div><div class="sgpt-nbg">{{sjLevelList[sjDetail.level-1]}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事发地点</div><div class="sgpt-nbg">河头村</div><div class="sgpt-bg">上报事件</div><div class="sgpt-nbg">2021-07-08 09:50:24</div>
+											<div class="sgpt-bg">事发地点</div><div class="sgpt-nbg">{{sjDetail.address}}</div><div class="sgpt-bg">发生时间</div><div class="sgpt-nbg">{{sjDetail.eventTime}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件描述</div><div class="sgpt-nbg" style="width: 460px;">对河头村菜场阿雨豆腐摊进行食品安全检查，摊位卫生检查</div>
+											<div class="sgpt-bg">事件描述</div><div class="sgpt-nbg" style="width: 460px;">{{sjDetail.description}}</div>
 										</div>
 										<div class="sgpt-line">
 											<div class="sgpt-bg">重点场所</div><div class="sgpt-nbg">否</div><div class="sgpt-bg">涉及人数</div><div class="sgpt-nbg">2</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">重点人员</div><div class="sgpt-nbg"></div><div class="sgpt-bg">事件规模</div><div class="sgpt-nbg"></div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">涉事企业</div><div class="sgpt-nbg" style="width: 460px;">宁波市镇海区九龙湖阿雨豆腐摊</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">六项清单标注情况</div><div class="sgpt-nbg" style="width: 460px;">未标注</div>
+										</div>
+										<div class="sgpt-line">
+											<div class="sgpt-bg">转派前处理镇街</div><div class="sgpt-nbg" style="width: 460px;"></div>
 										</div>
 									</div>
 								</div>
@@ -435,11 +452,21 @@
 								<div class="sgpt-right-bottom-item">
 									<div style="display: flex;flex-direction: column;">
 										<span>处理之前</span>
-										<el-image style="width: 100px; height: 100px;margin-top: 10px;" src="static/images/activity2.png" :preview-src-list="srcList"></el-image>
+										<div class="sgpt-right-bottom-img">
+											<img src="static/images/left.png" @click="beforePre()">
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcList[beforeIndex]" :preview-src-list="srcList"></el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcList[beforeIndex+1]" :preview-src-list="srcList"></el-image>
+											<img src="static/images/right.png" @click="beforeNext()">
+										</div>
 									</div>
 									<div style="display: flex;flex-direction: column;">
 										<span>处理之后</span>
-										<el-image style="width: 100px; height: 100px;margin-top: 10px;" src="static/images/activity2.png" :preview-src-list="srcList"></el-image>
+										<div class="sgpt-right-bottom-img">
+											<img src="static/images/left.png" @click="afterPre()">
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcList[afterIndex]" :preview-src-list="srcList"></el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcList[afterIndex+1]" :preview-src-list="srcList"></el-image>
+											<img src="static/images/right.png" @click="afterNext()">
+										</div>
 									</div>
 								</div>
 								<div class="sgpt-right-bottom-item">
@@ -452,6 +479,30 @@
 						<span>批示</span>
 						<span>打印批示单</span>
 						<span @click="showPDetail=false">关闭</span>
+					</div>
+				</div>
+				<div class="sgpt-detail" v-show="showMoreDetail">
+					<div class="sgpt-detail-top">详情<img src="static/images/cancel.png" @click="showMoreDetail=false"/></div>
+					<div class="sgpt-detail-box">
+						<div class="sgpt-detail-info">
+							<span>记录详情</span>
+							<div>
+								<div class="sgpt-detail-line"><div class="sgpt-detail-title">姓名:</div><div class="sgpt-detail-content">陈露露</div><div class="sgpt-detail-title">时间:</div><div class="sgpt-detail-content" style="flex: 2;">2021-07-08 09:50:24</div></div>
+								<div class="sgpt-detail-line"><div class="sgpt-detail-title">电话:</div><div class="sgpt-detail-content">13184340311</div><div class="sgpt-detail-title">组织:</div><div class="sgpt-detail-content" style="flex: 2;">九龙湖镇河头村金池路上大岙</div></div>
+								<div class="sgpt-detail-line"><div class="sgpt-detail-title">类型:</div><div class="sgpt-detail-content">上报</div></div>
+								<div class="sgpt-detail-line"><div class="sgpt-detail-title">内容:</div><div class="sgpt-detail-content">网格上报</div></div>
+								<div class="sgpt-detail-line">
+									<div class="sgpt-detail-title">图片附件:</div>
+									<div class="sgpt-detail-content" style="display: flex;flex-direction: column;">
+										<el-image style="width: 100px; height: 100px;margin-top: 10px;" src="static/images/activity2.png" :preview-src-list="srcList"></el-image>
+										<span class="sgpt-detail-imgName" style="width: 100px;">csscscscscscscssssc.png</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sgpt-detail-btn">
+							<span @click="showMoreDetail=false">关闭</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -534,7 +585,10 @@
 				</div>
 				<div class="pop-bottom">
 					<div class="pop-common" style="height: 350px;">
-						<div class="pop-title"><span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span></div>
+						<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
+							<span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span>
+							<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox">查看示例</span>
+						</div>
 						<div class="pop-common-title2">
 							<span></span>
 							<span>水库名称</span>
@@ -636,7 +690,9 @@
 		props: {},
 		data() {
 			return {
-				srcList:['static/images/activity2.png'],
+				beforeIndex: 0,
+				afterIndex: 0,
+				srcList:['static/images/activity2.png','static/images/activity3.png'],
 				e: '',
 				codes: '',
 				cType: "3",
@@ -667,6 +723,7 @@
 				showVideo: false, //防溺水视频
 				showXmb: false, //小卖部
 				showPDetail: false, //四个平台事件详情
+				showMoreDetail: false, //四个平台点击详情弹窗
 				videoUrl: 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/a47fd3d0e566102f50f3cda88ef0f8f5.mp4',
 				keyWord: '',
 				ydyh: false,
@@ -974,310 +1031,13 @@
 					num: 0
 				}],
 				sjs: [],
-				sjDetail: [],
-				sjList: [{
-					id: 'JLW202106110301',
-					content: '走访低保户姚国庆家庭，了解日常生活情况',
-					add: '杜郭',
-					type: '困难救助',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 9:19:59',
-					department: '杜郭',
-					overTime: '2021/6/11 9:19:59',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110005',
-					content: '在端午节到来之际，计生协走访慰问特殊家庭，为他们送去粽子和水杯。',
-					add: '长宏村',
-					type: '困难救助',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 9:00:28',
-					department: '长宏村',
-					overTime: '2021/6/11 9:00:28',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110004',
-					content: '思源社区东西北街网格内看望困难独居老人，聊天谈心，送上端午慰问品。',
-					add: '思源社区北街29号景宝玉家中。',
-					type: '困难救助',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:55:35',
-					department: '思源社区',
-					overTime: '2021/6/11 08:55:35',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110003',
-					content: '西经堂村汪家网格汪家小燕子幼儿园（甬惠批发）检查食品安全。',
-					add: '浙江省宁波市镇海区九龙湖镇西经堂路118号',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:28:04',
-					department: '西经堂村',
-					overTime: '2021/6/11 8:28:04',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110201',
-					content: '西经堂村汪家网格走访农贸市场陈义民店检查食品安全。',
-					add: '浙江省宁波市镇海区九龙湖镇西经堂路118号',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:24:56',
-					department: '西经堂村',
-					overTime: '2021/6/11 8:24:56',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110101',
-					content: '西严老年活动中心北面两根雨水管道破裂，导致路面积水',
-					add: '浙江省宁波市镇海区九龙湖镇西严中漕头',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:24:39',
-					department: '西严村',
-					overTime: '2021/6/11 8:24:39',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110002',
-					content: '西经堂村汪家网格网格长走访农贸市场店铺检查食品安全。',
-					add: '浙江省宁波市镇海区九龙湖镇西经堂路118号',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:15:41',
-					department: '西经堂村',
-					overTime: '2021/6/11 8:15:41',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106110001',
-					content: '西经堂村汪家网格网格长走访加贝（兆辉）超市检查超市食品安全。',
-					add: '浙江省宁波市镇海区九龙湖镇西经堂路118号',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/11 8:12:19',
-					department: '西经堂村',
-					overTime: '2021/6/11 8:12:19',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100106',
-					content: '黄杨网格对宁波市镇海区九龙湖四珍副食店内进行食品安全巡查走访。',
-					add: '浙江省宁波市镇海区九龙湖镇长石村社区卫生服务工作室长石小学',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 20:48:17',
-					department: '长石村',
-					overTime: '2021/6/10 20:48:17',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100105',
-					content: '九龙家苑四期南垃圾点位有垃圾包乱堆放现象',
-					add: '浙江省宁波市镇海区九龙湖镇九龙家苑四期南',
-					type: '其他',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 16:23:37',
-					department: '龙源社区',
-					overTime: '2021/6/10 16:23:37',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100210',
-					content: '西严网格老年活动中心墙面掉落维修',
-					add: '浙江省宁波市镇海区九龙湖镇西严村中漕头',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 16:15:40',
-					department: '西严村',
-					overTime: '2021/6/10 16:15:40',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100209',
-					content: '西严网格前漕头小店食品安全检查',
-					add: '浙江省宁波市镇海区九龙湖镇西严村前漕头',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 16:12:17',
-					department: '西严村',
-					overTime: '2021/6/10 16:12:17',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100007',
-					content: '西严网格中漕头小店食品安全检查',
-					add: '浙江省宁波市镇海区九龙湖镇西严村中漕头',
-					type: '食药安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 16:10:53',
-					department: '西严村',
-					overTime: '2021/6/10 16:10:53',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100208',
-					content: '长邱路路口徐王段绿化阻挡视线修剪',
-					add: '浙江省宁波市镇海区九龙湖镇徐王徐家库',
-					type: '交通安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 16:08:10',
-					department: '徐王',
-					overTime: '2021/6/10 16:08:10',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100305',
-					content: '14：30左右，西河工业区网格合鑫公司攻丝车间因风扇引起小火灾',
-					add: '浙江省宁波市镇海区九龙湖镇西河村村民委员会',
-					type: '消防安全',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 15:27:48',
-					department: '西河村',
-					overTime: '2021/6/10 15:27:48',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100006',
-					content: '组织调解重复上访户周小毛有关拆迁相关事宜',
-					add: '浙江省宁波市镇海区九龙湖镇王岙巷九龙家苑',
-					type: '信访维稳',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:44:40',
-					department: '王岙巷',
-					overTime: '2021/6/10 14:44:40',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100207',
-					content: '对网格内村民进行防诈骗入户宣传',
-					add: '河头村',
-					type: '文教体育',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:41:59',
-					department: '河头村',
-					overTime: '2021/6/10 14:41:59',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100104',
-					content: '河头村党总支建党百年祝福视频拍摄',
-					add: '河头村',
-					type: '党群工作',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:38:27',
-					department: '河头村',
-					overTime: '2021/6/10 14:38:27',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100206',
-					content: '反电信网络诈骗宣传，恒大西苑8号楼入户宣传防范电信网络诈骗，让居民做好家庭成员的宣传承诺签字',
-					add: '浙江省宁波市镇海区九龙湖镇恒大西苑8幢',
-					type: '专项拉练',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:31:49',
-					department: '恒大西苑',
-					overTime: '2021/6/10 14:31:49',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100005',
-					content: '走访看望王家网格瘫痪在床老人',
-					add: '九龙湖镇杜夹岙村',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:26:10',
-					department: '杜夹岙村',
-					overTime: '2021/6/10 14:26:10',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100205',
-					content: '镇海区九龙湖谷峰副食品店食品安全检查',
-					add: '浙江省宁波市镇海区九龙湖镇',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:26:10',
-					department: '九龙湖镇',
-					overTime: '2021/6/10 14:26:10',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100601',
-					content: '公司要搬到宁波去，即使有厂车接送，工人也不肯前往，要求赔偿金。',
-					add: '镇矛调大厅',
-					type: '矛调来访',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:26:10',
-					department: '九龙湖镇',
-					overTime: '2021/6/10 14:26:10',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100501',
-					content: '2019年3月张承怀受包工头所雇到恒大明苑5号楼201室做装饰工，共欠工资1500元，已付400元，还欠工资1100元，至今未付，申请调解。',
-					add: '镇矛调大厅',
-					type: '矛调来访',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:10:02',
-					department: '九龙湖镇',
-					overTime: '2021/6/10 14:10:02',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106100004',
-					content: '小陈店网格村民沈露家旁边有大堆树枝',
-					add: '浙江省宁波市镇海区九龙湖镇',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/10 14:09:05',
-					department: '九龙湖镇',
-					overTime: '2021/6/10 14:09:05',
-					timeOut: '否'
-				}],
-				sjList3: [{
-					id: 'JLW202106090202',
-					content: '姚江东排南支线西河村段河面有油污水草',
-					add: '大严',
-					type: '农林水利',
-					timeType: '网格关闭',
-					reportTime: '2021/6/9 8:28:56',
-					department: '镇海区九龙湖镇农业服务中心',
-					overTime: '2021/6/10 10:27:26',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106090301',
-					content: '孙陆工业区内（宁波永新光学有限公司）门口马路一侧成排大型货车日夜停放，对来往的机动车与非机动车行人出行，造成一定的交通隐患，请上级部门及时处理。',
-					add: '浙江省宁波市镇海区九龙湖镇长石村社区卫生服务工作室',
-					type: '交通安全',
-					timeType: '镇街科室办结',
-					reportTime: '2021/6/9 8:27:39',
-					department: '镇海区九龙湖镇交警',
-					overTime: '2021/6/9 15:18:24',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106080102',
-					content: '长石村孙陆工业区（垃圾中转站旁边），马路上窨井盖严重破损，造成机动车与行人出行存在一定的安全隐患，请上级部门及时处理。',
-					add: '浙江省宁波市镇海区九龙湖镇长石村长石小学',
-					type: '城市管理',
-					timeType: '网格关闭',
-					reportTime: '2021/6/8 8:23:52',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2021/6/8 15:18:48',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106070104',
-					content: '明苑一期居民由于物业迟迟不解决楼道瓷砖问题，而物业在没有解决问题的情况下催缴物业费，导致部分居民不满，可能有信访倾向。',
-					add: '明苑一期1栋居民',
-					type: '信访维稳',
-					timeType: '网格关闭',
-					reportTime: '2021/6/7 16:02:41',
-					department: '镇海区九龙湖镇综治办',
-					overTime: '2021/6/8 8:40:19',
-					timeOut: '否'
-				}, {
-					id: 'JLW202106070404',
-					content: '因两业主车位的停车问题引起纠纷。',
-					add: '九龙湖镇恒大明苑地下停车场',
-					type: '矛盾纠纷',
-					timeType: '网格关闭',
-					reportTime: '2021/6/7 14:41:00',
-					department: '镇海区九龙湖镇综治办',
-					overTime: '2021/6/8 8:40:14',
-					timeOut: '否'
-				}],
-				sjList2: [{
-					id: 'JLW202106110202',
-					content: '思源社区东街59-6号，居民家门口路面污水井盖破损，需要更换。',
-					add: '镇海区九龙湖镇思源社区东街59-6号居民家门口路面。',
-					type: '城市管理',
-					timeType: '网格上报',
-					reportTime: '2021/6/11 8:51:23',
-					department: '思源社区',
-					overTime: '2021/6/11 8:51:23',
-					timeOut: '否'
-				}],
+				pointsList: ['网格','村社区','镇街中心','镇街职能办','区县中心'],
+				sjLevelList: ['一级事件','二级事件','三级事件'],
+				sjTypeList: ['城市管理','党群工作','交通安全','困难救助','矛调来访','矛盾纠纷','农林水利','其他','食药安全','文教体育','消防安全','信访维稳','专项拉练'],
+				sjDetail: {},
+				sjList: [],
+				sjList2: [],
+				sjList3: [],
 				jkList: [{
 					name: '九龙湖村执法001',
 					area: '长胜',
@@ -1579,6 +1339,21 @@
 
 		},
 		mounted() {
+			let data = {
+				size: 30,
+				current: 1
+			}
+			this.$ajax.getEventList(data).then(res=> {
+				res.records.forEach((item,index) => {
+					if(item.level==1) {
+						this.sjList.push(item)
+					} else if (item.level==2) {
+						this.sjList2.push(item)
+					} else if (item.level==3) {
+						this.sjList3.push(item)
+					}
+				})
+			})
 			this.$parent.isChildShow = false
 			this.$parent.tabActive = 0
 			this.show13 = true
@@ -1714,6 +1489,7 @@
 					this.showXmb = false
 					this.showP = true
 					this.showPDetail = false
+					this.showVideo = false
 				}
 				// else if (e == 2) {
 				// 	// 4个平台
@@ -1763,6 +1539,7 @@
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
+					this.showVideo = false
 				} else if (e == 2) {
 					// 线上执法
 					this.$parent.isChildShow = false
@@ -1787,6 +1564,7 @@
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
+					this.showVideo = false
 				} else if (e == 3) {
 					// 综合巡查
 					this.$parent.isChildShow = false
@@ -1811,6 +1589,7 @@
 					this.showXmb = false
 					this.showP = false
 					this.showPDetail = false
+					this.showVideo = false
 				}
 				// else if (e == 5) {
 				// 	// 危房管理
@@ -2449,12 +2228,44 @@
 				this.show2 = false
 				this.$parent.test("长胜38号")
 			},
-			searchKey(e) {
-				console.log(e, this.keyWord)
-			},
-			showDetail(e) {
+			showDetail(id) {
 				this.showPDetail = true
-				this.sjDetail = this.sjList[e]
+				this.showMoreDetail = false
+				this.$ajax.getEventDetail({id:id}).then(res => {
+					console.log(res)
+					this.sjDetail = res
+				})
+			},
+			showDetails(e) {
+				this.showMoreDetail = true
+			},
+			beforePre() {
+				if(this.beforeIndex<=0) {
+					return
+				} else {
+					this.beforeIndex--
+				}
+			},
+			beforeNext() {
+				if(this.beforeIndex>=this.srcList.length-2) {
+					return
+				} else {
+					this.beforeIndex++
+				}
+			},
+			afterPre() {
+				if(this.afterIndex<=0) {
+					return
+				} else {
+					this.afterIndex--
+				}
+			},
+			afterNext() {
+				if(this.afterIndex>=this.srcList.length-2) {
+					return
+				} else {
+					this.afterIndex++
+				}
 			}
 		}
 	}
@@ -3358,7 +3169,7 @@
 	.sgpt-pop {
 		width: 990px;
 		height: 680px;
-		background-color: deepskyblue;
+		background-color: #328FCA;
 		font-size: 16px;
 		color: #fff;
 		display: flex;
@@ -3378,13 +3189,14 @@
 			img {
 				width: 20px;
 				height: 20px;
+				cursor: pointer;
 			}
 		}
 		.sgpt-box {
 			flex: 1;
 			color: #000;
 			font-size: 20px;
-			background-color: lightgray;
+			background-color: #F2F2F2;
 			display: flex;
 			flex-direction: column;
 			margin-top: 20px;
@@ -3406,6 +3218,29 @@
 					.sgpt-over {
 						flex: 1;
 						overflow-y: scroll;
+						/deep/ .el-timeline-item__wrapper {
+							padding-left: 15px;
+						}
+						.sgpt-info-box {
+							width: 250px;
+							height: 80px;
+							border-left: 6px solid #6AB1CF;
+							display: flex;
+							flex-direction: column;
+							padding: 4px 10px;
+							box-sizing: border-box;
+							border-radius: 5px;
+							background-color: #F2F2F2;
+							div {
+								width: 100%;
+								display: flex;
+								align-items: center;
+								justify-content: space-between;
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+							}
+						}
 					}
 				}
 				.sgpt-right {
@@ -3419,37 +3254,38 @@
 					.sgpt-right-top {
 						.sgpt-over {
 							height: 200px;
+							padding-bottom: 10px;
 							overflow-y: scroll;
 							.sgpt-table {
 								width: 540px;
-								border-bottom: 1px solid gray;
-								border-right: 1px solid gray;
+								border-bottom: 1px solid #DFDFDF;
+								border-right: 1px solid #DFDFDF;
 							}
 							.sgpt-line {
 								display: flex;
 							}
 							.sgpt-bg {
 								width: 80px;
-								height: 30px;
-								line-height: 30px;
 								font-size: 16px;
-								text-align: center;
-								background-color: gray;
+								padding: 10px 5px;
 								box-sizing: border-box;
-								border-top: 1px solid gray;
-								border-left: 1px solid gray;
+								text-align: center;
+								background-color: #F2F2F2;
+								box-sizing: border-box;
+								border-top: 1px solid #DFDFDF;
+								border-left: 1px solid #DFDFDF;
 							}
 							.sgpt-nbg {
 								width: 190px;
-								height: 30px;
-								line-height: 30px;
 								background-color: #fff;
-								padding-left: 10px;
+								padding: 10px 5px 10px 10px;
 								font-size: 16px;
 								box-sizing: border-box;
-								border-top: 1px solid gray;
-								border-left: 1px solid gray;
+								border-top: 1px solid #DFDFDF;
+								border-left: 1px solid #DFDFDF;
 								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
 							}
 						}
 					}
@@ -3459,12 +3295,22 @@
 							width: 50%;
 							display: flex;
 							flex-direction: column;
+							.sgpt-right-bottom-img {
+								display: flex;
+								align-items: center;
+								flex-wrap: nowrap;
+								width: 100%;
+								justify-content: space-between;
+								img {
+									cursor: pointer;
+								}
+							}
 						}
 					}
 				}
 			}
 			.sgpt-btn {
-				border-top: 2px solid deepskyblue;
+				border-top: 2px solid #328FCA;
 				width: 100%;
 				height: 60px;
 				display: flex;
@@ -3478,10 +3324,100 @@
 					font-size: 18px;
 					color: #fff;
 					line-height: 55px;
-					background-color: deepskyblue;
+					background-color: #328FCA;
 					border-radius: 4px;
 					text-align: center;
 					margin-right: 20px;
+				}
+			}
+		}
+		.sgpt-detail {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 640px;
+			height: 490px;
+			background-color: #328FCA;
+			display: flex;
+			flex-direction: column;
+			padding: 10px;
+			box-sizing: border-box;
+			.sgpt-detail-top {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				img {
+					width: 20px;
+					height: 20px;
+					cursor: pointer;
+				}
+			}
+			.sgpt-detail-box {
+				flex: 1;
+				color: #000;
+				font-size: 20px;
+				background-color: #fff;
+				display: flex;
+				flex-direction: column;
+				margin-top: 20px;
+				.sgpt-detail-info {
+					flex: 1;
+					padding: 5px 20px;
+					box-sizing: border-box;
+					.sgpt-detail-line {
+						width: 100%;
+						display: flex;
+						font-size: 14px;
+						align-items: center;
+						padding: 10px 0;
+						border-bottom: 1px dotted #F2F2F2;
+						.sgpt-detail-title {
+							width: 80px;
+							text-align: right;
+							color: #939393;
+						}
+						.sgpt-detail-content {
+							flex: 1;
+							color: #000;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							padding-left: 10px;
+							box-sizing: border-box;
+							.sgpt-detail-imgName {
+								width: 100px;
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+							}
+						}
+					}
+					.sgpt-detail-line:first-child {
+						border-top: 1px solid #F2F2F2;
+					}
+				}
+				.sgpt-detail-btn {
+					border-top: 2px solid #328FCA;
+					width: 100%;
+					height: 60px;
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					padding: 10px 30px;
+					box-sizing: border-box;
+					span {
+						width: 100px;
+						height: 50px;
+						font-size: 18px;
+						color: #fff;
+						line-height: 50px;
+						background-color: #328FCA;
+						border-radius: 4px;
+						text-align: center;
+						margin-right: 20px;
+					}
 				}
 			}
 		}

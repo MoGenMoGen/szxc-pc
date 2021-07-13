@@ -426,6 +426,8 @@
 						title: '购'
 					}
 				],
+				eatList: [],
+				hotelList: [],
 				njlList: [{
 					name: '龙居农家乐',
 					X: '121.50782',
@@ -601,10 +603,10 @@
 		methods: {
 			goto(item) {
 				let a = {
-					X: item.X,
-					Y: item.Y,
+					X: item.lng,
+					Y: item.lat,
 				}
-				this.topImg = item.url
+				this.topImg = item.img
 				this.$parent.test(a);
 			},
 			//打开关闭图层
@@ -650,100 +652,7 @@
 						name: '珠联璧合'
 					}]
 					this.topImg = ""
-					this.njlList = [{
-						name: '龙居农家乐',
-						X: '121.50782',
-						Y: '30.051656',
-						url: 'static/images/jdw1.png'
-					}, {
-						name: '月波农家菜馆',
-						X: '121.50818',
-						Y: '30.051681',
-					}, {
-						name: '横溪人家',
-						X: '121.508527',
-						Y: '30.052313',
-					}, {
-						name: '龙源农家乐',
-						X: '121.508072',
-						Y: '30.52354',
-					}, {
-						name: '向石头农家乐',
-						X: '121.509869',
-						Y: '30.052034',
-					}, {
-						name: '东琴农家乐',
-						X: '121.512405',
-						Y: '30.052881',
-					}, {
-						name: '项珍农家乐',
-						X: '121.506141',
-						Y: '30.052687',
-					}, {
-						name: '阿飞农家乐',
-						X: '121.506145',
-						Y: '30.052687',
-					}, {
-						name: '雅明农家乐',
-						X: '121.502719',
-						Y: '30.051409',
-					}, {
-						name: '九龙源农家乐',
-						X: '121.502887',
-						Y: '30.051724',
-					}, {
-						name: '食为天农家乐'
-					}, {
-						name: '竹之林农家乐'
-					}, {
-						name: '山里山农家乐'
-					}, {
-						name: '赞来农家乐'
-					}, {
-						name: '闻溪阁烧烤园'
-					}, {
-						name: '青青农家菜馆'
-					}, {
-						name: '食泉农家菜馆'
-					}, {
-						name: '竹林人家农家菜馆'
-					}, {
-						name: '绿色人家农家菜馆'
-					}, {
-						name: '沿山苑农家菜馆'
-					}, {
-						name: '溢品农家菜馆'
-					}, {
-						name: '青山绿水农家菜馆'
-					}, {
-						name: '八号农家乐'
-					}, {
-						name: '钱家小院'
-					}, {
-						name: '老宅私房农家菜'
-					}, {
-						name: '竹雅农家乐'
-					}, {
-						name: '长胜人家农家菜馆'
-					}, {
-						name: '沈家小园'
-					}, {
-						name: '小荣农家乐'
-					}, {
-						name: '龙眼泉农家乐'
-					}, {
-						name: '惠英农家乐'
-					}, {
-						name: '栋兴生态农庄'
-					}, {
-						name: '香石小院'
-					}, {
-						name: '洪阿三农家乐'
-					}, {
-						name: '氧气生活'
-					}, {
-						name: '又见山'
-					}]
+					this.njlList = this.eatList
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -777,48 +686,7 @@
 						url: 'static/images/zhu9.png',
 						name: '栋兴生态农庄'
 					}]
-					this.njlList = [{
-						name: '又见山',
-						X: '121.50615',
-						Y: '30.052189',
-						url: 'static/images/jdw1.png'
-					}, {
-						name: '龙眼泉农家乐',
-						X: '121.507867',
-						Y: '30.052307',
-					}, {
-						name: '惠英农家乐',
-						X: '121.502735',
-						Y: '30.051085',
-					}, {
-						name: '栋兴生态农庄',
-						X: '121.509037',
-						Y: '30.051842',
-					}, {
-						name: '香石小院',
-						X: '121.500984',
-						Y: '30.051311',
-					}, {
-						name: '洪阿三农家乐',
-						X: '121.50112',
-						Y: '30.051359',
-					}, {
-						name: '钱门客栈',
-						X: '121.503487',
-						Y: '30.052357',
-					}, {
-						name: '远足农家客栈',
-						X: '121.508364',
-						Y: '30.052494',
-					}, {
-						name: '高屋人家',
-						X: '121.50196',
-						Y: '30.051863',
-					}, {
-						name: '氧气生活',
-						X: '121.534009',
-						Y: '30.031686',
-					}]
+					this.njlList = this.hotelList
 					this.show = true
 					this.show2 = false
 					this.show3 = false
@@ -861,6 +729,13 @@
 			}
 		},
 		mounted() {
+			this.$ajax.getEatList({size:50,current:1}).then(res => {
+				this.eatList = res.records
+				this.njlList = this.eatList
+			})
+			this.$ajax.getHotelList({size:50,current:1}).then(res => {
+				this.hotelList = res.records
+			})
 			this.show = true
 			this.show4 = true
 			let that = this
