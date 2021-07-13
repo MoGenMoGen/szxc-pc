@@ -18,9 +18,9 @@ function getCookie(name){
 }
 
 //ajax请求
-function get(url,params){
+function get(url,data){
   let promise = new Promise((resolve,reject)=>{
-    axios.get('/api'+url,params).then(res=>{
+    axios.get('/api'+url,{params:data}).then(res=>{
 		resolve(res.data)
       // if(!res.data.code || res.data.code==200){ //退出成功没有状态码
       //   resolve(res.data)
@@ -256,6 +256,38 @@ class api {
         resolve(res.data)
       })
     })
+  }
+  // 紧急事件列表
+  getEventList(data){
+    return new Promise(resolve => {
+      get("/blade-govern/event/list",data).then(res=>{
+        resolve(res.data)
+      })
+    })
+  }
+  // 紧急事件详情
+  getEventDetail(data) {
+	return new Promise(resolve => {
+	  get("/blade-govern/event/detail",data).then(res=>{
+	    resolve(res.data)
+	  })
+	})
+  }
+  // 农家乐吃列表
+  getEatList(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-travel/eat/list",data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
+  // 农家乐住列表
+  getHotelList(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-travel/hotel/list",data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
   }
 }
 // 创建实例默认设置
