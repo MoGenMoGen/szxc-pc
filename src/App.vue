@@ -7,7 +7,7 @@
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList"
 					:key="index" @click="changeIndex(index)">
 					{{ item }}
-					<div v-if="(isActive==index&&isChildShow) ||(index==5&&isChildShow2)" class="top-tab-item-child">
+					<div v-if="isActive==index&&isChildShow" class="top-tab-item-child">
 						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click.stop="choose(newindex,index)"
 							:class="{'tabActive':tabActive==newindex}">{{ newitem }}</span>
 					</div>
@@ -22,6 +22,7 @@
 		<Jczl v-show="isActive==2&&flag" ref="jczl"></Jczl>
 		<Cwgk v-show="isActive==3&&flag" ref="cwgk"></Cwgk>
 		<Zhly ref="Zhly" v-show="isActive==4&&flag"></Zhly>
+		<Bmfw ref="bmfw" v-show="isActive==5&&flag"></Bmfw>
 		<!-- 显示综合指挥 -->
 		<!-- <div class="imgBtn" v-if="!flag">
       <img style="width: 100%; height: 100%;" src="../public/static/images/sgptBg.png">
@@ -51,6 +52,7 @@
 	import Zhly from '@/components/Zhly.vue'
 	import Jczl from '@/components/Jczl.vue'
 	import Cwgk from '@/components/Cwgk.vue'
+	import Bmfw from '@/components/Bmfw.vue'
 
 	export default {
 		data() {
@@ -77,7 +79,8 @@
 			Zhdj,
 			Zhly,
 			Jczl,
-			Cwgk
+			Cwgk,
+			Bmfw
 		},
 		methods: {
 			test(val) {
@@ -112,13 +115,15 @@
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
+					this.offAllDj()
+					this.offAllJc()
+					this.offAllLy()
+					this.offAllYh()
 					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
-					this.isChildShow = false
-					this.isChildShow2 = true
-					return
-				} else {
-					this.isActive = e
+					this.isChildShow = true
+					this.isChildShow2 = false
 				}
+				this.isActive = e
 				// //一档一户
 				// if (e === 1) {
 				//   this.onOff("打开图层","总览")
@@ -178,17 +183,16 @@
 			},
 			//关闭所有智慧党建下图层
 			offAllDj() {
-				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "红色路线")
 				this.onOff("关闭图层", "红色景点")
 				this.onOff("关闭图层", "横溪党员")
 				this.onOff("关闭图层", "长胜周家港孟家毛岭党员")
 				this.onOff("关闭图层", "长胜田央沈长桥头党员")
 				this.onOff("关闭图层", "农家乐支部党员")
+				this.onOff('关闭图层', '公共场所')
 			},
 			//关闭所有旅游图层
 			offAllLy() {
-				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "旅游路线")
 				this.onOff("关闭图层", "旅游景点")
 				this.onOff("关闭图层", "民宿")
@@ -196,12 +200,10 @@
 			},
 			//关闭所有一户一档
 			offAllYh() {
-				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "一户一档人口")
 			},
 			//关闭所有基层
 			offAllJc() {
-				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "综合监管")
 				this.onOff("关闭图层", "危房")
 				this.onOff("关闭图层", "防溺水监控点")
@@ -209,6 +211,7 @@
 				this.onOff("关闭图层", "垃圾点位")
 				this.onOff("关闭图层", "企业")
 				this.onOff("关闭图层", "山塘水库")
+				this.onOff("关闭图层", "执法记录仪")
 			},
 
 
@@ -225,14 +228,17 @@
 				if(index == 2) {
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
+				} else if (index==5) {
+					this.tabActive = newindex
+					this.$refs.bmfw.getIndex(newindex)
 				}
 			}
 		},
 		mounted() {
-			if (window.location.hash == '#/Sgpt') {
-				this.flag = false
-				console.log(this.flag)
-			}
+			// if (window.location.hash == '#/Sgpt') {
+			// 	this.flag = false
+			// 	console.log(this.flag)
+			// }
 			let _this = this
 			this.nowTime = this.getDate()
 			this.timer = setInterval(function() {

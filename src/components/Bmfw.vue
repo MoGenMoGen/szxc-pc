@@ -1,0 +1,340 @@
+<template>
+	<div>
+		<transition name="fade">
+			<div class="pop-common srjf" v-show="show">
+				<div class="pop-title"><span>私人建房统计</span></div>
+				<div class="srjf-title">
+					<span>序号</span>
+					<span>户主姓名</span>
+					<span>户内人口</span>
+					<span>原有宅基地房屋处置方式</span>
+					<span>新申请用地面积</span>
+					<span>预选建房地址</span>
+					<span>办理进展情况</span>
+					<span>优先排序</span>
+				</div>
+				<div class="srjf-item" v-for="(item, index) in srjfList" :key="index">
+					<span>{{index+1}}</span>
+					<span>{{item.name}}</span>
+					<span>{{item.num}}</span>
+					<span>{{item.solve}}</span>
+					<span>{{item.newArea}}</span>
+					<span>{{item.newArea}}</span>
+					<span>{{item.schedule}}</span>
+					<span>{{item.sort}}</span>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="pop-common pop-list" v-show="showPubilc">
+				<div class="pop-title"><span>公共场所</span></div>
+				<div class="pop-inner-title">
+					<span>序号</span>
+					<span>公共场所名称</span>
+				</div>
+				<div class="pop-inner-box">
+					<div v-for="(item,index) in publicList" :key='index' class="pop-inner-item" @click="toMap(item)">
+						<span>{{ index + 1 }}</span>
+						<span>{{ item.name }}</span>
+					</div>
+				</div>
+			</div>
+		</transition>
+	</div>
+</template>
+
+<script>
+	import PopBox from '@/components/PopBox.vue'
+
+	export default {
+		name: 'Bmfw',
+		props: {},
+		data() {
+			return {
+				show: false, //私人建房
+				showPubilc: false, //公共场所
+				srjfList: [{
+					name: '周国栋',
+					num: 3,
+					solve: '拆除',
+					newArea: 100,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '困难户'
+				}, {
+					name: '邱世云',
+					num: 3,
+					solve: '无',
+					newArea: 80,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				}, {
+					name: '叶敏华',
+					num: 4,
+					solve: '无',
+					newArea: 120,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				}, {
+					name: '项舜',
+					num: 1,
+					solve: '无',
+					newArea: 80,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '无房户'
+				}, {
+					name: '陈雪宝',
+					num: 2,
+					solve: '村集体回购',
+					newArea: 48,
+					newAdd: '村庄集镇规划区',
+					schedule: '计划申请',
+					sort: '危房户'
+				}],
+				publicList: [{
+					name: '九龙湖镇九龙湖社区卫生服务站',
+					X: '121.504729',
+					Y: '30.051343'
+				},{
+					name: '横溪农贸市场',
+					X: '121.505037',
+					Y: '30.05139'
+				},{
+					name: '横溪村文化礼堂',
+					X: '121.505213',
+					Y: '30.051743'
+				},{
+					name: '九龙湖村村委会',
+					X: '121.538627',
+					Y: '30.034315'
+				},{
+					name: '九龙湖村篮球场',
+					X: '121.538061',
+					Y: '30.034214'
+				},{
+					name: '九龙湖村文化礼堂',
+					X: '121.538095',
+					Y: '30.034395'
+				},{
+					name: '个体医疗诊所',
+					X: '121.537764',
+					Y: '30.03434'
+				},{
+					name: '九龙湖村敬老院',
+					X: '121.542275',
+					Y: '30.035262'
+				},{
+					name: '九龙湖村居家养老服务站',
+					X: '121.536489',
+					Y: '30.03422'
+				},{
+					name: '九龙湖村残疾人康复站',
+					X: '121.536329',
+					Y: '30.034198'
+				},{
+					name: '九龙湖村避灾点',
+					X: '121.538298',
+					Y: '30.034399'
+				},{
+					name: '九龙湖镇残疾人阳光康福苑',
+					X: '121.542506',
+					Y: '30.034955'
+				},{
+					name: '九龙湖镇居家养老（残）银龄互助中心',
+					X: '121.542615',
+					Y: '30.034968'
+				}]
+			}
+		},
+		components: {
+			PopBox
+		},
+		methods: {
+			//打开关闭图层
+			onOff(type, name) {
+				let a = {
+					type: type,
+					name: name
+				}
+				this.$parent.test(a);
+			},
+			toMap(item) {
+				let a = {
+					X: item.X,
+					Y: item.Y,
+				}
+				this.$parent.test(a);
+			},
+			getIndex(e) {
+				this.$parent.isChildShow = false
+				if (e == 0) {
+					this.show = true
+					this.showPubilc = false
+					this.onOff('关闭图层', '公共场所')
+				} else if (e == 1) {
+					this.show = false
+					this.showPubilc = false
+					this.onOff('关闭图层', '公共场所')
+				} else if (e == 2) {
+					this.show = false
+					this.showPubilc = false
+					this.onOff('关闭图层', '公共场所')
+				} else if (e == 3) {
+					this.show = false
+					this.showPubilc = true
+					this.onOff('打开图层', '公共场所')
+				}
+			}
+		},
+		mounted() {
+			this.show = true
+			this.$parent.isChildShow = false
+			this.$parent.tabActive = 0
+			this.onOff('关闭图层', '公共场所')
+		}
+
+	}
+</script>
+
+<style scoped lang="less">
+	.fade-enter-active {
+		transition: opacity 1s;
+	}
+
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
+	}
+
+	.pop-common {
+		width: 520px;
+		border: 1px solid #fff;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.64);
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		box-sizing: border-box;
+		color: #fff;
+		z-index: 1998;
+	}
+	
+	.pop-title {
+		width: 485px;
+		height: 32px;
+		background: url(../../public/static/images/line.png) no-repeat;
+		font-size: 20px;
+		padding: 0 20px;
+		margin: 0 auto;
+		box-sizing: border-box;
+	
+		span {
+			margin-left: 20px;
+		}
+	}
+	
+	.pop-list {
+		position: absolute;
+		top: 200px;
+		left: 35px;
+	
+		.pop-inner-title {
+			display: flex;
+			width: 90%;
+			margin: 10px auto;
+			font-size: 19px;
+	
+			span:first-child {
+				text-align: center;
+				width: 15%;
+			}
+	
+			span:last-child {
+				text-align: center;
+				width: 85%;
+			}
+		}
+	
+		.pop-inner-box {
+			max-height: 400px;
+			overflow-y: auto;
+	
+			.pop-inner-item {
+				display: flex;
+				width: 90%;
+				margin: 10px auto;
+				font-size: 18px;
+	
+				span:first-child {
+					text-align: center;
+					width: 15%;
+				}
+	
+				span:last-child {
+					text-align: center;
+					width: 85%;
+				}
+			}
+		}
+	}
+	
+	.srjf {
+		position: absolute;
+		width: 1450px;
+		top: 200px;
+		left: 35px;
+
+		.pop-title {
+			width: 1420px;
+			height: 32px;
+			background: url(../../public/static/images/lineBL.png);
+			background-size: 100% 32px;
+			font-size: 20px;
+			padding: 0 20px;
+			margin: 0 auto;
+			box-sizing: border-box;
+			line-height: 20px;
+			span {
+				margin-left: 20px;
+			}
+		}
+
+		.srjf-title {
+			display: flex;
+			align-items: center;
+
+			span {
+				margin: 5px 0;
+				text-align: center;
+				flex: 1;
+				font-size: 18px;
+			}
+
+			span:nth-child(4) {
+				flex: 2;
+			}
+		}
+
+		.srjf-item {
+			display: flex;
+			align-items: center;
+
+			span {
+				margin: 5px 0;
+				text-align: center;
+				flex: 1;
+				font-size: 18px;
+			}
+
+			span:nth-child(4) {
+				flex: 2;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+	}
+</style>
