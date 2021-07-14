@@ -329,6 +329,22 @@ class api {
 	  })
 	})
   }
+  // 数据字典
+  getDictionary(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-system/dict-biz/dictionary?code="+data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
+  // 监控列表
+  getCamera(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-xc/camera/listByType?type="+data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
