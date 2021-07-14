@@ -411,7 +411,7 @@
 						sUrl: 'static/images/youS.png',
 						url: 'static/images/you.png',
 						hasUrl: true,
-						title: '玩'
+						title: '游'
 					},
 					{
 						sUrl: 'static/images/gouS.png',

@@ -292,7 +292,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<vue-seamless-scroll :data="sjList" class="seamless-warp" :class-option="classOption" ref="">
+					<!-- <vue-seamless-scroll :data="sjList" class="seamless-warp" :class-option="classOption" ref=""> -->
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click.stop="showDetail(item.id)">
 								<span style="width: 10%;">{{ index+1 }}</span>
@@ -301,7 +301,7 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					</vue-seamless-scroll>
+					<!-- </vue-seamless-scroll> -->
 				</div>
 				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.4);">
 					<div class="sj-pop-title"><span>二级事件</span></div>
@@ -311,7 +311,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<vue-seamless-scroll :data="sjList2" class="seamless-warp" :class-option="classOption2">
+					<!-- <vue-seamless-scroll :data="sjList2" class="seamless-warp" :class-option="classOption2"> -->
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList2" :key="index" class="sj-pop-item"
 								@click.stop="showDetail(item.id)">
@@ -321,7 +321,7 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					</vue-seamless-scroll>
+					<!-- </vue-seamless-scroll> -->
 				</div>
 				<div class="sj-pop" style="border-color: #289721;background-color: rgba(40,151,33,0.4);">
 					<div class="sj-pop-title"><span>三级事件</span></div>
@@ -331,7 +331,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<vue-seamless-scroll :data="sjList3" class="seamless-warp" :class-option="classOption3">
+					<!-- <vue-seamless-scroll :data="sjList3" class="seamless-warp" :class-option="classOption3"> -->
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList3" :key="index" class="sj-pop-item"
 								@click.stop="showDetail(item.id)">
@@ -341,7 +341,7 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					</vue-seamless-scroll>
+					<!-- </vue-seamless-scroll> -->
 				</div>
 			</div>
 		</transition>
@@ -532,14 +532,14 @@
 		<transition name="fade">
 			<div v-show="show17">
 				<div class="pop-left">
-					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+					<div class="pop-common" style="width:404px;height: 250px;margin-bottom: 20px;">
 						<div class="pop-title"><span>一企一档<p class="tip-style">{{qyList2.length}}</p></span></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click="toQiye(index,item)">· {{item.name}}</div>
 						</div>
 					</div>
-					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+					<div class="pop-common" style="width:404px;height: 370px;margin-bottom: 20px;">
 						<div class="pop-title"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
 						<div class="pop-common-title">
 							<span></span>
@@ -558,7 +558,7 @@
 					</div>
 				</div>
 				<div class="pop-bottom">
-					<div class="pop-common" style="height: 350px;">
+					<div class="pop-common" style="width:404px;height: 370px;">
 						<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
 							<span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span>
 							<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(1)">查看示例</span>
@@ -576,28 +576,28 @@
 							</div>
 						</div>
 					</div>
-					<div class="pop-common" style="width: 250px;height: 350px;">
+					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
-					<div class="pop-common" style="width: 250px;height: 350px;">
+					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
 								{{item.add}}</div>
 						</div>
 					</div>
-					<div class="pop-common" style="width: 250px;height: 350px;">
+					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
-					<div class="pop-common" style="width: 300px;height: 350px;">
+					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title"><span>边坡位移<p class="tip-style">{{wyList.length}}</p></span></div>
 						<div class="pop-common-title2">
 							<span></span>
@@ -612,7 +612,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="pop-common" style="height: 350px;">
+					<div class="pop-common" style="width: 404px;height: 370px;">
 						<div class="pop-title"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
 						<div class="pop-common-title2">
 							<span></span>
@@ -632,7 +632,7 @@
 					</div>
 				</div>
 				<div class="pop-right">
-					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+					<div class="pop-common" style="width: 404px;height: 250px;margin-bottom: 20px;">
 						<div style="display: none;"></div> <!-- 执法仪监控区域 -->
 						<div class="pop-title"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
 						<div class="pop-common-box">
@@ -640,7 +640,7 @@
 								{{item.name}}</div>
 						</div>
 					</div>
-					<div class="pop-common" style="height: 300px;margin-bottom: 10px;">
+					<div class="pop-common" style="width: 404px;height: 370px;margin-bottom: 10px;">
 						<!-- 右侧中间监控区域 -->
 					</div>
 				</div>
@@ -742,11 +742,15 @@
 				}, {
 					num: 7,
 					url: 'static/images/wg-tsjsjt.png',
-					title: '特殊人'
+					title: '计生家庭'
 				}, {
 					num: 0,
 					url: 'static/images/wg-sqjzry.png',
-					title: '矫正人'
+					title: '五保户'
+				}, {
+					num: 0,
+					url: 'static/images/wg-sqjzry.png',
+					title: '矫正人员'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
@@ -1748,9 +1752,9 @@
 					this.list2[4].num = res.aged
 					this.list2[5].num = res.disabled
 					this.list2[6].num = res.special
-					this.list2[7].num = res.correction
+					this.list2[7].num = res.fi
+					this.list2[8].num = res.correction
 				})
-				this.showP = false
 				this.showPDetail = false
 				this.show8 = true
 			},
@@ -2308,7 +2312,8 @@
 					this.list2[4].num = res.aged
 					this.list2[5].num = res.disabled
 					this.list2[6].num = res.special
-					this.list2[7].num = res.correction
+					this.list2[7].num = res.fi
+					this.list2[8].num = res.correction
 				})
 			}
 		},
@@ -2406,12 +2411,15 @@
 		margin-top: 20px;
 
 		.pop-zl-item {
-			width: 25%;
+			width: 33%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-
+			margin-bottom: 10px;
+			span:first-child {
+				margin-bottom: 5px;
+			}
 			// img {
 			// 	width: 38px;
 			// 	height: 38px;
@@ -2466,7 +2474,7 @@
 
 	.wglb {
 		position: absolute;
-		top: 450px;
+		top: 570px;
 		left: 35px;
 		max-height: none;
 
@@ -2905,8 +2913,8 @@
 
 		.sj-pop-itemBox {
 			width: 100%;
-			// height: 200px;
-			// overflow-y: scroll;
+			height: 200px;
+			overflow-y: scroll;
 		}
 
 		.sj-pop-item {
@@ -3128,25 +3136,25 @@
 
 	.pop-left {
 		position: absolute;
-		top: 200px;
-		left: 35px;
+		top: 155px;
+		left: 40px;
 		display: flex;
 		flex-direction: column;
 	}
 
 	.pop-bottom {
-		width: calc(100% - 70px);
+		width: calc(100% - 80px);
 		position: absolute;
-		bottom: 40px;
-		left: 35px;
+		bottom: 20px;
+		left: 40px;
 		display: flex;
 		justify-content: space-between;
 	}
 
 	.pop-right {
 		position: absolute;
-		top: 200px;
-		right: 35px;
+		top: 155px;
+		right: 40px;
 		display: flex;
 		flex-direction: column;
 	}

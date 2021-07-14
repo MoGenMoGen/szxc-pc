@@ -65,7 +65,7 @@
 				isActive: 0,
 				tabActive: 0,
 				tabList: ['概要', '智慧党建', '基层治理', '村务管理', '智慧旅游', '便民服务'],
-				tabChildList: ['行政审批', '证明指南', '建房申请', '官兵服务', '居家养老']
+				tabChildList: ['建房申请', '证明指南','居家养老','公共场所']
 			}
 		},
 		name: 'app',
@@ -112,7 +112,7 @@
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
-					this.tabChildList = ['行政审批', '证明指南', '建房申请', '官兵服务', '居家养老']
+					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
 					this.isChildShow = false
 					this.isChildShow2 = true
 					return
@@ -178,6 +178,7 @@
 			},
 			//关闭所有智慧党建下图层
 			offAllDj() {
+				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "红色路线")
 				this.onOff("关闭图层", "红色景点")
 				this.onOff("关闭图层", "横溪党员")
@@ -187,6 +188,7 @@
 			},
 			//关闭所有旅游图层
 			offAllLy() {
+				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "旅游路线")
 				this.onOff("关闭图层", "旅游景点")
 				this.onOff("关闭图层", "民宿")
@@ -194,10 +196,12 @@
 			},
 			//关闭所有一户一档
 			offAllYh() {
+				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "一户一档人口")
 			},
 			//关闭所有基层
 			offAllJc() {
+				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "综合监管")
 				this.onOff("关闭图层", "危房")
 				this.onOff("关闭图层", "防溺水监控点")
