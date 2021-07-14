@@ -549,7 +549,7 @@
 							<span>建造年代</span>
 						</div>
 						<div class="pop-common-box">
-							<div class="pop-three-line" v-for="(item,index) in wfList" :key="index">
+							<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)" :key="index">
 								<span>·</span>
 								<span>{{item.addr}}</span>
 								<span>{{item.name}}</span>
