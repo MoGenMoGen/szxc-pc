@@ -1525,7 +1525,7 @@
 			},
 			showVideoBox(e) {
 				if(e==1) {
-					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/fns.mp4'
+					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/fnsx.mp4'
 				} else if (e==2) {
 					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
 				}
