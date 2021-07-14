@@ -122,12 +122,6 @@
 			</div>
 
 		</transition>
-		<transition name="fade">
-
-		</transition>
-		<transition name="fade">
-
-		</transition>
 		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
 	</div>
 </template>
@@ -730,11 +724,15 @@
 		},
 		mounted() {
 			this.$ajax.getEatList({size:50,current:1}).then(res => {
-				this.eatList = res.records
+				res.records.forEach((item,index) => {
+					if(item.type=="service_eat"||item.type=="service_all"){
+						this.eatList.push(item)
+					}
+					if(item.type=="service_hotel"||item.type=="service_all") {
+						this.hotelList.push(item)
+					}
+				})
 				this.njlList = this.eatList
-			})
-			this.$ajax.getHotelList({size:50,current:1}).then(res => {
-				this.hotelList = res.records
 			})
 			this.show = true
 			this.show4 = true

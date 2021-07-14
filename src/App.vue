@@ -59,66 +59,13 @@
 				showPop: true,
 				isChildShow: false,
 				isChildShow2: false,
-				imgUrl: '../public/static/images/banner3.png',
-				title: '一级事件',
 				flag: true,
 				nowTime: "",
 				timer: "",
 				isActive: 0,
 				tabActive: 0,
 				tabList: ['概要', '智慧党建', '基层治理', '村务管理', '智慧旅游', '便民服务'],
-				tabChildList: ['行政审批', '低保申请', '建房申请', '老兵补助', '居家养老'],
-				sjList: [{
-					id: 'jlw202012130102',
-					content: '河头村河西上街网格预征土地上有违章搭建',
-					add: '河头村',
-					type: '治危拆违',
-					timeType: '网格关闭',
-					reportTime: '2020-12-15 10:07:09',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2020-12-15 10:07:09',
-					timeOut: '否'
-				}, {
-					id: 'jlw202012130102',
-					content: '河头村河西上街网格预征土地上有违章搭建',
-					add: '河头村',
-					type: '治危拆违',
-					timeType: '网格关闭',
-					reportTime: '2020-12-15 10:07:09',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2020-12-15 10:07:09',
-					timeOut: '否'
-				}, {
-					id: 'jlw202012130102',
-					content: '河头村河西上街网格预征土地上有违章搭建',
-					add: '河头村',
-					type: '治危拆违',
-					timeType: '网格关闭',
-					reportTime: '2020-12-15 10:07:09',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2020-12-15 10:07:09',
-					timeOut: '否'
-				}, {
-					id: 'jlw202012130102',
-					content: '河头村河西上街网格预征土地上有违章搭建',
-					add: '河头村',
-					type: '治危拆违',
-					timeType: '网格关闭',
-					reportTime: '2020-12-15 10:07:09',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2020-12-15 10:07:09',
-					timeOut: '否'
-				}, {
-					id: 'jlw202012130102',
-					content: '河头村河西上街网格预征土地上有违章搭建',
-					add: '河头村',
-					type: '治危拆违',
-					timeType: '网格关闭',
-					reportTime: '2020-12-15 10:07:09',
-					department: '镇海区九龙湖镇城建管理服务中心',
-					overTime: '2020-12-15 10:07:09',
-					timeOut: '否'
-				}]
+				tabChildList: ['行政审批', '证明指南', '建房申请', '官兵服务', '居家养老']
 			}
 		},
 		name: 'app',
@@ -152,20 +99,20 @@
 				return data
 			},
 			changeIndex(e) {
-				if (e !== 4) {
+				if (e !== 3&&e!==5) {
 					this.$refs.cwgk.offShow()
 				}
 				if (e !== 0) {
 					this.$refs.summary.offHik()
 				}
-				if (e !== 3) {
+				if (e !== 2) {
 					this.$refs.jczl.offHik()
 				}
 				if (e == 0) {
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
-					this.tabChildList = ['行政审批', '低保申请', '建房申请', '老兵补助', '居家养老']
+					this.tabChildList = ['行政审批', '证明指南', '建房申请', '官兵服务', '居家养老']
 					this.isChildShow = false
 					this.isChildShow2 = true
 					return
