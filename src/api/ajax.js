@@ -289,6 +289,46 @@ class api {
   	  })
   	})
   }
+  // 事件追踪列表
+  getTrackList(data) {
+	return new Promise(resolve => {
+	  get("/blade-govern/track/list",data).then(res=>{
+	    resolve(res.data)
+	  })
+	})
+  }
+  // 事件追踪详情
+  getTrackDetail(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-govern/track/detail",data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
+  // 网格列表
+  getGridList(data) {
+	return new Promise(resolve => {
+	  get("/blade-govern/grid/list",data).then(res=>{
+	    resolve(res.data)
+	  })
+	})
+  }
+  // 网格详情
+  getGridDetail(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-govern/grid/detail",data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
+  // 网格总数
+  getGridTotal() {
+	return new Promise(resolve => {
+	  get("/blade-govern/grid/total").then(res=>{
+	    resolve(res.data)
+	  })
+	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
