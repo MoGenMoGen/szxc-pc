@@ -12,7 +12,7 @@
 							:class="{'tabActive':tabActive==newindex}">{{ newitem }}</span>
 					</div>
 				</div>
-				
+
 			</div>
 			<span class="top-time">{{ nowTime }}</span>
 		</div>
@@ -37,6 +37,8 @@
         <img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showImg">
       </div>
     </div> -->
+
+
 		<iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
 	</div>
 </template>
@@ -218,7 +220,7 @@
 
 			showChild(e) {
 				if (e == 5) {
-					
+
 				}
 			},
 			hiddenChild(e) {

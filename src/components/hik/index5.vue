@@ -61,7 +61,7 @@ export default {
               dllPath: "./VideoPluginConnect.dll"
             }).then((res) => {
               console.log(_this.oWebControl)
-              _this.oWebControl.JS_CreateWnd("divPlugin", 400, 400).then(() => {
+              _this.oWebControl.JS_CreateWnd("divPlugin", 360, 360).then(() => {
                 this.initVideo();
               });
 
@@ -89,8 +89,8 @@ export default {
           this.oWebControl = null;
         }
       });
-      _this.oWebControl.oDocOffset.top = 178;
-      _this.oWebControl.oDocOffset.left = 1790;
+      _this.oWebControl.oDocOffset.top = 420;
+      _this.oWebControl.oDocOffset.left = 1792;
 
     },
     // 设置窗口控制回调
@@ -138,7 +138,7 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
-              that.oWebControl.JS_Resize(400,400);
+              that.oWebControl.JS_Resize(410,390);
               this.startRealPlay()
             }
         );
