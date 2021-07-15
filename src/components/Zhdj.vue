@@ -59,7 +59,7 @@
 				</div>
         <div class="leader-img-box">
           <img :src="leaderImg" v-if="showLeaderImg" style="border: 2px solid #fff;">
-          <img src="static/images/cancel.png" class="cancelLogo" @click="closeImg">
+          <img src="static/images/cancel.png"  v-if="showLeaderImg" class="cancelLogo" @click="closeImg">
         </div>
 			</div>
 		</transition>
@@ -109,7 +109,7 @@
 				<img src="static/images/cancel.png" class="qianyi-cancel" @click="cancel">
 			</div>
 		</transition>
-		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
+		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
 

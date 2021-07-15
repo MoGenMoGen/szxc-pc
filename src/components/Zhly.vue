@@ -80,12 +80,12 @@
 				<div class="banner-box banner-box-right">
 					<!-- <img :src="imgList2[1].url" class="banner-img">
 					<div class="banner-label">{{imgList2[1].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList1" :key="index">
 							<img :src="item">
 						</el-carousel-item>
 					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList2" :key="index">
 							<img :src="item">
 						</el-carousel-item>
@@ -94,12 +94,12 @@
 				<div class="banner-box banner-box-left">
 					<!-- <img :src="imgList2[2].url" class="banner-img">
 					<div class="banner-label">{{imgList2[2].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList3" :key="index">
 							<img :src="item">
 						</el-carousel-item>
 					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList4" :key="index">
 							<img :src="item">
 						</el-carousel-item>
@@ -108,12 +108,12 @@
 				<div class="banner-box banner-box-center">
 					<!-- <img :src="imgList2[0].url" class="banner-img">
 					<div class="banner-label">{{imgList2[0].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList5" :key="index">
 							<img :src="item">
 						</el-carousel-item>
 					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
 						<el-carousel-item v-for="(item,index) in gouImgList6" :key="index">
 							<img :src="item">
 						</el-carousel-item>
@@ -122,7 +122,7 @@
 			</div>
 
 		</transition>
-		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
+		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
 
@@ -422,124 +422,31 @@
 				],
 				eatList: [],
 				hotelList: [],
-				njlList: [{
-					name: '龙居农家乐',
-					X: '121.50782',
-					Y: '30.051656',
-					url: 'static/images/jdw1.png'
-				}, {
-					name: '月波农家菜馆',
-					X: '121.50818',
-					Y: '30.051681',
-				}, {
-					name: '横溪人家',
-					X: '121.508527',
-					Y: '30.052313',
-				}, {
-					name: '龙源农家乐',
-					X: '121.508072',
-					Y: '30.52354',
-				}, {
-					name: '向石头农家乐',
-					X: '121.509869',
-					Y: '30.052034',
-				}, {
-					name: '东琴农家乐',
-					X: '121.512405',
-					Y: '30.052881',
-				}, {
-					name: '项珍农家乐',
-					X: '121.506141',
-					Y: '30.052687',
-				}, {
-					name: '阿飞农家乐',
-					X: '121.506145',
-					Y: '30.052687',
-				}, {
-					name: '雅明农家乐',
-					X: '121.502719',
-					Y: '30.051409',
-				}, {
-					name: '九龙源农家乐',
-					X: '121.502887',
-					Y: '30.051724',
-				}, {
-					name: '食为天农家乐'
-				}, {
-					name: '竹之林农家乐'
-				}, {
-					name: '山里山农家乐'
-				}, {
-					name: '赞来农家乐'
-				}, {
-					name: '闻溪阁烧烤园'
-				}, {
-					name: '青青农家菜馆'
-				}, {
-					name: '食泉农家菜馆'
-				}, {
-					name: '竹林人家农家菜馆'
-				}, {
-					name: '绿色人家农家菜馆'
-				}, {
-					name: '沿山苑农家菜馆'
-				}, {
-					name: '溢品农家菜馆'
-				}, {
-					name: '青山绿水农家菜馆'
-				}, {
-					name: '八号农家乐'
-				}, {
-					name: '钱家小院'
-				}, {
-					name: '老宅私房农家菜'
-				}, {
-					name: '竹雅农家乐'
-				}, {
-					name: '长胜人家农家菜馆'
-				}, {
-					name: '沈家小园'
-				}, {
-					name: '小荣农家乐'
-				}, {
-					name: '龙眼泉农家乐'
-				}, {
-					name: '惠英农家乐'
-				}, {
-					name: '栋兴生态农庄'
-				}, {
-					name: '香石小院'
-				}, {
-					name: '洪阿三农家乐'
-				}, {
-					name: '氧气生活'
-				}, {
-					name: '又见山'
-				}],
+				njlList: [],
 				jdList: [{
 					name: '香山教寺',
-					X: '121.518298',
-					Y: '30.055497',
+					lng: '121.518298',
+					lat: '30.055497',
 				}, {
 					name: '九龙源',
-					X: '121.51148',
-					Y: '30.054086',
+					lng: '121.51148',
+					lat: '30.054086',
 				}, {
 					name: '滑草场',
-					X: '121.539236',
-					Y: '30.04344',
+					lng: '121.539236',
+					lat: '30.04344',
 				}, {
 					name: '猴岛穿越时空',
-					X: '121.529372',
-					Y: '30.041006',
+					lng: '121.529372',
+					lat: '30.041006',
 				}, {
 					name: '香山源',
-					X: '121.518298',
-					Y: '30.055497',
+					lng: '121.518298',
+					lat: '30.055497',
 				}, {
 					name: '九龙湖景区',
-					X: '121.527141',
-					Y: '30.045825',
+					lng: '121.527141',
+					lat: '30.045825',
 				}],
 				imgList: [{
 					url: 'static/images/jdw1.png',
