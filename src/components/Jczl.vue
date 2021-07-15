@@ -373,7 +373,8 @@
 								<el-timeline style="width: 80%;margin-top: 10px;">
 								    <el-timeline-item
 								      v-for="(item, index) in trackList"
-								      :key="index">
+								      :key="index"
+									  :color="item.level-1==index?'#328FCA':''">
 								      <div class="sgpt-info-box" v-if="item.level-1==index">
 										  <div><span style="color: #6AB1CF;">{{item.handleTime.substring(0,10)}}</span><span>{{item.name}} {{item.mob}}</span></div>
 										  <div><span>【{{item.organization}}】</span></div>
@@ -1152,6 +1153,7 @@
 				if (e == 0) {
 					// 网格管理
 					this.getGridTotal()
+					this.getEventList('')
 					this.$parent.isChildShow = false
 					this.offHik()
 					this.onOff("关闭图层", "山塘水库")
@@ -1568,12 +1570,24 @@
 						size: 10
 					}).then(respon => {
 						this.trackList = respon.records
-						for(let i=0;i<this.pointsList.length;i++) {
-							if(this.trackList.length<this.pointsList.length) {
-								this.trackList.push({})
+						let lastTrack = {}
+						if(this.trackList[this.trackList.length-1].level ==9) {
+							lastTrack = this.trackList.splice(this.trackList.length-1,1)
+							for(let i=0;i<this.pointsList.length;i++) {
+								if(this.trackList.length<this.pointsList.length) {
+									this.trackList.push({})
+								}
+							}
+							if(Object.keys(lastTrack).length>0) {
+								this.trackList.splice(8,1,lastTrack[0])
+							}
+						} else {
+							for(let i=0;i<this.pointsList.length;i++) {
+								if(this.trackList.length<this.pointsList.length) {
+									this.trackList.push({})
+								}
 							}
 						}
-						
 					})
 				})
 			},
@@ -1613,6 +1627,9 @@
 				}
 			},
 			getEventList(id) {
+				this.sjList=[]
+				this.sjList2=[]
+				this.sjList3=[]
 				this.$ajax.getEventList({
 					size: 30,
 					current: 1,
@@ -1670,7 +1687,6 @@
 					this.qyList2 = res
 				})
 				this.$ajax.getCamera('内涝点监管').then(res=> {
-					console.log(res)
 					this.wyList = res
 				})
 				// this.$ajax.getCamera('边坡位移').then(res=> {
