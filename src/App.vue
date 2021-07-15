@@ -5,7 +5,7 @@
 			<span class="top-title" @click="test2">九龙湖村数字平台</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList"
-					:key="index" @click="changeIndex(index)">
+					:key="index" @mouseover="changeIndex(index)" >
 					{{ item }}
 					<div v-if="isActive==index&&isChildShow" class="top-tab-item-child">
 						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click.stop="choose(newindex,index)"
@@ -69,7 +69,7 @@
 				isActive: 0,
 				tabActive: 0,
 				tabList: ['概要', '智慧党建', '基层治理', '村务管理', '智慧旅游', '便民服务'],
-				tabChildList: ['建房申请', '证明指南','居家养老','公共场所']
+				tabChildList: []
 			}
 		},
 		name: 'app',
@@ -114,6 +114,7 @@
 					this.$refs.jczl.offHik()
 				}
 				if (e == 0) {
+					this.isChildShow = false
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
@@ -123,7 +124,7 @@
 					this.offAllYh()
 					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
 					this.isChildShow = true
-					this.isChildShow2 = false
+					// this.isChildShow2 = false
 				}
 				this.isActive = e
 				// //一档一户
@@ -140,8 +141,9 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-					this.isChildShow = false
-					this.isChildShow2 = false
+					this.tabChildList = ['红色路线', '党员信息','党务公开','党员活动']
+					this.isChildShow = true
+					// this.isChildShow2 = false
 				}
 				//旅游
 				if (e === 4) {
@@ -149,21 +151,25 @@
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-					this.isChildShow = false
-					this.isChildShow2 = false
+					this.tabChildList = ['吃', '住','游','购']
+					this.isChildShow = true
+					// this.isChildShow2 = false
 				}
 				//基层治理
 				if (e === 2) {
 					// this.onOff("打开图层","山塘水库")
 					// this.onOff("打开图层","垃圾点位")
 					// this.onOff("打开图层","防溺水监控点")
-					this.test("网格")
+					if(this.$refs.jczl.e==0) {
+						// this.test("网格")
+						this.onOff("打开图层", "网格")
+					}
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-					this.tabChildList = ['网格管理','综合监管','线上指挥','综合巡查']
+					this.tabChildList = ['网格管理','综合监管']
 					this.isChildShow = true
-					this.isChildShow2 = false
+					// this.isChildShow2 = false
 				}
 				//村务管理
 				if (e === 3) {
@@ -171,8 +177,9 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-					this.isChildShow = false
-					this.isChildShow2 = false
+					this.tabChildList = ['三资管理', '清廉村居']
+					this.isChildShow = true
+					// this.isChildShow2 = false
 				}
 			},
 			//打开图层
@@ -214,22 +221,22 @@
 				this.onOff("关闭图层", "企业")
 				this.onOff("关闭图层", "山塘水库")
 				this.onOff("关闭图层", "执法记录仪")
-			},
-
-
-
-			showChild(e) {
-				if (e == 5) {
-
-				}
-			},
-			hiddenChild(e) {
-				this.isChildShow = false
+				this.onOff("关闭图层", "网格")
 			},
 			choose(newindex,index) {
-				if(index == 2) {
+				this.isChildShow = false
+				if(index == 1) {
+					this.tabActive = newindex
+					this.$refs.Zhdj.getIndex(newindex)
+				}  else if(index == 2) {
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
+				} else if (index==3) {
+					this.tabActive = newindex
+					this.$refs.cwgk.getIndex(newindex)
+				} else if (index==4) {
+					this.tabActive = newindex
+					this.$refs.Zhly.getIndex(newindex)
 				} else if (index==5) {
 					this.tabActive = newindex
 					this.$refs.bmfw.getIndex(newindex)
@@ -259,7 +266,19 @@
 		height: 100%;
 		overflow: hidden;
 		position: relative;
-
+		::-webkit-scrollbar {
+		  width: 5px;
+		  height: 1px;
+		}
+		::-webkit-scrollbar-thumb { //滑块部分
+		  border-radius: 5px;
+		  background-color: #b6b6b6;
+		}
+		// ::-webkit-scrollbar-track { //轨道部分
+		//   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+		//   background: #ededed;
+		//   border-radius: 5px;
+		// }
 		.top-tab {
 			position: fixed;
 			top: 0;

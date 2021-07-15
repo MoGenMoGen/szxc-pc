@@ -293,7 +293,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<!-- <vue-seamless-scroll :data="sjList" class="seamless-warp" :class-option="classOption" ref=""> -->
+					<vue-seamless-scroll :data="sjList" class="seamless-warp" :class-option="classOption">
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click.stop="showDetail(item.id)">
 								<span style="width: 10%;">{{ index+1 }}</span>
@@ -302,7 +302,7 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					<!-- </vue-seamless-scroll> -->
+					</vue-seamless-scroll>
 				</div>
 				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.4);">
 					<div class="sj-pop-title"><span>二级事件</span></div>
@@ -535,14 +535,16 @@
 			<div v-show="show17">
 				<div class="pop-left">
 					<div class="pop-common" style="width:404px;height: 250px;margin-bottom: 20px;">
-						<div class="pop-title title-bg-yqyd"><span>一企一档<p class="tip-style">{{qyList2.length}}</p></span></div>
+						<div class="pop-title title-bg-yqyd"><span>巡查监管</span></div>
+						<!-- <p class="tip-style">{{qyList2.length}}</p> -->
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click="toQiye(index,item)">· {{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-common" style="width:404px;height: 370px;margin-bottom: 20px;">
-						<div class="pop-title title-bg-wfgl"><span>危房管理<p class="tip-style">{{wfList.length}}</p></span></div>
+						<div class="pop-title title-bg-wfgl"><span>危房管理</span></div>
+						<!-- <p class="tip-style">{{wfList.length}}</p> -->
 						<div class="pop-common-title">
 							<span></span>
 							<span>行政村</span>
@@ -562,7 +564,8 @@
 				<div class="pop-bottom">
 					<div class="pop-common" style="width:404px;height: 370px;">
 						<div class="pop-title title-bg-fns" style="display: flex;align-items: center;justify-content: space-between;">
-							<span>防溺水管理<p class="tip-style">{{fnsList.length}}</p></span>
+							<span>防溺水管理</span>
+							<!-- <p class="tip-style">{{fnsList.length}}</p> -->
 							<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(1)">查看示例</span>
 						</div>
 						<div class="pop-common-title2">
@@ -579,28 +582,32 @@
 						</div>
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-stsk"><span>山塘水库<p class="tip-style">{{stList.length}}</p></span></div>
+						<div class="pop-title title-bg-stsk"><span>山塘水库</span></div>
+						<!-- <p class="tip-style">{{stList.length}}</p> -->
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-nsl"><span>泥石流监管<p class="tip-style">{{dzList.length}}</p></span></div>
+						<div class="pop-title title-bg-nsl"><span>泥石流监管</span></div>
+						<!-- <p class="tip-style">{{dzList.length}}</p> -->
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-nld"><span>内涝点监管<p class="tip-style">{{wyList.length}}</p></span></div>
+						<div class="pop-title title-bg-nld"><span>内涝点监管</span></div>
+						<!-- <p class="tip-style">{{wyList.length}}</p> -->
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-bpwy"><span>边坡位移<p class="tip-style">{{wyList2.length}}</p></span></div>
+						<div class="pop-title title-bg-bpwy"><span>边坡位移</span></div>
+						<!-- <p class="tip-style">{{wyList2.length}}</p> -->
 						<div class="pop-common-title2">
 							<span></span>
 							<span>点位名称</span>
@@ -615,7 +622,8 @@
 						</div>
 					</div>
 					<div class="pop-common" style="width: 404px;height: 370px;">
-						<div class="pop-title title-bg-ljfl"><span>垃圾分类管理<p class="tip-style">{{ljflglList.length}}</p></span></div>
+						<div class="pop-title title-bg-ljfl"><span>垃圾分类管理</span></div>
+						<!-- <p class="tip-style">{{ljflglList.length}}</p> -->
 						<div class="pop-common-title2">
 							<span></span>
 							<span>点位名称</span>
@@ -636,7 +644,8 @@
 				<div class="pop-right">
 					<div class="pop-common" style="width: 404px;height: 250px;margin-bottom: 20px;">
 						<div style="display: none;"></div> <!-- 执法仪监控区域 -->
-						<div class="pop-title title-bg-xszh"><span>线上指挥<p class="tip-style">{{jkList.length}}</p></span></div>
+						<div class="pop-title title-bg-xszh"><span>线上指挥</span></div>
+						<!-- <p class="tip-style">{{jkList.length}}</p> -->
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">·
 								{{item.name}}</div>
@@ -673,7 +682,7 @@
 				srcBeforeList: [],
 				srcAfterList: [],
 				srcTrackList: [],
-				e: '',
+				e: 0,
 				codes: '',
 				cType: "3",
 				hikShow: false,
@@ -837,43 +846,13 @@
 				// }],
 				xcgaList: [],
 				ljflList: [],
-				tabList: [
-					// {
-					// 	hasUrl: false,
-					// 	title: '山塘水库'
-					// },
-					{
-						hasUrl: false,
-						title: '网格管理'
-					},
-					// {
-					// 	hasUrl: false,
-					// 	title: '四个平台'
-					// },
-					{
-						hasUrl: false,
-						title: '综合监管'
-					}, {
-						hasUrl: false,
-						title: '线上指挥'
-					}
-					// ,{
-					// 	hasUrl: false,
-					// 	title: '房屋管理'
-					// }, {
-					// 	hasUrl: false,
-					// 	title: '地质灾害监管'
-					// }, {
-					// 	hasUrl: false,
-					// 	title: '四个平台'
-					// }, {
-					// 	hasUrl: false,
-					// 	title: '防溺水'
-					// }, {
-					// 	hasUrl: false,
-					// 	title: '线上执法'
-					// },
-				],
+				tabList: [{
+					hasUrl: false,
+					title: '网格管理'
+				},{
+					hasUrl: false,
+					title: '综合监管'
+				}],
 				stList: [],
 				skList: [{
 					name: '劈开猪头',
@@ -985,31 +964,7 @@
 					dName: '监测点2',
 					num: 0
 				}],
-				wgzList: [{
-					name: '横溪冷水井、后厢',
-					leaderName: '王佳丹'
-				}, {
-					name: '横溪钱家，大同高屋，大圆地',
-					leaderName: '钱亮英'
-				}, {
-					name: '横溪坝下、桥头',
-					leaderName: '徐佳妙'
-				}, {
-					name: '横溪田中央、墙头、长坂地',
-					leaderName: '翁志元'
-				}, {
-					name: '长胜毛岭、孟家',
-					leaderName: '沈裕琪'
-				}, {
-					name: '长胜长桥头',
-					leaderName: '邱雪君'
-				}, {
-					name: '长胜周家巷',
-					leaderName: '朱丽红'
-				}, {
-					name: '长胜田央沈',
-					leaderName: '黄杰锋'
-				}],
+				wgzList: [],
 				ljflglList: []
 			}
 		},
@@ -1025,15 +980,22 @@
 			this.$ajax.getDictionary('eventTrack').then(res => {
 				this.pointsList = res
 			})
+			this.$nextTick(() => {
+				this.getEventList('')
+			})
 			this.getList()
-			this.getEventList('')
 			this.getGridList()
 			this.getGridTotal()
-			this.$parent.isChildShow = false
-			this.$parent.tabActive = 0
+			// this.$parent.isChildShow = false
+			// this.$parent.tabActive = 0
 			this.show13 = true
-			this.show2 = true
+			// this.show2 = true
 			this.showP = true
+		},
+		created() {
+			this.$nextTick(() => {
+				this.getEventList('')
+			})
 		},
 		methods: {
 			// 网格打开图层
@@ -1155,7 +1117,7 @@
 					// 网格管理
 					this.getGridTotal()
 					this.getEventList('')
-					this.$parent.isChildShow = false
+					// this.$parent.isChildShow = false
 					this.offHik()
 					this.onOff("关闭图层", "山塘水库")
 					this.onOff("关闭图层", "综合监管")
@@ -1167,8 +1129,9 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
+					this.onOff("打开图层", "网格")
 					this.$parent.test("网格");
-					this.show2 = true
+					this.show2 = false
 					this.show = false
 					this.show3 = false
 					this.show4 = false
@@ -1210,7 +1173,7 @@
 				// }
 				else if (e == 1) {
 					// 综合监管
-					this.$parent.isChildShow = false
+					// this.$parent.isChildShow = false
 					this.offHik()
 					this.onOff("打开图层", "综合监管")
 					this.onOff("关闭图层", "山塘水库")
@@ -1223,6 +1186,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
+					this.onOff("关闭图层", "网格")
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1245,79 +1209,80 @@
 					this.showP = false
 					this.showPDetail = false
 					this.showVideo = false
-				} else if (e == 2) {
-					// 线上执法
-					this.onOff("打开图层", "执法记录仪")
-					this.onOff("关闭图层", "山塘水库")
-					this.onOff("关闭图层", "综合监管")
-					this.onOff("关闭图层", "危房")
-					this.onOff("关闭图层", "防溺水监控点")
-					this.onOff("关闭图层", "泥石流")
-					this.onOff("关闭图层", "五保户")
-					this.onOff("关闭图层", "低保")
-					this.onOff("关闭图层", "残障人员")
-					this.onOff("关闭图层", "老年人")
-					this.$parent.isChildShow = false
-					this.offHik()
-					this.show2 = false
-					this.show = false
-					this.show3 = false
-					this.show4 = false
-					this.show5 = true
-					this.show6 = false
-					this.show7 = false
-					this.show8 = false
-					this.show9 = false
-					this.show10 = false
-					this.show11 = false
-					this.show12 = false
-					this.show13 = false
-					this.show14 = false
-					this.show15 = false
-					this.show16 = false
-					this.show17 = false
-					this.show18 = false
-					this.showXmb = false
-					this.showP = false
-					this.showPDetail = false
-					this.showVideo = false
-				} else if (e == 3) {
-					// 综合巡查
-					this.onOff("关闭图层", "山塘水库")
-					this.onOff("关闭图层", "综合监管")
-					this.onOff("关闭图层", "危房")
-					this.onOff("关闭图层", "防溺水监控点")
-					this.onOff("关闭图层", "泥石流")
-					this.onOff("关闭图层", "五保户")
-					this.onOff("关闭图层", "低保")
-					this.onOff("关闭图层", "残障人员")
-					this.onOff("关闭图层", "老年人")
-					this.onOff("关闭图层", "执法记录仪")
-					this.$parent.isChildShow = false
-					this.offHik()
-					this.show2 = false
-					this.show = false
-					this.show3 = false
-					this.show4 = false
-					this.show5 = false
-					this.show6 = false
-					this.show7 = false
-					this.show8 = false
-					this.show9 = false
-					this.show10 = false
-					this.show11 = false
-					this.show12 = false
-					this.show13 = false
-					this.show14 = false
-					this.show15 = false
-					this.show16 = false
-					this.show17 = false
-					this.show18 = true
-					this.showXmb = false
-					this.showP = false
-					this.showPDetail = false
-					this.showVideo = false
-				}
+				} 
+				// else if (e == 2) {
+				// 	// 线上执法
+				// 	this.onOff("打开图层", "执法记录仪")
+				// 	this.onOff("关闭图层", "山塘水库")
+				// 	this.onOff("关闭图层", "综合监管")
+				// 	this.onOff("关闭图层", "危房")
+				// 	this.onOff("关闭图层", "防溺水监控点")
+				// 	this.onOff("关闭图层", "泥石流")
+				// 	this.onOff("关闭图层", "五保户")
+				// 	this.onOff("关闭图层", "低保")
+				// 	this.onOff("关闭图层", "残障人员")
+				// 	this.onOff("关闭图层", "老年人")
+				// 	// this.$parent.isChildShow = false
+				// 	this.offHik()
+				// 	this.show2 = false
+				// 	this.show = false
+				// 	this.show3 = false
+				// 	this.show4 = false
+				// 	this.show5 = true
+				// 	this.show6 = false
+				// 	this.show7 = false
+				// 	this.show8 = false
+				// 	this.show9 = false
+				// 	this.show10 = false
+				// 	this.show11 = false
+				// 	this.show12 = false
+				// 	this.show13 = false
+				// 	this.show14 = false
+				// 	this.show15 = false
+				// 	this.show16 = false
+				// 	this.show17 = false
+				// 	this.show18 = false
+				// 	this.showXmb = false
+				// 	this.showP = false
+				// 	this.showPDetail = false
+				// 	this.showVideo = false
+				// } else if (e == 3) {
+				// 	// 综合巡查
+				// 	this.onOff("关闭图层", "山塘水库")
+				// 	this.onOff("关闭图层", "综合监管")
+				// 	this.onOff("关闭图层", "危房")
+				// 	this.onOff("关闭图层", "防溺水监控点")
+				// 	this.onOff("关闭图层", "泥石流")
+				// 	this.onOff("关闭图层", "五保户")
+				// 	this.onOff("关闭图层", "低保")
+				// 	this.onOff("关闭图层", "残障人员")
+				// 	this.onOff("关闭图层", "老年人")
+				// 	this.onOff("关闭图层", "执法记录仪")
+				// 	// this.$parent.isChildShow = false
+				// 	this.offHik()
+				// 	this.show2 = false
+				// 	this.show = false
+				// 	this.show3 = false
+				// 	this.show4 = false
+				// 	this.show5 = false
+				// 	this.show6 = false
+				// 	this.show7 = false
+				// 	this.show8 = false
+				// 	this.show9 = false
+				// 	this.show10 = false
+				// 	this.show11 = false
+				// 	this.show12 = false
+				// 	this.show13 = false
+				// 	this.show14 = false
+				// 	this.show15 = false
+				// 	this.show16 = false
+				// 	this.show17 = false
+				// 	this.show18 = true
+				// 	this.showXmb = false
+				// 	this.showP = false
+				// 	this.showPDetail = false
+				// 	this.showVideo = false
+				// }
 				// else if (e == 5) {
 				// 	// 危房管理
 				// 	this.onOff("打开图层", "危房")
@@ -1628,9 +1593,9 @@
 				}
 			},
 			getEventList(id) {
-				this.sjList=[]
-				this.sjList2=[]
-				this.sjList3=[]
+				let sjList=[]
+				let  sjList2=[]
+				let  sjList3=[]
 				this.$ajax.getEventList({
 					size: 30,
 					current: 1,
@@ -1638,13 +1603,16 @@
 				}).then(res=> {
 					res.records.forEach((item,index) => {
 						if(item.level==1) {
-							this.sjList.push(item)
+							sjList.push(item)
 						} else if (item.level==2) {
-							this.sjList2.push(item)
+							sjList2.push(item)
 						} else if (item.level==3) {
-							this.sjList3.push(item)
+							sjList3.push(item)
 						}
 					})
+					this.sjList = sjList
+					this.sjList2 = sjList2
+					this.sjList3 = sjList3
 				})
 			},
 			getGridList() {
@@ -1799,8 +1767,13 @@
 
 	.pop-common {
 		width: 520px;
-		border: 1px solid #fff;
-		border-radius: 10px;
+		border:solid #fff;
+		border-image-width: 20px;
+		// border: 1px solid #fff;
+		border-image-source: url(../../public/static/images/border.png);
+		border-image-outset: 10px;
+		border-image-slice: 20 20 20 20;
+		// border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
@@ -2327,8 +2300,8 @@
 
 		.sj-pop-itemBox {
 			width: 100%;
-			height: 200px;
-			overflow-y: scroll;
+			// height: 200px;
+			// overflow-y: scroll;
 		}
 
 		.sj-pop-item {

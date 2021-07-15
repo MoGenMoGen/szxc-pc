@@ -236,7 +236,7 @@
 					title: '三资管理'
 				}, {
 					hasUrl: false,
-					title: '村务公开'
+					title: '清廉村居'
 				}],
 				imgList: ['static/images/banner2.png', 'static/images/banner3.png','static/images/banner4.png'],
 				list1:[

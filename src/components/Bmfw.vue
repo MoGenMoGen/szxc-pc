@@ -40,12 +40,13 @@
 				</div>
 			</div>
 		</transition>
+		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
 
 <script>
 	import PopBox from '@/components/PopBox.vue'
-
+	import BottomTab from '@/components/BottomTab.vue'
 	export default {
 		name: 'Bmfw',
 		props: {},
@@ -53,6 +54,19 @@
 			return {
 				show: false, //私人建房
 				showPubilc: false, //公共场所
+				tabList: [{
+					hasUrl: false,
+					title: '建房申请'
+				}, {
+					hasUrl: false,
+					title: '证明指南'
+				},{
+					hasUrl: false,
+					title: '居家养老'
+				},{
+					hasUrl: false,
+					title: '公共场所'
+				}],
 				srjfList: [{
 					name: '周国栋',
 					num: 3,
@@ -98,51 +112,51 @@
 					name: '九龙湖镇九龙湖社区卫生服务站',
 					X: '121.504729',
 					Y: '30.051343'
-				},{
+				}, {
 					name: '横溪农贸市场',
 					X: '121.505037',
 					Y: '30.05139'
-				},{
+				}, {
 					name: '横溪村文化礼堂',
 					X: '121.505213',
 					Y: '30.051743'
-				},{
+				}, {
 					name: '九龙湖村村委会',
 					X: '121.538627',
 					Y: '30.034315'
-				},{
+				}, {
 					name: '九龙湖村篮球场',
 					X: '121.538061',
 					Y: '30.034214'
-				},{
+				}, {
 					name: '九龙湖村文化礼堂',
 					X: '121.538095',
 					Y: '30.034395'
-				},{
+				}, {
 					name: '个体医疗诊所',
 					X: '121.537764',
 					Y: '30.03434'
-				},{
+				}, {
 					name: '九龙湖村敬老院',
 					X: '121.542275',
 					Y: '30.035262'
-				},{
+				}, {
 					name: '九龙湖村居家养老服务站',
 					X: '121.536489',
 					Y: '30.03422'
-				},{
+				}, {
 					name: '九龙湖村残疾人康复站',
 					X: '121.536329',
 					Y: '30.034198'
-				},{
+				}, {
 					name: '九龙湖村避灾点',
 					X: '121.538298',
 					Y: '30.034399'
-				},{
+				}, {
 					name: '九龙湖镇残疾人阳光康福苑',
 					X: '121.542506',
 					Y: '30.034955'
-				},{
+				}, {
 					name: '九龙湖镇居家养老（残）银龄互助中心',
 					X: '121.542615',
 					Y: '30.034968'
@@ -150,7 +164,8 @@
 			}
 		},
 		components: {
-			PopBox
+			PopBox,
+			BottomTab
 		},
 		methods: {
 			//打开关闭图层
@@ -169,7 +184,7 @@
 				this.$parent.test(a);
 			},
 			getIndex(e) {
-				this.$parent.isChildShow = false
+				// this.$parent.isChildShow = false
 				if (e == 0) {
 					this.show = true
 					this.showPubilc = false
@@ -191,8 +206,8 @@
 		},
 		mounted() {
 			this.show = true
-			this.$parent.isChildShow = false
-			this.$parent.tabActive = 0
+			// this.$parent.isChildShow = false
+			// this.$parent.tabActive = 0
 			this.onOff('关闭图层', '公共场所')
 		}
 
@@ -221,7 +236,7 @@
 		color: #fff;
 		z-index: 1998;
 	}
-	
+
 	.pop-title {
 		width: 485px;
 		height: 32px;
@@ -230,49 +245,49 @@
 		padding: 0 20px;
 		margin: 0 auto;
 		box-sizing: border-box;
-	
+
 		span {
 			margin-left: 20px;
 		}
 	}
-	
+
 	.pop-list {
 		position: absolute;
 		top: 200px;
 		left: 35px;
-	
+
 		.pop-inner-title {
 			display: flex;
 			width: 90%;
 			margin: 10px auto;
 			font-size: 19px;
-	
+
 			span:first-child {
 				text-align: center;
 				width: 15%;
 			}
-	
+
 			span:last-child {
 				text-align: center;
 				width: 85%;
 			}
 		}
-	
+
 		.pop-inner-box {
 			max-height: 400px;
 			overflow-y: auto;
-	
+
 			.pop-inner-item {
 				display: flex;
 				width: 90%;
 				margin: 10px auto;
 				font-size: 18px;
-	
+
 				span:first-child {
 					text-align: center;
 					width: 15%;
 				}
-	
+
 				span:last-child {
 					text-align: center;
 					width: 85%;
@@ -280,7 +295,7 @@
 			}
 		}
 	}
-	
+
 	.srjf {
 		position: absolute;
 		width: 1450px;
@@ -297,6 +312,7 @@
 			margin: 0 auto;
 			box-sizing: border-box;
 			line-height: 20px;
+
 			span {
 				margin-left: 20px;
 			}
