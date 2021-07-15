@@ -188,7 +188,7 @@
             <span><img src="static/images/NAI.png" style="vertical-align: middle;">12000</span>
           </div>
           <div class="rl-summary">
-            <span class="typeGreenLight">{{ tq.air_level }}</span>
+            <span class="typeGreenLight" style="font-size: 10px;margin-top: 10px">{{ tq.air_level }}</span>
             <span class="typeGreenLight">空气质量</span>
           </div>
         </div>
@@ -253,13 +253,13 @@
 
 
     <!--三维模型-->
-    <!-- <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
+     <div style="height: 1004px;width: 2236px; margin-bottom: 200px;overflow: hidden;">
       <model-obj src="static/models/01.obj" mtl="static/models/01.mtl" :position="position" :scale="scale"
                  :lights="lights" :cameraPosition="cameraPosition" :cameraRotation="cameraRotation"
                  @on-click="onClick" @on-progress="onProgress" @on-error="onError" :backgroundAlpha='0'>
       </model-obj>
 
-    </div> -->
+    </div>
 
 
   </div>

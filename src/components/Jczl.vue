@@ -104,6 +104,7 @@
 					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;" @click="showWg">
 			</div>
 		</transition>
+
 		<!-- <transition name="fade">
 			<div class="pop-list2" v-show="show20">
 				<div class="pop-common" style="width: 460px;margin-bottom: 30px;">
@@ -840,7 +841,7 @@
 					// {
 					// 	hasUrl: false,
 					// 	title: '山塘水库'
-					// }, 
+					// },
 					{
 						hasUrl: false,
 						title: '网格管理'
@@ -848,7 +849,7 @@
 					// {
 					// 	hasUrl: false,
 					// 	title: '四个平台'
-					// }, 
+					// },
 					{
 						hasUrl: false,
 						title: '综合监管'
@@ -1149,7 +1150,7 @@
 				// 	this.show11 = false
 				// 	this.show12 = false
 				// 	this.showXmb = false
-				// } else 
+				// } else
 				if (e == 0) {
 					// 网格管理
 					this.getGridTotal()
@@ -1206,7 +1207,7 @@
 				// 	this.show11 = false
 				// 	this.show12 = false
 				// 	this.showXmb = false
-				// } 
+				// }
 				else if (e == 1) {
 					// 综合监管
 					this.$parent.isChildShow = false
@@ -1527,7 +1528,7 @@
 			},
 			showVideoBox(e) {
 				if(e==1) {
-					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/fnsx.mp4'
+					this.videoUrl = 'http://llzx.jinkworld.com:9000/llzx/upload/20210714/dc5c19672ab68fe1da85fc27a563f83e.mp4'
 				} else if (e==2) {
 					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
 				}
@@ -1694,7 +1695,7 @@
 				// })
 			}
 		},
-		computed: { 
+		computed: {
 			classOption () {
 				return {
 				step: 1, // 数值越大速度滚动越快
@@ -1763,35 +1764,35 @@
 	.title-bg-yqyd {
 		background: url(../../public/static/images/yqyd-title.png) no-repeat;
 	}
-	
+
 	.title-bg-wfgl {
 		background: url(../../public/static/images/wfgl-title.png) no-repeat;
 	}
-	
+
 	.title-bg-fns {
 		background: url(../../public/static/images/fns-title.png) no-repeat;
 	}
-	
+
 	.title-bg-stsk {
 		background: url(../../public/static/images/stsk-title.png) no-repeat;
 	}
-	
+
 	.title-bg-nsl {
 		background: url(../../public/static/images/nsl-title.png) no-repeat;
 	}
-	
+
 	.title-bg-nld {
 		background: url(../../public/static/images/nld-title.png) no-repeat;
 	}
-	
+
 	.title-bg-bpwy {
 		background: url(../../public/static/images/bp-title.png) no-repeat;
 	}
-	
+
 	.title-bg-ljfl {
 		background: url(../../public/static/images/ljfl-title.png) no-repeat;
 	}
-	
+
 	.title-bg-xszh {
 		background: url(../../public/static/images/xszh-title.png) no-repeat;
 	}
@@ -2318,7 +2319,7 @@
 			align-items: center;
 			text-align: center;
 		}
-		
+
 		.seamless-warp {
 			height: 200px;
 			overflow: hidden;
@@ -2673,7 +2674,7 @@
 		display: inline-block;
 		margin-left: 20px;
 	}
-	
+
 	.sgpt-pop {
 		width: 990px;
 		height: 680px;
