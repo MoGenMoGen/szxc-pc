@@ -122,6 +122,7 @@
 			</div>
 
 		</transition>
+    <hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -130,6 +131,8 @@
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
 	import myCharts from '@/components/MyCharts.vue'
+  //透明厨房
+  import hik6 from '@/components/hik/index6.vue'
 	export default {
 		name: 'Zhly',
 		props: {
@@ -138,10 +141,11 @@
 		components: {
 			PopBox,
 			BottomTab,
-			myCharts
+			myCharts,hik6
 		},
 		data() {
 			return {
+        codes:'',
 				option: {
 					title: {
 						text: '{a|480}\n{c|剩余车位数}',
@@ -503,13 +507,22 @@
 		},
 		methods: {
 			goto(item) {
+        console.log(item.monitor)
 				let a = {
 					X: item.lng,
 					Y: item.lat,
 				}
 				this.topImg = item.img
 				this.$parent.test(a);
+        this.$refs.videoPlayer6.off()
+        if (item.monitor != '' && item.monitor != null){
+          this.codes = item.monitor;
+          this.$refs.videoPlayer6.initPlugin()
+        }
 			},
+      offHik() {
+        this.$refs.videoPlayer6.off()
+      },
 			//打开关闭图层
 			onOff(type, name) {
 				let a = {
@@ -758,7 +771,7 @@
 
 		border-radius: 10px;
 		box-sizing: border-box;
-		
+
 		.banner-top-img {
 			width: 100%;
 			height: 304px;
@@ -766,7 +779,7 @@
 			border: 2px solid #fff;
 			box-sizing: border-box;
 		}
-		
+
 		/deep/ .el-carousel__container {
 			border: 2px solid #fff;
 

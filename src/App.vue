@@ -110,6 +110,9 @@
 				if (e !== 0) {
 					this.$refs.summary.offHik()
 				}
+				if (e !== 4){
+          this.$refs.Zhly.offHik()
+        }
 				if (e !== 2) {
 					this.$refs.jczl.offHik()
 				}
@@ -148,6 +151,7 @@
 				//旅游
 				if (e === 4) {
 					this.onOff("打开图层", "农家乐")
+					this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
@@ -157,9 +161,9 @@
 				}
 				//基层治理
 				if (e === 2) {
-					// this.onOff("打开图层","山塘水库")
-					// this.onOff("打开图层","垃圾点位")
-					// this.onOff("打开图层","防溺水监控点")
+					this.onOff("打开图层","山塘水库")
+					this.onOff("打开图层","垃圾点位")
+					this.onOff("打开图层","防溺水监控点")
 					if(this.$refs.jczl.e==0) {
 						// this.test("网格")
 						this.onOff("打开图层", "网格")
