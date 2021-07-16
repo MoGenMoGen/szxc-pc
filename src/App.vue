@@ -7,7 +7,7 @@
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList"
 					:key="index" @mouseover="changeIndex(index)" >
 					{{ item }}
-					<div v-if="isActive==index&&isChildShow" class="top-tab-item-child">
+					<div v-show="isActive==index&&isChildShow" class="top-tab-item-child">
 						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click.stop="choose(newindex,index)"
 							:class="{'tabActive':tabActive==newindex}">{{ newitem }}</span>
 					</div>
@@ -68,7 +68,7 @@
 				timer: "",
 				isActive: 0,
 				tabActive: 0,
-				tabList: ['概要', '智慧党建', '基层治理', '村务管理', '智慧旅游', '便民服务'],
+				tabList: ['概要', '智慧党建', '基层治理', '清廉九龙', '智慧旅游', '便民服务'],
 				tabChildList: []
 			}
 		},
@@ -181,7 +181,7 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-					this.tabChildList = ['三资管理', '清廉村居']
+					this.tabChildList = ['三资管理', '村务公开']
 					this.isChildShow = true
 					// this.isChildShow2 = false
 				}

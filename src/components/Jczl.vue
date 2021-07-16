@@ -27,7 +27,7 @@
 						<span>网格长</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in wgzList" :key='index' @click="getGridDetail(item.id)"
+						<div v-for="(item,index) in wgzList" :key='index' @click="gridMap(item)"
 							class="pop-inner-item">
 							<span>{{ index + 1 }}</span>
 							<span>{{ item.name }}</span>
@@ -98,12 +98,12 @@
 			<video :src="videoUrl" autoplay="autoplay" loop="loop"></video>
 			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
 		</div>
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div v-show="show2">
 				<img src="static/images/bg.png"
 					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;" @click="showWg">
 			</div>
-		</transition>
+		</transition> -->
 
 		<!-- <transition name="fade">
 			<div class="pop-list2" v-show="show20">
@@ -201,7 +201,7 @@
 			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
 		<transition name="fade">
 			<div class="pop-list2" v-show="show5">
-				<div class="pop-common">
+				<div class="pop-common"> 
 					<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
 						<span>线上指挥</span>
 						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(2)">查看示例</span>
@@ -285,7 +285,7 @@
 		</transition> -->
 		<transition name="fade">
 			<div class="sj" v-if="showP">
-				<div class="sj-pop" style="border-color: #f2272f;background-color: rgba(242,39,47,0.4);">
+				<div class="sj-pop" style="border-color: #f2272f;background-color: rgba(242,39,47,0.5);">
 					<div class="sj-pop-title"><span>一级事件</span></div>
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
@@ -304,7 +304,7 @@
 						</div>
 					</vue-seamless-scroll>
 				</div>
-				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.4);">
+				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.5);">
 					<div class="sj-pop-title"><span>二级事件</span></div>
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
@@ -312,7 +312,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<!-- <vue-seamless-scroll :data="sjList2" class="seamless-warp" :class-option="classOption2"> -->
+					<vue-seamless-scroll :data="sjList2" class="seamless-warp" :class-option="classOption2">
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList2" :key="index" class="sj-pop-item"
 								@click.stop="showDetail(item.id)">
@@ -322,9 +322,9 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					<!-- </vue-seamless-scroll> -->
+					</vue-seamless-scroll>
 				</div>
-				<div class="sj-pop" style="border-color: #289721;background-color: rgba(40,151,33,0.4);">
+				<div class="sj-pop" style="border-color: #289721;background-color: rgba(40,151,33,0.5);">
 					<div class="sj-pop-title"><span>三级事件</span></div>
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
@@ -332,7 +332,7 @@
 						<span style="width: 30%;">上报时间</span>
 						<span style="width: 15%;">状态</span>
 					</div>
-					<!-- <vue-seamless-scroll :data="sjList3" class="seamless-warp" :class-option="classOption3"> -->
+					<vue-seamless-scroll :data="sjList3" class="seamless-warp" :class-option="classOption3">
 						<div class="sj-pop-itemBox">
 							<div v-for="(item,index) in sjList3" :key="index" class="sj-pop-item"
 								@click.stop="showDetail(item.id)">
@@ -342,7 +342,7 @@
 								<span style="width: 15%;">{{ item.status==0?'网格上报':'网格关闭' }}</span>
 							</div>
 						</div>
-					<!-- </vue-seamless-scroll> -->
+					</vue-seamless-scroll>
 				</div>
 			</div>
 		</transition>
@@ -531,12 +531,12 @@
 				</div>
 			</div>
 		</transition> -->
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div v-show="show17">
 				<div class="pop-left">
 					<div class="pop-common" style="width:404px;height: 250px;margin-bottom: 20px;">
 						<div class="pop-title title-bg-yqyd"><span>巡查监管</span></div>
-						<!-- <p class="tip-style">{{qyList2.length}}</p> -->
+						<p class="tip-style">{{qyList2.length}}</p>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click="toQiye(index,item)">· {{item.name}}</div>
@@ -544,7 +544,7 @@
 					</div>
 					<div class="pop-common" style="width:404px;height: 370px;margin-bottom: 20px;">
 						<div class="pop-title title-bg-wfgl"><span>危房管理</span></div>
-						<!-- <p class="tip-style">{{wfList.length}}</p> -->
+						<p class="tip-style">{{wfList.length}}</p>
 						<div class="pop-common-title">
 							<span></span>
 							<span>行政村</span>
@@ -565,7 +565,7 @@
 					<div class="pop-common" style="width:404px;height: 370px;">
 						<div class="pop-title title-bg-fns" style="display: flex;align-items: center;justify-content: space-between;">
 							<span>防溺水管理</span>
-							<!-- <p class="tip-style">{{fnsList.length}}</p> -->
+							<p class="tip-style">{{fnsList.length}}</p>
 							<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(1)">查看示例</span>
 						</div>
 						<div class="pop-common-title2">
@@ -583,7 +583,7 @@
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title title-bg-stsk"><span>山塘水库</span></div>
-						<!-- <p class="tip-style">{{stList.length}}</p> -->
+						<p class="tip-style">{{stList.length}}</p>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
@@ -591,7 +591,7 @@
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title title-bg-nsl"><span>泥石流监管</span></div>
-						<!-- <p class="tip-style">{{dzList.length}}</p> -->
+						<p class="tip-style">{{dzList.length}}</p>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
@@ -599,7 +599,7 @@
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title title-bg-nld"><span>内涝点监管</span></div>
-						<!-- <p class="tip-style">{{wyList.length}}</p> -->
+						<p class="tip-style">{{wyList.length}}</p>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">·
 								{{item.name}}</div>
@@ -607,7 +607,7 @@
 					</div>
 					<div class="pop-common" style="width: 312px;height: 370px;">
 						<div class="pop-title title-bg-bpwy"><span>边坡位移</span></div>
-						<!-- <p class="tip-style">{{wyList2.length}}</p> -->
+						<p class="tip-style">{{wyList2.length}}</p>
 						<div class="pop-common-title2">
 							<span></span>
 							<span>点位名称</span>
@@ -623,11 +623,11 @@
 					</div>
 					<div class="pop-common" style="width: 404px;height: 370px;">
 						<div class="pop-title title-bg-ljfl"><span>垃圾分类管理</span></div>
-						<!-- <p class="tip-style">{{ljflglList.length}}</p> -->
+						<p class="tip-style">{{ljflglList.length}}</p>
 						<div class="pop-common-title2">
 							<span></span>
 							<span>点位名称</span>
-							<!-- <span style="text-align: center;">督导员姓名</span> -->
+							<span style="text-align: center;">督导员姓名</span>
 							<span>投放时间</span>
 						</div>
 						<div class="pop-common-box">
@@ -635,7 +635,7 @@
 								@click="toMap(item)">
 								<span>·</span>
 								<span>{{item.name}}</span>
-								<!-- <span style="text-align: center;">{{item.supervisorName}}</span> -->
+								<span style="text-align: center;">{{item.supervisorName}}</span>
 								<span>{{item.putTime}}</span>
 							</div>
 						</div>
@@ -643,17 +643,30 @@
 				</div>
 				<div class="pop-right">
 					<div class="pop-common" style="width: 404px;height: 250px;margin-bottom: 20px;">
-						<div style="display: none;"></div> <!-- 执法仪监控区域 -->
+						<div style="display: none;"></div> 执法仪监控区域
 						<div class="pop-title title-bg-xszh"><span>线上指挥</span></div>
-						<!-- <p class="tip-style">{{jkList.length}}</p> -->
+						<p class="tip-style">{{jkList.length}}</p>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">·
 								{{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-common" style="width: 404px;height: 370px;margin-bottom: 10px;">
-						<!-- 右侧中间监控区域 -->
+						右侧中间监控区域
 					</div>
+				</div>
+			</div>
+		</transition> -->
+		<transition name="fade">
+			<div v-show="show17">
+				<div class="pop-left">
+					<dv-border-box-11 title="巡查监管" backgroundColor="rgba(30,42,108,0.3)">
+						<!-- <div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
+								@click="toQiye(index,item)">· {{item.name}}</div>
+						</div> -->
+						<my-charts :id='xcjg' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</dv-border-box-11>
 				</div>
 			</div>
 		</transition>
@@ -663,6 +676,7 @@
 </template>
 
 <script>
+	import myCharts from '@/components/MyCharts.vue'
 	import vueSeamlessScroll from 'vue-seamless-scroll'
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
@@ -677,6 +691,27 @@
 		props: {},
 		data() {
 			return {
+				key: 1,
+				xcjg: 'xcjg',
+				option: {
+				    xAxis: {
+				        type: 'category',
+				        boundaryGap: false,
+				        data: ['1950', '1960', '1970', '1980', '2000', '2010', '2030'],
+						axisLabel:{color:'#fff'},
+						axisLine:{lineStyle:{color:'#fff'}},
+				    },
+				    yAxis: {
+				        type: 'value',
+						axisLabel:{color:'#fff'},
+						axisLine:{lineStyle:{color:'#fff'}},
+				    },
+				    series: [{
+				        data: [3, 4, 5, 4, 4, 4, 5],
+				        type: 'line',
+				        areaStyle: {}
+				    }]
+				},
 				beforeIndex: 0,
 				afterIndex: 0,
 				srcBeforeList: [],
@@ -819,31 +854,6 @@
 					url: 'static/images/zl-sj.png',
 					name: '商家'
 				}],
-				// xcgaList: [{
-				//   num: 200,
-				//   url: 'static/images/jzry.png',
-				//   title: '矫正人员'
-				// }, {
-				//   num: 200,
-				//   url: 'static/images/dbh.png',
-				//   title: '低保家庭'
-				// }, {
-				//   num: 200,
-				//   url: 'static/images/lnr.png',
-				//   title: '老年人'
-				// }, {
-				//   num: 200,
-				//   url: 'static/images/czr.png',
-				//   title: '残障人员'
-				// }, {
-				//   num: 200,
-				//   url: 'static/images/jstsjt.png',
-				//   title: '计生特殊家庭'
-				// }, {
-				//   num: 200,
-				//   url: 'static/images/wbh.png',
-				//   title: '五保户'
-				// }],
 				xcgaList: [],
 				ljflList: [],
 				tabList: [{
@@ -974,15 +984,15 @@
 			hik2,
 			hik4,
 			hik5,
-			vueSeamlessScroll
+			vueSeamlessScroll,
+			myCharts
 		},
 		mounted() {
+			window.addEventListener('message',this.listenerFun)
 			this.$ajax.getDictionary('eventTrack').then(res => {
 				this.pointsList = res
 			})
-			this.$nextTick(() => {
-				this.getEventList('')
-			})
+			this.getEventList('')
 			this.getList()
 			this.getGridList()
 			this.getGridTotal()
@@ -992,10 +1002,8 @@
 			// this.show2 = true
 			this.showP = true
 		},
-		created() {
-			this.$nextTick(() => {
-				this.getEventList('')
-			})
+		beforeDestroy() {
+			window.removeEventListener('message', this.listenerFun)
 		},
 		methods: {
 			// 网格打开图层
@@ -1130,7 +1138,7 @@
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
 					this.onOff("打开图层", "网格")
-					this.$parent.test("网格");
+					// this.$parent.test("网格");
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1175,7 +1183,7 @@
 					// 综合监管
 					// this.$parent.isChildShow = false
 					this.offHik()
-					this.onOff("打开图层", "综合监管")
+					this.onOff("关闭图层", "综合监管")
 					this.onOff("关闭图层", "山塘水库")
 					// this.onOff("关闭图层","垃圾点位")
 					this.onOff("关闭图层", "危房")
@@ -1411,6 +1419,9 @@
 			close() {
 				this.imgShow = false
 			},
+			gridMap(item) {
+				this.getGridDetail(item.id)
+			},
 			getGridDetail(id) {
 				this.$ajax.getGridDetail({id:id}).then(res => {
 					this.wgList[0].num = res.name
@@ -1437,43 +1448,27 @@
 				if (510 < x && x < 660 && 200 < y && y < 370) {
 					console.log('横溪冷水井，后厢', '左')
 					this.getGridDetail('1414921956684513281')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (510 < x && x < 760 && 140 < y && y < 180) {
 					console.log('横溪钱家，大同高屋，大圆地', '左上')
 					this.getGridDetail('1414922323459620866')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (540 < x && x < 690 && 500 < y && y < 750) {
 					console.log('横溪坝下桥头', '左中')
 					this.getGridDetail('1415144767758651394')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
 					console.log('横溪田中央，墙头，长坂地', '左右')
 					this.getGridDetail('1415146940391346178')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
 					console.log('长胜毛岭、孟家', '右左')
 					this.getGridDetail('1415147015662325761')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
 					console.log('长胜长桥头', '右中上')
 					this.getGridDetail('1415147082129461249')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
 					console.log('长胜周家巷', '右中下')
 					this.getGridDetail('1415147152245641218')
-					this.showPDetail = false
-					this.show8 = true
 				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
 					console.log('长胜田央沈', '右')
 					this.getGridDetail('1415147217374793730')
-					this.showPDetail = false
-					this.show8 = true
 				}
 				// this.show8 = true
 				//     this.hikShow = true
@@ -1661,6 +1656,28 @@
 				// this.$ajax.getCamera('边坡位移').then(res=> {
 				// 	this.wyList = res
 				// })
+			},
+			clickthis(option) {
+				console.log(option)
+			},
+			listenerFun (e) {
+				if(e.data == "横溪钱家、大同高屋") {
+					this.getGridDetail('1414922323459620866')
+				} else if (e.data == "横溪冷水井、后厢") {
+					this.getGridDetail('1414921956684513281')
+				} else if (e.data == "横溪坝下、桥头") {
+					this.getGridDetail('1414921956684513281')
+				} else if (e.data == "横溪田中央、墙头") {
+					this.getGridDetail('1415146940391346178')
+				} else if (e.data == "长胜毛领、孟家") {
+					this.getGridDetail('1415147015662325761')
+				} else if (e.data == "长胜周家港") {
+					this.getGridDetail('1415147152245641218')
+				} else if (e.data == "长胜长桥头") {
+					this.getGridDetail('1415147082129461249')
+				} else if (e.data == "长胜田央沈") {
+					this.getGridDetail('1415147217374793730')
+				}
 			}
 		},
 		computed: {
@@ -1767,13 +1784,10 @@
 
 	.pop-common {
 		width: 520px;
-		border:solid #fff;
-		border-image-width: 20px;
-		// border: 1px solid #fff;
-		border-image-source: url(../../public/static/images/border.png);
+		border: 1px solid #fff;
 		border-image-outset: 10px;
 		border-image-slice: 20 20 20 20;
-		// border-radius: 10px;
+		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
@@ -2576,13 +2590,30 @@
 		}
 	}
 
+	/deep/.dv-border-box-11 {
+		width: 512px;
+		height: 298px;
+	}
+	/deep/.border-box-content {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		color: #fff;
+	}
+	.echart-class {
+		width: 460px;
+		height: 270px;
+	}
 	.pop-common-box {
-		flex: 1;
+		width: 90%;
+		height: 200px;
+		padding-top: 32px;
+		// flex: 1;
 		overflow-y: scroll;
-		padding: 10px 0;
+		// padding: 10px 0;
 		box-sizing: border-box;
 		font-size: 18px;
-
+		color: #fff;
 		.pop-one-line {
 			margin-bottom: 15px;
 		}
