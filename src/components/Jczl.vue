@@ -3,17 +3,17 @@
 		<transition name="fade">
 			<div v-show="show13">
 				<!-- <div @click="toUserMap"> -->
-					<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
-					<div class="pop-common pop-zl" style="width: 460px;">
-						<div class="pop-title"><span>概览</span></div>
-						<div class="pop-zl-box">
-							<div class="pop-zl-item" v-for="(item,index) in list2" :key="index" @click="showPoints(item)">
-								<span>{{item.num}}</span>
-								<!-- <img :src="item.url"> -->
-								<span style="font-size: 18px;">{{item.title}}</span>
-							</div>
+				<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
+				<div class="pop-common pop-zl" style="width: 460px;">
+					<div class="pop-title"><span>概览</span></div>
+					<div class="pop-zl-box">
+						<div class="pop-zl-item" v-for="(item,index) in list2" :key="index" @click="showPoints(item)">
+							<span>{{item.num}}</span>
+							<!-- <img :src="item.url"> -->
+							<span style="font-size: 18px;">{{item.title}}</span>
 						</div>
 					</div>
+				</div>
 				<!-- </div> -->
 				<!-- <div class="search-box" style="width: 460px;">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
@@ -27,8 +27,7 @@
 						<span>网格长</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in wgzList" :key='index' @click="gridMap(item)"
-							class="pop-inner-item">
+						<div v-for="(item,index) in wgzList" :key='index' @click="gridMap(item)" class="pop-inner-item">
 							<span>{{ index + 1 }}</span>
 							<span>{{ item.name }}</span>
 							<span>{{ item.leader }}</span>
@@ -201,7 +200,7 @@
 			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
 		<transition name="fade">
 			<div class="pop-list2" v-show="show5">
-				<div class="pop-common"> 
+				<div class="pop-common">
 					<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
 						<span>线上指挥</span>
 						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(2)">查看示例</span>
@@ -295,7 +294,8 @@
 					</div>
 					<vue-seamless-scroll :data="sjList" class="seamless-warp" :class-option="classOption">
 						<div class="sj-pop-itemBox">
-							<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item" @click.stop="showDetail(item.id)">
+							<div v-for="(item,index) in sjList" :key="index" class="sj-pop-item"
+								@click.stop="showDetail(item.id)">
 								<span style="width: 10%;">{{ index+1 }}</span>
 								<span style="width: 45%;">{{ item.description }}</span>
 								<span style="width: 30%;">{{ item.reportTime }}</span>
@@ -362,28 +362,32 @@
 				</div>
 			</div> -->
 			<div class="sgpt-pop" v-show="showPDetail">
-				<div class="sgpt-top">查看<img src="static/images/cancel.png" @click="showPDetail=false"/></div>
+				<div class="sgpt-top">查看<img src="static/images/cancel.png" @click="showPDetail=false" /></div>
 				<div class="sgpt-box">
 					<div class="sgpt-info">
 						<div class="sgpt-left">
 							<span>事件追踪</span>
 							<div class="sgpt-over" style="display: flex;">
 								<div style="width: 20%;">
-									<div style="height: 108px;" v-for="(item,index) in pointsList" :key="index">{{item.dictValue}}</div>
+									<div style="height: 108px;" v-for="(item,index) in pointsList" :key="index">
+										{{item.dictValue}}
+									</div>
 								</div>
 								<el-timeline style="width: 80%;margin-top: 10px;">
-								    <el-timeline-item
-								      v-for="(item, index) in trackList"
-								      :key="index"
-									  :color="item.level-1==index?'#328FCA':''">
-								      <div class="sgpt-info-box" v-if="item.level-1==index">
-										  <div><span style="color: #6AB1CF;">{{item.handleTime.substring(0,10)}}</span><span>{{item.name}} {{item.mob}}</span></div>
-										  <div><span>【{{item.organization}}】</span></div>
-										  <div><span>{{trackType[item.type-1]}}：{{item.cont}}</span><span style="color: #4E467A;cursor: pointer;" @click="showDetails(item.id)">详情</span></div>
-									  </div>
-									  <div v-else style="height: 80px;"></div>
-								    </el-timeline-item>
-								  </el-timeline>
+									<el-timeline-item v-for="(item, index) in trackList" :key="index"
+										:color="item.level-1==index?'#328FCA':''">
+										<div class="sgpt-info-box" v-if="item.level-1==index">
+											<div><span
+													style="color: #6AB1CF;">{{item.handleTime.substring(0,10)}}</span><span>{{item.name}}
+													{{item.mob}}</span></div>
+											<div><span>【{{item.organization}}】</span></div>
+											<div><span>{{trackType[item.type-1]}}：{{item.cont}}</span><span
+													style="color: #4E467A;cursor: pointer;"
+													@click="showDetails(item.id)">详情</span></div>
+										</div>
+										<div v-else style="height: 80px;"></div>
+									</el-timeline-item>
+								</el-timeline>
 							</div>
 						</div>
 						<div class="sgpt-right">
@@ -392,34 +396,56 @@
 								<div class="sgpt-over">
 									<div class="sgpt-table">
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件编号</div><div class="sgpt-nbg">{{sjDetail.cd}}</div><div class="sgpt-bg">上报时间</div><div class="sgpt-nbg">{{sjDetail.reportTime}}</div>
+											<div class="sgpt-bg">事件编号</div>
+											<div class="sgpt-nbg">{{sjDetail.cd}}</div>
+											<div class="sgpt-bg">上报时间</div>
+											<div class="sgpt-nbg">{{sjDetail.reportTime}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">上报人</div><div class="sgpt-nbg">{{sjDetail.reporter}}</div><div class="sgpt-bg">上报网格</div><div class="sgpt-nbg">九龙湖镇河头村金池路上大岙</div>
+											<div class="sgpt-bg">上报人</div>
+											<div class="sgpt-nbg">{{sjDetail.reporter}}</div>
+											<div class="sgpt-bg">上报网格</div>
+											<div class="sgpt-nbg">九龙湖镇河头村金池路上大岙</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件类型</div><div class="sgpt-nbg">{{sjTypeList[Number(sjDetail.eventType)-1]}}</div><div class="sgpt-bg">事件等级</div><div class="sgpt-nbg">{{sjLevelList[sjDetail.level-1]}}</div>
+											<div class="sgpt-bg">事件类型</div>
+											<div class="sgpt-nbg">{{sjTypeList[Number(sjDetail.eventType)-1]}}</div>
+											<div class="sgpt-bg">事件等级</div>
+											<div class="sgpt-nbg">{{sjLevelList[sjDetail.level-1]}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事发地点</div><div class="sgpt-nbg">{{sjDetail.address}}</div><div class="sgpt-bg">发生时间</div><div class="sgpt-nbg">{{sjDetail.eventTime}}</div>
+											<div class="sgpt-bg">事发地点</div>
+											<div class="sgpt-nbg">{{sjDetail.address}}</div>
+											<div class="sgpt-bg">发生时间</div>
+											<div class="sgpt-nbg">{{sjDetail.eventTime}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">事件描述</div><div class="sgpt-nbg" style="width: 460px;">{{sjDetail.description}}</div>
+											<div class="sgpt-bg">事件描述</div>
+											<div class="sgpt-nbg" style="width: 460px;">{{sjDetail.description}}</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">重点场所</div><div class="sgpt-nbg">否</div><div class="sgpt-bg">涉及人数</div><div class="sgpt-nbg">2</div>
+											<div class="sgpt-bg">重点场所</div>
+											<div class="sgpt-nbg">否</div>
+											<div class="sgpt-bg">涉及人数</div>
+											<div class="sgpt-nbg">2</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">重点人员</div><div class="sgpt-nbg"></div><div class="sgpt-bg">事件规模</div><div class="sgpt-nbg"></div>
+											<div class="sgpt-bg">重点人员</div>
+											<div class="sgpt-nbg"></div>
+											<div class="sgpt-bg">事件规模</div>
+											<div class="sgpt-nbg"></div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">涉事企业</div><div class="sgpt-nbg" style="width: 460px;"></div>
+											<div class="sgpt-bg">涉事企业</div>
+											<div class="sgpt-nbg" style="width: 460px;"></div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">六项清单标注情况</div><div class="sgpt-nbg" style="width: 460px;">未标注</div>
+											<div class="sgpt-bg">六项清单标注情况</div>
+											<div class="sgpt-nbg" style="width: 460px;">未标注</div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">转派前处理镇街</div><div class="sgpt-nbg" style="width: 460px;"></div>
+											<div class="sgpt-bg">转派前处理镇街</div>
+											<div class="sgpt-nbg" style="width: 460px;"></div>
 										</div>
 									</div>
 								</div>
@@ -430,8 +456,12 @@
 										<span>处理之前</span>
 										<div class="sgpt-right-bottom-img">
 											<img src="static/images/left.png" @click="beforePre()">
-											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcBeforeList[beforeIndex]" :preview-src-list="srcBeforeList"></el-image>
-											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcBeforeList[beforeIndex+1]" :preview-src-list="srcBeforeList"></el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;"
+												:src="srcBeforeList[beforeIndex]" :preview-src-list="srcBeforeList">
+											</el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;"
+												:src="srcBeforeList[beforeIndex+1]" :preview-src-list="srcBeforeList">
+											</el-image>
 											<img src="static/images/right.png" @click="beforeNext()">
 										</div>
 									</div>
@@ -439,8 +469,12 @@
 										<span>处理之后</span>
 										<div class="sgpt-right-bottom-img">
 											<img src="static/images/left.png" @click="afterPre()">
-											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcAfterList[afterIndex]" :preview-src-list="srcAfterList"></el-image>
-											<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="srcAfterList[afterIndex+1]" :preview-src-list="srcAfterList"></el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;"
+												:src="srcAfterList[afterIndex]" :preview-src-list="srcAfterList">
+											</el-image>
+											<el-image style="width: 100px; height: 100px;margin-top: 10px;"
+												:src="srcAfterList[afterIndex+1]" :preview-src-list="srcAfterList">
+											</el-image>
 											<img src="static/images/right.png" @click="afterNext()">
 										</div>
 									</div>
@@ -458,20 +492,39 @@
 					</div>
 				</div>
 				<div class="sgpt-detail" v-show="showMoreDetail">
-					<div class="sgpt-detail-top">详情<img src="static/images/cancel.png" @click="showMoreDetail=false"/></div>
+					<div class="sgpt-detail-top">详情<img src="static/images/cancel.png" @click="showMoreDetail=false" />
+					</div>
 					<div class="sgpt-detail-box">
 						<div class="sgpt-detail-info">
 							<span>记录详情</span>
 							<div>
-								<div class="sgpt-detail-line"><div class="sgpt-detail-title">姓名:</div><div class="sgpt-detail-content">{{trackDetail.name}}</div><div class="sgpt-detail-title">时间:</div><div class="sgpt-detail-content" style="flex: 2;">{{trackDetail.handleTime}}</div></div>
-								<div class="sgpt-detail-line"><div class="sgpt-detail-title">电话:</div><div class="sgpt-detail-content">{{trackDetail.mob}}</div><div class="sgpt-detail-title">组织:</div><div class="sgpt-detail-content" style="flex: 2;">{{trackDetail.organization}}</div></div>
-								<div class="sgpt-detail-line"><div class="sgpt-detail-title">类型:</div><div class="sgpt-detail-content">{{trackType[trackDetail.type-1]}}</div></div>
-								<div class="sgpt-detail-line"><div class="sgpt-detail-title">内容:</div><div class="sgpt-detail-content">{{trackDetail.cont}}</div></div>
+								<div class="sgpt-detail-line">
+									<div class="sgpt-detail-title">姓名:</div>
+									<div class="sgpt-detail-content">{{trackDetail.name}}</div>
+									<div class="sgpt-detail-title">时间:</div>
+									<div class="sgpt-detail-content" style="flex: 2;">{{trackDetail.handleTime}}</div>
+								</div>
+								<div class="sgpt-detail-line">
+									<div class="sgpt-detail-title">电话:</div>
+									<div class="sgpt-detail-content">{{trackDetail.mob}}</div>
+									<div class="sgpt-detail-title">组织:</div>
+									<div class="sgpt-detail-content" style="flex: 2;">{{trackDetail.organization}}</div>
+								</div>
+								<div class="sgpt-detail-line">
+									<div class="sgpt-detail-title">类型:</div>
+									<div class="sgpt-detail-content">{{trackType[trackDetail.type-1]}}</div>
+								</div>
+								<div class="sgpt-detail-line">
+									<div class="sgpt-detail-title">内容:</div>
+									<div class="sgpt-detail-content">{{trackDetail.cont}}</div>
+								</div>
 								<div class="sgpt-detail-line">
 									<div class="sgpt-detail-title">图片附件:</div>
 									<div class="sgpt-detail-content" style="display: flex;flex-direction: column;">
-										<el-image style="width: 100px; height: 100px;margin-top: 10px;" :src="trackDetail.img" :preview-src-list="srcTrackList"></el-image>
-										<span class="sgpt-detail-imgName" style="width: 100px;">{{trackDetail.id}}</span>
+										<el-image style="width: 100px; height: 100px;margin-top: 10px;"
+											:src="trackDetail.img" :preview-src-list="srcTrackList"></el-image>
+										<span class="sgpt-detail-imgName"
+											style="width: 100px;">{{trackDetail.id}}</span>
 									</div>
 								</div>
 							</div>
@@ -661,7 +714,8 @@
 			<div v-show="show17">
 				<div class="pop-left">
 					<div class="pop-bg-box wjx-bg">
-						<div class="pop-bg-btn" @click="wjx=!wjx">点击查看></div>
+						<div class="pop-bg-btn" @click="showWjx">点击查看></div>
+						<img src="../bgImages/5+x.png" style="width: 472px;height: 218px;">
 					</div>
 					<div class="pop-bg-box wfgl-bg">
 						<div class="pop-bg-btn" @click="weiffangguanli=!weiffangguanli">查看全部></div>
@@ -673,7 +727,8 @@
 								<span>建造年代</span>
 							</div>
 							<div class="pop-common-box">
-								<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)" :key="index">
+								<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)"
+									:key="index">
 									<span>·</span>
 									<span>{{item.addr}}</span>
 									<span>{{item.name}}</span>
@@ -681,7 +736,8 @@
 								</div>
 							</div>
 						</div>
-						<my-charts v-show="!weiffangguanli" :id='wfgl' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<my-charts v-show="!weiffangguanli" :id='wfgl' class="echart-class" :data='wfOption'
+							@click.native="clickthis(wfOption)"></my-charts>
 					</div>
 				</div>
 				<div class="pop-bottom">
@@ -694,34 +750,42 @@
 								<span>报警次数</span>
 							</div>
 							<div class="pop-common-box">
-								<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
+								<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index"
+									@click="toFns(item)">
 									<span>·</span>
 									<span>{{item.name}}</span>
 									<span :style="{color:item.alert>=15?'#D00E00':''}">{{item.alert}}</span>
 								</div>
 							</div>
 						</div>
-						<my-charts v-show="!fangnishui" :id='fns' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<my-charts v-show="!fangnishui" :id='fns' class="echart-class" :data='fnsOption'
+							@click.native="clickthis(fnsOption)"></my-charts>
 					</div>
 					<div class="pop-bg-box stsk-bg" style="width: 331px;">
 						<div class="pop-bg-btn" @click="shantangshuiku=!shantangshuiku">查看全部></div>
 						<div class="pop-bg-list" v-show="shantangshuiku">
 							<div class="pop-common-box" style="height: 200px;">
-								<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
-									{{item.name}}</div>
+								<div class="pop-one-line" v-for="(item,index) in stList" :key="index"
+									@click="toFns(item)">·
+									{{item.name}}
+								</div>
 							</div>
 						</div>
-						<my-charts v-show="!shantangshuiku" :id='stsk' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<my-charts v-show="!shantangshuiku" :id='stsk' style="width: 300px;" class="echart-class"
+							:data='stskOption' @click.native="clickthis(stskOption)"></my-charts>
 					</div>
 					<div class="pop-bg-box dzzh-bg" style="width: 331px;">
 						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
 						<div class="pop-bg-list" v-show="dizhizaihai">
 							<div class="pop-common-box" style="height: 200px;">
-								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
-									{{item.name}}</div>
+								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
+									@click="toFns(item)">·
+									{{item.name}}
+								</div>
 							</div>
 						</div>
-						<my-charts v-show="!dizhizaihai" :id='dzzh' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"
+							@click="clickImg">
 					</div>
 					<div class="pop-bg-box bpwy-bg" style="width: 331px;">
 						<div class="pop-bg-btn" @click="bianpoweiyi=!bianpoweiyi">查看全部></div>
@@ -739,7 +803,8 @@
 								</div>
 							</div>
 						</div>
-						<my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class"
+							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts>
 					</div>
 					<div class="pop-bg-box ljfl-bg">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
@@ -758,7 +823,8 @@
 								</div>
 							</div>
 						</div>
-						<my-charts v-show="!lajifenlei" :id='xcjg' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+						<my-charts v-show="!lajifenlei" :id='xcjg' class="echart-class" :data='ljflOption'
+							@click.native="clickthis(ljflOption)"></my-charts>
 					</div>
 				</div>
 				<div class="pop-right">
@@ -772,8 +838,14 @@
 					<div class="pop-bg-box spjk-bg"></div>
 				</div>
 				<div class="pop-center" v-show="centerShow">
-					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png" style="position: absolute;top: -20px;right: -20px;">
-					<my-charts v-show="type==1" :id='common' style="width: 1054px;height: 595px;" class="echart-class" :data='commonOption'></my-charts>
+					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png"
+						style="position: absolute;top: -20px;right: -20px;">
+					<my-charts v-show="type==1" :id='common' style="width: 1054px;height: 595px;" class="echart-class"
+						:data='commonOption'></my-charts>
+					<div class="pop-wjxBg" v-show="type==2">
+
+					</div>
+					<img src="../bgImages/list.png" v-show="type==3" style="width: 1054px;height: 595px;">
 				</div>
 			</div>
 		</transition>
@@ -814,30 +886,261 @@
 				common: 'common',
 				type: 0,
 				commonOption: {},
-				option: {
-				    xAxis: {
-				        type: 'category',
-				        boundaryGap: false,
-				        data: ['1950', '1960', '1970', '1980', '2000', '2010', '2030'],
-						axisLabel:{color:'#fff'},
-						axisLine:{lineStyle:{color:'#fff'}},
-				    },
-				    yAxis: {
-				        type: 'value',
-						axisLabel:{color:'#fff'},
-						axisLine:{lineStyle:{color:'#fff'}},
-				    },
-				    series: [{
-				        data: [3, 4, 5, 4, 4, 4, 5],
-				        type: 'line',
-				        areaStyle: {}
-				    }],
-					grid:{
-						top:"30px",
-						left:"30px",
-						right:"30px",
-						bottom:"30px"
+				wfOption: {
+					xAxis: {
+						type: 'category',
+						data: ['1949', '1960', '1970', '1980', '1990'],
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisTick: {
+							show: false
+						}
+					},
+					yAxis: {
+						type: 'value',
+						splitLine: {
+							show: false
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisLine: {
+							show: false
+						},
+						axisTick: {
+							show: false
+						},
+					},
+					series: [{
+						data: [1, 0, 1, 0, 0],
+						type: 'bar',
+						barWidth: 20
+					}],
+					grid: {
+						top: "30px",
+						left: "30px",
+						right: "30px",
+						bottom: "30px"
 					}
+				},
+				ljflOption: {
+					xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						data: ['0-4点', '4-8点', '8-12点', '12-16点', '16-20点', '20-24点'],
+						axisLabel: {
+							color: '#fff'
+						},
+						axisLine: {
+							lineStyle: {
+								color: '#fff'
+							}
+						},
+					},
+					yAxis: {
+						type: 'value',
+						axisLabel: {
+							color: '#fff'
+						},
+						axisLine: {
+							lineStyle: {
+								color: '#fff'
+							}
+						},
+					},
+					series: [{
+						data: [28, 30, 36, 34, 38, 39, 47],
+						type: 'line',
+						areaStyle: {}
+					}],
+					grid: {
+						top: "30px",
+						left: "30px",
+						right: "30px",
+						bottom: "30px"
+					}
+				},
+				stskOption: {
+					visualMap: {
+						show: false,
+						min: 80,
+						max: 600,
+						inRange: {
+							colorLightness: [0, 1]
+						}
+					},
+					series: [{
+						name: '访问来源',
+						type: 'pie',
+						radius: '55%',
+						center: ['50%', '50%'],
+						data: [{
+								value: 335,
+								name: '直接访问'
+							},
+							{
+								value: 310,
+								name: '邮件营销'
+							},
+							{
+								value: 274,
+								name: '联盟广告'
+							},
+							{
+								value: 235,
+								name: '视频广告'
+							},
+							{
+								value: 400,
+								name: '搜索引擎'
+							}
+						].sort(function(a, b) {
+							return a.value - b.value;
+						}),
+						roseType: 'radius',
+						label: {
+							color: '#fff',
+							fontSize: 16
+						},
+						labelLine: {
+							lineStyle: {
+								color: 'rgba(255, 255, 255, 0.3)'
+							},
+							smooth: 0.2,
+							length: 5,
+							length2: 10
+						},
+						itemStyle: {
+							color: '#112960',
+							shadowBlur: 200,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						},
+						animationType: 'scale',
+						animationEasing: 'elasticOut',
+						animationDelay: function(idx) {
+							return Math.random() * 200;
+						}
+					}],
+					grid: {
+						top: "10px",
+						left: "10px",
+						right: "10px",
+						bottom: "10px"
+					}
+				},
+				fnsOption: {
+					xAxis: {
+						type: 'category',
+						data: ['1949', '1960', '1970', '1980', '1990'],
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisTick: {
+							show: false
+						}
+					},
+					yAxis: {
+						type: 'value',
+						splitLine: {
+							show: false
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisLine: {
+							show: false
+						},
+						axisTick: {
+							show: false
+						},
+					},
+					series: [{
+						data: [10, 20, 30, 20, 25],
+						type: 'bar',
+						barWidth: 20
+					}],
+					grid: {
+						top: "30px",
+						left: "30px",
+						right: "30px",
+						bottom: "30px"
+					}
+				},
+				bpwyOption: {
+					legend: {
+						data: ['监测点1', '监测点2'],
+						textStyle: {
+							color: "#fff",
+							fontSize: 16
+						}
+					},
+					grid: {
+						top: "30px",
+						left: "50px",
+						right: "30px",
+						bottom: "30px"
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						boundaryGap: false,
+						data: ['0-4点', '4-8点', '8-12点', '12-16点', '16-20点', '20-24点']
+					},
+					yAxis: {
+						type: 'value',
+						splitLine: {
+							show: false
+						},
+						axisLine: {
+							show: false
+						},
+						axisTick: {
+							show: false
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						}
+					},
+					series: [{
+						name: '监测点1',
+						type: 'line',
+						data: [0, 0, 0, 0, 0, 0, 0],
+						markLine: {
+							symbol: 'none',
+							data: [{
+									type: 'average',
+									name: '平均值'
+								},
+								{
+									yAxis: 10,
+									name: '平均值'
+								}
+							]
+						}
+					},{
+						name: '监测点2',
+						type: 'line',
+						data: [0, 0, 0, 0, 0, 0, 0],
+					}]
 				},
 				beforeIndex: 0,
 				afterIndex: 0,
@@ -986,7 +1289,7 @@
 				tabList: [{
 					hasUrl: false,
 					title: '网格管理'
-				},{
+				}, {
 					hasUrl: false,
 					title: '综合监管'
 				}],
@@ -1027,9 +1330,11 @@
 				trackList: [],
 				trackDetail: {},
 				pointsList: [],
-				trackType: ['上报','关闭'],
-				sjLevelList: ['一级事件','二级事件','三级事件'],
-				sjTypeList: ['城市管理','党群工作','交通安全','困难救助','矛调来访','矛盾纠纷','农林水利','其他','食药安全','文教体育','消防安全','信访维稳','专项拉练'],
+				trackType: ['上报', '关闭'],
+				sjLevelList: ['一级事件', '二级事件', '三级事件'],
+				sjTypeList: ['城市管理', '党群工作', '交通安全', '困难救助', '矛调来访', '矛盾纠纷', '农林水利', '其他', '食药安全', '文教体育', '消防安全', '信访维稳',
+					'专项拉练'
+				],
 				sjDetail: {},
 				sjList: [],
 				sjList2: [],
@@ -1115,7 +1420,7 @@
 			myCharts
 		},
 		mounted() {
-			window.addEventListener('message',this.listenerFun)
+			window.addEventListener('message', this.listenerFun)
 			this.$ajax.getDictionary('eventTrack').then(res => {
 				this.pointsList = res
 			})
@@ -1135,7 +1440,7 @@
 		methods: {
 			// 网格打开图层
 			showPoints(item) {
-				if(item.name) {
+				if (item.name) {
 					let a = {
 						X: item.x,
 						Y: item.y
@@ -1344,7 +1649,7 @@
 					this.showP = false
 					this.showPDetail = false
 					this.showVideo = false
-				} 
+				}
 				// else if (e == 2) {
 				// 	// 线上执法
 				// 	this.onOff("打开图层", "执法记录仪")
@@ -1548,14 +1853,16 @@
 			},
 			gridMap(item) {
 				let a = {
-					grid:"网格",
+					grid: "网格",
 					name: item.alias
 				}
 				this.$parent.test(a)
 				this.getGridDetail(item.id)
 			},
 			getGridDetail(id) {
-				this.$ajax.getGridDetail({id:id}).then(res => {
+				this.$ajax.getGridDetail({
+					id: id
+				}).then(res => {
 					this.wgList[0].num = res.name
 					this.wgList[1].num = res.leader
 					this.wgList[2].num = res.technician
@@ -1619,9 +1926,10 @@
 				}
 			},
 			showVideoBox(e) {
-				if(e==1) {
-					this.videoUrl = 'http://llzx.jinkworld.com:9000/llzx/upload/20210714/dc5c19672ab68fe1da85fc27a563f83e.mp4'
-				} else if (e==2) {
+				if (e == 1) {
+					this.videoUrl =
+						'http://llzx.jinkworld.com:9000/llzx/upload/20210714/dc5c19672ab68fe1da85fc27a563f83e.mp4'
+				} else if (e == 2) {
 					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
 				}
 				this.showVideo = true
@@ -1653,9 +1961,11 @@
 			showDetail(id) {
 				this.showPDetail = true
 				this.showMoreDetail = false
-				this.$ajax.getEventDetail({id:id}).then(res => {
-					this.srcBeforeList=res.img1.split(",")
-					this.srcAfterList=res.img2.split(",")
+				this.$ajax.getEventDetail({
+					id: id
+				}).then(res => {
+					this.srcBeforeList = res.img1.split(",")
+					this.srcAfterList = res.img2.split(",")
 					this.sjDetail = res
 					this.$ajax.getTrackList({
 						eventId: id,
@@ -1664,19 +1974,19 @@
 					}).then(respon => {
 						this.trackList = respon.records
 						let lastTrack = {}
-						if(this.trackList[this.trackList.length-1].level ==9) {
-							lastTrack = this.trackList.splice(this.trackList.length-1,1)
-							for(let i=0;i<this.pointsList.length;i++) {
-								if(this.trackList.length<this.pointsList.length) {
+						if (this.trackList[this.trackList.length - 1].level == 9) {
+							lastTrack = this.trackList.splice(this.trackList.length - 1, 1)
+							for (let i = 0; i < this.pointsList.length; i++) {
+								if (this.trackList.length < this.pointsList.length) {
 									this.trackList.push({})
 								}
 							}
-							if(Object.keys(lastTrack).length>0) {
-								this.trackList.splice(8,1,lastTrack[0])
+							if (Object.keys(lastTrack).length > 0) {
+								this.trackList.splice(8, 1, lastTrack[0])
 							}
 						} else {
-							for(let i=0;i<this.pointsList.length;i++) {
-								if(this.trackList.length<this.pointsList.length) {
+							for (let i = 0; i < this.pointsList.length; i++) {
+								if (this.trackList.length < this.pointsList.length) {
 									this.trackList.push({})
 								}
 							}
@@ -1685,55 +1995,57 @@
 				})
 			},
 			showDetails(e) {
-				this.$ajax.getTrackDetail({id:e}).then(res => {
+				this.$ajax.getTrackDetail({
+					id: e
+				}).then(res => {
 					this.trackDetail = res
 					this.srcTrackList = res.img.split(",")
 				})
 				this.showMoreDetail = true
 			},
 			beforePre() {
-				if(this.beforeIndex<=0) {
+				if (this.beforeIndex <= 0) {
 					return
 				} else {
 					this.beforeIndex--
 				}
 			},
 			beforeNext() {
-				if(this.beforeIndex>=this.srcBeforeList.length-2) {
+				if (this.beforeIndex >= this.srcBeforeList.length - 2) {
 					return
 				} else {
 					this.beforeIndex++
 				}
 			},
 			afterPre() {
-				if(this.afterIndex<=0) {
+				if (this.afterIndex <= 0) {
 					return
 				} else {
 					this.afterIndex--
 				}
 			},
 			afterNext() {
-				if(this.afterIndex>=this.srcAfterList.length-2) {
+				if (this.afterIndex >= this.srcAfterList.length - 2) {
 					return
 				} else {
 					this.afterIndex++
 				}
 			},
 			getEventList(id) {
-				let sjList=[]
-				let  sjList2=[]
-				let  sjList3=[]
+				let sjList = []
+				let sjList2 = []
+				let sjList3 = []
 				this.$ajax.getEventList({
 					size: 30,
 					current: 1,
 					grid: id
-				}).then(res=> {
-					res.records.forEach((item,index) => {
-						if(item.level==1) {
+				}).then(res => {
+					res.records.forEach((item, index) => {
+						if (item.level == 1) {
 							sjList.push(item)
-						} else if (item.level==2) {
+						} else if (item.level == 2) {
 							sjList2.push(item)
-						} else if (item.level==3) {
+						} else if (item.level == 3) {
 							sjList3.push(item)
 						}
 					})
@@ -1743,7 +2055,10 @@
 				})
 			},
 			getGridList() {
-				this.$ajax.getGridList({size: 10,current:1}).then(res => {
+				this.$ajax.getGridList({
+					size: 10,
+					current: 1
+				}).then(res => {
 					this.wgzList = res.records
 				})
 			},
@@ -1761,28 +2076,37 @@
 				})
 			},
 			getList() {
-				this.$ajax.getCamera('移动执法').then(res=> {
+				this.$ajax.getCamera('移动执法').then(res => {
 					this.jkList = res
 				})
-				this.$ajax.getCamera('危房管理').then(res=> {
+				this.$ajax.getCamera('危房管理').then(res => {
 					this.wfList = res
 				})
-				this.$ajax.getCamera('泥石流监控').then(res=> {
+				this.$ajax.getCamera('泥石流监控').then(res => {
 					this.dzList = res
 				})
-				this.$ajax.getCamera('山塘水库').then(res=> {
+				this.$ajax.getCamera('山塘水库').then(res => {
+					let data = []
+					res.forEach(item => {
+						let value = {
+							value: item.lat,
+							name: item.name
+						}
+						data.push(value)
+					})
+					this.stskOption.series[0].data = data
 					this.stList = res
 				})
-				this.$ajax.getCamera('防溺水监控').then(res=> {
+				this.$ajax.getCamera('防溺水监控').then(res => {
 					this.fnsList = res
 				})
-				this.$ajax.getCamera('垃圾分类').then(res=> {
+				this.$ajax.getCamera('垃圾分类').then(res => {
 					this.ljflglList = res
 				})
-				this.$ajax.getCamera('一企一档').then(res=> {
+				this.$ajax.getCamera('一企一档').then(res => {
 					this.qyList2 = res
 				})
-				this.$ajax.getCamera('内涝点监管').then(res=> {
+				this.$ajax.getCamera('内涝点监管').then(res => {
 					this.wyList = res
 				})
 				// this.$ajax.getCamera('边坡位移').then(res=> {
@@ -1790,13 +2114,20 @@
 				// })
 			},
 			clickthis(option) {
-				console.log(option)
 				this.centerShow = true
 				this.type = 1
 				this.commonOption = option
 			},
-			listenerFun (e) {
-				if(e.data == "横溪钱家、大同高屋") {
+			showWjx() {
+				this.centerShow = true
+				this.type = 2
+			},
+			clickImg() {
+				this.type = 3
+				this.centerShow = true
+			},
+			listenerFun(e) {
+				if (e.data == "横溪钱家、大同高屋") {
 					this.getGridDetail('1414922323459620866')
 				} else if (e.data == "横溪冷水井、后厢") {
 					this.getGridDetail('1414921956684513281')
@@ -1816,40 +2147,40 @@
 			}
 		},
 		computed: {
-			classOption () {
+			classOption() {
 				return {
-				step: 1, // 数值越大速度滚动越快
-				limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
-				hoverStop: true, // 是否开启鼠标悬停stop
-				direction: 1, // 0向下 1向上 2向左 3向右
-				openWatch: true, // 开启数据实时监控刷新dom
-				singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
-				singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
-				waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
+					step: 1, // 数值越大速度滚动越快
+					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
+					hoverStop: true, // 是否开启鼠标悬停stop
+					direction: 1, // 0向下 1向上 2向左 3向右
+					openWatch: true, // 开启数据实时监控刷新dom
+					singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+					singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+					waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
 				}
 			},
-			classOption2 () {
+			classOption2() {
 				return {
-				step: 1, // 数值越大速度滚动越快
-				limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
-				hoverStop: true, // 是否开启鼠标悬停stop
-				direction: 1, // 0向下 1向上 2向左 3向右
-				openWatch: true, // 开启数据实时监控刷新dom
-				singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
-				singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
-				waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
+					step: 1, // 数值越大速度滚动越快
+					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
+					hoverStop: true, // 是否开启鼠标悬停stop
+					direction: 1, // 0向下 1向上 2向左 3向右
+					openWatch: true, // 开启数据实时监控刷新dom
+					singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+					singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+					waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
 				}
 			},
-			classOption3 () {
+			classOption3() {
 				return {
-				step: 1, // 数值越大速度滚动越快
-				limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
-				hoverStop: true, // 是否开启鼠标悬停stop
-				direction: 1, // 0向下 1向上 2向左 3向右
-				openWatch: true, // 开启数据实时监控刷新dom
-				singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
-				singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
-				waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
+					step: 1, // 数值越大速度滚动越快
+					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
+					hoverStop: true, // 是否开启鼠标悬停stop
+					direction: 1, // 0向下 1向上 2向左 3向右
+					openWatch: true, // 开启数据实时监控刷新dom
+					singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+					singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+					waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
 				}
 			}
 		},
@@ -1953,9 +2284,11 @@
 			justify-content: center;
 			align-items: center;
 			margin-bottom: 10px;
+
 			span:first-child {
 				margin-bottom: 5px;
 			}
+
 			// img {
 			// 	width: 38px;
 			// 	height: 38px;
@@ -2694,17 +3027,17 @@
 		display: flex;
 		flex-direction: column;
 	}
-	
+
 	.pop-center {
 		width: 1054px;
 		height: 595px;
 		position: absolute;
 		top: 242px;
 		left: 590px;
-		border: 1px solid #000;
+		background-color: rgba(30, 42, 108, 0.6);
 		box-sizing: border-box;
 	}
-	
+
 	.pop-common-title {
 		display: flex;
 		align-items: center;
@@ -2735,20 +3068,11 @@
 		}
 	}
 
-	/deep/.dv-border-box-11 {
-		width: 512px;
-		height: 298px;
-	}
-	/deep/.border-box-content {
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		color: #fff;
-	}
 	.echart-class {
 		width: 490px;
 		height: 200px;
 	}
+
 	.pop-common-box {
 		// width: 90%;
 		height: 160px;
@@ -2758,6 +3082,7 @@
 		box-sizing: border-box;
 		font-size: 18px;
 		color: #fff;
+
 		.pop-one-line {
 			margin-bottom: 15px;
 		}
@@ -2810,11 +3135,13 @@
 			margin-bottom: 0;
 		}
 	}
+
 	.pop-bg-box {
 		width: 519px;
 		height: 298px;
 		padding: 60px 20px 20px 20px;
 		box-sizing: border-box;
+
 		.pop-bg-btn {
 			font-size: 17px;
 			color: #fff;
@@ -2822,23 +3149,27 @@
 			text-align: right;
 			cursor: pointer;
 		}
+
 		.pop-bg-list {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
 			color: #fff;
 		}
+
 		.pop-xszh {
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
+
 			.pop-item {
 				width: 25%;
 				margin: 20px 0;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				span{
+
+				span {
 					width: 88px;
 					height: 32px;
 					color: #fff;
@@ -2852,46 +3183,62 @@
 			}
 		}
 	}
+
 	.ljfl-bg {
 		background: url(../bgImages/垃圾分类管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
-	
+
 	.wjx-bg {
 		background: url(../bgImages/5+x平台.png) no-repeat;
 		background-size: 100% 100%;
 		margin-bottom: 20px;
 	}
-	
+
 	.wfgl-bg {
 		background: url(../bgImages/危房管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.xszh-bg {
 		background: url(../bgImages/线上指挥.png) no-repeat;
 		background-size: 100% 100%;
 		margin-bottom: 20px;
 	}
+
 	.spjk-bg {
 		background: url(../bgImages/视频监控.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.stsk-bg {
 		background: url(../bgImages/山塘水库.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.fns-bg {
 		background: url(../bgImages/防溺水管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.dzzh-bg {
 		background: url(../bgImages/地址灾害管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.bpwy-bg {
 		background: url(../bgImages/边坡位移.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
+	.pop-wjxBg {
+		width: 100%;
+		height: 100%;
+		background: url(../bgImages/九龙湖一店通.png) no-repeat;
+		background-color: 100% 100%;
+		position: relative;
+	}
+
 	.tip-style {
 		background-color: #f2272f;
 		width: 26px;
@@ -2919,17 +3266,20 @@
 		left: 570px;
 		z-index: 1998;
 		border-radius: 10px;
+
 		.sgpt-top {
 			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+
 			img {
 				width: 20px;
 				height: 20px;
 				cursor: pointer;
 			}
 		}
+
 		.sgpt-box {
 			flex: 1;
 			color: #000;
@@ -2938,6 +3288,7 @@
 			display: flex;
 			flex-direction: column;
 			margin-top: 20px;
+
 			.sgpt-info {
 				flex: 1;
 				display: flex;
@@ -2945,6 +3296,7 @@
 				padding: 10px 20px;
 				margin-bottom: 10px;
 				box-sizing: border-box;
+
 				.sgpt-left {
 					width: 36%;
 					height: 100%;
@@ -2953,12 +3305,15 @@
 					border-radius: 5px;
 					display: flex;
 					flex-direction: column;
+
 					.sgpt-over {
 						flex: 1;
 						overflow-y: scroll;
+
 						/deep/ .el-timeline-item__wrapper {
 							padding-left: 15px;
 						}
+
 						.sgpt-info-box {
 							width: 250px;
 							height: 80px;
@@ -2969,6 +3324,7 @@
 							box-sizing: border-box;
 							border-radius: 5px;
 							background-color: #F2F2F2;
+
 							div {
 								width: 100%;
 								display: flex;
@@ -2981,6 +3337,7 @@
 						}
 					}
 				}
+
 				.sgpt-right {
 					width: 60%;
 					height: 100%;
@@ -2989,19 +3346,23 @@
 					border-radius: 5px;
 					display: flex;
 					flex-direction: column;
+
 					.sgpt-right-top {
 						.sgpt-over {
 							height: 200px;
 							padding-bottom: 10px;
 							overflow-y: scroll;
+
 							.sgpt-table {
 								width: 540px;
 								border-bottom: 1px solid #DFDFDF;
 								border-right: 1px solid #DFDFDF;
 							}
+
 							.sgpt-line {
 								display: flex;
 							}
+
 							.sgpt-bg {
 								width: 80px;
 								font-size: 16px;
@@ -3013,6 +3374,7 @@
 								border-top: 1px solid #DFDFDF;
 								border-left: 1px solid #DFDFDF;
 							}
+
 							.sgpt-nbg {
 								width: 190px;
 								background-color: #fff;
@@ -3027,18 +3389,22 @@
 							}
 						}
 					}
+
 					.sgpt-right-bottom {
 						display: flex;
+
 						.sgpt-right-bottom-item {
 							width: 50%;
 							display: flex;
 							flex-direction: column;
+
 							.sgpt-right-bottom-img {
 								display: flex;
 								align-items: center;
 								flex-wrap: nowrap;
 								width: 100%;
 								justify-content: space-between;
+
 								img {
 									cursor: pointer;
 								}
@@ -3047,6 +3413,7 @@
 					}
 				}
 			}
+
 			.sgpt-btn {
 				border-top: 2px solid #328FCA;
 				width: 100%;
@@ -3056,6 +3423,7 @@
 				align-items: center;
 				padding: 10px 30px;
 				box-sizing: border-box;
+
 				span {
 					width: 100px;
 					height: 50px;
@@ -3069,11 +3437,12 @@
 				}
 			}
 		}
+
 		.sgpt-detail {
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%,-50%);
+			transform: translate(-50%, -50%);
 			width: 640px;
 			height: 490px;
 			background-color: #328FCA;
@@ -3081,17 +3450,20 @@
 			flex-direction: column;
 			padding: 10px;
 			box-sizing: border-box;
+
 			.sgpt-detail-top {
 				width: 100%;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+
 				img {
 					width: 20px;
 					height: 20px;
 					cursor: pointer;
 				}
 			}
+
 			.sgpt-detail-box {
 				flex: 1;
 				color: #000;
@@ -3100,10 +3472,12 @@
 				display: flex;
 				flex-direction: column;
 				margin-top: 20px;
+
 				.sgpt-detail-info {
 					flex: 1;
 					padding: 5px 20px;
 					box-sizing: border-box;
+
 					.sgpt-detail-line {
 						width: 100%;
 						display: flex;
@@ -3111,11 +3485,13 @@
 						align-items: center;
 						padding: 10px 0;
 						border-bottom: 1px dotted #F2F2F2;
+
 						.sgpt-detail-title {
 							width: 80px;
 							text-align: right;
 							color: #939393;
 						}
+
 						.sgpt-detail-content {
 							flex: 1;
 							color: #000;
@@ -3124,6 +3500,7 @@
 							text-overflow: ellipsis;
 							padding-left: 10px;
 							box-sizing: border-box;
+
 							.sgpt-detail-imgName {
 								width: 100px;
 								overflow: hidden;
@@ -3132,10 +3509,12 @@
 							}
 						}
 					}
+
 					.sgpt-detail-line:first-child {
 						border-top: 1px solid #F2F2F2;
 					}
 				}
+
 				.sgpt-detail-btn {
 					border-top: 2px solid #328FCA;
 					width: 100%;
@@ -3145,6 +3524,7 @@
 					align-items: center;
 					padding: 10px 30px;
 					box-sizing: border-box;
+
 					span {
 						width: 100px;
 						height: 50px;
