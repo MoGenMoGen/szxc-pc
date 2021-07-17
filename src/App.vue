@@ -182,6 +182,7 @@
 					this.offAllYh()
 					this.offAllLy()
 					this.tabChildList = ['三资管理', '村务公开']
+					this.tabChildList = ['村务公开', '财务公开','村名说事','民意体检','廉政宣教','监督机构']
 					this.isChildShow = true
 					// this.isChildShow2 = false
 				}

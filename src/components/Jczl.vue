@@ -971,8 +971,8 @@
 				stskOption: {
 					visualMap: {
 						show: false,
-						min: 80,
-						max: 600,
+						min: 0,
+						max: 10,
 						inRange: {
 							colorLightness: [0, 1]
 						}
@@ -2085,11 +2085,14 @@
 				this.$ajax.getCamera('泥石流监控').then(res => {
 					this.dzList = res
 				})
-				this.$ajax.getCamera('山塘水库').then(res => {
+				this.$ajax.getCamera2({
+					type: '山塘水库',
+					order: 'volume'
+				}).then(res => {
 					let data = []
 					res.forEach(item => {
 						let value = {
-							value: item.lat,
+							value: item.volume,
 							name: item.name
 						}
 						data.push(value)
@@ -2097,7 +2100,18 @@
 					this.stskOption.series[0].data = data
 					this.stList = res
 				})
-				this.$ajax.getCamera('防溺水监控').then(res => {
+				this.$ajax.getCamera2({
+					type: '防溺水监控',
+					order: 'alert'
+				}).then(res => {
+					let data1 = []
+					let data2 = []
+					res.forEach(item => {
+						data1.push(item.name)
+						data2.push(item.alert)
+					})
+					this.fnsOption.xAxis.data = data1
+					this.fnsOption.series[0].data = data2
 					this.fnsList = res
 				})
 				this.$ajax.getCamera('垃圾分类').then(res => {
