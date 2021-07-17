@@ -413,7 +413,7 @@
 											<div class="sgpt-bg">重点人员</div><div class="sgpt-nbg"></div><div class="sgpt-bg">事件规模</div><div class="sgpt-nbg"></div>
 										</div>
 										<div class="sgpt-line">
-											<div class="sgpt-bg">涉事企业</div><div class="sgpt-nbg" style="width: 460px;">宁波市镇海区九龙湖阿雨豆腐摊</div>
+											<div class="sgpt-bg">涉事企业</div><div class="sgpt-nbg" style="width: 460px;"></div>
 										</div>
 										<div class="sgpt-line">
 											<div class="sgpt-bg">六项清单标注情况</div><div class="sgpt-nbg" style="width: 460px;">未标注</div>
@@ -660,13 +660,120 @@
 		<transition name="fade">
 			<div v-show="show17">
 				<div class="pop-left">
-					<dv-border-box-11 title="巡查监管" backgroundColor="rgba(30,42,108,0.3)">
-						<!-- <div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
-								@click="toQiye(index,item)">· {{item.name}}</div>
-						</div> -->
-						<my-charts :id='xcjg' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
-					</dv-border-box-11>
+					<div class="pop-bg-box wjx-bg">
+						<div class="pop-bg-btn" @click="wjx=!wjx">点击查看></div>
+					</div>
+					<div class="pop-bg-box wfgl-bg">
+						<div class="pop-bg-btn" @click="weiffangguanli=!weiffangguanli">查看全部></div>
+						<div class="pop-bg-list" v-show="weiffangguanli">
+							<div class="pop-common-title">
+								<span></span>
+								<span>行政村</span>
+								<span>户主姓名</span>
+								<span>建造年代</span>
+							</div>
+							<div class="pop-common-box">
+								<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)" :key="index">
+									<span>·</span>
+									<span>{{item.addr}}</span>
+									<span>{{item.name}}</span>
+									<span>{{item.putTime}}</span>
+								</div>
+							</div>
+						</div>
+						<my-charts v-show="!weiffangguanli" :id='wfgl' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+				</div>
+				<div class="pop-bottom">
+					<div class="pop-bg-box fns-bg">
+						<div class="pop-bg-btn" @click="fangnishui=!fangnishui">查看全部></div>
+						<div class="pop-bg-list" v-show="fangnishui">
+							<div class="pop-common-title2">
+								<span></span>
+								<span>水库名称</span>
+								<span>报警次数</span>
+							</div>
+							<div class="pop-common-box">
+								<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
+									<span>·</span>
+									<span>{{item.name}}</span>
+									<span :style="{color:item.alert>=15?'#D00E00':''}">{{item.alert}}</span>
+								</div>
+							</div>
+						</div>
+						<my-charts v-show="!fangnishui" :id='fns' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+					<div class="pop-bg-box stsk-bg" style="width: 331px;">
+						<div class="pop-bg-btn" @click="shantangshuiku=!shantangshuiku">查看全部></div>
+						<div class="pop-bg-list" v-show="shantangshuiku">
+							<div class="pop-common-box" style="height: 200px;">
+								<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
+									{{item.name}}</div>
+							</div>
+						</div>
+						<my-charts v-show="!shantangshuiku" :id='stsk' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+					<div class="pop-bg-box dzzh-bg" style="width: 331px;">
+						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
+						<div class="pop-bg-list" v-show="dizhizaihai">
+							<div class="pop-common-box" style="height: 200px;">
+								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
+									{{item.name}}</div>
+							</div>
+						</div>
+						<my-charts v-show="!dizhizaihai" :id='dzzh' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+					<div class="pop-bg-box bpwy-bg" style="width: 331px;">
+						<div class="pop-bg-btn" @click="bianpoweiyi=!bianpoweiyi">查看全部></div>
+						<div class="pop-bg-list" v-show="bianpoweiyi">
+							<div class="pop-common-title2">
+								<span></span>
+								<span>点位名称</span>
+								<span>位移量</span>
+							</div>
+							<div class="pop-common-box">
+								<div class="pop-two-line" v-for="(item,index) in wyList2" :key="index">
+									<span>·</span>
+									<span>{{item.dName}}</span>
+									<span>{{item.num}}mm</span>
+								</div>
+							</div>
+						</div>
+						<my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+					<div class="pop-bg-box ljfl-bg">
+						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
+						<div class="pop-bg-list" v-show="lajifenlei">
+							<div class="pop-common-title2">
+								<span></span>
+								<span>点位名称</span>
+								<span>投放时间</span>
+							</div>
+							<div class="pop-common-box">
+								<div class="pop-two-line" v-for="(item,index) in ljflglList" :key="index"
+									@click="toMap(item)">
+									<span>·</span>
+									<span>{{item.name}}</span>
+									<span>{{item.putTime}}</span>
+								</div>
+							</div>
+						</div>
+						<my-charts v-show="!lajifenlei" :id='xcjg' class="echart-class" :data='option' @click.native="clickthis(option)"></my-charts>
+					</div>
+				</div>
+				<div class="pop-right">
+					<div class="pop-bg-box xszh-bg">
+						<div class="pop-xszh">
+							<div class="pop-item" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">
+								<span>{{item.name}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="pop-bg-box spjk-bg"></div>
+				</div>
+				<div class="pop-center" v-show="centerShow">
+					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png" style="position: absolute;top: -20px;right: -20px;">
+					<my-charts v-show="type==1" :id='common' style="width: 1054px;height: 595px;" class="echart-class" :data='commonOption'></my-charts>
 				</div>
 			</div>
 		</transition>
@@ -691,8 +798,22 @@
 		props: {},
 		data() {
 			return {
-				key: 1,
+				lajifenlei: false,
+				weiffangguanli: false,
+				fangnishui: false,
+				shantangshuiku: false,
+				dizhizaihai: false,
+				bianpoweiyi: false,
+				centerShow: false,
 				xcjg: 'xcjg',
+				wfgl: 'wfgl',
+				fns: 'fns',
+				stsk: 'stsk',
+				dzzh: 'dzzh',
+				bpwy: 'bpwy',
+				common: 'common',
+				type: 0,
+				commonOption: {},
 				option: {
 				    xAxis: {
 				        type: 'category',
@@ -710,7 +831,13 @@
 				        data: [3, 4, 5, 4, 4, 4, 5],
 				        type: 'line',
 				        areaStyle: {}
-				    }]
+				    }],
+					grid:{
+						top:"30px",
+						left:"30px",
+						right:"30px",
+						bottom:"30px"
+					}
 				},
 				beforeIndex: 0,
 				afterIndex: 0,
@@ -1420,6 +1547,11 @@
 				this.imgShow = false
 			},
 			gridMap(item) {
+				let a = {
+					grid:"网格",
+					name: item.alias
+				}
+				this.$parent.test(a)
 				this.getGridDetail(item.id)
 			},
 			getGridDetail(id) {
@@ -1659,6 +1791,9 @@
 			},
 			clickthis(option) {
 				console.log(option)
+				this.centerShow = true
+				this.type = 1
+				this.commonOption = option
 			},
 			listenerFun (e) {
 				if(e.data == "横溪钱家、大同高屋") {
@@ -2537,29 +2672,39 @@
 
 	.pop-left {
 		position: absolute;
-		top: 155px;
-		left: 40px;
+		top: 220px;
+		left: 60px;
 		display: flex;
 		flex-direction: column;
 	}
 
 	.pop-bottom {
-		width: calc(100% - 80px);
+		width: calc(100% - 120px);
 		position: absolute;
-		bottom: 20px;
-		left: 40px;
+		bottom: 50px;
+		left: 60px;
 		display: flex;
 		justify-content: space-between;
 	}
 
 	.pop-right {
 		position: absolute;
-		top: 155px;
-		right: 40px;
+		top: 220px;
+		right: 60px;
 		display: flex;
 		flex-direction: column;
 	}
-
+	
+	.pop-center {
+		width: 1054px;
+		height: 595px;
+		position: absolute;
+		top: 242px;
+		left: 590px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	
 	.pop-common-title {
 		display: flex;
 		align-items: center;
@@ -2601,16 +2746,15 @@
 		color: #fff;
 	}
 	.echart-class {
-		width: 460px;
-		height: 270px;
+		width: 490px;
+		height: 200px;
 	}
 	.pop-common-box {
-		width: 90%;
-		height: 200px;
-		padding-top: 32px;
+		// width: 90%;
+		height: 160px;
 		// flex: 1;
 		overflow-y: scroll;
-		// padding: 10px 0;
+		padding: 10px 0;
 		box-sizing: border-box;
 		font-size: 18px;
 		color: #fff;
@@ -2666,7 +2810,88 @@
 			margin-bottom: 0;
 		}
 	}
-
+	.pop-bg-box {
+		width: 519px;
+		height: 298px;
+		padding: 60px 20px 20px 20px;
+		box-sizing: border-box;
+		.pop-bg-btn {
+			font-size: 17px;
+			color: #fff;
+			width: 100%;
+			text-align: right;
+			cursor: pointer;
+		}
+		.pop-bg-list {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			color: #fff;
+		}
+		.pop-xszh {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			.pop-item {
+				width: 25%;
+				margin: 20px 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				span{
+					width: 88px;
+					height: 32px;
+					color: #fff;
+					font-size: 16px;
+					line-height: 32px;
+					text-align: center;
+					border-radius: 16px;
+					background-color: #5470C6;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+	.ljfl-bg {
+		background: url(../bgImages/垃圾分类管理.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.wjx-bg {
+		background: url(../bgImages/5+x平台.png) no-repeat;
+		background-size: 100% 100%;
+		margin-bottom: 20px;
+	}
+	
+	.wfgl-bg {
+		background: url(../bgImages/危房管理.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.xszh-bg {
+		background: url(../bgImages/线上指挥.png) no-repeat;
+		background-size: 100% 100%;
+		margin-bottom: 20px;
+	}
+	.spjk-bg {
+		background: url(../bgImages/视频监控.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.stsk-bg {
+		background: url(../bgImages/山塘水库.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.fns-bg {
+		background: url(../bgImages/防溺水管理.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.dzzh-bg {
+		background: url(../bgImages/地址灾害管理.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.bpwy-bg {
+		background: url(../bgImages/边坡位移.png) no-repeat;
+		background-size: 100% 100%;
+	}
 	.tip-style {
 		background-color: #f2272f;
 		width: 26px;

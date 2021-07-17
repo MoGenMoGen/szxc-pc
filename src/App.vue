@@ -161,9 +161,9 @@
 				}
 				//基层治理
 				if (e === 2) {
-					this.onOff("打开图层","山塘水库")
-					this.onOff("打开图层","垃圾点位")
-					this.onOff("打开图层","防溺水监控点")
+					// this.onOff("打开图层","山塘水库")
+					// this.onOff("打开图层","垃圾点位")
+					// this.onOff("打开图层","防溺水监控点")
 					if(this.$refs.jczl.e==0) {
 						// this.test("网格")
 						this.onOff("打开图层", "网格")
