@@ -714,8 +714,8 @@
 			<div v-show="show17">
 				<div class="pop-left">
 					<div class="pop-bg-box wjx-bg">
-						<div class="pop-bg-btn" @click="showWjx">点击查看></div>
-						<img src="../bgImages/5+x.png" style="width: 472px;height: 218px;">
+						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
+<!--						<img src="../bgImages/5+x.png" style="width: 472px;height: 218px;position:absolute;top: 60px;right: 25px">-->
 					</div>
 					<div class="pop-bg-box wfgl-bg">
 						<div class="pop-bg-btn" @click="weiffangguanli=!weiffangguanli">查看全部></div>
@@ -915,7 +915,7 @@
 				}],
 				tapIndex: 0,
 				wjxList: [{
-					
+
 				}],
 				lajifenlei: false,
 				weiffangguanli: false,
@@ -936,7 +936,7 @@
 				wfOption: {
 					xAxis: {
 						type: 'category',
-						data: ['1949', '1960', '1970', '1980', '1990'],
+						data: ['1949以前', '1960-1970', '1970-1980', '1980-1990', '1990-2000','2000-2010','2010-2020'],
 						axisLine: {
 							lineStyle: {
 								color: "#fff"
@@ -951,6 +951,7 @@
 						}
 					},
 					yAxis: {
+					  max:5,
 						minInterval:1,
 						type: 'value',
 						splitLine: {
@@ -968,7 +969,7 @@
 						},
 					},
 					series: [{
-						data: [1, 0, 1, 0, 0],
+						data: [1, 0, 1, 0, 0,0,0],
 						type: 'bar',
 						barWidth: 20
 					}],
