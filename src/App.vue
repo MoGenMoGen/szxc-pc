@@ -126,7 +126,7 @@
 					this.offAllJc()
 					this.offAllLy()
 					this.offAllYh()
-					
+
 					// this.isChildShow2 = false
 				}
 				this.isActive = e
@@ -144,7 +144,7 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-					
+
 					// this.isChildShow2 = false
 				}
 				//旅游
@@ -154,7 +154,7 @@
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-					
+
 					// this.isChildShow2 = false
 				}
 				//基层治理
@@ -169,7 +169,7 @@
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-					
+
 					// this.isChildShow2 = false
 				}
 				//村务管理
@@ -178,7 +178,7 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-					
+
 					// this.isChildShow2 = false
 				}
 			},
@@ -234,7 +234,7 @@
 					this.isActive2 = e
 				} else if (e==3) {
 					// this.tabChildList = ['三资管理', '村务公开']
-					this.tabChildList = ['财务公开', '村务公开','村名说事','民意体检','廉政宣教','监督机构']
+					this.tabChildList = ['财务公开', '村务公开','村民说事','民意体检','廉政宣教','监督机构']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {

@@ -86,8 +86,8 @@ export default {
           this.oWebControl = null;
         }
       });
-      _this.oWebControl.oDocOffset.top = 155;
-      _this.oWebControl.oDocOffset.left = 1792;
+      _this.oWebControl.oDocOffset.top = 275;
+      _this.oWebControl.oDocOffset.left = 1672;
     },
     // 设置窗口控制回调
     setCallbacks() {
@@ -134,7 +134,8 @@ export default {
             buttonIDs: buttonIDs                       //自定义工具条按钮
           })
         }).then((oData) => {
-              that.oWebControl.JS_Resize(410,250);
+              //宽高
+              that.oWebControl.JS_Resize(490,220);
               this.startRealPlay()
             }
         );

@@ -40,6 +40,12 @@
 				</div>
 			</div>
 		</transition>
+
+
+
+    <iframe v-if="show2" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" src="http://124.70.199.84:8200/" frameborder="0"></iframe>
+
+
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -53,6 +59,7 @@
 		data() {
 			return {
 				show: false, //私人建房
+        show2: false, //居家养老
 				showPubilc: false, //公共场所
 				tabList: [{
 					hasUrl: false,
@@ -188,18 +195,22 @@
 				if (e == 0) {
 					this.show = true
 					this.showPubilc = false
+          this.show2 = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 1) {
 					this.show = false
 					this.showPubilc = false
+          this.show2 = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 2) {
 					this.show = false
 					this.showPubilc = false
+          this.show2 = true
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 3) {
 					this.show = false
 					this.showPubilc = true
+          this.show2 = false
 					this.onOff('打开图层', '公共场所')
 				}
 			}
@@ -356,7 +367,7 @@
 			}
 		}
 	}
-	
+
 	.ggcs-bg {
 		background: url(../bgImages/公共场所.png) no-repeat;
 		background-size: 100% 100%;
