@@ -21,12 +21,12 @@
 		<transition name="fade">
 			<div v-if="show" class="banner">
 				<img :src="topImg" class="banner-top-img" v-if="topImg">
-				<el-carousel indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+				<el-carousel v-if="imgList.length>0" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
-						<img :src="item.url">
+						<img :src="item.img">
 					</el-carousel-item>
 				</el-carousel>
-				<div class="banner-name">{{imgList[nameIndex].name}}</div>
+				<div class="banner-name" v-if="e==0">{{imgList[nameIndex].name}}</div>
 				<div class="pop-common banner-tip" v-if="show4">
 					<div class="pop-title"><span>透明厨房</span></div>
 					<span class="banner-tip-word">正在建设中！</span>
@@ -122,7 +122,7 @@
 			</div>
 
 		</transition>
-    <hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
+		<hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -131,8 +131,8 @@
 	import PopBox from '@/components/PopBox.vue'
 	import BottomTab from '@/components/BottomTab.vue'
 	import myCharts from '@/components/MyCharts.vue'
-  //透明厨房
-  import hik6 from '@/components/hik/index6.vue'
+	//透明厨房
+	import hik6 from '@/components/hik/index6.vue'
 	export default {
 		name: 'Zhly',
 		props: {
@@ -141,11 +141,12 @@
 		components: {
 			PopBox,
 			BottomTab,
-			myCharts,hik6
+			myCharts,
+			hik6
 		},
 		data() {
 			return {
-        codes:'',
+				codes: '',
 				option: {
 					title: {
 						text: '{a|480}\n{c|剩余车位数}',
@@ -388,6 +389,7 @@
 				labelIndex: 0,
 				xingIndex: 0,
 				topImg: '',
+				e: 0,
 				list: [{
 					num: 37,
 					url: 'static/images/house.png',
@@ -453,31 +455,31 @@
 					lat: '30.045825',
 				}],
 				imgList: [{
-					url: 'static/images/jdw1.png',
+					img: 'static/images/jdw1.png',
 					name: '暗香疏影'
 				}, {
-					url: 'static/images/jdw2.png',
+					img: 'static/images/jdw2.png',
 					name: '九龙第一鲜'
 				}, {
-					url: 'static/images/jdw3.png',
+					img: 'static/images/jdw3.png',
 					name: '九龙云雾'
 				}, {
-					url: 'static/images/jdw4.png',
+					img: 'static/images/jdw4.png',
 					name: '浪鲫江湖'
 				}, {
-					url: 'static/images/jdw5.png',
+					img: 'static/images/jdw5.png',
 					name: '蟠青丛翠'
 				}, {
-					url: 'static/images/jdw6.png',
+					img: 'static/images/jdw6.png',
 					name: '秋月如镜'
 				}, {
 					url: 'static/images/jdw7.png',
 					name: '神仙烧鸡'
 				}, {
-					url: 'static/images/jdw8.png',
+					img: 'static/images/jdw8.png',
 					name: '一丛金黄'
 				}, {
-					url: 'static/images/jdw9.png',
+					img: 'static/images/jdw9.png',
 					name: '珠联璧合'
 				}],
 				imgList2: [{
@@ -507,22 +509,33 @@
 		},
 		methods: {
 			goto(item) {
-        console.log(item.monitor)
+				console.log(item.monitor)
+				console.log(item)
 				let a = {
 					X: item.lng,
 					Y: item.lat,
 				}
 				this.topImg = item.img
 				this.$parent.test(a);
-        this.$refs.videoPlayer6.off()
-        if (item.monitor != '' && item.monitor != null){
-          this.codes = item.monitor;
-          this.$refs.videoPlayer6.initPlugin()
-        }
+				this.$refs.videoPlayer6.off()
+				if (item.monitor != '' && item.monitor != null) {
+					this.codes = item.monitor;
+					this.$refs.videoPlayer6.initPlugin()
+				}
+				if(this.e == 1) {
+					this.imgList = []
+					this.$ajax.getAdvert({
+						travelId: item.id,
+						current: 1,
+						size: 10
+					}).then(res => {
+						this.imgList = res.records
+					})
+				}
 			},
-      offHik() {
-        this.$refs.videoPlayer6.off()
-      },
+			offHik() {
+				this.$refs.videoPlayer6.off()
+			},
 			//打开关闭图层
 			onOff(type, name) {
 				let a = {
@@ -532,37 +545,38 @@
 				this.$parent.test(a);
 			},
 			getIndex(e) {
+				this.e = e
 				if (e == 0) {
 					this.onOff("打开图层", "农家乐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "民宿")
 					this.imgList = [{
-						url: 'static/images/jdw1.png',
+						img: 'static/images/jdw1.png',
 						name: '暗香疏影'
 					}, {
-						url: 'static/images/jdw2.png',
+						img: 'static/images/jdw2.png',
 						name: '九龙第一鲜'
 					}, {
-						url: 'static/images/jdw3.png',
+						img: 'static/images/jdw3.png',
 						name: '九龙云雾'
 					}, {
-						url: 'static/images/jdw4.png',
+						img: 'static/images/jdw4.png',
 						name: '浪鲫江湖'
 					}, {
-						url: 'static/images/jdw5.png',
+						img: 'static/images/jdw5.png',
 						name: '蟠青丛翠'
 					}, {
-						url: 'static/images/jdw6.png',
+						img: 'static/images/jdw6.png',
 						name: '秋月如镜'
 					}, {
-						url: 'static/images/jdw7.png',
+						img: 'static/images/jdw7.png',
 						name: '神仙烧鸡'
 					}, {
-						url: 'static/images/jdw8.png',
+						img: 'static/images/jdw8.png',
 						name: '一丛金黄'
 					}, {
-						url: 'static/images/jdw9.png',
+						img: 'static/images/jdw9.png',
 						name: '珠联璧合'
 					}]
 					this.topImg = ""
@@ -578,28 +592,7 @@
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
 					this.topImg = ""
-					this.imgList = [{
-						url: 'static/images/zhu5.png',
-						name: '又见山'
-					}, {
-						url: 'static/images/zhu3.png',
-						name: '龙眼泉'
-					}, {
-						url: 'static/images/zhu4.png',
-						name: '闻溪阁'
-					}, {
-						url: 'static/images/zhu6.png',
-						name: '竹之林'
-					}, {
-						url: 'static/images/zhu7.png',
-						name: '远足农家客栈'
-					}, {
-						url: 'static/images/zhu8.png',
-						name: '香石小院'
-					}, {
-						url: 'static/images/zhu9.png',
-						name: '栋兴生态农庄'
-					}]
+					this.imgList = []
 					this.njlList = this.hotelList
 					this.show = true
 					this.show2 = false
@@ -643,12 +636,16 @@
 			}
 		},
 		mounted() {
-			this.$ajax.getEatList({size:50,current:1}).then(res => {
-				res.records.forEach((item,index) => {
-					if(item.type=="service_eat"||item.type=="service_all"){
+			this.$ajax.getEatList({
+				size: 50,
+				current: 1
+			}).then(res => {
+				console.log(res)
+				res.records.forEach((item, index) => {
+					if (item.type == "service_eat" || item.type == "service_all") {
 						this.eatList.push(item)
 					}
-					if(item.type=="service_hotel"||item.type=="service_all") {
+					if (item.type == "service_hotel" || item.type == "service_all") {
 						this.hotelList.push(item)
 					}
 				})
@@ -778,6 +775,7 @@
 			margin-bottom: 20px;
 			border: 2px solid #fff;
 			box-sizing: border-box;
+			object-fit:cover;
 		}
 
 		/deep/ .el-carousel__container {

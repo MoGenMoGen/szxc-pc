@@ -353,6 +353,14 @@ class api {
   	  })
   	})
   }
+  // 住轮播
+  getAdvert(data) {
+  	return new Promise(resolve => {
+  	  get("/blade-travel/advert/list",data).then(res=>{
+  	    resolve(res.data)
+  	  })
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

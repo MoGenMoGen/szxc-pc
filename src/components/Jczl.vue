@@ -15,11 +15,7 @@
 					</div>
 				</div>
 				<!-- </div> -->
-				<!-- <div class="search-box" style="width: 460px;">
-					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
-					<img src="static/images/search.png">
-				</div> -->
-				<div class="pop-common wglb" style="width: 460px;">
+				<div class="pop-common wglb" style="width: 460px;" v-show="!wgryShow">
 					<div class="pop-title"><span>网格列表</span></div>
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -33,6 +29,25 @@
 							<span>{{ item.leader }}</span>
 						</div>
 					</div>
+				</div>
+				<div class="pop-common wglb" style="width: 460px;" v-show="wgryShow">
+					<div class="pop-title"><span>人员列表</span></div>
+					<div class="pop-inner-title">
+						<span>序号</span>
+						<span style="width: 25%;">姓名</span>
+						<span style="width: 50%;">住址</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item" @click="peopleMap(item)">
+							<span>{{ index + 1 }}</span>
+							<span style="width: 25%;">{{ item.name }}</span>
+							<span style="width: 50%;">{{ item.address }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="search-box" v-show="wgryShow">
+					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
+					<img src="static/images/search.png">
 				</div>
 			</div>
 		</transition>
@@ -1228,6 +1243,7 @@
 				showXmb: false, //小卖部
 				showPDetail: false, //四个平台事件详情
 				showMoreDetail: false, //四个平台点击详情弹窗
+				wgryShow: false, //显示网格人员列表
 				videoUrl: '',
 				keyWord: '',
 				ydyh: false,
@@ -1293,6 +1309,10 @@
 					url: 'static/images/wg-sqjzry.png',
 					title: '矫正人员',
 					name: ''
+				}],
+				wgryList: [{
+					name: '张三',
+					address: '横溪'
 				}],
 				wgList: [{
 					num: '长胜田央沈',
@@ -1517,10 +1537,12 @@
 			},
 			//点击小图还原
 			toMapA() {
-				this.show2 = true
+				// this.show2 = true
 				this.show12 = false
 				this.show8 = false
+				this.wgryShow = false
 				this.$parent.test("网格");
+				this.onOff('打开图层','网格')
 				this.offHik()
 			},
 			toMap(item) {
@@ -1618,8 +1640,8 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
+					this.$parent.test("网格");
 					this.onOff("打开图层", "网格")
-					// this.$parent.test("网格");
 					this.show2 = false
 					this.show = false
 					this.show3 = false
@@ -1641,6 +1663,7 @@
 					this.showP = true
 					this.showPDetail = false
 					this.showVideo = false
+					this.wgryShow = false
 				}
 				// else if (e == 2) {
 				// 	// 4个平台
@@ -1698,6 +1721,7 @@
 					this.showP = false
 					this.showPDetail = false
 					this.showVideo = false
+					this.wgryShow = false
 				}
 				// else if (e == 2) {
 				// 	// 线上执法
@@ -1905,8 +1929,14 @@
 					grid: "网格",
 					name: item.alias
 				}
+				this.wgryShow = true
 				this.$parent.test(a)
 				this.getGridDetail(item.id)
+			},
+			peopleMap(item) {
+				console.log(item)
+				this.onOff('关闭图层','网格')
+				this.show12 = true
 			},
 			getGridDetail(id) {
 				this.$ajax.getGridDetail({
@@ -2212,7 +2242,7 @@
 		computed: {
 			classOption() {
 				return {
-					step: 1, // 数值越大速度滚动越快
+					step: 0.3, // 数值越大速度滚动越快
 					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
 					hoverStop: true, // 是否开启鼠标悬停stop
 					direction: 1, // 0向下 1向上 2向左 3向右
@@ -2224,7 +2254,7 @@
 			},
 			classOption2() {
 				return {
-					step: 1, // 数值越大速度滚动越快
+					step: 0.3, // 数值越大速度滚动越快
 					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
 					hoverStop: true, // 是否开启鼠标悬停stop
 					direction: 1, // 0向下 1向上 2向左 3向右
@@ -2236,7 +2266,7 @@
 			},
 			classOption3() {
 				return {
-					step: 1, // 数值越大速度滚动越快
+					step: 0.3, // 数值越大速度滚动越快
 					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
 					hoverStop: true, // 是否开启鼠标悬停stop
 					direction: 1, // 0向下 1向上 2向左 3向右
@@ -3018,9 +3048,9 @@
 	}
 
 	.search-box {
-		width: 520px;
+		width: 460px;
 		position: absolute;
-		top: 490px;
+		bottom: 90px;
 		left: 35px;
 		border: 1px solid #fff;
 		border-radius: 10px;
@@ -3028,7 +3058,6 @@
 		display: flex;
 		padding: 10px 20px;
 		box-sizing: border-box;
-		font-size: 16px;
 		color: #fff;
 
 		input {
@@ -3036,6 +3065,7 @@
 			background-color: transparent;
 			border: none;
 			color: #fff;
+			font-size: 22px;
 		}
 
 		input::-webkit-input-placeholder {
