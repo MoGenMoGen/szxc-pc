@@ -839,11 +839,38 @@
 				</div>
 				<div class="pop-center" v-show="centerShow">
 					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png"
-						style="position: absolute;top: -20px;right: -20px;">
+						style="position: absolute;top: -20px;right: -20px;z-index: 200;">
 					<my-charts v-show="type==1" :id='common' style="width: 1054px;height: 595px;" class="echart-class"
 						:data='commonOption'></my-charts>
 					<div class="pop-wjxBg" v-show="type==2">
-
+						<div class="wjx-tap">
+							<div v-for="(item,index) in wjxTapList" :key="index">
+								<div>{{item.day}}</div>
+							</div>
+							<div>
+								<div>
+									<div>{{wjxTapList[tapIndex].order}}</div>
+									<span>工单总数</span>
+								</div>
+								<div>
+									<div>{{wjxTapList[tapIndex].check}}</div>
+									<span>检查总数</span>
+								</div>
+								<div>
+									<div>{{wjxTapList[tapIndex].task}}</div>
+									<span>往期任务数</span>
+								</div>
+							</div>
+						</div>
+						<div class="wjx-list">
+							<div v-for="(item,index) in wjxList" :key="index">
+								<span>协作人：</span>
+								<span>巡查人：</span>
+								<span>检查时间：</span>
+								<span>店铺名称：</span>
+								<span>检查结果：</span>
+							</div>
+						</div>
 					</div>
 					<img src="../bgImages/list.png" v-show="type==3" style="width: 1054px;height: 595px;">
 				</div>
@@ -870,6 +897,26 @@
 		props: {},
 		data() {
 			return {
+				wjxTapList: [{
+					day: '今日',
+					order: 0,
+					check: 5,
+					task: 0
+				},{
+					day: '本周',
+					order: 0,
+					check: 65,
+					task: 0
+				},{
+					day: '本月',
+					order: 0,
+					check: 295,
+					task: 0
+				}],
+				tapIndex: 0,
+				wjxList: [{
+					
+				}],
 				lajifenlei: false,
 				weiffangguanli: false,
 				fangnishui: false,
@@ -904,6 +951,7 @@
 						}
 					},
 					yAxis: {
+						minInterval:1,
 						type: 'value',
 						splitLine: {
 							show: false
@@ -1123,11 +1171,11 @@
 					series: [{
 						name: '监测点1',
 						type: 'line',
-						data: [0, 0, 0, 0, 0, 0, 0],
+						data: [15, 15, 15, 15, 15, 15, 15],
 						markLine: {
 							symbol: 'none',
 							data: [{
-									type: 'average',
+									yAxis: 20,
 									name: '平均值'
 								},
 								{
@@ -1139,7 +1187,7 @@
 					},{
 						name: '监测点2',
 						type: 'line',
-						data: [0, 0, 0, 0, 0, 0, 0],
+						data: [15, 15, 15, 15, 15, 15, 15],
 					}]
 				},
 				beforeIndex: 0,

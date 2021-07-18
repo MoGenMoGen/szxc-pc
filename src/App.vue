@@ -5,9 +5,9 @@
 			<span class="top-title" @click="test2">九龙湖村数字平台</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList"
-					:key="index" @mouseover="changeIndex(index)" >
+					:key="index" @click="changeIndex(index)" @mouseover="showChild(index)">
 					{{ item }}
-					<div v-show="isActive==index&&isChildShow" class="top-tab-item-child">
+					<div @mouseout="hiddenChild" v-show="isActive2==index&&isChildShow" class="top-tab-item-child">
 						<span v-for="(newitem,newindex) in tabChildList" :key="newindex" @click.stop="choose(newindex,index)"
 							:class="{'tabActive':tabActive==newindex}">{{ newitem }}</span>
 					</div>
@@ -67,6 +67,7 @@
 				nowTime: "",
 				timer: "",
 				isActive: 0,
+				isActive2: 0,
 				tabActive: 0,
 				tabList: ['概要', '智慧党建', '基层治理', '清廉九龙', '智慧旅游', '便民服务'],
 				tabChildList: []
@@ -125,8 +126,7 @@
 					this.offAllJc()
 					this.offAllLy()
 					this.offAllYh()
-					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
-					this.isChildShow = true
+					
 					// this.isChildShow2 = false
 				}
 				this.isActive = e
@@ -144,8 +144,7 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-					this.tabChildList = ['红色路线', '党员信息','党务公开','党员活动']
-					this.isChildShow = true
+					
 					// this.isChildShow2 = false
 				}
 				//旅游
@@ -155,8 +154,7 @@
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-					this.tabChildList = ['吃', '住','游','购']
-					this.isChildShow = true
+					
 					// this.isChildShow2 = false
 				}
 				//基层治理
@@ -171,8 +169,7 @@
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-					this.tabChildList = ['网格管理','综合监管']
-					this.isChildShow = true
+					
 					// this.isChildShow2 = false
 				}
 				//村务管理
@@ -181,9 +178,7 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-					// this.tabChildList = ['三资管理', '村务公开']
-					this.tabChildList = ['财务公开', '村务公开','村名说事','民意体检','廉政宣教','监督机构']
-					this.isChildShow = true
+					
 					// this.isChildShow2 = false
 				}
 			},
@@ -228,7 +223,35 @@
 				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "网格")
 			},
+			showChild(e) {
+				if(e==1){
+					this.tabChildList = ['红色路线', '党员信息','党务公开','党员活动']
+					this.isChildShow = true
+					this.isActive2 = e
+				} else if (e==2) {
+					this.tabChildList = ['网格管理','综合监管']
+					this.isChildShow = true
+					this.isActive2 = e
+				} else if (e==3) {
+					// this.tabChildList = ['三资管理', '村务公开']
+					this.tabChildList = ['财务公开', '村务公开','村名说事','民意体检','廉政宣教','监督机构']
+					this.isChildShow = true
+					this.isActive2 = e
+				} else if (e==4) {
+					this.tabChildList = ['吃', '住','游','购']
+					this.isChildShow = true
+					this.isActive2 = e
+				} else if (e==5) {
+					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
+					this.isChildShow = true
+					this.isActive2 = e
+				}
+			},
+			hiddenChild() {
+				this.isChildShow = false
+			},
 			choose(newindex,index) {
+				this.isActive = index
 				this.isChildShow = false
 				if(index == 1) {
 					this.tabActive = newindex
@@ -337,17 +360,18 @@
 					// position: absolute;
 					// top: 50px;
 					// right: 15px;
-					margin-left: 18px;
+					margin-left: 28px;
 					display: flex;
 					flex-direction: column;
-					width: 110px;
+					width: 90px;
 					background-color: #181a28;
 					color: #fff;
 					transition: 0.5s;
+					line-height: 32px;
 
 					span {
 						padding: 10px;
-						font-size: 22px;
+						font-size: 16px;
 					}
 					.tabActive{
 						background-color: #C90D09;
