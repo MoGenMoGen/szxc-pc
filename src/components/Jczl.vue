@@ -789,19 +789,41 @@
 						<my-charts v-show="!shantangshuiku" :id='stsk' style="width: 300px;" class="echart-class"
 							:data='stskOption' @click.native="clickthis(stskOption)"></my-charts>
 					</div>
-					<div class="pop-bg-box dzzh-bg" style="width: 331px;">
+
+
+					<div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="dizhizaihai" >
 						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
-						<div class="pop-bg-list" v-show="dizhizaihai">
-							<div class="pop-common-box" style="height: 200px;">
-								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
-									@click="toFns(item)">·
-									{{item.name}}
-								</div>
-							</div>
-						</div>
-						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"
-							@click="clickImg">
+<!--            <div class="pop-bg-list" v-show="dizhizaihai">-->
+<!--              <div class="pop-common-box" style="height: 200px;">-->
+<!--                <div class="pop-one-line" v-for="(item,index) in dzList" :key="index"-->
+<!--                     @click="toFns(item)">·-->
+<!--                  {{item.name}}-->
+<!--                </div>-->
+<!--              </div>-->
 					</div>
+
+            <div class="pop-bg-box dzzh-bg2" style="width: 331px;" v-show="!dizhizaihai" >
+              <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
+              <div class="pop-bg-list" >
+                <div class="pop-common-box" style="height: 200px;">
+                  <div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
+                       @click="toFns(item)">·
+                    {{item.name}}
+                  </div>
+                </div>
+              </div>
+
+
+
+<!--          <div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">-->
+<!--            <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>-->
+
+<!--            </div>-->
+<!--            &lt;!&ndash;						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"&ndash;&gt;-->
+<!--            &lt;!&ndash;							@click="clickImg">&ndash;&gt;-->
+          </div>
+
+
 					<div class="pop-bg-box bpwy-bg" style="width: 331px;">
 						<div class="pop-bg-btn" @click="bianpoweiyi=!bianpoweiyi">查看全部></div>
 						<div class="pop-bg-list" v-show="bianpoweiyi">
@@ -3315,9 +3337,13 @@
 	}
 
 	.dzzh-bg {
-		background: url(../bgImages/地址灾害管理.png) no-repeat;
+		background: url(../bgImages/地质灾害管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
+  .dzzh-bg2 {
+    background: url(../bgImages/地质灾害管理2.png) no-repeat;
+    background-size: 100% 100%;
+  }
 
 	.bpwy-bg {
 		background: url(../bgImages/边坡位移.png) no-repeat;
