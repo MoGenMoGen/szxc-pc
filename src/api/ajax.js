@@ -361,6 +361,22 @@ class api {
   	  })
   	})
   }
+  // 网格人员
+  getPeopleList(data) {
+	return new Promise(resolve => {
+		get("/blade-xc/household/list",data).then(res=>{
+		  resolve(res.data)
+		})
+	})
+  }
+  // 证明指南
+  getGuideList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-service/guide/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
