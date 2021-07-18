@@ -215,6 +215,11 @@
 					this.showGuide = true
           this.show2 = false
 					this.onOff('关闭图层', '公共场所')
+					let data = {
+						current: 1,
+						size: 20
+					}
+					this.getGuideList(data)
 				} else if (e == 2) {
 					this.show = false
 					this.showPubilc = false
@@ -231,28 +236,26 @@
 			},
 			getGuideList(data) {
 				this.$ajax.getGuideList(data).then(res => {
-					console.log(res)
 					res.records.forEach(item => {
-						if(itme.name == "证明指南") {
+						if(item.name == "证明指南") {
 							this.pageCont.push(item)
 						}
 					})
 				})
 			},
 			pre() {
-				console.log('上一页')
-				if(this.pageIndex==0){
+				if(this.pageIndex<2){
 					return
 				} else {
-					this.pageIndex--
+					this.pageIndex=this.pageIndex-2
 				}
 			},
 			next() {
-				console.log('下一页')
-				if(this.pageIndex>this.pageCont.length-1){
+				if(this.pageIndex+2>this.pageCont.length){
 					return
-				} else {}
-				this.pageIndex++
+				} else {
+					this.pageIndex = this.pageIndex+2
+				}
 			},
 		},
 		mounted() {
@@ -260,11 +263,7 @@
 			// this.$parent.isChildShow = false
 			// this.$parent.tabActive = 0
 			this.onOff('关闭图层', '公共场所')
-			let data = {
-				current: 1,
-				size: 20
-			}
-			this.getGuideList(data)
+			
 		}
 
 	}
