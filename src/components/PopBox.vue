@@ -1,8 +1,8 @@
 <template>
 	<div class="pop-box">
-		<div class="title">
+		<!-- <div class="title">
 			<span>{{title}}</span>
-		</div>
+		</div> -->
 		<div class="content">
 			<div v-for="(item,index) in list" :key="index" class="item" @click="getIndex(index)">
 				<span>{{item.num}}</span>
@@ -40,12 +40,15 @@
 	.pop-box {
 		width: 520px;
 		height: 270px;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
+		background: url(../bgImages/概览.png) no-repeat;
+		background-size: 100% 100%;
+		padding: 10px;
+		padding-top: 80px;
 		display: flex;
 		flex-direction: column;
-		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
 		position: absolute;
@@ -71,7 +74,7 @@
 			justify-content: space-between;
 			align-items: center;
 			font-size: 30px;
-			margin-top: 30px;
+			// margin-top: 30px;
 			.item {
 				// width: 25%;
 				display: flex;

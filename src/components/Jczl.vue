@@ -5,7 +5,7 @@
 				<!-- <div @click="toUserMap"> -->
 				<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
 				<div class="pop-common pop-zl" style="width: 460px;">
-					<div class="pop-title"><span>概览</span></div>
+					<!-- <div class="pop-title"><span>概览</span></div> -->
 					<div class="pop-zl-box">
 						<div class="pop-zl-item" v-for="(item,index) in list2" :key="index" @click="showPoints(item)">
 							<span>{{item.num}}</span>
@@ -16,7 +16,7 @@
 				</div>
 				<!-- </div> -->
 				<div class="pop-common wglb" style="width: 460px;" v-show="!wgryShow">
-					<div class="pop-title"><span>网格列表</span></div>
+					<!-- <div class="pop-title"><span>网格列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span>网格名称</span>
@@ -30,8 +30,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="pop-common wglb" style="width: 460px;" v-show="wgryShow">
-					<div class="pop-title"><span>人员列表</span></div>
+				<div class="pop-common wglb rylb" style="width: 460px;" v-show="wgryShow">
+					<!-- <div class="pop-title"><span>人员列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span style="width: 25%;">姓名</span>
@@ -297,10 +297,12 @@
 			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
 				v-show="show6">
 		</transition> -->
+		<img v-if="showPBtn" src="../bgImages/网格事件.png" 
+		style="z-index: 20;position: fixed;right: 0;bottom: 469px;cursor: pointer;" @click="showP = !showP">
 		<transition name="fade">
 			<div class="sj" v-if="showP">
-				<div class="sj-pop" style="border-color: #f2272f;background-color: rgba(242,39,47,0.5);">
-					<div class="sj-pop-title"><span>一级事件</span></div>
+				<div class="sj-pop sj-yiji" >
+					<!-- <div class="sj-pop-title"><span>一级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -319,8 +321,8 @@
 						</div>
 					</vue-seamless-scroll>
 				</div>
-				<div class="sj-pop" style="border-color: #02b5ea;background-color: rgba(2,181,234,0.5);">
-					<div class="sj-pop-title"><span>二级事件</span></div>
+				<div class="sj-pop sj-erji">
+					<!-- <div class="sj-pop-title"><span>二级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -339,8 +341,8 @@
 						</div>
 					</vue-seamless-scroll>
 				</div>
-				<div class="sj-pop" style="border-color: #289721;background-color: rgba(40,151,33,0.5);">
-					<div class="sj-pop-title"><span>三级事件</span></div>
+				<div class="sj-pop sj-sanji">
+					<!-- <div class="sj-pop-title"><span>三级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -881,31 +883,31 @@
 						:data='commonOption'></my-charts>
 					<div class="pop-wjxBg" v-show="type==2">
 						<div class="wjx-tap">
-							<div v-for="(item,index) in wjxTapList" :key="index">
-								<div>{{item.day}}</div>
+							<div class="wjx-top-bg">
+								<div v-for="(item,index) in wjxTapList" :key="index" @click="switchDay(index)" :class="{'wjx-active':tapIndex==index}">{{item.day}}</div>
 							</div>
-							<div>
-								<div>
+							<div class="wjx-bottom-bg">
+								<div class="wjx-bottom-item">
 									<div>{{wjxTapList[tapIndex].order}}</div>
 									<span>工单总数</span>
 								</div>
-								<div>
+								<div class="wjx-bottom-item">
 									<div>{{wjxTapList[tapIndex].check}}</div>
 									<span>检查总数</span>
 								</div>
-								<div>
+								<div class="wjx-bottom-item">
 									<div>{{wjxTapList[tapIndex].task}}</div>
 									<span>往期任务数</span>
 								</div>
 							</div>
 						</div>
 						<div class="wjx-list">
-							<div v-for="(item,index) in wjxList" :key="index">
-								<span>协作人：</span>
-								<span>巡查人：</span>
-								<span>检查时间：</span>
-								<span>店铺名称：</span>
-								<span>检查结果：</span>
+							<div class="wjx-list-item" v-for="(item,index) in wjxList" :key="index" @click="showWjxDetail(item)">
+								<span>协作人：{{item.name}}</span>
+								<span>巡查人：{{item.name2}}</span>
+								<span>检查时间：{{item.time}}</span>
+								<span>店铺名称：{{item.shopName}}</span>
+								<span>检查结果：{{item.status}}</span>
 							</div>
 						</div>
 					</div>
@@ -950,9 +952,19 @@
 					check: 295,
 					task: 0
 				}],
-				tapIndex: 0,
+				tapIndex: 1,
 				wjxList: [{
-
+					name: '谢咪琴',
+					name2: '徐章伟',
+					time: '2021/7/9',
+					shopName: '宁波市镇海区九龙湖昱如副食品店',
+					status: '正常'
+				},{
+					name: '高金财',
+					name2: '毛松',
+					time: '2021/7/9',
+					shopName: '宁波市镇海区九龙湖昱如副食品店',
+					status: '正常'
 				}],
 				lajifenlei: false,
 				weiffangguanli: false,
@@ -1266,6 +1278,7 @@
 				showPDetail: false, //四个平台事件详情
 				showMoreDetail: false, //四个平台点击详情弹窗
 				wgryShow: false, //显示网格人员列表
+				showPBtn: true, //四个平台显隐按钮
 				videoUrl: '',
 				keyWord: '',
 				ydyh: false,
@@ -1523,7 +1536,7 @@
 			// this.$parent.tabActive = 0
 			this.show13 = true
 			// this.show2 = true
-			this.showP = true
+			this.showPBtn = true
 		},
 		beforeDestroy() {
 			window.removeEventListener('message', this.listenerFun)
@@ -1682,10 +1695,11 @@
 					this.show17 = false
 					this.show18 = false
 					this.showXmb = false
-					this.showP = true
+					this.showP = false
 					this.showPDetail = false
 					this.showVideo = false
 					this.wgryShow = false
+					this.showPBtn = true
 				}
 				// else if (e == 2) {
 				// 	// 4个平台
@@ -1744,6 +1758,7 @@
 					this.showPDetail = false
 					this.showVideo = false
 					this.wgryShow = false
+					this.showPBtn = false
 				}
 				// else if (e == 2) {
 				// 	// 线上执法
@@ -2259,6 +2274,12 @@
 				} else if (e.data == "长胜田央沈") {
 					this.getGridDetail('1415147217374793730')
 				}
+			},
+			switchDay(e) {
+				this.tapIndex = e
+			},
+			showWjxDetail(item) {
+				
 			}
 		},
 		computed: {
@@ -2365,11 +2386,11 @@
 
 	.pop-common {
 		width: 520px;
-		border: 1px solid #fff;
-		border-image-outset: 10px;
-		border-image-slice: 20 20 20 20;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-image-outset: 10px;
+		// border-image-slice: 20 20 20 20;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -2383,6 +2404,9 @@
 		top: 200px;
 		left: 35px;
 		max-height: none;
+		background: url(../bgImages/概览-1.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 60px;
 	}
 
 	.pop-zl-box {
@@ -2461,7 +2485,9 @@
 		top: 570px;
 		left: 35px;
 		max-height: none;
-
+		background: url(../bgImages/网格列表.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 60px;
 		.pop-title {
 			width: 100%;
 			background-size: 100% 32px;
@@ -2512,6 +2538,11 @@
 				}
 			}
 		}
+	}
+
+	.rylb {
+		background: url(../bgImages/人员列表.png) no-repeat;
+		background-size: 100% 100%;
 	}
 
 	.pop-box {
@@ -2791,9 +2822,9 @@
 	.pop-top {
 		// width: 520px;
 		// height: 270px;
-		border: 1px solid #fff;
+		border: 1px solid rgb(30,42,108);
 		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		background-color: rgba(30,42,108, 0.5);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -2849,15 +2880,15 @@
 		width: 520px;
 		position: absolute;
 		top: 200px;
-		right: 35px;
+		right: 70px;
 		z-index: 1998;
 	}
 
 	.sj-pop {
 		width: 100%;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -2865,7 +2896,7 @@
 		color: #fff;
 		margin-bottom: 10px;
 		height: 300px;
-
+		
 		.sj-pop-title {
 			width: 485px;
 			background: url(../../public/static/images/line.png) no-repeat;
@@ -2944,6 +2975,24 @@
 			}
 		}
 
+	}
+	
+	.sj-yiji {
+		background: url(../bgImages/一级事件.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 50px;
+	}
+	
+	.sj-erji {
+		background: url(../bgImages/二级事件.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 50px;
+	}
+	
+	.sj-sanji {
+		background: url(../bgImages/三级事件.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 50px;
 	}
 
 	.monitorBox {
@@ -3354,8 +3403,80 @@
 		width: 100%;
 		height: 100%;
 		background: url(../bgImages/九龙湖一店通.png) no-repeat;
-		background-color: 100% 100%;
+		background-size: 100% 100%;
 		position: relative;
+		.wjx-tap {
+			position: absolute;
+			left: 30px;
+			top: 115px;
+			.wjx-top-bg {
+				width: 154px;
+				height: 26px;
+				background: url(../bgImages/tab.png) no-repeat;
+				background-size: 100% 100%;
+				display: flex;
+				align-items: center;
+				margin-left: 115px;
+				div {
+					width: 33%;
+					color: #fff;
+					text-align: center;
+					line-height: 26px;
+				}
+				.wjx-active {
+					width: 53px;
+					height: 24px;
+					background: url(../bgImages/hover.png) no-repeat;
+					background-size: 100% 100%;
+					border-radius: 5px;
+				}
+			}
+			.wjx-bottom-bg {
+				width: 435px;
+				color: #fff;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 20px;
+				.wjx-bottom-item {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					font-size: 20px;
+					div:first-child {
+						width: 44px;
+						height: 44px;
+						text-align: center;
+						line-height: 44px;
+						background: url(../bgImages/num.png) no-repeat;
+						background-size: 100% 100%;
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+		.wjx-list {
+			position: absolute;
+			top: 170px;
+			right: 100px;
+			padding: 10px;
+			width: 390px;
+			height: 320px;
+			box-sizing: border-box;
+			overflow-y: scroll;
+			.wjx-list-item {
+				width: 369px;
+				height: 127px;
+				background: url(../bgImages/list.png) no-repeat;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				color: #fff;
+				margin-bottom: 15px;
+				padding: 15px;
+				box-sizing: border-box;
+			}
+		}
 	}
 
 	.tip-style {

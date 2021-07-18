@@ -2,7 +2,7 @@
 	<div>
 		<transition name="fade">
 			<div class="pop-common srjf" v-show="show">
-				<div class="pop-title"><span>私人建房统计</span></div>
+				<!-- <div class="pop-title"><span>私人建房统计</span></div> -->
 				<div class="srjf-title">
 					<span>序号</span>
 					<span>户主姓名</span>
@@ -26,8 +26,8 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list" v-show="showPubilc">
-				<div class="pop-title"><span>公共场所</span></div>
+			<div class="pop-common pop-list ggcs-bg" v-show="showPubilc">
+				<!-- <div class="pop-title"><span>公共场所</span></div> -->
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>公共场所名称</span>
@@ -226,9 +226,9 @@
 
 	.pop-common {
 		width: 520px;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -275,6 +275,7 @@
 
 		.pop-inner-box {
 			max-height: 400px;
+			margin-bottom: 10px;
 			overflow-y: auto;
 
 			.pop-inner-item {
@@ -301,7 +302,9 @@
 		width: 1450px;
 		top: 200px;
 		left: 35px;
-
+		background: url(../bgImages/私人建房统计.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 60px;
 		.pop-title {
 			width: 1420px;
 			height: 32px;
@@ -352,5 +355,11 @@
 				white-space: nowrap;
 			}
 		}
+	}
+	
+	.ggcs-bg {
+		background: url(../bgImages/公共场所.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 80px;
 	}
 </style>

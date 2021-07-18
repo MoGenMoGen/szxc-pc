@@ -4,8 +4,8 @@
 			<PopBox :list="list" v-show='show'></PopBox>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list" v-show="show">
-				<div class="pop-title"><span>农家乐统计</span></div>
+			<div class="pop-common pop-list njl-bg" v-show="show">
+				<!-- <div class="pop-title"><span>农家乐统计</span></div> -->
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>农家乐名称</span>
@@ -40,7 +40,7 @@
 					<span>{{item.title}}</span>
 				</div> -->
 				<div class="pop-common pop-data">
-					<div class="pop-title"><span>每日数据</span></div>
+					<!-- <div class="pop-title"><span>每日数据</span></div> -->
 					<div class="rm-bottom">
 						<my-charts :id="rlss1" class="rm-item" :data="option"></my-charts>
 						<my-charts :id="rlgy1" class="rm-item" :data="option4"></my-charts>
@@ -50,8 +50,8 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list" v-show="show2">
-				<div class="pop-title"><span>景点列表</span></div>
+			<div class="pop-common pop-list jd-bg" v-show="show2">
+				<!-- <div class="pop-title"><span>景点列表</span></div> -->
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>景点名称</span>
@@ -686,15 +686,27 @@
 
 	.pop-common {
 		width: 520px;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
 		box-sizing: border-box;
 		color: #fff;
 		z-index: 1998;
+	}
+	
+	.njl-bg {
+		background: url(../bgImages/农家乐统计.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 70px;
+	}
+	
+	.jd-bg {
+		background: url(../bgImages/景点列表.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 80px;
 	}
 
 	.pop-list {
@@ -721,6 +733,7 @@
 
 		.pop-inner-box {
 			max-height: 500px;
+			margin-bottom: 10px;
 			overflow-y: auto;
 
 			.pop-inner-item {
@@ -746,8 +759,12 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
-
+		background: url(../bgImages/每日数据.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 50px;
 		.rm-bottom {
+			width: 95%;
+			margin: 0 auto;
 			display: flex;
 			justify-content: space-between;
 

@@ -14,14 +14,14 @@
 		<transition name="fade">
 			<div class="pop-box" v-show="show3">
 				<div class="pop-common cunwei">
-					<div class="pop-title"><span>村两委班子</span></div>
+					<!-- <div class="pop-title"><span>村两委班子</span></div> -->
 					<div class="cunwei-info">
 						<div class="cunwei-item"><span>姓名</span><span>职位</span></div>
 						<div v-for="(item,index) in cunweiList" :key="index" class="cunwei-item" @click="showImg(index)"><span>{{item.name}}</span><span>{{item.post}}</span></div>
 					</div>
 				</div>
 				<div class="pop-common fazhan">
-					<div class="pop-title"><span>发展党员</span></div>
+					<!-- <div class="pop-title"><span>发展党员</span></div> -->
 					<span class="fazhan-info">计划2人</span>
 				</div>
 				<!-- <div class="pop-common dangfei">
@@ -40,7 +40,7 @@
 					</div>
 				</div> -->
 				<div class="pop-common xinyuan">
-					<div class="pop-title"><span>微心愿</span></div>
+					<!-- <div class="pop-title"><span>微心愿</span></div> -->
 					<div class="xinyuan-info">
 						<span>微心愿</span>
 						<span>总数：8个</span>
@@ -65,7 +65,7 @@
 		</transition>
 		<transition name="fade">
 			<div class="activity pop-common" v-show="show4">
-				<div class="pop-title"><span>党员历次活动</span></div>
+				<!-- <div class="pop-title"><span>党员历次活动</span></div> -->
 				<div class="activity-info">
 					<div v-for="(item,index) in avctivityList" :key="index" class="activity-item" @click="showDetail(index)">
 						<span>{{index+1}}</span>
@@ -91,7 +91,7 @@
 		</transition> -->
 		<transition name="fade">
 			<div class="pop-common activity-detail" v-show="show6">
-				<div class="pop-title"><span>党员活动</span></div>
+				<!-- <div class="pop-title"><span>党员活动</span></div> -->
 				<div class="activity-detail-box">
 					<span class="activity-detail-title">{{avctivityList[activityIndex].title}}</span>
 					<span class="activity-detail-content activity-detail-contentF">{{avctivityList[activityIndex].content}}</span>
@@ -414,9 +414,9 @@
 	}
 	.pop-common {
 		width: 520px;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		// border: 1px solid #fff;
+		// border-radius: 10px;
+		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -436,8 +436,8 @@
 			width: 520px;
 			height: 80px;
 			line-height: 80px;
-			border: 1px solid #fff;
-			background-color: rgba(0, 0, 0, 0.64);
+			border: 1px solid rgb(30,42,108);
+			background-color: rgba(30,42,108, 0.5);
 			color: #fff;
 			font-size: 24px;
 			margin-bottom: 15px;
@@ -456,6 +456,9 @@
 			height: 380px;
 			top: 200px;
 			left: 35px;
+			background: url(../bgImages/村两委班子.png) no-repeat;
+			background-size: 100% 100%;
+			padding-top: 60px;
 			.cunwei-info {
 				width: 100%;
 				display: flex;
@@ -468,11 +471,11 @@
 					align-items: center;
 					font-size: 20px;
 					span:first-child {
-						width: 35%;
+						width: 25%;
 						text-align: center;
 					}
 					span:last-child {
-						width: 65%;
+						width: 75%;
 						text-align: center;
 						white-space: nowrap;
 						overflow: hidden;
@@ -488,6 +491,9 @@
 			// left: 35px;
 			top: 200px;
 			right: 35px;
+			background: url(../bgImages/发展党员.png) no-repeat;
+			background-size: 100% 100%;
+			padding-top: 60px;
 			.fazhan-info {
 				font-size: 30px;
 				text-align: center;
@@ -526,6 +532,9 @@
 			// height: 144px;
 			top: 480px;
 			right: 35px;
+			background: url(../bgImages/微心愿.png) no-repeat;
+			background-size: 100% 100%;
+			padding-top: 60px;
 			.xinyuan-info {
 				width: 100%;
 				margin-top: 20px;
@@ -581,11 +590,14 @@
 		height: 380px;
 		top: 500px;
 		left: 35px;
+		background: url(../bgImages/党员历次活动.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 60px;
 		.activity-info {
-			width: 100%;
-			margin-top: 20px;
+			width: 90%;
+			margin: 0 auto;
 			.activity-item {
-				width: 474px;
+				width: 100%;
 				height: 62px;
 				padding: 13px;
 				box-sizing: border-box;
@@ -640,6 +652,9 @@
 	.activity-detail {
 		top: 200px;
 		left: 800px;
+		background: url(../bgImages/党员活动.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 60px;
 		.activity-detail-box{
 			width: 90%;
 			margin: 10px auto;
@@ -677,8 +692,8 @@
 			position: absolute;
 			width: 40px;
 			height: 40px;
-			top: -20px;
-			right: -20px;
+			top: 20px;
+			right: -10px;
 			cursor: pointer;
 		}
 	}
