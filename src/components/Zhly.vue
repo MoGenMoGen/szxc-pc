@@ -27,10 +27,10 @@
 					</el-carousel-item>
 				</el-carousel>
 				<div class="banner-name" v-if="e==0">{{imgList[nameIndex].name}}</div>
-				<div class="pop-common banner-tip" v-if="show4">
+				<!-- <div class="pop-common banner-tip" v-if="show4">
 					<div class="pop-title"><span>透明厨房</span></div>
 					<span class="banner-tip-word">正在建设中！</span>
-				</div>
+				</div> -->
 			</div>
 		</transition>
 		<transition name="fade">
@@ -640,7 +640,6 @@
 				size: 50,
 				current: 1
 			}).then(res => {
-				console.log(res)
 				res.records.forEach((item, index) => {
 					if (item.type == "service_eat" || item.type == "service_all") {
 						this.eatList.push(item)

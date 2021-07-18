@@ -189,7 +189,7 @@
       <iframe v-if="cShow" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" :src="url2" frameborder="0"></iframe>
 		</transition>
 
-		<BottomTab :list="tabList" @updata="getIndex"></BottomTab>
+		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
 

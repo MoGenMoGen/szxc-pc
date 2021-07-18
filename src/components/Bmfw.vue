@@ -46,6 +46,14 @@
     <iframe v-if="show2" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" src="http://124.70.199.84:8200/" frameborder="0"></iframe>
 
 
+		<transition name="fade">
+			<div class="proof-guide" v-show="showGuide">
+				<div class="guide-cont guide-left" v-if="pageCont[pageIndex]" v-html="pageCont[pageIndex].cont"></div>
+				<div class="guide-cont guide-right" v-if="pageCont[pageIndex+1]" v-html="pageCont[pageIndex+1].cont"></div>
+				<div class="guide-btn guide-previous" @click="pre">上一页</div>
+				<div class="guide-btn guide-next" @click="next">下一页</div>
+			</div>
+		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -61,6 +69,9 @@
 				show: false, //私人建房
         show2: false, //居家养老
 				showPubilc: false, //公共场所
+				showGuide: false, //证明指南
+				pageIndex: 0,
+				pageCont: [],
 				tabList: [{
 					hasUrl: false,
 					title: '建房申请'
@@ -117,56 +128,56 @@
 				}],
 				publicList: [{
 					name: '九龙湖镇九龙湖社区卫生服务站',
-					X: '121.504729',
-					Y: '30.051343'
+					lng: '121.504729',
+					lat: '30.051343'
 				}, {
 					name: '横溪农贸市场',
-					X: '121.505037',
-					Y: '30.05139'
+					lng: '121.505037',
+					lat: '30.05139'
 				}, {
 					name: '横溪村文化礼堂',
-					X: '121.505213',
-					Y: '30.051743'
+					lng: '121.505213',
+					lat: '30.051743'
 				}, {
 					name: '九龙湖村村委会',
-					X: '121.538627',
-					Y: '30.034315'
+					lng: '121.538627',
+					lat: '30.034315'
 				}, {
 					name: '九龙湖村篮球场',
-					X: '121.538061',
-					Y: '30.034214'
+					lng: '121.538061',
+					lat: '30.034214'
 				}, {
 					name: '九龙湖村文化礼堂',
-					X: '121.538095',
-					Y: '30.034395'
+					lng: '121.538095',
+					lat: '30.034395'
 				}, {
 					name: '个体医疗诊所',
-					X: '121.537764',
-					Y: '30.03434'
+					lng: '121.537764',
+					lat: '30.03434'
 				}, {
 					name: '九龙湖村敬老院',
-					X: '121.542275',
-					Y: '30.035262'
+					lng: '121.542275',
+					lat: '30.035262'
 				}, {
 					name: '九龙湖村居家养老服务站',
-					X: '121.536489',
-					Y: '30.03422'
+					lng: '121.536489',
+					lat: '30.03422'
 				}, {
 					name: '九龙湖村残疾人康复站',
-					X: '121.536329',
-					Y: '30.034198'
+					lng: '121.536329',
+					lat: '30.034198'
 				}, {
 					name: '九龙湖村避灾点',
-					X: '121.538298',
-					Y: '30.034399'
+					lng: '121.538298',
+					lat: '30.034399'
 				}, {
 					name: '九龙湖镇残疾人阳光康福苑',
-					X: '121.542506',
-					Y: '30.034955'
+					lng: '121.542506',
+					lat: '30.034955'
 				}, {
 					name: '九龙湖镇居家养老（残）银龄互助中心',
-					X: '121.542615',
-					Y: '30.034968'
+					lng: '121.542615',
+					lat: '30.034968'
 				}]
 			}
 		},
@@ -185,8 +196,8 @@
 			},
 			toMap(item) {
 				let a = {
-					X: item.X,
-					Y: item.Y,
+					X: item.lng,
+					Y: item.lat,
 				}
 				this.$parent.test(a);
 			},
@@ -196,30 +207,64 @@
 					this.show = true
 					this.showPubilc = false
           this.show2 = false
+					this.showGuide = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 1) {
 					this.show = false
 					this.showPubilc = false
+					this.showGuide = true
           this.show2 = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 2) {
 					this.show = false
 					this.showPubilc = false
+					this.showGuide = false
           this.show2 = true
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 3) {
 					this.show = false
 					this.showPubilc = true
           this.show2 = false
+					this.showGuide = false
 					this.onOff('打开图层', '公共场所')
 				}
-			}
+			},
+			getGuideList(data) {
+				this.$ajax.getGuideList(data).then(res => {
+					console.log(res)
+					res.records.forEach(item => {
+						if(itme.name == "证明指南") {
+							this.pageCont.push(item)
+						}
+					})
+				})
+			},
+			pre() {
+				console.log('上一页')
+				if(this.pageIndex==0){
+					return
+				} else {
+					this.pageIndex--
+				}
+			},
+			next() {
+				console.log('下一页')
+				if(this.pageIndex>this.pageCont.length-1){
+					return
+				} else {}
+				this.pageIndex++
+			},
 		},
 		mounted() {
 			this.show = true
 			// this.$parent.isChildShow = false
 			// this.$parent.tabActive = 0
 			this.onOff('关闭图层', '公共场所')
+			let data = {
+				current: 1,
+				size: 20
+			}
+			this.getGuideList(data)
 		}
 
 	}
@@ -372,5 +417,53 @@
 		background: url(../bgImages/公共场所.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 80px;
+	}
+
+	.proof-guide {
+		width: 1127px;
+		height: 830px;
+		background: url(../bgImages/book.png) no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		z-index: 100;
+		.guide-cont {
+			width: 500px;
+			height: 620px;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+		.guide-left{
+			position: absolute;
+			top: 80px;
+			left: 30px;
+		}
+		.guide-right {
+			position: absolute;
+			top: 80px;
+			right: 40px;
+		}
+		.guide-btn {
+			width: 70px;
+			height: 30px;
+			line-height: 30px;
+			border-radius: 30px;
+			border: 1px solid #9e9e9e;
+			color: #000;
+			text-align: center;
+			cursor: pointer;
+		}
+		.guide-previous {
+			position: absolute;
+			bottom: 70px;
+			left: 50px;
+		}
+		.guide-next {
+			position: absolute;
+			bottom: 70px;
+			right: 50px;
+		}
 	}
 </style>

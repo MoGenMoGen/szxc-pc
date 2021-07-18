@@ -37,11 +37,11 @@
 						<span style="width: 25%;">姓名</span>
 						<span style="width: 50%;">住址</span>
 					</div>
-					<div class="pop-inner-box">
+					<div class="pop-inner-box" style="height: 350px;margin-bottom: 10px;overflow-y: scroll;">
 						<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item" @click="peopleMap(item)">
 							<span>{{ index + 1 }}</span>
 							<span style="width: 25%;">{{ item.name }}</span>
-							<span style="width: 50%;">{{ item.address }}</span>
+							<span style="width: 50%;">{{ item.addr }}</span>
 						</div>
 					</div>
 				</div>
@@ -905,6 +905,26 @@
 								<span>检查结果：{{item.status}}</span>
 							</div>
 						</div>
+						<div class="wjx-detail" v-show="isShowWjxDetail">
+							<img @click="isShowWjxDetail=false" class="cancelLogo" src="../../public/static/images/cancel.png"
+							v-show="isShowWjxDetail" style="position: absolute;top: -20px;right: -20px;">
+							<img src="../bgImages/wjxDetailT.png" class="wjx-detail-title">
+							<span>巡查人：{{wjxDetail.name2}}</span>
+							<span>检查时间：{{wjxDetail.time}}</span>
+							<span>协作人：{{wjxDetail.name}}</span>
+							<span>店铺名称：{{wjxDetail.shopName}}</span>
+							<span>查询时间：{{wjxDetail.time2}}</span>
+							<div class="wjx-detail-status">
+								<span style="margin-bottom: 0;" class="wjx-detail-status-item">检查结果：<span :style="wjxDetail.status=='异常'?'color:#FF002A':''">{{wjxDetail.status}}</span></span>
+								<img src="../bgImages/wjxDetailL.png">
+								<span class="wjx-detail-status-item">市容检查：<span :style="wjxDetail.srjc=='异常'?'color:#FF002A':''">{{wjxDetail.srjc}}</span></span>
+								<span class="wjx-detail-status-item">油烟检查：<span :style="wjxDetail.yyjc=='异常'?'color:#FF002A':''">{{wjxDetail.yyjc}}</span></span>
+								<span class="wjx-detail-status-item">污水排放：<span :style="wjxDetail.wspf=='异常'?'color:#FF002A':''">{{wjxDetail.wspf}}</span></span>
+								<span class="wjx-detail-status-item">垃圾分类：<span :style="wjxDetail.ljfl=='异常'?'color:#FF002A':''">{{wjxDetail.ljfl}}</span></span>
+								<span class="wjx-detail-status-item">燃气安全：<span :style="wjxDetail.rqaq=='异常'?'color:#FF002A':''">{{wjxDetail.rqaq}}</span></span>
+								<span class="wjx-detail-status-item">其他检查：<span :style="wjxDetail.qtjc=='异常'?'color:#FF002A':''">{{wjxDetail.qtjc}}</span></span>
+							</div>
+						</div>
 					</div>
 					<img src="../bgImages/list.png" v-show="type==3" style="width: 1054px;height: 595px;">
 				</div>
@@ -952,15 +972,30 @@
 					name: '谢咪琴',
 					name2: '徐章伟',
 					time: '2021/7/9',
+					time2: '2021-6-3 10:21:38',
 					shopName: '宁波市镇海区九龙湖昱如副食品店',
-					status: '正常'
+					status: '异常',
+					srjc: '正常',
+					yyjc: '正常',
+					wspf: '异常',
+					ljfl: '正常',
+					rqaq: '正常',
+					qtjc: '正常'
 				},{
 					name: '高金财',
 					name2: '毛松',
 					time: '2021/7/9',
+					time2: '2021-6-3 10:21:38',
 					shopName: '宁波市镇海区九龙湖昱如副食品店',
-					status: '正常'
+					status: '正常',
+					srjc: '正常',
+					yyjc: '正常',
+					wspf: '正常',
+					ljfl: '正常',
+					rqaq: '正常',
+					qtjc: '正常'
 				}],
+				wjxDetail: {},
 				lajifenlei: false,
 				weiffangguanli: false,
 				fangnishui: false,
@@ -968,6 +1003,7 @@
 				dizhizaihai: false,
 				bianpoweiyi: false,
 				centerShow: false,
+				isShowWjxDetail: false, // 5+x详情显示
 				xcjg: 'xcjg',
 				wfgl: 'wfgl',
 				fns: 'fns',
@@ -1428,10 +1464,7 @@
 					title: '矫正人员',
 					name: ''
 				}],
-				wgryList: [{
-					name: '张三',
-					address: '横溪'
-				}],
+				wgryList: [],
 				wgList: [{
 					num: '长胜田央沈',
 					url: 'static/images/house.png',
@@ -1662,15 +1695,18 @@
 				this.wgryShow = false
 				this.$parent.test("网格");
 				this.onOff('打开图层','网格')
+				this.onOff('关闭图层','一户一档人口')
 				this.offHik()
+				this.getEventList("")
+				this.getGridTotal()
 			},
 			toMap(item) {
 				this.$refs.videoPlayer5.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer5.initPlugin()
 				let a = {
-					X: item.X,
-					Y: item.Y,
+					X: item.lng,
+					Y: item.lat,
 				}
 				this.$parent.test(a);
 				if (this.e == 0) {
@@ -1764,6 +1800,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
+					this.onOff('关闭图层','一户一档人口')
 					this.$parent.test("网格");
 					this.onOff("打开图层", "网格")
 					this.show2 = false
@@ -1823,6 +1860,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
+					this.onOff('关闭图层','一户一档人口')
 					this.onOff("关闭图层", "网格")
 					this.show2 = false
 					this.show = false
@@ -2060,7 +2098,15 @@
 				this.getGridDetail(item.id)
 			},
 			peopleMap(item) {
-				console.log(item)
+				this.onOff('打开图层','一户一档人口')
+				let a = {
+					layer: '一户一档',
+					name: item.name
+				}
+				let that = this
+				setTimeout(function(){
+					that.$parent.test(a)
+				},1000)
 				this.onOff('关闭图层','网格')
 				this.show12 = true
 			},
@@ -2083,8 +2129,21 @@
 					this.list2[8].num = res.correction
 				})
 				this.getEventList(id)
+				let data = {
+					grid: id,
+					current: 1,
+					size: 200,
+					relation: '户主'
+				}
+				this.getPeopleList(data)
 				this.showPDetail = false
 				this.show8 = true
+			},
+			getPeopleList(data) {
+				this.$ajax.getPeopleList(data).then(res => {
+					console.log(res)
+					this.wgryList = res.records
+				})
 			},
 			showWg(e) {
 				let x = e.x,
@@ -2368,7 +2427,8 @@
 				this.tapIndex = e
 			},
 			showWjxDetail(item) {
-
+				this.isShowWjxDetail = true
+				this.wjxDetail = item
 			}
 		},
 		computed: {
@@ -3212,9 +3272,9 @@
 		position: absolute;
 		bottom: 90px;
 		left: 35px;
-		border: 1px solid #fff;
+		border: 1px solid rgb(30,42, 108);
 		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
+		background-color: rgba(30,42, 108, 0.5);
 		display: flex;
 		padding: 10px 20px;
 		box-sizing: border-box;
@@ -3479,10 +3539,10 @@
 		background: url(../bgImages/地质灾害管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
-  .dzzh-bg2 {
-    background: url(../bgImages/地质灾害管理2.png) no-repeat;
-    background-size: 100% 100%;
-  }
+	.dzzh-bg2 {
+		background: url(../bgImages/地质灾害管理2.png) no-repeat;
+		background-size: 100% 100%;
+	}
 
 	.bpwy-bg {
 		background: url(../bgImages/边坡位移.png) no-repeat;
@@ -3565,6 +3625,48 @@
 				margin-bottom: 15px;
 				padding: 15px;
 				box-sizing: border-box;
+			}
+		}
+		.wjx-detail {
+			width: 574px;
+			left: 450px;
+			background-color: rgb(5,15,60);
+			background: url(../bgImages/wjxDetailBg.png) no-repeat;
+			background-size: 100% 100%;
+			padding: 0 40px;
+			padding-bottom: 16px;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			.wjx-detail-title {
+				margin: 16px auto;
+				width: 100%;
+			}
+			span {
+				width: 100%;
+				font-size: 18px;
+				color: #56DDFF;
+				margin-bottom: 5px;
+			}
+			.wjx-detail-status {
+				width: 491px;
+				height: 328px;
+				background: url(../bgImages/wjxDetailLBg.png) no-repeat;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				padding: 30px;
+				box-sizing: border-box;
+				.wjx-detail-status-item {
+					width: 100%;
+					font-size: 18px;
+					color: #56DDFF;
+					margin-bottom: 10px;
+				}
 			}
 		}
 	}
