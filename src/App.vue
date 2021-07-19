@@ -234,7 +234,7 @@
 					this.isActive2 = e
 				} else if (e==3) {
 					// this.tabChildList = ['三资管理', '村务公开']
-					this.tabChildList = ['财务公开', '村务公开','村民说事','民意体检','廉政宣教','监督机构']
+					this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','廉政宣教','监督机构']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {
@@ -242,7 +242,7 @@
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==5) {
-					this.tabChildList = ['建房申请', '证明指南','居家养老','公共场所']
+					this.tabChildList = ['建房申请', '减负清单','居家养老','公共场所']
 					this.isChildShow = true
 					this.isActive2 = e
 				}

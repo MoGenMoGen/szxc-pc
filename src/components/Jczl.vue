@@ -837,8 +837,9 @@
 								</div>
 							</div>
 						</div>
-						<my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class"
-							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts>
+						<!-- <my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class"
+							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts> -->
+							<img src="../bgImages/边坡位移表.png">
 					</div>
 					<div class="pop-bg-box ljfl-bg">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
@@ -926,7 +927,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="../bgImages/list.png" v-show="type==3" style="width: 1054px;height: 595px;">
+					<img :src="centerImg" v-show="type==3" style="width: 100%;height: 100%;">
 				</div>
 			</div>
 		</transition>
@@ -1139,6 +1140,7 @@
 						}
 					},
 					yAxis: {
+						minInterval:1,
 						type: 'value',
 						splitLine: {
 							show: false
@@ -1627,7 +1629,8 @@
 					num: 0
 				}],
 				wgzList: [],
-				ljflglList: []
+				ljflglList: [],
+				centerImg: ''
 			}
 		},
 		components: {
@@ -2339,15 +2342,32 @@
 					this.list2[8].num = res.correction
 				})
 			},
+			getfnsList() {
+				this.$ajax.getCamera2({
+					type: '防溺水监控',
+					order: 'alert'
+				}).then(res => {
+					let data1 = []
+					let data2 = []
+					res.forEach(item => {
+						data1.push(item.name)
+						data2.push(item.alert)
+					})
+					this.fnsOption.xAxis.data = data1
+					this.fnsOption.series[0].data = data2
+					this.fnsList = res
+				})
+			},
 			getList() {
+				let that = this
 				this.$ajax.getCamera('移动执法').then(res => {
 					this.jkList = res
 				})
 				this.$ajax.getCamera('危房管理').then(res => {
 					this.wfList = res
 				})
-				this.$ajax.getCamera('泥石流监控').then(res => {
-					this.dzList = res
+				that.$ajax.getCamera('泥石流监控').then(res => {
+					that.dzList = res
 				})
 				this.$ajax.getCamera2({
 					type: '山塘水库',
@@ -2364,20 +2384,8 @@
 					this.stskOption.series[0].data = data
 					this.stList = res
 				})
-				this.$ajax.getCamera2({
-					type: '防溺水监控',
-					order: 'alert'
-				}).then(res => {
-					let data1 = []
-					let data2 = []
-					res.forEach(item => {
-						data1.push(item.name)
-						data2.push(item.alert)
-					})
-					this.fnsOption.xAxis.data = data1
-					this.fnsOption.series[0].data = data2
-					this.fnsList = res
-				})
+				this.getfnsList()
+				setInterval(function() {that.getfnsList()},300000)
 				this.$ajax.getCamera('垃圾分类').then(res => {
 					this.ljflglList = res
 				})
@@ -2400,9 +2408,11 @@
 				this.centerShow = true
 				this.type = 2
 			},
-			clickImg() {
+			clickImg(img) {
+				console.log(img)
 				this.type = 3
 				this.centerShow = true
+				this.centerImg = img
 			},
 			listenerFun(e) {
 				console.log(e)
