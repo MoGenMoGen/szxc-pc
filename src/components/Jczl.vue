@@ -2405,21 +2405,30 @@
 				this.centerShow = true
 			},
 			listenerFun(e) {
+				console.log(e)
 				if (e.data == "横溪钱家、大同高屋") {
+					this.wgryShow = true
 					this.getGridDetail('1414922323459620866')
 				} else if (e.data == "横溪冷水井、后厢") {
+					this.wgryShow = true
 					this.getGridDetail('1414921956684513281')
 				} else if (e.data == "横溪坝下、桥头") {
+					this.wgryShow = true
 					this.getGridDetail('1414921956684513281')
 				} else if (e.data == "横溪田中央、墙头") {
+					this.wgryShow = true
 					this.getGridDetail('1415146940391346178')
 				} else if (e.data == "长胜毛领、孟家") {
+					this.wgryShow = true
 					this.getGridDetail('1415147015662325761')
 				} else if (e.data == "长胜周家港") {
+					this.wgryShow = true
 					this.getGridDetail('1415147152245641218')
 				} else if (e.data == "长胜长桥头") {
+					this.wgryShow = true
 					this.getGridDetail('1415147082129461249')
 				} else if (e.data == "长胜田央沈") {
+					this.wgryShow = true
 					this.getGridDetail('1415147217374793730')
 				}
 			},
