@@ -331,7 +331,7 @@
 					birthday: '1956.11',
 					add: '九龙湖村横溪',
 					phone: '13857479443/668443',
-					img: 'static/images/cancel.png'
+					img: 'static/images/cjh-whj.png'
 				},{
 					name: '程岳定',
 					birthday: '1956.10',
@@ -492,6 +492,7 @@
 					this.cmssShow = false
 					this.mytjShow = false
 					this.lzxjShow = false
+					this.imgShow = false
 				} else if (e == 1) {
 					this.getSzglData()
 					this.show = true
@@ -500,6 +501,7 @@
 					this.cmssShow = false
 					this.mytjShow = false
 					this.lzxjShow = false
+					this.imgShow = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -507,6 +509,7 @@
 					this.cmssShow = true
 					this.mytjShow = false
 					this.lzxjShow = false
+					this.imgShow = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -514,6 +517,7 @@
 					this.cmssShow = false
 					this.mytjShow = true
 					this.lzxjShow = false
+					this.imgShow = false
 				} else if (e == 4) {
 					this.show = false
 					this.cShow = false
@@ -521,6 +525,7 @@
 					this.cmssShow = false
 					this.mytjShow = false
 					this.lzxjShow = true
+					this.imgShow = false
 				} else if (e==5) {
 					this.show = false
 					this.cShow = false
@@ -528,6 +533,7 @@
 					this.cmssShow = false
 					this.mytjShow = false
 					this.lzxjShow = false
+					this.imgShow = false
 				}
 			},
 			showCjhImg(img) {
