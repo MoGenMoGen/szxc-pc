@@ -1724,13 +1724,11 @@
       },
 			//点击执法仪看监控
 			toZf(item) {
-       // console.log(item)
+      this.onOff("打开图层","执法记录仪")
 			  this.hikShow = true;
 				this.$refs.videoPlayer2.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer2.initPlugin()
-
-        this.onOff("打开图层","执法记录仪")
         let a = {
           X: item.lng,
           Y: item.lat,
