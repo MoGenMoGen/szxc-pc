@@ -116,6 +116,9 @@
 		<transition name="fade">
 			<div class="supervise-box" v-show="superviseShow">
 				<div class="pop-common cjh">
+					<div class="duties" @click="showDuties">
+						<span>机构职能</span>
+					</div>
 					<div class="pop-inner-title">
 						<span style="width: 15%;">姓名</span>
 						<span style="width: 15%;">出生年月</span>
@@ -132,6 +135,9 @@
 					</div>
 				</div>
 				<div class="pop-common cjw">
+					<div class="duties" @click="showDuties">
+						<span>机构职能</span>
+					</div>
 					<div class="pop-inner-title">
 						<span style="width: 15%;">姓名</span>
 						<span style="width: 15%;">出生年月</span>
@@ -148,6 +154,9 @@
 					</div>
 				</div>
 				<div class="pop-common sjh">
+					<div class="duties" @click="showDuties">
+						<span>机构职能</span>
+					</div>
 					<div class="pop-inner-title">
 						<span style="width: 15%;">姓名</span>
 						<span style="width: 15%;">出生年月</span>
@@ -180,13 +189,19 @@
 					<span>满意度调查</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item" @click="showCjhImg(item.img)">
+					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item" @click="showCmssDetail(item)">
 						<span style="width: 15%;">{{ index+1 }}</span>
 						<span style="width: 15%;">{{ item.time }}</span>
 						<span>{{ item.title }}</span>
 						<span>{{ item.satisfaction }}</span>
 					</div>
 				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="cmss-detail" v-show="cmssDetailShow">
+				<span>{{cmssDetail.title}}</span>
+				
 			</div>
 		</transition>
 		<transition name="fade">
@@ -198,7 +213,7 @@
 					<span>事后满意度调查</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in mytjList" :key='index' class="pop-inner-item" @click="showCjhImg(item.img)">
+					<div v-for="(item,index) in mytjList" :key='index' class="pop-inner-item" @click="showMytjDetail(item)">
 						<span style="width: 10%;">{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.feasibility }}</span>
@@ -212,6 +227,24 @@
 				<div class="tab-bg">
 					<div v-for="(item,index) in lzxjList" :key="index" @click="chooseLzxj(index)">
 						<span :class="lzxjIndex == index ? 'lzxjActive': ''">· {{item.name}}</span>
+					</div>
+				</div>
+				<div :style="{'background-image': 'url('+ hlcj +')'}" v-if="lzxjCont&&lzxjIndex==0" class="lzxg-imgBg">
+					<div v-for="(item,index) in lzxjCont" :key="index" class="lzxg-item">
+						<el-image :src="item" :preview-src-list="lzxjCont" style="width: 273px;height: 215px;">
+						</el-image>
+					</div>
+				</div>
+				<div :style="{'background-image': 'url('+ qlcjsw +')'}" v-if="lzxjCont&&lzxjIndex==1" class="lzxg-imgBg2">
+					<div v-for="(item,index) in lzxjCont" :key="index" class="lzxg-item">
+						<el-image :src="item" :preview-src-list="lzxjCont" style="width: 184px;height: 205px;">
+						</el-image>
+					</div>
+				</div>
+				<div :style="{'background-image': 'url('+ xwqlmh +')'}" v-if="lzxjCont&&lzxjIndex==2" class="lzxg-imgBg">
+					<div v-for="(item,index) in lzxjCont" :key="index" class="lzxg-item">
+						<el-image :src="item" :preview-src-list="lzxjCont" style="width: 273px;height: 215px;">
+						</el-image>
 					</div>
 				</div>
 			</div>
@@ -228,7 +261,10 @@
 	import icChf from '../images/长横幅.png'
 	import icChd from '../images/短横幅.png'
 	import icBb from '../images/报表.png'
-
+	import jdjgzz from '../../public/static/images/jdjgzz.png'
+	import hlcj from '../bgImages/hlcl.png'
+	import qlcjsw from '../bgImages/qlcjsw.png'
+	import xwqlmh from '../bgImages/xwqlmh.png'
 
 	export default {
 		name: 'Cwgk',
@@ -241,6 +277,10 @@
 				icChf,
 				icChd,
 				icBb,
+				jdjgzz,
+				hlcj,
+				qlcjsw,
+				xwqlmh,
 				url2: "http://visual.gzvst.top/view/1405180480017412097",
 				cwList: [],
 				imgShow: false,
@@ -249,9 +289,14 @@
 				show: false,
 				superviseShow:false, //监督机构
 				cmssShow: false, //村民说事
+				cmssDetailShow: false, //村民说事详情显示
 				mytjShow: false, //民意体检
+				mytjDetailShow: false, //村民说事详情显示
 				lzxjShow: false, //廉政宣教
+				lzxjCont: false, //廉政宣教图片墙
 				lzxjIndex: -1,
+				cmssDetail: {}, //村民说事详情
+				mytjDetail: {}, //民意体检详情
 				jjData: {},
 				cgcData: {},
 				cmData: {},
@@ -426,11 +471,15 @@
 					detail: '为庆祝建党100周年，九龙湖村结合红色元素在长胜自然村打造红色长胜主题村。该项目包括红色历史陈列馆、红色九龙湖（牌坊）、创意草野、荷花池、红廉长廊、知青馆、时光邮局等十几个点位。红色线路打造完成后，村容村貌明显改善，红色主题突出，吸引了镇海区各机关单位，各企业单位党支部先后到九龙湖村参观，共同学习革命先辈的光荣事迹，重温入党誓词等，反响好，得到了大家一致好评。'
 				}],
 				lzxjList: [{
-					name: '红廉长廊'
+					name: '红廉长廊',
+					imgWall: ['static/images/hlcl-1.jpg','static/images/hlcl-2.jpg','static/images/hlcl-3.jpg','static/images/hlcl-4.jpg','static/images/hlcl-5.jpg','static/images/hlcl-6.jpg']
 				},{
-					name: '清廉村居十问'
+					name: '清廉村居十问',
+					imgWall: ['static/images/qlcjsw-1.png','static/images/qlcjsw-2.png','static/images/qlcjsw-3.png','static/images/qlcjsw-4.png','static/images/qlcjsw-5.png',
+					'static/images/qlcjsw-6.png','static/images/qlcjsw-7.png','static/images/qlcjsw-8.png','static/images/qlcjsw-9.png','static/images/qlcjsw-10.png']
 				},{
-					name: '小微权利漫画'
+					name: '小微权利漫画',
+					imgWall: ['static/images/xwqlmh-1.png','static/images/xwqlmh-2.png','static/images/xwqlmh-3.png','static/images/xwqlmh-4.png','static/images/xwqlmh-5.png']
 				}]
 			}
 		},
@@ -493,6 +542,7 @@
 					this.mytjShow = false
 					this.lzxjShow = false
 					this.imgShow = false
+					this.cmssDetailShow = false
 				} else if (e == 1) {
 					this.getSzglData()
 					this.show = true
@@ -502,6 +552,7 @@
 					this.mytjShow = false
 					this.lzxjShow = false
 					this.imgShow = false
+					this.cmssDetailShow = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -510,6 +561,7 @@
 					this.mytjShow = false
 					this.lzxjShow = false
 					this.imgShow = false
+					this.cmssDetailShow = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -518,6 +570,7 @@
 					this.mytjShow = true
 					this.lzxjShow = false
 					this.imgShow = false
+					this.cmssDetailShow = false
 				} else if (e == 4) {
 					this.show = false
 					this.cShow = false
@@ -526,6 +579,7 @@
 					this.mytjShow = false
 					this.lzxjShow = true
 					this.imgShow = false
+					this.cmssDetailShow = false
 				} else if (e==5) {
 					this.show = false
 					this.cShow = false
@@ -534,15 +588,26 @@
 					this.mytjShow = false
 					this.lzxjShow = false
 					this.imgShow = false
+					this.cmssDetailShow = false
 				}
 			},
 			showCjhImg(img) {
 				this.imgUrl = img
 				this.imgShow = true
 			},
+			showDuties() {
+				this.imgShow = true
+				this.imgUrl = jdjgzz
+			},
 			chooseLzxj(index) {
 				this.lzxjIndex = index
-			}
+				this.lzxjCont = true
+				this.lzxjCont = this.lzxjList[index].imgWall
+			},
+			showCmssDetail(item) {
+				this.cmssDetailShow = true
+				this.cmssDetail = item
+			},
 		}
 	}
 </script>
@@ -593,6 +658,19 @@
 		}
 	}
 	
+	.duties {
+		width: 95%;
+		display: flex;
+		justify-content: flex-end;
+		font-size: 19px;
+		margin-bottom: 10px;
+		cursor: pointer;
+		span {
+			padding: 5px;
+			border-bottom: 1px solid #fff;
+		}
+	}
+	
 	.cjh {
 		background: url(../bgImages/村监会总表.png) no-repeat;
 		background-size: 100% 100%;
@@ -617,7 +695,7 @@
 		position: absolute;
 		top: 200px;
 		left: 40px;
-		background: url(../bgImages/社监会总表.png) no-repeat;
+		background: url(../bgImages/村民说事-列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
 		.pop-inner-title {
@@ -649,11 +727,19 @@
 		}
 	}
 	
+	.cmss-detail {
+		background: url(../bgImages/村民说事-详情.png) no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		top: 200px;
+		left: 700px;
+	}
+	
 	.mytj {
 		position: absolute;
 		top: 200px;
 		left: 40px;
-		background: url(../bgImages/社监会总表.png) no-repeat;
+		background: url(../bgImages/民意体检-列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
 		.pop-inner-title {
@@ -704,10 +790,11 @@
 	}
 
 	.lzxj {
+		position: absolute;
+		top: 180px;
+		left: 35px;
+		display: flex;
 		.tab-bg {
-			position: absolute;
-			top: 180px;
-			left: 35px;
 			width: 545px;
 			height: 418px;
 			background: url(../bgImages/lzxj-tab.png) no-repeat;
@@ -724,6 +811,48 @@
 				.lzxjActive {
 					color: #B31624;
 				}
+			}
+		}
+		.lzxg-imgBg {
+			margin-left: 190px;
+			width: 1174px;
+			height: 925px;
+			background-size: 100% 100%;
+			padding: 206px 113px 177px 132px;
+			box-sizing: border-box;
+			display: flex;
+			flex-wrap: wrap;
+			.lzxg-item {
+				width: 273px;
+				height: 215px;
+				margin-right: 55px;
+			}
+			.lzxg-item:nth-child(3n) {
+				margin-right: 0;
+			}
+		}
+		.lzxg-imgBg2 {
+			margin-left: 190px;
+			width: 1174px;
+			height: 925px;
+			background-size: 100% 100%;
+			padding: 229px 61px 164px 82px;
+			box-sizing: border-box;
+			display: flex;
+			flex-wrap: wrap;
+			.lzxg-item {
+				width: 190px;
+				height: 214px;
+				margin-right: 19px;
+				margin-bottom: 104px;
+				border: 3px solid #7d411f;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.lzxg-item:nth-child(5n) {
+				margin-right: 0;
 			}
 		}
 	}

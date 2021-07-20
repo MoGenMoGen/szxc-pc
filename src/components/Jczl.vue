@@ -38,7 +38,8 @@
 						<span style="width: 50%;">住址</span>
 					</div>
 					<div class="pop-inner-box" style="height: 350px;margin-bottom: 10px;overflow-y: scroll;">
-						<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item" @click="peopleMap(item)">
+						<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item"
+							@click="peopleMap(item)">
 							<span>{{ index + 1 }}</span>
 							<span style="width: 25%;">{{ item.name }}</span>
 							<span style="width: 50%;">{{ item.addr }}</span>
@@ -214,7 +215,7 @@
 		</transition> -->
 		<!-- <img src="static/images/zhu2.png" v-if="showXmb"
 			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
-		<transition name="fade">
+		<!-- <transition name="fade">
 			<div class="pop-list2" v-show="show5">
 				<div class="pop-common">
 					<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
@@ -241,7 +242,7 @@
 					</div>
 				</div>
 			</div>
-		</transition>
+		</transition> -->
 		<!-- <transition name="fade">
 			<PopBox :list="list" v-show='show7' @updata="getPopIndex"></PopBox>
 		</transition> -->
@@ -290,7 +291,8 @@
 			</div>
 		</transition> -->
 		<!--执法仪监控-->
-    <el-button type="primary" @click="offHikShow"  v-if="hikShow" style="position: absolute;margin-left: 2052px; margin-top: 200px">关闭执法仪</el-button>
+		<el-button type="primary" @click="offHikShow" v-if="hikShow"
+			style="position: absolute;margin-left: 2052px; margin-top: 200px">关闭执法仪</el-button>
 		<hik2 :codes="codes" ref="videoPlayer2" :playMode="1"></hik2>
 		<!-- 危房监控 山塘防溺水监控-->
 		<hik5 :codes="codes" ref="videoPlayer5" :playMode="1"></hik5>
@@ -300,10 +302,10 @@
 				v-show="show6">
 		</transition> -->
 		<img v-if="showPBtn" src="../bgImages/网格事件.png"
-		style="z-index: 20;position: fixed;right: 0;bottom: 469px;cursor: pointer;" @click="showP = !showP">
+			style="z-index: 20;position: fixed;right: 0;bottom: 469px;cursor: pointer;" @click="showP = !showP">
 		<transition name="fade">
 			<div class="sj" v-if="showP">
-				<div class="sj-pop sj-yiji" >
+				<div class="sj-pop sj-yiji">
 					<!-- <div class="sj-pop-title"><span>一级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
@@ -732,9 +734,15 @@
 		<transition name="fade">
 			<div v-show="show17">
 				<div class="pop-left">
-					<div class="pop-bg-box wjx-bg">
+					<div class="pop-bg-box wjx-bg" v-show="!showWjxList">
 						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
-<!--						<img src="../bgImages/5+x.png" style="width: 472px;height: 218px;position:absolute;top: 60px;right: 25px">-->
+					</div>
+					<div class="pop-bg-box wjx-bg2"  v-show="showWjxList" >
+						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
+						<div class="pop-common-box">
+							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
+								@click="toQiye(index,item)">· {{item.name}}</div>
+						</div>
 					</div>
 					<div class="pop-bg-box wfgl-bg">
 						<div class="pop-bg-btn" @click="weiffangguanli=!weiffangguanli">查看全部></div>
@@ -761,7 +769,10 @@
 				</div>
 				<div class="pop-bottom">
 					<div class="pop-bg-box fns-bg">
-						<div class="pop-bg-btn" @click="fangnishui=!fangnishui">查看全部></div>
+						<div class="pop-bg-btn">
+							
+							<div @click="fangnishui=!fangnishui">查看全部></div>
+						</div>
 						<div class="pop-bg-list" v-show="fangnishui">
 							<div class="pop-common-title2">
 								<span></span>
@@ -795,30 +806,30 @@
 					</div>
 
 
-					<div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai" >
+					<div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">
 						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
 					</div>
 
-            <div class="pop-bg-box dzzh-bg2" style="width: 331px;" v-show="dizhizaihai" >
-              <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
-              <div class="pop-bg-list" >
-                <div class="pop-common-box" style="height: 200px;">
-                  <div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
-                       @click="toFns(item)">
-                    {{item.name}}
-                  </div>
-                </div>
-              </div>
+					<div class="pop-bg-box dzzh-bg2" style="width: 331px;" v-show="dizhizaihai">
+						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
+						<div class="pop-bg-list">
+							<div class="pop-common-box" style="height: 200px;">
+								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
+									@click="toFns(item)">
+									{{item.name}}
+								</div>
+							</div>
+						</div>
 
 
 
-<!--          <div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">-->
-<!--            <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>-->
+						<!--          <div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">-->
+						<!--            <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>-->
 
-<!--            </div>-->
-<!--            &lt;!&ndash;						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"&ndash;&gt;-->
-<!--            &lt;!&ndash;							@click="clickImg">&ndash;&gt;-->
-          </div>
+						<!--            </div>-->
+						<!--            &lt;!&ndash;						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"&ndash;&gt;-->
+						<!--            &lt;!&ndash;							@click="clickImg">&ndash;&gt;-->
+					</div>
 
 
 					<div class="pop-bg-box bpwy-bg" style="width: 331px;">
@@ -839,7 +850,7 @@
 						</div>
 						<!-- <my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class"
 							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts> -->
-							<img src="../bgImages/边坡位移表.png">
+						<img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;">
 					</div>
 					<div class="pop-bg-box ljfl-bg">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
@@ -880,7 +891,8 @@
 					<div class="pop-wjxBg" v-show="type==2">
 						<div class="wjx-tap">
 							<div class="wjx-top-bg">
-								<div v-for="(item,index) in wjxTapList" :key="index" @click="switchDay(index)" :class="{'wjx-active':tapIndex==index}">{{item.day}}</div>
+								<div v-for="(item,index) in wjxTapList" :key="index" @click="switchDay(index)"
+									:class="{'wjx-active':tapIndex==index}">{{item.day}}</div>
 							</div>
 							<div class="wjx-bottom-bg">
 								<div class="wjx-bottom-item">
@@ -898,32 +910,41 @@
 							</div>
 						</div>
 						<div class="wjx-list">
-							<div class="wjx-list-item" v-for="(item,index) in wjxList" :key="index" @click="showWjxDetail(item)">
+							<div class="wjx-list-item" v-for="(item,index) in wjxList" :key="index"
+								@click="showWjxDetail(item)">
 								<span>协作人：{{item.name}}</span>
 								<span>巡查人：{{item.name2}}</span>
 								<span>检查时间：{{item.time}}</span>
 								<span>店铺名称：{{item.shopName}}</span>
-								<span>检查结果：{{item.status}}</span>
+								<span>检查结果：<span :style="item.status=='异常'?'color:#FF002A':''">{{item.status}}</span></span>
 							</div>
 						</div>
 						<div class="wjx-detail" v-show="isShowWjxDetail">
-							<img @click="isShowWjxDetail=false" class="cancelLogo" src="../../public/static/images/cancel.png"
-							v-show="isShowWjxDetail" style="position: absolute;top: -20px;right: -20px;">
+							<img @click="isShowWjxDetail=false" class="cancelLogo"
+								src="../../public/static/images/cancel.png" v-show="isShowWjxDetail"
+								style="position: absolute;top: -20px;right: -20px;">
 							<img src="../bgImages/wjxDetailT.png" class="wjx-detail-title">
 							<span>巡查人：{{wjxDetail.name2}}</span>
 							<span>检查时间：{{wjxDetail.time}}</span>
 							<span>协作人：{{wjxDetail.name}}</span>
 							<span>店铺名称：{{wjxDetail.shopName}}</span>
-							<span>查询时间：{{wjxDetail.time2}}</span>
+							<!-- <span>查询时间：{{wjxDetail.time2}}</span> -->
 							<div class="wjx-detail-status">
-								<span style="margin-bottom: 0;" class="wjx-detail-status-item">检查结果：<span :style="wjxDetail.status=='异常'?'color:#FF002A':''">{{wjxDetail.status}}</span></span>
+								<span style="margin-bottom: 0;" class="wjx-detail-status-item">检查结果：<span
+										:style="wjxDetail.status=='异常'?'color:#FF002A':''">{{wjxDetail.status}}</span></span>
 								<img src="../bgImages/wjxDetailL.png">
-								<span class="wjx-detail-status-item">市容检查：<span :style="wjxDetail.srjc=='异常'?'color:#FF002A':''">{{wjxDetail.srjc}}</span></span>
-								<span class="wjx-detail-status-item">油烟检查：<span :style="wjxDetail.yyjc=='异常'?'color:#FF002A':''">{{wjxDetail.yyjc}}</span></span>
-								<span class="wjx-detail-status-item">污水排放：<span :style="wjxDetail.wspf=='异常'?'color:#FF002A':''">{{wjxDetail.wspf}}</span></span>
-								<span class="wjx-detail-status-item">垃圾分类：<span :style="wjxDetail.ljfl=='异常'?'color:#FF002A':''">{{wjxDetail.ljfl}}</span></span>
-								<span class="wjx-detail-status-item">燃气安全：<span :style="wjxDetail.rqaq=='异常'?'color:#FF002A':''">{{wjxDetail.rqaq}}</span></span>
-								<span class="wjx-detail-status-item">其他检查：<span :style="wjxDetail.qtjc=='异常'?'color:#FF002A':''">{{wjxDetail.qtjc}}</span></span>
+								<span class="wjx-detail-status-item">市容检查：<span
+										:style="wjxDetail.srjc=='异常'?'color:#FF002A':''">{{wjxDetail.srjc}}</span></span>
+								<span class="wjx-detail-status-item">油烟检查：<span
+										:style="wjxDetail.yyjc=='异常'?'color:#FF002A':''">{{wjxDetail.yyjc}}</span></span>
+								<span class="wjx-detail-status-item">污水排放：<span
+										:style="wjxDetail.wspf=='异常'?'color:#FF002A':''">{{wjxDetail.wspf}}</span></span>
+								<span class="wjx-detail-status-item">垃圾分类：<span
+										:style="wjxDetail.ljfl=='异常'?'color:#FF002A':''">{{wjxDetail.ljfl}}</span></span>
+								<span class="wjx-detail-status-item">燃气安全：<span
+										:style="wjxDetail.rqaq=='异常'?'color:#FF002A':''">{{wjxDetail.rqaq}}</span></span>
+								<span class="wjx-detail-status-item">其他检查：<span
+										:style="wjxDetail.qtjc=='异常'?'color:#FF002A':''">{{wjxDetail.qtjc}}</span></span>
 							</div>
 						</div>
 					</div>
@@ -937,6 +958,7 @@
 </template>
 
 <script>
+	import bpwyb from '../bgImages/边坡位移表.png'
 	import myCharts from '@/components/MyCharts.vue'
 	import vueSeamlessScroll from 'vue-seamless-scroll'
 	import PopBox from '@/components/PopBox.vue'
@@ -952,20 +974,21 @@
 		props: {},
 		data() {
 			return {
+				bpwyb,
 				wjxTapList: [{
 					day: '今日',
 					order: 0,
-					check: 5,
+					check: 3,
 					task: 0
-				},{
+				}, {
 					day: '本周',
 					order: 0,
-					check: 65,
+					check: 20,
 					task: 0
-				},{
+				}, {
 					day: '本月',
 					order: 0,
-					check: 295,
+					check: 65,
 					task: 0
 				}],
 				tapIndex: 1,
@@ -982,7 +1005,7 @@
 					ljfl: '正常',
 					rqaq: '正常',
 					qtjc: '正常'
-				},{
+				}, {
 					name: '高金财',
 					name2: '毛松',
 					time: '2021/7/9',
@@ -1017,7 +1040,7 @@
 				wfOption: {
 					xAxis: {
 						type: 'category',
-						data: ['1949以前', '1960-1970', '1970-1980', '1980-1990', '1990-2000','2000-2010','2010-2020'],
+						data: ['1949以前', '1960-1970', '1970-1980', '1980-1990', '1990-2000', '2000-2010', '2010-2020'],
 						axisLine: {
 							lineStyle: {
 								color: "#fff"
@@ -1032,8 +1055,8 @@
 						}
 					},
 					yAxis: {
-					  max:5,
-						minInterval:1,
+						max: 5,
+						minInterval: 1,
 						type: 'value',
 						splitLine: {
 							show: false
@@ -1050,7 +1073,7 @@
 						},
 					},
 					series: [{
-						data: [1, 0, 1, 0, 0,0,0],
+						data: [1, 0, 1, 0, 0, 0, 0],
 						type: 'bar',
 						barWidth: 20
 					}],
@@ -1099,28 +1122,29 @@
 					}
 				},
 				stskOption: {
-          color: ['#5da7f5', '#FF8352', '#E271DE', '#F8456B','#00FFFF', '#4AEAB0', '#b798e5'],
-          tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
-          },
-          legend: {
-            left: 'center',
-            top: 'bottom',
-            data: []
-          },
-          toolbox: {
-          },
-          series: [
-            {
-              name: '面积模式',
-              type: 'pie',
-              radius: [5, 70],
-              center: ['50%', '50%'],
-              roseType: 'area',
-              data: []
-            }
-          ]
+					color: ['#5da7f5', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0', '#b798e5'],
+					tooltip: {
+						trigger: 'item',
+						formatter: '{a} <br/>{b} : {c} ({d}%)'
+					},
+					legend: {
+						left: 'center',
+						top: 'bottom',
+						data: []
+					},
+					toolbox: {},
+					series: [{
+						name: '面积模式',
+						type: 'pie',
+						radius: '100%',
+						center: ['50%', '50%'],
+						roseType: 'area',
+						data: [],
+						top: "30",
+						left: "30",
+						right: "30",
+						bottom: "30"
+					}],
 				},
 				fnsOption: {
 					xAxis: {
@@ -1140,7 +1164,7 @@
 						}
 					},
 					yAxis: {
-						minInterval:1,
+						minInterval: 1,
 						type: 'value',
 						splitLine: {
 							show: false
@@ -1169,198 +1193,197 @@
 					}
 				},
 				bpwyOption: {
-          // 三个图表位置配置
-          grid: [{
-            top: '2%',
-            height: "25%",
-            width: "85%"
-          }, {
-            top: '35%',
-            height: "25%",
-            width: "85%"
-          }, {
-            top: '70%',
-            height: "25%",
-            width: "85%"
-          }],
-          title: [{
-            left: 'center',
-            text: '监测点1',
-            textStyle: {
-              color: '#DDD'
-            }
-          }, {
-            top: '30%',
-            left: 'center',
-            text: '监测点2',
-            textStyle: {
-              color: '#DDD'
-            }
-          },
-            {
-              top: '65%',
-              left: 'center',
-              text: '监测点3',
-              textStyle: {
-                color: '#DDD'
-              }
-            }],
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'shadow',
-            }
-          },
-          // x轴配置
-          xAxis: [{
-            gridIndex: 0,
-            type: 'category',
-            data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00','22:00'],
-            axisLine: {
-              lineStyle: {
-                color: "#999"
-              }
-            }
-          },
-            {
-              gridIndex: 1,
-              type: 'category',
-              data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00','22:00'],
-              axisLine: {
-                lineStyle: {
-                  color: "#999"
-                }
-              }
-            },
-            {
-              gridIndex: 2,
-              type: 'category',
-              data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00','22:00'],
-              axisLine: {
-                lineStyle: {
-                  color: "#999"
-                }
-              }
-            }
-          ],
-          // y轴配置
-          yAxis: [{
-            type: 'value',
-            gridIndex: 0, //对应前面grid的索引位置（第1个）
-            splitNumber: 4,
-            splitLine: {
-              lineStyle: {
-                type: 'dashed',
-                color: '#DDD'
-              }
-            },
-            axisLine: {
-              show: false,
-              lineStyle: {
-                color: "#333"
-              },
-            },
-            nameTextStyle: {
-              color: "#999"
-            },
-            splitArea: {
-              show: false
-            }
-          }, {
-            type: 'value',
-            gridIndex: 1, //对应前面grid的索引位置（第2个）
-            splitNumber: 4,
-            splitLine: {
-              lineStyle: {
-                type: 'dashed',
-                color: '#DDD'
-              }
-            },
-            axisLine: {
-              show: false,
-              lineStyle: {
-                color: "#333"
-              },
-            },
-            nameTextStyle: {
-              color: "#999"
-            },
-            splitArea: {
-              show: false
-            }
-          },
-            {
-              type: 'value',
-              gridIndex: 2, //对应前面grid的索引位置（第3个）
-              splitNumber: 4,
-              splitLine: {
-                lineStyle: {
-                  type: 'dashed',
-                  color: '#DDD'
-                }
-              },
-              axisLine: {
-                show: false,
-                lineStyle: {
-                  color: "#333"
-                },
-              },
-              nameTextStyle: {
-                color: "#999"
-              },
-              splitArea: {
-                show: false
-              }
-            }
-          ],
-          series: [{
-            xAxisIndex: 0,
-            yAxisIndex: 0,
-            type: 'line',
-            smooth: true,
-            symbolSize: 8,
-            data: [0, 0, 0, 0, 0, 0,0],
-            barWidth: '30%',
-            itemStyle: {
-              normal: {
-                color: '#f0c725'
-              }
-            }
-          },
-            {
-              xAxisIndex: 1,
-              yAxisIndex: 1,
-              type: 'line',
-              smooth: true,
-              symbolSize: 8,
-              data: [0, 0, 0, 0, 0, 0,0],
-              barWidth: '30%',
-              itemStyle: {
-                normal: {
-                  color: '#16f892'
-                }
-              }
-            },
+					// 三个图表位置配置
+					grid: [{
+						top: '2%',
+						height: "25%",
+						width: "85%"
+					}, {
+						top: '35%',
+						height: "25%",
+						width: "85%"
+					}, {
+						top: '70%',
+						height: "25%",
+						width: "85%"
+					}],
+					title: [{
+							left: 'center',
+							text: '监测点1',
+							textStyle: {
+								color: '#DDD'
+							}
+						}, {
+							top: '30%',
+							left: 'center',
+							text: '监测点2',
+							textStyle: {
+								color: '#DDD'
+							}
+						},
+						{
+							top: '65%',
+							left: 'center',
+							text: '监测点3',
+							textStyle: {
+								color: '#DDD'
+							}
+						}
+					],
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							type: 'shadow',
+						}
+					},
+					// x轴配置
+					xAxis: [{
+							gridIndex: 0,
+							type: 'category',
+							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
+							axisLine: {
+								lineStyle: {
+									color: "#999"
+								}
+							}
+						},
+						{
+							gridIndex: 1,
+							type: 'category',
+							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
+							axisLine: {
+								lineStyle: {
+									color: "#999"
+								}
+							}
+						},
+						{
+							gridIndex: 2,
+							type: 'category',
+							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
+							axisLine: {
+								lineStyle: {
+									color: "#999"
+								}
+							}
+						}
+					],
+					// y轴配置
+					yAxis: [{
+							type: 'value',
+							gridIndex: 0, //对应前面grid的索引位置（第1个）
+							splitNumber: 4,
+							splitLine: {
+								lineStyle: {
+									type: 'dashed',
+									color: '#DDD'
+								}
+							},
+							axisLine: {
+								show: false,
+								lineStyle: {
+									color: "#333"
+								},
+							},
+							nameTextStyle: {
+								color: "#999"
+							},
+							splitArea: {
+								show: false
+							}
+						}, {
+							type: 'value',
+							gridIndex: 1, //对应前面grid的索引位置（第2个）
+							splitNumber: 4,
+							splitLine: {
+								lineStyle: {
+									type: 'dashed',
+									color: '#DDD'
+								}
+							},
+							axisLine: {
+								show: false,
+								lineStyle: {
+									color: "#333"
+								},
+							},
+							nameTextStyle: {
+								color: "#999"
+							},
+							splitArea: {
+								show: false
+							}
+						},
+						{
+							type: 'value',
+							gridIndex: 2, //对应前面grid的索引位置（第3个）
+							splitNumber: 4,
+							splitLine: {
+								lineStyle: {
+									type: 'dashed',
+									color: '#DDD'
+								}
+							},
+							axisLine: {
+								show: false,
+								lineStyle: {
+									color: "#333"
+								},
+							},
+							nameTextStyle: {
+								color: "#999"
+							},
+							splitArea: {
+								show: false
+							}
+						}
+					],
+					series: [{
+							xAxisIndex: 0,
+							yAxisIndex: 0,
+							type: 'line',
+							smooth: true,
+							symbolSize: 8,
+							data: [0, 0, 0, 0, 0, 0, 0],
+							barWidth: '30%',
+							itemStyle: {
+								normal: {
+									color: '#f0c725'
+								}
+							}
+						},
+						{
+							xAxisIndex: 1,
+							yAxisIndex: 1,
+							type: 'line',
+							smooth: true,
+							symbolSize: 8,
+							data: [0, 0, 0, 0, 0, 0, 0],
+							barWidth: '30%',
+							itemStyle: {
+								normal: {
+									color: '#16f892'
+								}
+							}
+						},
 
-            {
-              xAxisIndex: 2,
-              yAxisIndex: 2,
-              type: 'line',
-              smooth: true,
-              symbolSize: 8,
-              data: [0, 0, 0, 0, 0, 0,0],
-              barWidth: '30%',
-              itemStyle: {
-                normal: {
-                  color: '#f0c725'
-                }
-              }
-            }
-          ]
+						{
+							xAxisIndex: 2,
+							yAxisIndex: 2,
+							type: 'line',
+							smooth: true,
+							symbolSize: 8,
+							data: [0, 0, 0, 0, 0, 0, 0],
+							barWidth: '30%',
+							itemStyle: {
+								normal: {
+									color: '#f0c725'
+								}
+							}
+						}
+					]
 
 				},
-
-
 				beforeIndex: 0,
 				afterIndex: 0,
 				srcBeforeList: [],
@@ -1400,6 +1423,7 @@
 				showMoreDetail: false, //四个平台点击详情弹窗
 				wgryShow: false, //显示网格人员列表
 				showPBtn: true, //四个平台显隐按钮
+				showWjxList: false, //5+x图列表切换
 				videoUrl: '',
 				keyWord: '',
 				ydyh: false,
@@ -1688,7 +1712,7 @@
 			offHik() {
 				this.$refs.videoPlayer2.off()
 				this.$refs.videoPlayer5.off()
-        this.hikShow = false;
+				this.hikShow = false;
 			},
 			//点击小图还原
 			toMapA() {
@@ -1697,8 +1721,8 @@
 				this.show8 = false
 				this.wgryShow = false
 				this.$parent.test("网格");
-				this.onOff('打开图层','网格')
-				this.onOff('关闭图层','一户一档人口')
+				this.onOff('打开图层', '网格')
+				this.onOff('关闭图层', '一户一档人口')
 				this.offHik()
 				this.getEventList("")
 				this.getGridTotal()
@@ -1718,13 +1742,13 @@
 
 				this.show2 = false
 			},
-      offHikShow(){
-        this.$refs.videoPlayer2.off()
-        this.hikShow = false;
-      },
+			offHikShow() {
+				this.$refs.videoPlayer2.off()
+				this.hikShow = false;
+			},
 			//点击执法仪看监控
 			toZf(item) {
-			  this.hikShow = true;
+				this.hikShow = true;
 				this.$refs.videoPlayer2.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer2.initPlugin()
@@ -1803,7 +1827,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
-					this.onOff('关闭图层','一户一档人口')
+					this.onOff('关闭图层', '一户一档人口')
 					this.$parent.test("网格");
 					this.onOff("打开图层", "网格")
 					this.show2 = false
@@ -1863,7 +1887,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff("关闭图层", "执法记录仪")
-					this.onOff('关闭图层','一户一档人口')
+					this.onOff('关闭图层', '一户一档人口')
 					this.onOff("关闭图层", "网格")
 					this.show2 = false
 					this.show = false
@@ -2101,16 +2125,16 @@
 				this.getGridDetail(item.id)
 			},
 			peopleMap(item) {
-				this.onOff('打开图层','一户一档人口')
+				this.onOff('打开图层', '一户一档人口')
 				let a = {
 					layer: '一户一档',
 					name: item.name
 				}
 				let that = this
-				setTimeout(function(){
+				setTimeout(function() {
 					that.$parent.test(a)
-				},1000)
-				this.onOff('关闭图层','网格')
+				}, 1000)
+				this.onOff('关闭图层', '网格')
 				this.show12 = true
 			},
 			getGridDetail(id) {
@@ -2366,8 +2390,14 @@
 				this.$ajax.getCamera('危房管理').then(res => {
 					this.wfList = res
 				})
-				that.$ajax.getCamera('泥石流监控').then(res => {
-					that.dzList = res
+				this.$ajax.getCamera('泥石流监控').then(res => {
+					this.dzList = res
+					this.$ajax.getCamera('内涝点监管').then(resp => {
+						this.wyList = resp
+						this.$nextTick(()=>{
+							this.dzList.push(...resp)
+						})
+					})
 				})
 				this.$ajax.getCamera2({
 					type: '山塘水库',
@@ -2385,16 +2415,17 @@
 					this.stList = res
 				})
 				this.getfnsList()
-				setInterval(function() {that.getfnsList()},300000)
+				setInterval(function() {
+					that.getfnsList()
+				}, 300000)
 				this.$ajax.getCamera('垃圾分类').then(res => {
 					this.ljflglList = res
 				})
 				this.$ajax.getCamera('一企一档').then(res => {
 					this.qyList2 = res
+					console.log(res)
 				})
-				this.$ajax.getCamera('内涝点监管').then(res => {
-					this.wyList = res
-				})
+				
 				// this.$ajax.getCamera('边坡位移').then(res=> {
 				// 	this.wyList = res
 				// })
@@ -2405,6 +2436,7 @@
 				this.commonOption = option
 			},
 			showWjx() {
+				this.showWjxList = !this.showWjxList
 				this.centerShow = true
 				this.type = 2
 			},
@@ -2656,6 +2688,7 @@
 		background: url(../bgImages/网格列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
+
 		.pop-title {
 			width: 100%;
 			background-size: 100% 32px;
@@ -2990,9 +3023,9 @@
 	.pop-top {
 		// width: 520px;
 		// height: 270px;
-		border: 1px solid rgb(30,42,108);
+		border: 1px solid rgb(30, 42, 108);
 		border-radius: 10px;
-		background-color: rgba(30,42,108, 0.5);
+		background-color: rgba(30, 42, 108, 0.5);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -3291,9 +3324,9 @@
 		position: absolute;
 		bottom: 90px;
 		left: 35px;
-		border: 1px solid rgb(30,42, 108);
+		border: 1px solid rgb(30, 42, 108);
 		border-radius: 10px;
-		background-color: rgba(30,42, 108, 0.5);
+		background-color: rgba(30, 42, 108, 0.5);
 		display: flex;
 		padding: 10px 20px;
 		box-sizing: border-box;
@@ -3483,7 +3516,7 @@
 		}
 
 		.pop-bg-list {
-      margin-left: 10px;
+			margin-left: 10px;
 			display: flex;
 			flex-direction: column;
 			flex: 1;
@@ -3527,6 +3560,12 @@
 		background-size: 100% 100%;
 		margin-bottom: 20px;
 	}
+	
+	.wjx-bg2 {
+		background: url(../bgImages/5+x平台空.png) no-repeat;
+		background-size: 100% 100%;
+		margin-bottom: 20px;
+	}
 
 	.wfgl-bg {
 		background: url(../bgImages/危房管理.png) no-repeat;
@@ -3558,6 +3597,7 @@
 		background: url(../bgImages/地质灾害管理.png) no-repeat;
 		background-size: 100% 100%;
 	}
+
 	.dzzh-bg2 {
 		background: url(../bgImages/地质灾害管理2.png) no-repeat;
 		background-size: 100% 100%;
@@ -3574,10 +3614,12 @@
 		background: url(../bgImages/九龙湖一店通.png) no-repeat;
 		background-size: 100% 100%;
 		position: relative;
+
 		.wjx-tap {
 			position: absolute;
 			left: 30px;
 			top: 115px;
+
 			.wjx-top-bg {
 				width: 154px;
 				height: 26px;
@@ -3586,12 +3628,14 @@
 				display: flex;
 				align-items: center;
 				margin-left: 115px;
+
 				div {
 					width: 33%;
 					color: #fff;
 					text-align: center;
 					line-height: 26px;
 				}
+
 				.wjx-active {
 					width: 53px;
 					height: 24px;
@@ -3600,6 +3644,7 @@
 					border-radius: 5px;
 				}
 			}
+
 			.wjx-bottom-bg {
 				width: 435px;
 				color: #fff;
@@ -3607,11 +3652,13 @@
 				justify-content: space-between;
 				align-items: center;
 				margin-top: 20px;
+
 				.wjx-bottom-item {
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					font-size: 20px;
+
 					div:first-child {
 						width: 44px;
 						height: 44px;
@@ -3624,6 +3671,7 @@
 				}
 			}
 		}
+
 		.wjx-list {
 			position: absolute;
 			top: 170px;
@@ -3633,6 +3681,7 @@
 			height: 320px;
 			box-sizing: border-box;
 			overflow-y: scroll;
+
 			.wjx-list-item {
 				width: 369px;
 				height: 127px;
@@ -3640,16 +3689,17 @@
 				background-size: 100% 100%;
 				display: flex;
 				flex-direction: column;
-				color: #fff;
+				color:  #56DDFF;
 				margin-bottom: 15px;
 				padding: 15px;
 				box-sizing: border-box;
 			}
 		}
+
 		.wjx-detail {
 			width: 574px;
 			left: 450px;
-			background-color: rgb(5,15,60);
+			background-color: rgb(5, 15, 60);
 			background: url(../bgImages/wjxDetailBg.png) no-repeat;
 			background-size: 100% 100%;
 			padding: 0 40px;
@@ -3660,17 +3710,20 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%,-50%);
+			transform: translate(-50%, -50%);
+
 			.wjx-detail-title {
 				margin: 16px auto;
 				width: 100%;
 			}
+
 			span {
 				width: 100%;
 				font-size: 18px;
 				color: #56DDFF;
 				margin-bottom: 5px;
 			}
+
 			.wjx-detail-status {
 				width: 491px;
 				height: 328px;
@@ -3680,6 +3733,7 @@
 				flex-direction: column;
 				padding: 30px;
 				box-sizing: border-box;
+
 				.wjx-detail-status-item {
 					width: 100%;
 					font-size: 18px;

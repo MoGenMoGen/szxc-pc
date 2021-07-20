@@ -253,21 +253,58 @@
 			choose(newindex,index) {
 				this.isActive = index
 				this.isChildShow = false
+				if (index !== 3&&index!==5) {
+					this.$refs.cwgk.offShow()
+				}
+				if (index !== 0) {
+					this.$refs.summary.offHik()
+				}
+				if (index !== 4){
+				  this.$refs.Zhly.offHik()
+				}
+				if (index !== 2) {
+					this.$refs.jczl.offHik()
+				}
 				if(index == 1) {
 					this.tabActive = newindex
 					this.$refs.Zhdj.getIndex(newindex)
+					this.onOff("打开图层", "红色景点")
+					this.onOff("打开图层", "红色路线")
+					this.offAllLy()
+					this.offAllJc()
+					this.offAllYh()
 				}  else if(index == 2) {
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
+					if(this.$refs.jczl.e==0) {
+						// this.test("网格")
+						this.onOff("打开图层", "网格")
+					}
+					this.offAllDj()
+					this.offAllLy()
+					this.offAllYh()
 				} else if (index==3) {
 					this.tabActive = newindex
 					this.$refs.cwgk.getIndex(newindex)
+					this.offAllDj()
+					this.offAllJc()
+					this.offAllYh()
+					this.offAllLy()
 				} else if (index==4) {
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
+					this.onOff("打开图层", "农家乐")
+					this.onOff("打开图层", "旅游景点")
+					this.offAllDj()
+					this.offAllJc()
+					this.offAllYh()
 				} else if (index==5) {
 					this.tabActive = newindex
 					this.$refs.bmfw.getIndex(newindex)
+					this.offAllDj()
+					this.offAllJc()
+					this.offAllLy()
+					this.offAllYh()
 				}
 			}
 		},
