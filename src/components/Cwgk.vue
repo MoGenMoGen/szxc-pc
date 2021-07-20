@@ -6,14 +6,14 @@
 				<img :src="icBj" class="bg">
 				<div class="wrapper">
 					<div class="cun-top">
-						<div class="cun-left">
+						<!-- <div class="cun-left">
 							<div class="chd">
 								<p>招租信息</p>
 								<img :src="icChd">
 							</div>
 							<div class="zhaozu-info">
 								<div class="zhaozu-title">
-									<!-- <span>序号</span> -->
+									<span>序号</span>
 									<span>承租方</span>
 									<span>面积</span>
 									<span>租期</span>
@@ -22,7 +22,7 @@
 								</div>
 								<div style="max-height: 400px;overflow-y: auto;">
 									<div v-for="(item,index) in zhaozuList" :key="index" class="zhaozu-item">
-										<!-- <span>{{index+1}}</span> -->
+										<span>{{index+1}}</span>
 										<span>{{item.name}}</span>
 										<span>{{item.area}}</span>
 										<span>{{item.time}}</span>
@@ -31,8 +31,8 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="cun-left" style="width: 74%">
+						</div> -->
+						<div class="cun-left" style="width: 100%">
 							<div class="chd">
 								<p>财务公开</p>
 								<img :src="icChf">
@@ -54,34 +54,29 @@
 						</div>
 					</div>
 					<div class="cun-top">
-						<div class="cun-left">
+						<!-- <div class="cun-left">
 							<div class="chd">
 								<p>业务公开</p>
 								<img :src="icChd">
 							</div>
 							<div class="yewu-info">
 								<div class="yewu-title">
-									<!-- <span>序号</span> -->
+									<span>序号</span>
 									<span>承租方</span>
 									<span>租期</span>
 									<span>租金支付</span>
 								</div>
 								<div style="max-height: 400px;overflow-y: auto;">
 									<div class="yewu-item" v-for="(item,index) in yewuList" :key="index">
-										<!-- <span>{{index+1}}</span> -->
+										<span>{{index+1}}</span>
 										<span>{{item.name}}</span>
 										<span>{{item.time}}</span>
 										<span>{{item.money}}</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="cun-left" style="width: 74%">
-							<!--							<div class="chd">-->
-							<!--								<p>招租信息</p>-->
-							<!--								<img :src="icChf" >-->
-							<!--							</div>-->
-
+						</div> -->
+						<div class="cun-left" style="width: 100%">
 							<div class="reverseArrow">
 								<div v-for="item in list3" :key="item.id">
 									<img :src="icJtx">
@@ -96,11 +91,6 @@
 										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img">
 										</el-image>
 									</div>
-									<!--									<div class="top-label">-->
-									<!--										<img :src="icJts">-->
-									<!--										<p>{{item.name}}</p>-->
-									<!--									</div>-->
-
 								</li>
 							</ul>
 						</div>
@@ -116,7 +106,7 @@
 		<transition name="fade">
 			<div class="supervise-box" v-show="superviseShow">
 				<div class="pop-common cjh">
-					<div class="duties" @click="showDuties">
+					<div class="duties" @click="showDuties(1)">
 						<span>机构职能</span>
 					</div>
 					<div class="pop-inner-title">
@@ -126,7 +116,8 @@
 						<span>联系电话</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in cunjianhuiList" :key='index' class="pop-inner-item" @click="showCjhImg(item.img)">
+						<div v-for="(item,index) in cunjianhuiList" :key='index' class="pop-inner-item"
+							@click="showCjhImg(item.img)">
 							<span style="width: 15%;">{{ item.name }}</span>
 							<span style="width: 15%;">{{ item.birthday }}</span>
 							<span>{{ item.add }}</span>
@@ -135,7 +126,7 @@
 					</div>
 				</div>
 				<div class="pop-common cjw">
-					<div class="duties" @click="showDuties">
+					<div class="duties" @click="showDuties(2)">
 						<span>机构职能</span>
 					</div>
 					<div class="pop-inner-title">
@@ -154,7 +145,7 @@
 					</div>
 				</div>
 				<div class="pop-common sjh">
-					<div class="duties" @click="showDuties">
+					<div class="duties" @click="showDuties(3)">
 						<span>机构职能</span>
 					</div>
 					<div class="pop-inner-title">
@@ -177,7 +168,8 @@
 		<transition name="fade">
 			<div class="cjhImg" v-show="imgShow">
 				<img :src="imgUrl">
-				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="imgShow = false" v-show="imgShow">
+				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="imgShow = false"
+					v-show="imgShow">
 			</div>
 		</transition>
 		<transition name="fade">
@@ -189,7 +181,8 @@
 					<span>满意度调查</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item" @click="showCmssDetail(item)">
+					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item"
+						@click="showCmssDetail(item)">
 						<span style="width: 15%;">{{ index+1 }}</span>
 						<span style="width: 15%;">{{ item.time }}</span>
 						<span>{{ item.title }}</span>
@@ -200,8 +193,16 @@
 		</transition>
 		<transition name="fade">
 			<div class="cmss-detail" v-show="cmssDetailShow">
-				<span>{{cmssDetail.title}}</span>
-				
+				<img :src="cmssDetail.img"/>
+				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="cmssDetailShow = false"
+					v-show="cmssDetailShow">
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="mytj-detail" v-show="mytjDetailShow">
+				<img :src="mytjDetail.img"/>
+				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="mytjDetailShow = false"
+					v-show="mytjDetailShow">
 			</div>
 		</transition>
 		<transition name="fade">
@@ -213,7 +214,8 @@
 					<span>事后满意度调查</span>
 				</div>
 				<div class="pop-inner-box">
-					<div v-for="(item,index) in mytjList" :key='index' class="pop-inner-item" @click="showMytjDetail(item)">
+					<div v-for="(item,index) in mytjList" :key='index' class="pop-inner-item"
+						@click="showMytjDetail(item)">
 						<span style="width: 10%;">{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.feasibility }}</span>
@@ -235,16 +237,60 @@
 						</el-image>
 					</div>
 				</div>
-				<div :style="{'background-image': 'url('+ qlcjsw +')'}" v-if="lzxjCont&&lzxjIndex==1" class="lzxg-imgBg2">
+				<div :style="{'background-image': 'url('+ qlcjsw +')'}" v-if="lzxjCont&&lzxjIndex==1"
+					class="lzxg-imgBg2">
 					<div v-for="(item,index) in lzxjCont" :key="index" class="lzxg-item">
 						<el-image :src="item" :preview-src-list="lzxjCont" style="width: 184px;height: 205px;">
 						</el-image>
 					</div>
 				</div>
-				<div :style="{'background-image': 'url('+ xwqlmh +')'}" v-if="lzxjCont&&lzxjIndex==2" class="lzxg-imgBg">
+				<div :style="{'background-image': 'url('+ xwqlmh +')'}" v-if="lzxjCont&&lzxjIndex==2"
+					class="lzxg-imgBg">
 					<div v-for="(item,index) in lzxjCont" :key="index" class="lzxg-item">
 						<el-image :src="item" :preview-src-list="lzxjCont" style="width: 273px;height: 215px;">
 						</el-image>
+					</div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div class="fxyj" v-show="fxyjShow">
+				<div class="pop-common cbzlht">
+					<div class="pop-inner-title">
+						<span style="width: 5%;">序号</span>
+						<span style="width: 45%;">承租方</span>
+						<span>租期</span>
+						<span style="width: 20%;">租金支付</span>
+						<span style="width: 5%;">预警</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in yewuList" :key='index' class="pop-inner-item"
+							@click="showCjhImg(item.img)">
+							<span style="width: 5%;">{{ index+1 }}</span>
+							<span style="width: 45%;">{{ item.name }}</span>
+							<span>{{ item.time }}</span>
+							<span style="width: 20%;">{{ item.money }}</span>
+							<span style="width: 5%;"><img src="../bgImages/绿.png"/></span>
+						</div>
+					</div>
+				</div>
+				<div class="pop-common cgcjsqk">
+					<div class="pop-inner-title">
+						<span style="width: 50%;">项目</span>
+						<span style="width: 10%;">资金来源</span>
+						<span style="width: 10%;">金额</span>
+						<span style="width: 20%;">承包单位</span>
+						<span style="width: 5%;">预警</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in cgcjsqkList" :key='index' class="pop-inner-item"
+							@click="showCjhImg(item.img)">
+							<span style="width: 50%;">{{ item.name }}</span>
+							<span style="width: 10%;">{{ item.moneyFrom }}</span>
+							<span style="width: 10%;">{{ item.money }}</span>
+							<span style="width: 25%;">{{ item.build }}</span>
+							<span style="width: 5%;"><img src="../bgImages/绿.png"/></span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -261,7 +307,9 @@
 	import icChf from '../images/长横幅.png'
 	import icChd from '../images/短横幅.png'
 	import icBb from '../images/报表.png'
-	import jdjgzz from '../../public/static/images/jdjgzz.png'
+	import cjh from '../../public/static/images/cjh.png'
+	import cjw from '../../public/static/images/cjw.png'
+	import sjh from '../../public/static/images/sjh.png'
 	import hlcj from '../bgImages/hlcl.png'
 	import qlcjsw from '../bgImages/qlcjsw.png'
 	import xwqlmh from '../bgImages/xwqlmh.png'
@@ -277,23 +325,26 @@
 				icChf,
 				icChd,
 				icBb,
-				jdjgzz,
 				hlcj,
 				qlcjsw,
 				xwqlmh,
+				cjh,
+				cjw,
+				sjh,
 				url2: "http://visual.gzvst.top/view/1405180480017412097",
 				cwList: [],
 				imgShow: false,
 				imgUrl: '',
 				cShow: false,
 				show: false,
-				superviseShow:false, //监督机构
+				superviseShow: false, //监督机构
 				cmssShow: false, //村民说事
 				cmssDetailShow: false, //村民说事详情显示
 				mytjShow: false, //民意体检
 				mytjDetailShow: false, //村民说事详情显示
 				lzxjShow: false, //廉政宣教
 				lzxjCont: false, //廉政宣教图片墙
+				fxyjShow: false, //风险预警
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
 				mytjDetail: {}, //民意体检详情
@@ -365,31 +416,42 @@
 					time: '2018.3.1-2023.2.28',
 					money: '每年13000.00',
 				}],
+				cgcjsqkList: [{
+					name: '九龙湖村横溪钱家东侧至高屋段林区道路建设项目边坡勘查工程',
+					moneyFrom: '村里',
+					money: 225000,
+					build: '省工程勘察设计院集团有限公司'
+				},{
+					name: '红色长胜主题村公共景观工程',
+					moneyFrom: '上级补助加村级自筹',
+					money: 235677,
+					build: '市镇海区悦丰建设工程有限公司'
+				}],
 				cunjianhuiList: [{
 					name: '朱丽红',
 					birthday: '1982.04',
 					add: '九龙湖村',
 					phone: '13586887466/670664',
 					img: 'static/images/cjh-zhl.png'
-				},{
+				}, {
 					name: '王海君',
 					birthday: '1956.11',
 					add: '九龙湖村横溪',
 					phone: '13857479443/668443',
 					img: 'static/images/cjh-whj.png'
-				},{
+				}, {
 					name: '程岳定',
 					birthday: '1956.10',
 					add: '九龙家苑一期',
 					phone: '640257',
 					img: 'static/images/cjh-cyd.png'
-				},{
+				}, {
 					name: '姚百寅',
 					birthday: '1962.10',
 					add: '骆兴家园',
 					phone: '663479',
 					img: 'static/images/cjh-yby.png'
-				},{
+				}, {
 					name: '张振高',
 					birthday: '1966.11',
 					add: '九龙湖村长胜',
@@ -401,12 +463,12 @@
 					birthday: '1982.04',
 					add: '九龙湖村',
 					phone: '13586887466/670664'
-				},{
+				}, {
 					name: '程岳定',
 					birthday: '1956.10',
 					add: '九龙家苑一期',
 					phone: '640257'
-				},{
+				}, {
 					name: '张振高',
 					birthday: '1966.11',
 					add: '九龙湖村长胜',
@@ -417,22 +479,22 @@
 					birthday: '1986.11',
 					add: '九龙湖村',
 					phone: '13586887466/670664'
-				},{
+				}, {
 					name: '王海君',
 					birthday: '1956.11',
 					add: '九龙湖村横溪',
 					phone: '13857479443/668443'
-				},{
+				}, {
 					name: '程岳定',
 					birthday: '1956.10',
 					add: '九龙家苑一期',
 					phone: '640257'
-				},{
+				}, {
 					name: '姚百寅',
 					birthday: '1962.10',
 					add: '骆兴家园',
 					phone: '663479'
-				},{
+				}, {
 					name: '张振高',
 					birthday: '1966.11',
 					add: '九龙湖村长胜',
@@ -442,44 +504,60 @@
 					time: '2021.5.19',
 					title: '垃圾分类奖罚措施',
 					detail: '2021年5月19日横溪村民王国兆反映：农家乐经常出现垃圾分类不到位的情况，导致归集点垃圾检查经常出现不合格情况，希望村里对农家乐有罚款制度，未分类的要有罚款措施。九龙湖村两委召开专题会：分析垃圾未分类到位的原因，下步将加强管理，制定奖罚措施，对农家乐进行专项培训。',
-					satisfaction: '98%'
-				},{
+					satisfaction: '98%',
+					img: 'static/images/ljfljfcs.png'
+				}, {
 					time: '2021.5.26',
 					title: '施工围栏设置调整',
 					detail: '2021年5月26日王海君反映：横溪高端民宿项目铁皮围栏太过超出，影响交通，出行不安全。经村班子商量后，与施工方对接，围栏已挪进。',
-					satisfaction: '98%'
-				},{
+					satisfaction: '98%',
+					img: 'static/images/sgwlsztz.png'
+				}, {
 					time: '2021.6.2',
 					title: '路灯遮挡修整',
 					detail: '2021年6月2日村民胡彩娣反映：香山路旁树枝太过茂密，挡住了路灯的灯光，影响出行的安全。村干部进行实地勘察，已安排人员对树枝进行修剪。',
-					satisfaction: '97%'
-				},{
+					satisfaction: '97%',
+					img: 'static/images/ldzdxz.png'
+				}, {
 					time: '2021.6.16',
 					title: '垃圾包巡查',
 					detail: '2021年6月16日村民王品岳反映：因垃圾点位靠马路边，非投放时间段游客经过时经常出现垃圾包。各网格加强垃圾点位巡查，出现垃圾包及时收集处理。',
-					satisfaction: '98%'
+					satisfaction: '98%',
+					img: 'static/images/ljbxc.png'
 				}],
 				mytjList: [{
 					name: '横溪艺术振兴乡村',
 					feasibility: '95',
 					after: '99',
-					detail: '为深入实施乡村振兴战略，加快推进九龙湖镇艺术振兴乡村发展，九龙湖村在横溪自然村推进艺术振兴乡村试点项目。2020年8月9日邀请宁波大学冯老师及其团队入驻九龙湖村横溪自然村对横溪几个公共节点及农家乐、民宿提升进行设计绘制并参与过程打造。该项目包括龙眼泉点位、墙头停车场点位、公交站旁“绿水青山金山银山”点位和文化礼堂旁说事长廊点位。通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。'
-				},{
+					detail: '为深入实施乡村振兴战略，加快推进九龙湖镇艺术振兴乡村发展，九龙湖村在横溪自然村推进艺术振兴乡村试点项目。2020年8月9日邀请宁波大学冯老师及其团队入驻九龙湖村横溪自然村对横溪几个公共节点及农家乐、民宿提升进行设计绘制并参与过程打造。该项目包括龙眼泉点位、墙头停车场点位、公交站旁“绿水青山金山银山”点位和文化礼堂旁说事长廊点位。通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。',
+					img: 'static/images/hxyszxxc.png'
+				}, {
 					name: '红色旅游',
 					feasibility: '96',
 					after: '98',
-					detail: '为庆祝建党100周年，九龙湖村结合红色元素在长胜自然村打造红色长胜主题村。该项目包括红色历史陈列馆、红色九龙湖（牌坊）、创意草野、荷花池、红廉长廊、知青馆、时光邮局等十几个点位。红色线路打造完成后，村容村貌明显改善，红色主题突出，吸引了镇海区各机关单位，各企业单位党支部先后到九龙湖村参观，共同学习革命先辈的光荣事迹，重温入党誓词等，反响好，得到了大家一致好评。'
+					detail: '为庆祝建党100周年，九龙湖村结合红色元素在长胜自然村打造红色长胜主题村。该项目包括红色历史陈列馆、红色九龙湖（牌坊）、创意草野、荷花池、红廉长廊、知青馆、时光邮局等十几个点位。红色线路打造完成后，村容村貌明显改善，红色主题突出，吸引了镇海区各机关单位，各企业单位党支部先后到九龙湖村参观，共同学习革命先辈的光荣事迹，重温入党誓词等，反响好，得到了大家一致好评。',
+					img: 'static/images/hsly.png'
 				}],
 				lzxjList: [{
 					name: '红廉长廊',
-					imgWall: ['static/images/hlcl-1.jpg','static/images/hlcl-2.jpg','static/images/hlcl-3.jpg','static/images/hlcl-4.jpg','static/images/hlcl-5.jpg','static/images/hlcl-6.jpg']
-				},{
+					imgWall: ['static/images/hlcl-1.jpg', 'static/images/hlcl-2.jpg', 'static/images/hlcl-3.jpg',
+						'static/images/hlcl-4.jpg', 'static/images/hlcl-5.jpg', 'static/images/hlcl-6.jpg'
+					]
+				}, {
 					name: '清廉村居十问',
-					imgWall: ['static/images/qlcjsw-1.png','static/images/qlcjsw-2.png','static/images/qlcjsw-3.png','static/images/qlcjsw-4.png','static/images/qlcjsw-5.png',
-					'static/images/qlcjsw-6.png','static/images/qlcjsw-7.png','static/images/qlcjsw-8.png','static/images/qlcjsw-9.png','static/images/qlcjsw-10.png']
-				},{
+					imgWall: ['static/images/qlcjsw-1.png', 'static/images/qlcjsw-2.png',
+						'static/images/qlcjsw-3.png', 'static/images/qlcjsw-4.png',
+						'static/images/qlcjsw-5.png',
+						'static/images/qlcjsw-6.png', 'static/images/qlcjsw-7.png',
+						'static/images/qlcjsw-8.png', 'static/images/qlcjsw-9.png',
+						'static/images/qlcjsw-10.png'
+					]
+				}, {
 					name: '小微权利漫画',
-					imgWall: ['static/images/xwqlmh-1.png','static/images/xwqlmh-2.png','static/images/xwqlmh-3.png','static/images/xwqlmh-4.png','static/images/xwqlmh-5.png']
+					imgWall: ['static/images/xwqlmh-1.png', 'static/images/xwqlmh-2.png',
+						'static/images/xwqlmh-3.png', 'static/images/xwqlmh-4.png',
+						'static/images/xwqlmh-5.png'
+					]
 				}]
 			}
 		},
@@ -543,6 +621,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+					this.fxyjShow = false
 				} else if (e == 1) {
 					this.getSzglData()
 					this.show = true
@@ -553,6 +632,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+					this.fxyjShow = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -562,6 +642,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+					this.fxyjShow = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -571,7 +652,18 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+					this.fxyjShow = false
 				} else if (e == 4) {
+					this.show = false
+					this.cShow = false
+					this.superviseShow = false
+					this.cmssShow = false
+					this.mytjShow = false
+					this.lzxjShow = false
+					this.imgShow = false
+					this.cmssDetailShow = false
+					this.fxyjShow = true
+				} else if (e == 5) {
 					this.show = false
 					this.cShow = false
 					this.superviseShow = false
@@ -580,7 +672,8 @@
 					this.lzxjShow = true
 					this.imgShow = false
 					this.cmssDetailShow = false
-				} else if (e==5) {
+					this.fxyjShow = false
+				} else if (e == 6) {
 					this.show = false
 					this.cShow = false
 					this.superviseShow = true
@@ -589,15 +682,22 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+					this.fxyjShow = false
 				}
 			},
 			showCjhImg(img) {
 				this.imgUrl = img
 				this.imgShow = true
 			},
-			showDuties() {
+			showDuties(e) {
 				this.imgShow = true
-				this.imgUrl = jdjgzz
+				if(e==1) {
+					this.imgUrl = cjh
+				} else if(e==2) {
+					this.imgUrl = cjw
+				} else if(e==3) {
+					this.imgUrl = sjh
+				}
 			},
 			chooseLzxj(index) {
 				this.lzxjIndex = index
@@ -608,6 +708,10 @@
 				this.cmssDetailShow = true
 				this.cmssDetail = item
 			},
+			showMytjDetail(item) {
+				this.mytjDetailShow = true
+				this.mytjDetail = item
+			}
 		}
 	}
 </script>
@@ -622,31 +726,36 @@
 		color: #fff;
 		z-index: 1998;
 	}
-	
+
 	.supervise-box {
 		display: flex;
 		flex-direction: column;
 		position: absolute;
 		top: 200px;
 		left: 40px;
+
 		.pop-inner-title {
 			display: flex;
 			width: 95%;
 			margin: 0 auto;
 			font-size: 19px;
+
 			span {
 				width: 35%;
 				text-align: center;
 			}
 		}
+
 		.pop-inner-box {
 			max-height: 350px;
 			overflow-y: scroll;
+
 			.pop-inner-item {
 				display: flex;
 				width: 95%;
 				margin: 10px auto;
 				font-size: 16px;
+
 				span {
 					width: 35%;
 					text-align: center;
@@ -657,7 +766,7 @@
 			}
 		}
 	}
-	
+
 	.duties {
 		width: 95%;
 		display: flex;
@@ -665,32 +774,33 @@
 		font-size: 19px;
 		margin-bottom: 10px;
 		cursor: pointer;
+
 		span {
 			padding: 5px;
 			border-bottom: 1px solid #fff;
 		}
 	}
-	
+
 	.cjh {
 		background: url(../bgImages/村监会总表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
 		margin-bottom: 20px;
 	}
-	
+
 	.cjw {
 		background: url(../bgImages/村纪检委总表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
 		margin-bottom: 20px;
 	}
-	
+
 	.sjh {
 		background: url(../bgImages/社监会总表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
 	}
-	
+
 	.cmss {
 		position: absolute;
 		top: 200px;
@@ -698,24 +808,29 @@
 		background: url(../bgImages/村民说事-列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
+
 		.pop-inner-title {
 			display: flex;
 			width: 95%;
 			margin: 0 auto;
 			font-size: 19px;
+
 			span {
 				width: 35%;
 				text-align: center;
 			}
 		}
+
 		.pop-inner-box {
 			max-height: 350px;
 			overflow-y: scroll;
+
 			.pop-inner-item {
 				display: flex;
 				width: 95%;
 				margin: 10px auto;
 				font-size: 16px;
+
 				span {
 					width: 35%;
 					text-align: center;
@@ -726,15 +841,24 @@
 			}
 		}
 	}
-	
+
 	.cmss-detail {
-		background: url(../bgImages/村民说事-详情.png) no-repeat;
-		background-size: 100% 100%;
+		// background: url(../bgImages/村民说事-详情.png) no-repeat;
+		// background-size: 100% 100%;
+		position: absolute;
+		top: 200px;
+		left: 700px;
+		
+	}
+	
+	.mytj-detail {
+		// background: url(../bgImages/村民说事-详情.png) no-repeat;
+		// background-size: 100% 100%;
 		position: absolute;
 		top: 200px;
 		left: 700px;
 	}
-	
+
 	.mytj {
 		position: absolute;
 		top: 200px;
@@ -742,24 +866,29 @@
 		background: url(../bgImages/民意体检-列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 60px;
+
 		.pop-inner-title {
 			display: flex;
 			width: 95%;
 			margin: 0 auto;
 			font-size: 19px;
+
 			span {
 				width: 30%;
 				text-align: center;
 			}
 		}
+
 		.pop-inner-box {
 			max-height: 350px;
 			overflow-y: scroll;
+
 			.pop-inner-item {
 				display: flex;
 				width: 95%;
 				margin: 10px auto;
 				font-size: 16px;
+
 				span {
 					width: 30%;
 					text-align: center;
@@ -774,19 +903,21 @@
 	.cjhImg {
 		width: 600px;
 		position: absolute;
-		border: 1px solid #fff;
 		top: 230px;
 		left: 700px;
+
 		img {
 			width: 100%;
 		}
-		.cancelLogo {
-			width: 40px;
-			height: 40px;
-			position: absolute;
-			top: -20px;
-			right: -20px;
-		}
+		
+	}
+	
+	.cancelLogo {
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		top: -20px;
+		right: -20px;
 	}
 
 	.lzxj {
@@ -794,6 +925,7 @@
 		top: 180px;
 		left: 35px;
 		display: flex;
+
 		.tab-bg {
 			width: 545px;
 			height: 418px;
@@ -806,13 +938,16 @@
 			padding: 180px 90px 0;
 			box-sizing: border-box;
 			cursor: pointer;
+
 			div {
 				margin-bottom: 30px;
+
 				.lzxjActive {
 					color: #B31624;
 				}
 			}
 		}
+
 		.lzxg-imgBg {
 			margin-left: 190px;
 			width: 1174px;
@@ -822,15 +957,18 @@
 			box-sizing: border-box;
 			display: flex;
 			flex-wrap: wrap;
+
 			.lzxg-item {
 				width: 273px;
 				height: 215px;
 				margin-right: 55px;
 			}
+
 			.lzxg-item:nth-child(3n) {
 				margin-right: 0;
 			}
 		}
+
 		.lzxg-imgBg2 {
 			margin-left: 190px;
 			width: 1174px;
@@ -840,6 +978,7 @@
 			box-sizing: border-box;
 			display: flex;
 			flex-wrap: wrap;
+
 			.lzxg-item {
 				width: 190px;
 				height: 214px;
@@ -851,8 +990,102 @@
 				justify-content: center;
 				align-items: center;
 			}
+
 			.lzxg-item:nth-child(5n) {
 				margin-right: 0;
+			}
+		}
+	}
+
+	.fxyj {
+		position: absolute;
+		top: 200px;
+		left: 40px;
+		display: flex;
+		flex-direction: column;
+		.cbzlht {
+			width: 832px;
+			background: url(../bgImages/承包租赁合同.png) no-repeat;
+			background-size: 100% 100%;
+			padding-top: 60px;
+			margin-bottom: 30px;
+			.pop-inner-title {
+				display: flex;
+				width: 95%;
+				margin: 0 auto;
+				font-size: 19px;
+			
+				span {
+					width: 25%;
+					text-align: center;
+				}
+			}
+			
+			.pop-inner-box {
+				max-height: 350px;
+				overflow-y: scroll;
+			
+				.pop-inner-item {
+					display: flex;
+					align-items: center;
+					width: 95%;
+					margin: 10px auto;
+					font-size: 16px;
+			
+					span {
+						width: 25%;
+						text-align: center;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+					img {
+						width: 5px;
+						height: 5px;
+					}
+				}
+			}
+		}
+		.cgcjsqk {
+			width: 1112px;
+			background: url(../bgImages/村工程建设情况.png) no-repeat;
+			background-size: 100% 100%;
+			padding-top: 60px;
+			.pop-inner-title {
+				display: flex;
+				width: 95%;
+				margin: 0 auto;
+				font-size: 19px;
+			
+				span {
+					width: 25%;
+					text-align: center;
+				}
+			}
+			
+			.pop-inner-box {
+				max-height: 350px;
+				overflow-y: scroll;
+			
+				.pop-inner-item {
+					display: flex;
+					align-items: center;
+					width: 95%;
+					margin: 10px auto;
+					font-size: 16px;
+			
+					span {
+						width: 25%;
+						text-align: center;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+					img {
+						width: 5px;
+						height: 5px;
+					}
+				}
 			}
 		}
 	}
@@ -1002,7 +1235,7 @@
 			top: 130px;
 			bottom: 110px;
 			width: 100%;
-			height: calc(100vh - 230px);
+			height: calc(100vh - 100px);
 			z-index: 11;
 
 			.cun-top {
@@ -1011,7 +1244,7 @@
 
 				.cun-left {
 					width: 26%;
-					height: 78%;
+					height: 90%;
 					padding: 30px;
 
 					/*横幅*/
@@ -1188,7 +1421,7 @@
 							}
 
 							.top-label {
-								height: 22%;
+								height: 60px;
 								display: flex;
 								align-items: center;
 								justify-content: center;
@@ -1212,5 +1445,4 @@
 		}
 
 	}
-	
 </style>

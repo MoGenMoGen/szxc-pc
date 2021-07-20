@@ -150,7 +150,7 @@
 				//旅游
 				if (e === 4) {
 					this.onOff("打开图层", "农家乐")
-					this.onOff("打开图层", "旅游景点")
+					// this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
@@ -234,7 +234,7 @@
 					this.isActive2 = e
 				} else if (e==3) {
 					// this.tabChildList = ['三资管理', '村务公开']
-					this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','廉政宣教','监督机构']
+					this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','风险预警','廉政宣教','监督机构']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {
@@ -294,7 +294,7 @@
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
 					this.onOff("打开图层", "农家乐")
-					this.onOff("打开图层", "旅游景点")
+					// this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
