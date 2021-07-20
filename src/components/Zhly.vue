@@ -4,7 +4,7 @@
 			<PopBox :list="list" v-show='show'></PopBox>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list njl-bg" v-show="show">
+			<div class="pop-common pop-list njl-bg" :class="e==1?'ms-bg':''" v-show="show">
 				<!-- <div class="pop-title"><span>农家乐统计</span></div> -->
 				<div class="pop-inner-title">
 					<span>序号</span>
@@ -402,6 +402,10 @@
 					num: 6,
 					url: 'static/images/jingdian.png',
 					title: '景点'
+				}, {
+					num: 6,
+					url: 'static/images/daijialianmeng.png',
+					title: '代驾联盟'
 				}],
 				tabList: [{
 						sUrl: 'static/images/chiS.png',
@@ -640,6 +644,7 @@
 				size: 50,
 				current: 1
 			}).then(res => {
+				console.log(res)
 				res.records.forEach((item, index) => {
 					if (item.type == "service_eat" || item.type == "service_all") {
 						this.eatList.push(item)
@@ -698,6 +703,12 @@
 	
 	.njl-bg {
 		background: url(../bgImages/农家乐统计.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 70px;
+	}
+	
+	.ms-bg {
+		background: url(../bgImages/民宿统计.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 70px;
 	}
