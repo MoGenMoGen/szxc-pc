@@ -621,6 +621,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				} else if (e == 1) {
 					this.getSzglData()
@@ -632,6 +633,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				} else if (e == 2) {
 					this.show = false
@@ -642,6 +644,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				} else if (e == 3) {
 					this.show = false
@@ -652,6 +655,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				} else if (e == 4) {
 					this.show = false
@@ -662,6 +666,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = true
 				} else if (e == 5) {
 					this.show = false
@@ -672,6 +677,7 @@
 					this.lzxjShow = true
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				} else if (e == 6) {
 					this.show = false
@@ -682,6 +688,7 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
+          this.mytjDetailShow = false
 					this.fxyjShow = false
 				}
 			},
@@ -909,7 +916,13 @@
 		img {
 			width: 100%;
 		}
-		
+		.cancelLogo {
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			top: -20px;
+			right: -20px;
+		}
 	}
 	
 	.cancelLogo {
