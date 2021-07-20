@@ -48,8 +48,12 @@
 
 		<transition name="fade">
 			<div class="proof-guide" v-show="showGuide">
-				<div class="guide-cont guide-left" v-if="pageCont[pageIndex]" v-html="pageCont[pageIndex].cont"></div>
-				<div class="guide-cont guide-right" v-if="pageCont[pageIndex+1]" v-html="pageCont[pageIndex+1].cont"></div>
+				<div class="guide-cont guide-left" v-if="pageCont[pageIndex]">
+					<img :src="pageCont[pageIndex]"/>
+				</div>
+				<div class="guide-cont guide-right" v-if="pageCont[pageIndex+1]">
+					<img :src="pageCont[pageIndex+1]"/>
+				</div>
 				<div class="guide-btn guide-previous" @click="pre">上一页</div>
 				<div class="guide-btn guide-next" @click="next">下一页</div>
 			</div>
@@ -236,10 +240,12 @@
 			},
 			getGuideList(data) {
 				this.$ajax.getGuideList(data).then(res => {
+					console.log(res.records)
 					res.records.forEach(item => {
 						if(item.name == "证明指南") {
-							this.pageCont.push(item)
+							this.pageCont = item.img.split(",")
 						}
+						console.log(this.pageCont)
 					})
 				})
 			},
@@ -433,6 +439,10 @@
 			height: 620px;
 			padding: 10px;
 			box-sizing: border-box;
+			img {
+				width: 100%;
+				height: 100%;
+			}
 		}
 		.guide-left{
 			position: absolute;

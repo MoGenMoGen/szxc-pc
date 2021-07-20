@@ -12,6 +12,7 @@
     "core-js": "^2.6.5",
     "echarts": "^4.9.0",
     "element-ui": "^2.15.1",
+    "hls.js": "^1.0.7",
     "jquery": "^1.10.2",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",

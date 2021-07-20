@@ -734,17 +734,17 @@
 		<transition name="fade">
 			<div v-show="show17">
 				<div class="pop-left">
-					<div class="pop-bg-box wjx-bg" v-show="!showWjxList">
+					<div class="pop-bg-box wjx-bg" v-show="!showWjxList" @click="showZhxc">
 						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
 					</div>
-					<div class="pop-bg-box wjx-bg2"  v-show="showWjxList" >
+					<div class="pop-bg-box wjx-bg2"  v-show="showWjxList" @click="showZhxc">
 						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click="toQiye(index,item)">· {{item.name}}</div>
 						</div>
 					</div>
-					<div class="pop-bg-box wfgl-bg">
+					<div class="pop-bg-box wfgl-bg" @click="showWf">
 						<div class="pop-bg-btn" @click="weiffangguanli=!weiffangguanli">查看全部></div>
 						<div class="pop-bg-list" v-show="weiffangguanli">
 							<div class="pop-common-title">
@@ -768,9 +768,9 @@
 					</div>
 				</div>
 				<div class="pop-bottom">
-					<div class="pop-bg-box fns-bg">
-						<div class="pop-bg-btn">
-							
+					<div class="pop-bg-box fns-bg" @click="showFns">
+						<div class="pop-bg-btn2">
+							<div @click="showVideoBox(1)">查看示例</div>
 							<div @click="fangnishui=!fangnishui">查看全部></div>
 						</div>
 						<div class="pop-bg-list" v-show="fangnishui">
@@ -791,7 +791,7 @@
 						<my-charts v-show="!fangnishui" :id='fns' class="echart-class" :data='fnsOption'
 							@click.native="clickthis(fnsOption)"></my-charts>
 					</div>
-					<div class="pop-bg-box stsk-bg" style="width: 331px;">
+					<div class="pop-bg-box stsk-bg" style="width: 331px;" @click="showStsk">
 						<div class="pop-bg-btn" @click="shantangshuiku=!shantangshuiku">查看全部></div>
 						<div class="pop-bg-list" v-show="shantangshuiku">
 							<div class="pop-common-box" style="height: 200px;">
@@ -806,11 +806,11 @@
 					</div>
 
 
-					<div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">
+					<div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai" @click="showDzzh">
 						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
 					</div>
 
-					<div class="pop-bg-box dzzh-bg2" style="width: 331px;" v-show="dizhizaihai">
+					<div class="pop-bg-box dzzh-bg2" style="width: 331px;" v-show="dizhizaihai" @click="showDzzh">
 						<div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>
 						<div class="pop-bg-list">
 							<div class="pop-common-box" style="height: 200px;">
@@ -852,7 +852,7 @@
 							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts> -->
 						<img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;">
 					</div>
-					<div class="pop-bg-box ljfl-bg">
+					<div class="pop-bg-box ljfl-bg" @click="showLjfl">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
 						<div class="pop-bg-list" v-show="lajifenlei">
 							<div class="pop-common-title2">
@@ -881,7 +881,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="pop-bg-box spjk-bg"></div>
+					<div class="pop-bg-box spjk-bg">
+						<video v-show="showZhibo" id="video" ref="video" controls width="100%" height="98%"></video>
+					</div>
 				</div>
 				<div class="pop-center" v-show="centerShow">
 					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png"
@@ -957,7 +959,9 @@
 	</div>
 </template>
 
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
+	let Hls = require('hls.js');
 	import bpwyb from '../bgImages/边坡位移表.png'
 	import myCharts from '@/components/MyCharts.vue'
 	import vueSeamlessScroll from 'vue-seamless-scroll'
@@ -993,19 +997,6 @@
 				}],
 				tapIndex: 1,
 				wjxList: [{
-					name: '谢咪琴',
-					name2: '徐章伟',
-					time: '2021/7/9',
-					time2: '2021-6-3 10:21:38',
-					shopName: '宁波市镇海区九龙湖昱如副食品店',
-					status: '异常',
-					srjc: '正常',
-					yyjc: '正常',
-					wspf: '异常',
-					ljfl: '正常',
-					rqaq: '正常',
-					qtjc: '正常'
-				}, {
 					name: '高金财',
 					name2: '毛松',
 					time: '2021/7/9',
@@ -1015,6 +1006,45 @@
 					srjc: '正常',
 					yyjc: '正常',
 					wspf: '正常',
+					ljfl: '正常',
+					rqaq: '正常',
+					qtjc: '正常'
+				},  {
+					name: '谢咪琴',
+					name2: '徐章伟',
+					time: '2021/6/18',
+					time2: '2021-6-3 10:21:38',
+					shopName: '宁波市镇海互感器厂有限公司',
+					status: '正常',
+					srjc: '正常',
+					yyjc: '正常',
+					wspf: '正常',
+					ljfl: '正常',
+					rqaq: '正常',
+					qtjc: '正常'
+				}, {
+					name: '高金财',
+					name2: '毛松',
+					time: '2021/6/18',
+					time2: '2021-6-3 10:21:38',
+					shopName: '宁波市镇海鼎力紧定螺钉有限公司',
+					status: '正常',
+					srjc: '正常',
+					yyjc: '正常',
+					wspf: '正常',
+					ljfl: '正常',
+					rqaq: '正常',
+					qtjc: '正常'
+				},{
+					name: '谢咪琴',
+					name2: '徐章伟',
+					time: '2021/5/14',
+					time2: '2021-6-3 10:21:38',
+					shopName: '宁波市镇海区九龙湖昱如副食品店',
+					status: '异常',
+					srjc: '正常',
+					yyjc: '正常',
+					wspf: '异常',
 					ljfl: '正常',
 					rqaq: '正常',
 					qtjc: '正常'
@@ -1424,6 +1454,8 @@
 				wgryShow: false, //显示网格人员列表
 				showPBtn: true, //四个平台显隐按钮
 				showWjxList: false, //5+x图列表切换
+				showZhibo: false, //显示鼎力直播
+				hls:'',
 				videoUrl: '',
 				keyWord: '',
 				ydyh: false,
@@ -1682,6 +1714,7 @@
 			this.showPBtn = true
 		},
 		beforeDestroy() {
+			this.videoPause();
 			window.removeEventListener('message', this.listenerFun)
 		},
 		methods: {
@@ -1748,22 +1781,23 @@
 			},
 			//点击执法仪看监控
 			toZf(item) {
-
+				this.showZhibo = false
        // console.log(item)
 			  this.hikShow = true;
 				this.$refs.videoPlayer2.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer2.initPlugin()
 
-        this.onOff("打开图层","执法记录仪")
-        let a = {
-          X: item.lng,
-          Y: item.lat,
-        }
-        this.$parent.test(a);
+				this.onOff("打开图层","执法记录仪")
+				let a = {
+				  X: item.lng,
+				  Y: item.lat,
+				}
+				this.$parent.test(a);
 			},
 			//防溺水
 			toFns(item) {
+				this.showZhibo = false
 				this.$refs.videoPlayer5.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer5.initPlugin()
@@ -1862,6 +1896,8 @@
 					this.showVideo = false
 					this.wgryShow = false
 					this.showPBtn = true
+					this.centerShow = false
+					this.showZhibo = false
 				}
 				// else if (e == 2) {
 				// 	// 4个平台
@@ -1922,6 +1958,8 @@
 					this.showVideo = false
 					this.wgryShow = false
 					this.showPBtn = false
+					this.centerShow = false
+					this.showZhibo = false
 				}
 				// else if (e == 2) {
 				// 	// 线上执法
@@ -2232,23 +2270,58 @@
 				} else if (e == 2) {
 					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
 				}
+				this.show = false
+				this.show3 = false
+				this.show4 = false
+				this.show5 = false
+				this.show6 = false
+				this.show7 = false
+				this.show8 = false
+				this.show9 = false
+				this.show10 = false
+				this.show11 = false
+				this.show12 = false
+				this.show13 = false
+				this.show14 = false
+				this.show15 = false
+				this.show16 = false
+				this.show18 = false
+				this.showXmb = false
+				this.showP = false
+				this.showPDetail = false
+				this.wgryShow = false
+				this.showPBtn = false
+				this.centerShow = false
 				this.showVideo = true
 			},
 			closeVideo() {
 				this.showVideo = false
 			},
 			toQiye(e, item) {
-				if (e == 0) {
-					this.showXmb = true
-				} else {
-					this.showXmb = false
-				}
 				let a = {
-					X: item.X,
-					Y: item.Y,
+					X: item.lng,
+					Y: item.lat,
 					heading: 230
 				}
 				this.$parent.test(a);
+				
+				if(e==0) {
+					this.showZhibo = true
+					if (Hls.isSupported()) {
+					    this.hls = new Hls();
+					    this.hls.loadSource("http://cmgw-vpc.lechange.com:8888/LCO/6F0C1AAPAZ9C121/19/1/20210720T091439/41dae95fe195c9636b0391ad9cada5b6.m3u8");
+					    this.hls.attachMedia(this.$refs.video);
+					    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+					        console.log('加载成功');
+					        this.$refs.video.play();
+					    });
+					    this.hls.on(Hls.Events.ERROR, (event, data) => {
+					        console.log('加载失败');
+					        console.log(event)
+					        console.log(data)
+					    });
+					}
+				}
 			},
 			toUserMap() {
 				if (this.ydyh === false) {
@@ -2432,7 +2505,14 @@
 				})
 				this.$ajax.getCamera('一企一档').then(res => {
 					this.qyList2 = res
-					console.log(res)
+					this.$ajax.getEatList({
+						size: 50,
+						current: 1
+					}).then(resp => {
+						this.$nextTick(() =>{
+							this.qyList2.push(...resp.records)
+						})
+					})
 				})
 				
 				// this.$ajax.getCamera('边坡位移').then(res=> {
@@ -2489,6 +2569,48 @@
 			showWjxDetail(item) {
 				this.isShowWjxDetail = true
 				this.wjxDetail = item
+			},
+			videoPause() {
+				if (this.hls) {
+					this.$refs.video.pause();
+					this.hls.destroy();
+					this.hls = null;
+				}
+			},
+			closeZhjg() {
+				this.onOff("关闭图层", "综合监管")
+				this.onOff("关闭图层", "危房")
+				this.onOff("关闭图层", "防溺水监控点")
+				this.onOff("关闭图层", "泥石流")
+				this.onOff("关闭图层", "垃圾点位")
+				this.onOff("关闭图层", "企业")
+				this.onOff("关闭图层", "山塘水库")
+				this.onOff("关闭图层", "执法记录仪")
+			},
+			showZhxc() {
+				this.closeZhjg()
+				this.onOff("打开图层", "企业")
+				this.onOff("打开图层", "综合监管")
+			},
+			showWf() {
+				this.closeZhjg()
+				this.onOff("打开图层", "危房")
+			},
+			showFns() {
+				this.closeZhjg()
+				this.onOff("打开图层", "防溺水监控点")
+			},
+			showStsk() {
+				this.closeZhjg()
+				this.onOff("打开图层", "山塘水库")
+			},
+			showDzzh() {
+				this.closeZhjg()
+				this.onOff("打开图层", "泥石流")
+			},
+			showLjfl() {
+				this.closeZhjg()
+				this.onOff("打开图层", "垃圾点位")
 			}
 		},
 		computed: {
@@ -3304,10 +3426,10 @@
 	}
 
 	.videoClass {
-		width: 700px;
+		width: 1000px;
 		// height: 700px;
 		position: absolute;
-		top: 50%;
+		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 
@@ -3521,6 +3643,16 @@
 			color: #fff;
 			width: 100%;
 			text-align: right;
+			cursor: pointer;
+		}
+		
+		.pop-bg-btn2 {
+			font-size: 17px;
+			color: #fff;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 			cursor: pointer;
 		}
 
