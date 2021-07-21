@@ -78,7 +78,7 @@
 						</div> -->
 						<div class="cun-left" style="width: 100%">
 							<div class="reverseArrow">
-								<div v-for="item in list3" :key="item.id">
+								<div v-for="item in list4" :key="item.id">
 									<img :src="icJtx">
 									<p>{{item.name}}</p>
 
@@ -86,7 +86,7 @@
 							</div>
 
 							<ul>
-								<li v-for="item in list3" :key="item.id">
+								<li v-for="item in list4" :key="item.id">
 									<div class="border-out">
 										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img">
 										</el-image>
@@ -583,11 +583,12 @@
 					size: 30
 				}
 				this.$ajax.getCwgk(data).then(res => {
+					console.log(res.records)
 					res.records.forEach(item => {
 						item.img = item.img.split(",")
 					})
 					this.list3 = res.records.splice(0, 6)
-					this.list4 = res.records.splice(3, 6)
+					this.list4 = res.records.splice(7, 12)
 				})
 			},
 			getGlData() {

@@ -1215,6 +1215,7 @@
 						type: 'bar',
 						barWidth: 20
 					}],
+					// dataZoom : [{}],
 					grid: {
 						top: "30px",
 						left: "30px",
