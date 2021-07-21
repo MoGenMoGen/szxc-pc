@@ -173,6 +173,13 @@
 			</div>
 		</transition>
 		<transition name="fade">
+			<div class="cjhImg2" v-show="imgShow2">
+				<img :src="imgUrl2">
+				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="imgShow2 = false"
+					v-show="imgShow2">
+			</div>
+		</transition>
+		<transition name="fade">
 			<div v-show="cmssShow" class="pop-common cmss">
 				<div class="pop-inner-title">
 					<span style="width: 15%;">序号</span>
@@ -334,6 +341,7 @@
 				url2: "http://visual.gzvst.top/view/1405180480017412097",
 				cwList: [],
 				imgShow: false,
+				imgShow2: false,
 				imgUrl: '',
 				cShow: false,
 				show: false,
@@ -623,6 +631,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				} else if (e == 1) {
 					this.getSzglData()
 					this.show = true
@@ -635,6 +644,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -646,6 +656,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -657,6 +668,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				} else if (e == 4) {
 					this.show = false
 					this.cShow = false
@@ -668,6 +680,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = true
+					this.imgShow2 = false
 				} else if (e == 5) {
 					this.show = false
 					this.cShow = false
@@ -679,6 +692,7 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				} else if (e == 6) {
 					this.show = false
 					this.cShow = false
@@ -690,20 +704,24 @@
 					this.cmssDetailShow = false
           this.mytjDetailShow = false
 					this.fxyjShow = false
+					this.imgShow2 = false
 				}
 			},
 			showCjhImg(img) {
 				this.imgUrl = img
 				this.imgShow = true
+				this.imgShow2 = false
 			},
 			showDuties(e) {
-				this.imgShow = true
+				this.imgShow2 = false
+				this.imgShow2 = true
+				this.imgShow = false
 				if(e==1) {
-					this.imgUrl = cjh
+					this.imgUrl2 = cjh
 				} else if(e==2) {
-					this.imgUrl = cjw
+					this.imgUrl2 = cjw
 				} else if(e==3) {
-					this.imgUrl = sjh
+					this.imgUrl2 = sjh
 				}
 			},
 			chooseLzxj(index) {
@@ -913,6 +931,24 @@
 		top: 230px;
 		left: 700px;
 
+		img {
+			width: 100%;
+		}
+		.cancelLogo {
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			top: -20px;
+			right: -20px;
+		}
+	}
+	
+	.cjhImg2 {
+		width: 1000px;
+		position: absolute;
+		top: 230px;
+		left: 700px;
+	
 		img {
 			width: 100%;
 		}
