@@ -377,6 +377,14 @@ class api {
   		})
   	})
   }
+  // 垃圾分类
+  getRubbishData() {
+  	return new Promise(resolve => {
+  		get("/blade-govern/rubbish/listByTm").then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

@@ -16,6 +16,7 @@
 			</div>
 			<span class="top-time">{{ nowTime }}</span>
 		</div>
+		<!-- <router-view></router-view> -->
 		<Summary ref="summary" v-show="isActive==0&&flag"></Summary>
 		<!-- <Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd> -->
 		<Zhdj ref="Zhdj" v-show="isActive==1&&flag"></Zhdj>
@@ -119,6 +120,7 @@
 				}
 				if (e == 0) {
 					this.isChildShow = false
+					// this.$router.push({name:'Summary'})
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
@@ -144,7 +146,7 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-
+					// this.$router.push({name:'Zhdj'})
 					// this.isChildShow2 = false
 				}
 				//旅游
@@ -154,7 +156,7 @@
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-
+					// this.$router.push({name:'Zhly'})
 					// this.isChildShow2 = false
 				}
 				//基层治理
@@ -222,6 +224,10 @@
 				this.onOff("关闭图层", "山塘水库")
 				this.onOff("关闭图层", "执法记录仪")
 				this.onOff("关闭图层", "网格")
+				this.onOff("关闭图层", "五保户")
+				this.onOff("关闭图层", "低保")
+				this.onOff("关闭图层", "残障人员")
+				this.onOff("关闭图层", "老年人")
 			},
 			showChild(e) {
 				if(e==1){

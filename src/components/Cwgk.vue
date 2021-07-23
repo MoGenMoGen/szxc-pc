@@ -343,6 +343,7 @@
 				imgShow: false,
 				imgShow2: false,
 				imgUrl: '',
+				imgUrl2: '',
 				cShow: false,
 				show: false,
 				superviseShow: false, //监督机构

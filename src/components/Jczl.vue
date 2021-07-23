@@ -735,10 +735,10 @@
 			<div v-show="show17">
 				<div class="pop-left">
 					<div class="pop-bg-box wjx-bg" v-show="!showWjxList" @click="showZhxc">
-						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
+						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">查看全部></div>
 					</div>
 					<div class="pop-bg-box wjx-bg2"  v-show="showWjxList" @click="showZhxc">
-						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">看下详情></div>
+						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">返回></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click="toQiye(index,item)">· {{item.name}}</div>
@@ -1215,7 +1215,7 @@
 						type: 'bar',
 						barWidth: 20
 					}],
-					// dataZoom : [{}],
+					dataZoom : [{}],
 					grid: {
 						top: "30px",
 						left: "30px",
@@ -1489,8 +1489,8 @@
 					url: 'static/images/wg-dbh.png',
 					title: '低保户',
 					name: '低保',
-					x: '121.507106',
-					y: '30.05261'
+					x: '121.5403',
+					y: '30.035791'
 				}, {
 					num: 657,
 					url: 'static/images/wg-lnr.png',
@@ -1503,8 +1503,8 @@
 					url: 'static/images/wg-czrs.png',
 					title: '残障人',
 					name: '残障人员',
-					x: '121.504304',
-					y: '30.052288'
+					x: '121.536214',
+					y: '30.033909'
 				}, {
 					num: 7,
 					url: 'static/images/wg-tsjsjt.png',
@@ -1721,12 +1721,14 @@
 		methods: {
 			// 网格打开图层
 			showPoints(item) {
+				// this.onOff('关闭图层','网格')
 				if (item.name) {
 					let a = {
 						X: item.x,
 						Y: item.y
 					}
 					this.show2 = false
+					// this.show12 = true
 					this.onOff("关闭图层", "五保户")
 					this.onOff("关闭图层", "低保")
 					this.onOff("关闭图层", "残障人员")
@@ -1885,6 +1887,7 @@
 					this.show9 = false
 					this.show10 = false
 					this.show11 = false
+					this.show12 = false
 					this.show13 = true
 					this.show14 = false
 					this.show15 = false
@@ -2515,7 +2518,9 @@
 						})
 					})
 				})
-
+				this.$ajax.getRubbishData().then(res => {
+					this.ljflOption.series[0].data = Object.values(res)
+				})
 				// this.$ajax.getCamera('边坡位移').then(res=> {
 				// 	this.wyList = res
 				// })
