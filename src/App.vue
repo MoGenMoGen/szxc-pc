@@ -244,7 +244,7 @@
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {
-					this.tabChildList = ['吃', '住','游','购']
+					this.tabChildList = ['美食', '住宿','游玩','购物']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==5) {

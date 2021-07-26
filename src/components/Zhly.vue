@@ -7,26 +7,39 @@
 			<div class="pop-common pop-list njl-bg" :class="e==1?'ms-bg':''" v-show="show">
 				<!-- <div class="pop-title"><span>农家乐统计</span></div> -->
 				<div class="pop-inner-title">
-					<span>序号</span>
-					<span>农家乐名称</span>
+<!--					<span>序号</span>-->
+					<span style="width: 60%">农家乐名称</span>
+					<span style="width: 20%">监控</span>
+					<span style="width: 20%">视频</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item)">
-						<span>{{ index + 1 }}</span>
-						<span>{{ item.name }}</span>
+<!--						<span>{{ index + 1 }}</span>-->
+						<span style="width: 60%">{{item.name}}</span>
+						<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
+						<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
 					</div>
 				</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div v-if="show" class="banner">
-				<img :src="topImg" class="banner-top-img" v-if="topImg">
+<!--				<img :src="topImg" class="banner-top-img" v-if="topImg">-->
 				<el-carousel v-if="imgList.length>0" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
 						<img :src="item.img">
 					</el-carousel-item>
 				</el-carousel>
-				<div class="banner-name" v-if="e==0">{{imgList[nameIndex].name}}</div>
+				<div class="banner-name" >{{imgList[nameIndex].name}}</div>
+
+				<div class="banner-top-img" >
+					<video controls="controls" :src="preVideo" ref="preVideo" width="100%" height="100%"></video>
+				</div>
+				<div class="banner-top-img" >
+
+
+				</div>
+
 				<!-- <div class="pop-common banner-tip" v-if="show4">
 					<div class="pop-title"><span>透明厨房</span></div>
 					<span class="banner-tip-word">正在建设中！</span>
@@ -50,8 +63,11 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list jd-bg" v-show="show2">
+			<div class="pop-common pop-list jd-bg" v-show="show2" >
 				<!-- <div class="pop-title"><span>景点列表</span></div> -->
+				<img src="../bgImages/视频播放.png"
+					 style="width: 30px;height: 30px;position: absolute;left: 360px;top:33px;" @click="toScenicSpot()">
+
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>景点名称</span>
@@ -124,6 +140,13 @@
 		</transition>
 		<hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
+
+		<div class="model" v-if="dialogVisible">
+			<img src="../bgImages/关闭.png" @click="toStopScenicSpot">
+			<video controls="controls" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"  width="100%" height="100%"></video>
+		</div>
+
+
 	</div>
 </template>
 
@@ -147,6 +170,7 @@
 		data() {
 			return {
 				codes: '',
+				preVideo:'',
 				option: {
 					title: {
 						text: '{a|480}\n{c|剩余车位数}',
@@ -397,11 +421,11 @@
 				}, {
 					num: 10,
 					url: 'static/images/mingsu.png',
-					title: '民宿'
+					title: '十大碗'
 				}, {
 					num: 6,
 					url: 'static/images/jingdian.png',
-					title: '景点'
+					title: '乡村西餐'
 				}, {
 					num: 6,
 					url: 'static/images/daijialianmeng.png',
@@ -411,23 +435,23 @@
 						sUrl: 'static/images/chiS.png',
 						url: 'static/images/chi.png',
 						hasUrl: true,
-						title: '吃'
+						title: '美食'
 					}, {
 						sUrl: 'static/images/zhuS.png',
 						url: 'static/images/zhu.png',
 						hasUrl: true,
-						title: '住'
+						title: '住宿'
 					}, {
 						sUrl: 'static/images/youS.png',
 						url: 'static/images/you.png',
 						hasUrl: true,
-						title: '游'
+						title: '游玩'
 					},
 					{
 						sUrl: 'static/images/gouS.png',
 						url: 'static/images/gou.png',
 						hasUrl: true,
-						title: '购'
+						title: '购物'
 					}
 				],
 				eatList: [],
@@ -508,10 +532,24 @@
 				}, {
 					url: 'static/images/jtsk.png',
 					title: '交通实况'
-				}]
+				}],
+				dialogVisible:false,
 			}
 		},
 		methods: {
+			toStopScenicSpot(){
+				console.log("666666666666")
+				this.dialogVisible=false
+			},
+			toScenicSpot(){
+
+				this.dialogVisible=true
+
+			},
+			toPre(item){
+				this.preVideo=item.video
+				this.$refs.preVideo.play()
+			},
 			goto(item) {
 				console.log(item.monitor)
 				console.log(item)
@@ -526,13 +564,18 @@
 					this.codes = item.monitor;
 					this.$refs.videoPlayer6.initPlugin()
 				}
-				if(this.e == 1) {
+				if(item.video){
+					this.preVideo=item.video
+				}
+				if(this.e == 1 || this.e == 0) {
+					console.log("氧气生活。。。。。。。")
 					this.imgList = []
 					this.$ajax.getAdvert({
 						travelId: item.id,
 						current: 1,
 						size: 10
 					}).then(res => {
+
 						this.imgList = res.records
 					})
 				}
@@ -700,19 +743,19 @@
 		color: #fff;
 		z-index: 1998;
 	}
-	
+
 	.njl-bg {
 		background: url(../bgImages/农家乐统计.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 70px;
 	}
-	
+
 	.ms-bg {
 		background: url(../bgImages/民宿统计.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 70px;
 	}
-	
+
 	.jd-bg {
 		background: url(../bgImages/景点列表.png) no-repeat;
 		background-size: 100% 100%;
@@ -972,4 +1015,22 @@
 	.fade-leave-to {
 		opacity: 0;
 	}
+	.model{
+
+		width: 1000px;
+		height: 500px;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		z-index: 10000;
+		img{
+			position: absolute;
+			right: 0;
+			top:0;
+			width: 30px;
+			z-index: 10001;
+		}
+	}
+
 </style>

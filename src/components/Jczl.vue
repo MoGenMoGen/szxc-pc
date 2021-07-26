@@ -2521,9 +2521,10 @@
 				this.$ajax.getRubbishData().then(res => {
 					this.ljflOption.series[0].data = Object.values(res)
 				})
-				// this.$ajax.getCamera('边坡位移').then(res=> {
-				// 	this.wyList = res
-				// })
+				this.$ajax.getCamera('边坡位移').then(res=> {
+					console.log("边坡位移",res)
+					this.wyList = res
+				})
 			},
 			clickthis(option) {
 				this.centerShow = true
