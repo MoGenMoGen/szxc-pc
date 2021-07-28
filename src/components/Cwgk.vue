@@ -193,14 +193,17 @@
 						<span style="width: 15%;">{{ index+1 }}</span>
 						<span style="width: 15%;">{{ item.time }}</span>
 						<span>{{ item.title }}</span>
-						<span>{{ item.satisfaction }}</span>
+						<span>{{ item.satisfaction }}%</span>
 					</div>
 				</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div class="cmss-detail" v-show="cmssDetailShow">
-				<img :src="cmssDetail.img"/>
+				<!-- <img :src="cmssDetail.img"/> -->
+				<div class="cmss-info">
+					<div class="cmss-title">{{cmssDetail.title}}</div>
+				</div>
 				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="cmssDetailShow = false"
 					v-show="cmssDetailShow">
 			</div>
@@ -225,8 +228,8 @@
 						@click="showMytjDetail(item)">
 						<span style="width: 10%;">{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
-						<span>{{ item.feasibility }}</span>
-						<span>{{ item.after }}</span>
+						<span>{{ item.feasibility }}%</span>
+						<span>{{ item.after }}%</span>
 					</div>
 				</div>
 			</div>
@@ -354,6 +357,7 @@
 				lzxjShow: false, //廉政宣教
 				lzxjCont: false, //廉政宣教图片墙
 				fxyjShow: false, //风险预警
+				qflyShow: false, //清风廉韵
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
 				mytjDetail: {}, //民意体检详情
@@ -513,25 +517,25 @@
 					time: '2021.5.19',
 					title: '垃圾分类奖罚措施',
 					detail: '2021年5月19日横溪村民王国兆反映：农家乐经常出现垃圾分类不到位的情况，导致归集点垃圾检查经常出现不合格情况，希望村里对农家乐有罚款制度，未分类的要有罚款措施。九龙湖村两委召开专题会：分析垃圾未分类到位的原因，下步将加强管理，制定奖罚措施，对农家乐进行专项培训。',
-					satisfaction: '98%',
+					satisfaction: '98',
 					img: 'static/images/ljfljfcs.png'
 				}, {
 					time: '2021.5.26',
 					title: '施工围栏设置调整',
 					detail: '2021年5月26日王海君反映：横溪高端民宿项目铁皮围栏太过超出，影响交通，出行不安全。经村班子商量后，与施工方对接，围栏已挪进。',
-					satisfaction: '98%',
+					satisfaction: '98',
 					img: 'static/images/sgwlsztz.png'
 				}, {
 					time: '2021.6.2',
 					title: '路灯遮挡修整',
 					detail: '2021年6月2日村民胡彩娣反映：香山路旁树枝太过茂密，挡住了路灯的灯光，影响出行的安全。村干部进行实地勘察，已安排人员对树枝进行修剪。',
-					satisfaction: '97%',
+					satisfaction: '97',
 					img: 'static/images/ldzdxz.png'
 				}, {
 					time: '2021.6.16',
 					title: '垃圾包巡查',
 					detail: '2021年6月16日村民王品岳反映：因垃圾点位靠马路边，非投放时间段游客经过时经常出现垃圾包。各网格加强垃圾点位巡查，出现垃圾包及时收集处理。',
-					satisfaction: '98%',
+					satisfaction: '98',
 					img: 'static/images/ljbxc.png'
 				}],
 				mytjList: [{
@@ -631,23 +635,12 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
-          this.mytjDetailShow = false
+					this.mytjDetailShow = false
 					this.fxyjShow = false
 					this.imgShow2 = false
+					this.qflyShow = false
 				} else if (e == 1) {
-					this.getSzglData()
-					this.show = true
-					this.cShow = false
-					this.superviseShow = false
-					this.cmssShow = false
-					this.mytjShow = false
-					this.lzxjShow = false
-					this.imgShow = false
-					this.cmssDetailShow = false
-          this.mytjDetailShow = false
-					this.fxyjShow = false
-					this.imgShow2 = false
-				} else if (e == 2) {
+					// this.getSzglData()
 					this.show = false
 					this.cShow = false
 					this.superviseShow = false
@@ -656,10 +649,11 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
-          this.mytjDetailShow = false
+					this.mytjDetailShow = false
 					this.fxyjShow = false
 					this.imgShow2 = false
-				} else if (e == 3) {
+					this.qflyShow = false
+				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
 					this.superviseShow = false
@@ -668,10 +662,11 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
-          this.mytjDetailShow = false
+					this.mytjDetailShow = false
 					this.fxyjShow = false
 					this.imgShow2 = false
-				} else if (e == 4) {
+					this.qflyShow = false
+				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
 					this.superviseShow = false
@@ -680,34 +675,48 @@
 					this.lzxjShow = false
 					this.imgShow = false
 					this.cmssDetailShow = false
-          this.mytjDetailShow = false
-					this.fxyjShow = true
-					this.imgShow2 = false
-				} else if (e == 5) {
-					this.show = false
-					this.cShow = false
-					this.superviseShow = false
-					this.cmssShow = false
-					this.mytjShow = false
-					this.lzxjShow = true
-					this.imgShow = false
-					this.cmssDetailShow = false
-          this.mytjDetailShow = false
+					this.mytjDetailShow = false
 					this.fxyjShow = false
 					this.imgShow2 = false
-				} else if (e == 6) {
-					this.show = false
-					this.cShow = false
-					this.superviseShow = true
-					this.cmssShow = false
-					this.mytjShow = false
-					this.lzxjShow = false
-					this.imgShow = false
-					this.cmssDetailShow = false
-          this.mytjDetailShow = false
-					this.fxyjShow = false
-					this.imgShow2 = false
-				}
+					this.qflyShow = true
+				} 
+				// else if (e == 4) {
+				// 	this.show = false
+				// 	this.cShow = false
+				// 	this.superviseShow = false
+				// 	this.cmssShow = false
+				// 	this.mytjShow = false
+				// 	this.lzxjShow = false
+				// 	this.imgShow = false
+				// 	this.cmssDetailShow = false
+				// 	this.mytjDetailShow = false
+				// 	this.fxyjShow = true
+				// 	this.imgShow2 = false
+				// } else if (e == 5) {
+				// 	this.show = false
+				// 	this.cShow = false
+				// 	this.superviseShow = false
+				// 	this.cmssShow = false
+				// 	this.mytjShow = false
+				// 	this.lzxjShow = true
+				// 	this.imgShow = false
+				// 	this.cmssDetailShow = false
+				// 	this.mytjDetailShow = false
+				// 	this.fxyjShow = false
+				// 	this.imgShow2 = false
+				// } else if (e == 6) {
+				// 	this.show = false
+				// 	this.cShow = false
+				// 	this.superviseShow = true
+				// 	this.cmssShow = false
+				// 	this.mytjShow = false
+				// 	this.lzxjShow = false
+				// 	this.imgShow = false
+				// 	this.cmssDetailShow = false
+				// 	this.mytjDetailShow = false
+				// 	this.fxyjShow = false
+				// 	this.imgShow2 = false
+				// }
 			},
 			showCjhImg(img) {
 				this.imgUrl = img
@@ -871,11 +880,26 @@
 
 	.cmss-detail {
 		// background: url(../bgImages/村民说事-详情.png) no-repeat;
-		// background-size: 100% 100%;
 		position: absolute;
 		top: 200px;
 		left: 700px;
-		
+		.cmss-info {
+			background: url(../bgImages/border-back.png) no-repeat;
+			width: 800px;
+			height: 886px;
+			background-size: 100% 100%;
+			font-size: 22px;
+			color: #8BEBFF;
+			.cmss-title {
+				width: 100%;
+				padding: 15px 240px;
+				box-sizing: border-box;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-align: center;
+			}
+		}
 	}
 	
 	.mytj-detail {

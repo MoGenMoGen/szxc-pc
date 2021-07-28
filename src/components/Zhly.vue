@@ -1,20 +1,17 @@
 <template>
 	<div>
 		<transition name="fade">
-			<PopBox :list="list" v-show='show'></PopBox>
+			<PopBox :list="list" v-show='show4' @updata="getPopIndex"></PopBox>
 		</transition>
 		<transition name="fade">
 			<div class="pop-common pop-list njl-bg" :class="e==1?'ms-bg':''" v-show="show">
-				<!-- <div class="pop-title"><span>农家乐统计</span></div> -->
 				<div class="pop-inner-title">
-<!--					<span>序号</span>-->
 					<span style="width: 60%">农家乐名称</span>
 					<span style="width: 20%">监控</span>
 					<span style="width: 20%">视频</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item)">
-<!--						<span>{{ index + 1 }}</span>-->
 						<span style="width: 60%">{{item.name}}</span>
 						<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
 						<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
@@ -23,37 +20,24 @@
 			</div>
 		</transition>
 		<transition name="fade">
+			
+		</transition>
+		<transition name="fade">
 			<div v-if="show" class="banner">
-<!--				<img :src="topImg" class="banner-top-img" v-if="topImg">-->
 				<el-carousel v-if="imgList.length>0" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
 						<img :src="item.img">
 					</el-carousel-item>
 				</el-carousel>
-				<div class="banner-name" >{{imgList[nameIndex].name}}</div>
-
-				<div class="banner-top-img" >
+				<div class="banner-name" v-if="imgList.length>0&&imgList[nameIndex].name">{{imgList[nameIndex].name}}</div>
+				<div class="banner-top-img" v-show="showVideo">
 					<video controls="controls" :src="preVideo" ref="preVideo" width="100%" height="100%"></video>
 				</div>
-				<div class="banner-top-img" >
-
-
-				</div>
-
-				<!-- <div class="pop-common banner-tip" v-if="show4">
-					<div class="pop-title"><span>透明厨房</span></div>
-					<span class="banner-tip-word">正在建设中！</span>
-				</div> -->
 			</div>
 		</transition>
 		<transition name="fade">
 			<div v-if="show2">
-				<!-- <div v-for="(item,index) in xingList" :key='index' :class="{'xingActive':xingIndex==index}" class="xingTab-item" @click="changeXing(index)">
-					<img :src="item.url">
-					<span>{{item.title}}</span>
-				</div> -->
 				<div class="pop-common pop-data">
-					<!-- <div class="pop-title"><span>每日数据</span></div> -->
 					<div class="rm-bottom">
 						<my-charts :id="rlss1" class="rm-item" :data="option"></my-charts>
 						<my-charts :id="rlgy1" class="rm-item" :data="option4"></my-charts>
@@ -81,62 +65,25 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<!-- <div class="banner-box" v-if="show3">
-				<el-carousel indicator-position='none' class="banner-center" arrow='hover' :interval='2000'
-					@change="changeIndex">
-					<el-carousel-item v-for="(item,index) in imgList" :key="index">
-						<img :src="item.url">
-					</el-carousel-item>
-				</el-carousel>
-				<div class="banner-label">
-					{{imgList[labelIndex].des}}
+			<div class="pop-common pop-list shop-bg" v-show="show3">
+				<div class="pop-inner-title">
+					<span style="width: 100%;">购物地点</span>
 				</div>
-			</div> -->
-			<div class="banner-box-box" v-if="show3">
-				<div class="banner-box banner-box-right">
-					<!-- <img :src="imgList2[1].url" class="banner-img">
-					<div class="banner-label">{{imgList2[1].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList1" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList2" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
-				</div>
-				<div class="banner-box banner-box-left">
-					<!-- <img :src="imgList2[2].url" class="banner-img">
-					<div class="banner-label">{{imgList2[2].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList3" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList4" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
-				</div>
-				<div class="banner-box banner-box-center">
-					<!-- <img :src="imgList2[0].url" class="banner-img">
-					<div class="banner-label">{{imgList2[0].des}}</div> -->
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList5" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
-					<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in gouImgList6" :key="index">
-							<img :src="item">
-						</el-carousel-item>
-					</el-carousel>
+				<div class="pop-inner-box">
+					<div v-for="(item,index) in shopList" :key='index' class="pop-inner-item" @click="chooseShop(item)">
+						<span style="width: 100%;">{{item.name}}</span>
+					</div>
 				</div>
 			</div>
-
+		</transition>
+		<transition name="fade">
+			<div v-show="showShopImg" class="banner banner-shop">
+				<el-carousel v-if="shopImgList.length>0" indicator-position='none' arrow='hover' :interval='4000'>
+					<el-carousel-item v-for="(item,index) in shopImgList" :key="index">
+						<img :src="item.img">
+					</el-carousel-item>
+				</el-carousel>
+			</div>
 		</transition>
 		<hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
@@ -405,14 +352,17 @@
 				rlss1: 'rlss1',
 				rlgy1: 'rlgy1',
 				clgy1: 'clgy1',
-				show: false,
-				show2: false,
-				show3: false,
-				show4: false,
+				show: false, //美食列表
+				show2: false, //每日数据
+				show3: false, 
+				show4: false, // 美食统计
+				showVideo: false,
+				showShopImg: false, //购轮播
+				shopList: [], //购列表
+				shopImgList: [], //购轮播列表
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
-				topImg: '',
 				e: 0,
 				list: [{
 					num: 37,
@@ -482,82 +432,27 @@
 					lng: '121.527141',
 					lat: '30.045825',
 				}],
-				imgList: [{
-					img: 'static/images/jdw1.png',
-					name: '暗香疏影'
-				}, {
-					img: 'static/images/jdw2.png',
-					name: '九龙第一鲜'
-				}, {
-					img: 'static/images/jdw3.png',
-					name: '九龙云雾'
-				}, {
-					img: 'static/images/jdw4.png',
-					name: '浪鲫江湖'
-				}, {
-					img: 'static/images/jdw5.png',
-					name: '蟠青丛翠'
-				}, {
-					img: 'static/images/jdw6.png',
-					name: '秋月如镜'
-				}, {
-					url: 'static/images/jdw7.png',
-					name: '神仙烧鸡'
-				}, {
-					img: 'static/images/jdw8.png',
-					name: '一丛金黄'
-				}, {
-					img: 'static/images/jdw9.png',
-					name: '珠联璧合'
-				}],
-				imgList2: [{
-					url: 'static/images/banner2.png',
-					des: '这是一道能让宁波人产生情感共鸣、地道的乡土小吃，采用新鲜的早稻米和灰汁、黄糖混合后制作的一个个小丸子，鸡蛋大小，扁圆状，茶色，掂在手里，水水的，颤悠悠的，像颠着件工艺品品，吃到嘴里清凉爽滑，不粘牙，而且越冷越好吃。这种感觉总会勾起你回忆味道，或许这就是乡愁，你品尝到灰汁团的那一刻，总能让你想起儿时。'
-				}, {
-					url: 'static/images/banner3.png',
-					des: '碱水粽子不单是我们的传统食物，也是历史悠久的传统习俗，是端午文化的重要组成部分，具有传承和发扬的重大意义，横溪碱水粽的独特之处，在于其粽叶用的是本地毛竹山上较大较宽的老黄箬叶，俗称“捏壳”。在每年的5月中旬左右，老板娘总是忙忙碌碌的准备糯米、碱水、和箬壳用古法包成一个个三角形的粽子后用柴火大灶文武火交替煮上四个小时左右，然后余火焖着过夜，这样第二天揭开锅盖时，才能闻到箬壳自带的竹香，混着这糯米清香的金色碱水粽，剥开金色的箬壳。'
-				}, {
-					url: 'static/images/banner4.png',
-					des: '神仙烧鸡是在九龙湖镇一带农村流行的烧鸡方法，食材选用在山村里散养的三黄鸡。用柴火慢炖3个小时以上，起锅时用勺子舀起汤汁浇在鸡肉上，还会滋滋作响，用筷子轻轻一戳，鸡肉与骨头便可分离，整只鸡外皮酥脆，肉质香嫩，油而不腻，嫩而不柴，冰糖的甜味让鸡肉的味道更有层次感。如今的神仙烧鸡，已经退出滋补品行列，渐渐成为横溪农家乐的特色招牌菜。但藏在的心头舌尖的味道，是每个镇海人久久不会忘怀的，这道佳肴也逐渐成为镇海人不会丢失的文化传承。'
-				}],
-				gouImgList1: ['static/images/banner1.png', 'static/images/banner2.png', 'static/images/banner3.png'],
-				gouImgList2: ['static/images/banner4.png', 'static/images/banner5.png', 'static/images/banner6.png'],
-				gouImgList3: ['static/images/banner7.png', 'static/images/banner8.png', 'static/images/banner9.png'],
-				gouImgList4: ['static/images/banner10.png', 'static/images/banner11.png', 'static/images/banner12.png'],
-				gouImgList5: ['static/images/banner13.png', 'static/images/banner14.png'],
-				gouImgList6: ['static/images/banner15.png', 'static/images/banner16.png'],
-				xingList: [{
-					url: 'static/images/hslx.png',
-					title: '旅游路线'
-				}, {
-					url: 'static/images/jtsk.png',
-					title: '交通实况'
-				}],
+				imgList: [],
 				dialogVisible:false,
 			}
 		},
 		methods: {
 			toStopScenicSpot(){
-				console.log("666666666666")
 				this.dialogVisible=false
 			},
 			toScenicSpot(){
-
 				this.dialogVisible=true
-
 			},
 			toPre(item){
+				this.showVideo = true
 				this.preVideo=item.video
 				this.$refs.preVideo.play()
 			},
 			goto(item) {
-				console.log(item.monitor)
-				console.log(item)
 				let a = {
 					X: item.lng,
 					Y: item.lat,
 				}
-				this.topImg = item.img
 				this.$parent.test(a);
 				this.$refs.videoPlayer6.off()
 				if (item.monitor != '' && item.monitor != null) {
@@ -568,14 +463,12 @@
 					this.preVideo=item.video
 				}
 				if(this.e == 1 || this.e == 0) {
-					console.log("氧气生活。。。。。。。")
 					this.imgList = []
 					this.$ajax.getAdvert({
 						travelId: item.id,
 						current: 1,
-						size: 10
+						size: 20
 					}).then(res => {
-
 						this.imgList = res.records
 					})
 				}
@@ -598,53 +491,28 @@
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "民宿")
-					this.imgList = [{
-						img: 'static/images/jdw1.png',
-						name: '暗香疏影'
-					}, {
-						img: 'static/images/jdw2.png',
-						name: '九龙第一鲜'
-					}, {
-						img: 'static/images/jdw3.png',
-						name: '九龙云雾'
-					}, {
-						img: 'static/images/jdw4.png',
-						name: '浪鲫江湖'
-					}, {
-						img: 'static/images/jdw5.png',
-						name: '蟠青丛翠'
-					}, {
-						img: 'static/images/jdw6.png',
-						name: '秋月如镜'
-					}, {
-						img: 'static/images/jdw7.png',
-						name: '神仙烧鸡'
-					}, {
-						img: 'static/images/jdw8.png',
-						name: '一丛金黄'
-					}, {
-						img: 'static/images/jdw9.png',
-						name: '珠联璧合'
-					}]
-					this.topImg = ""
+					this.imgList = []
 					this.njlList = this.eatList
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = true
+					this.showVideo = false
+					this.showShopImg = false
 				} else if (e == 1) {
 					//住
 					this.onOff("打开图层", "民宿")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
-					this.topImg = ""
 					this.imgList = []
 					this.njlList = this.hotelList
 					this.show = true
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
+					this.showVideo = false
+					this.showShopImg = false
 				} else if (e == 2) {
 					//玩
 					this.onOff("打开图层", "旅游景点")
@@ -655,6 +523,8 @@
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
+					this.showVideo = false
+					this.showShopImg = false
 				} else if (e == 3) {
 					//购
 					this.onOff("关闭图层", "旅游景点")
@@ -665,21 +535,37 @@
 					this.show2 = false
 					this.show3 = true
 					this.show4 = false
+					this.showVideo = false
+					this.showShopImg = false
 				}
-				// else if (e == 4) {
-				// 	this.show = false
-				// 	this.show2 = false
-				// 	this.show3 = true
-				// }
 			},
 			changeIndex(e) {
 				this.nameIndex = e
 			},
-			changeXing(e) {
-				this.xingIndex = e
+			getPopIndex(e) {
+				if(e==0) {
+					this.show = true
+				} else if(e==1) {
+					this.show = false
+				} else if(e==2) {
+					this.show = false
+				} else if(e==3) {
+					this.show = false
+				}
 			},
 			random(lower, upper) {
 				return Math.floor(Math.random() * (upper - lower)) + lower;
+			},
+			chooseShop(item) {
+				this.showShopImg = true
+				this.shopImgList = []
+				this.$ajax.getAdvert({
+					travelId: item.id,
+					current: 1,
+					size: 20
+				}).then(res => {
+					this.shopImgList = res.records
+				})
 			}
 		},
 		mounted() {
@@ -687,16 +573,22 @@
 				size: 50,
 				current: 1
 			}).then(res => {
-				console.log(res)
-				res.records.forEach((item, index) => {
-					if (item.type == "service_eat" || item.type == "service_all") {
-						this.eatList.push(item)
-					}
-					if (item.type == "service_hotel" || item.type == "service_all") {
-						this.hotelList.push(item)
-					}
-				})
+				// res.records.forEach((item, index) => {
+				// 	if (item.type == "service_eat" || item.type == "service_all") {
+				// 		this.eatList.push(item)
+				// 	}
+				// 	if (item.type == "service_hotel" || item.type == "service_all") {
+				// 		this.hotelList.push(item)
+				// 	}
+				// })
+				this.eatList = res.records
 				this.njlList = this.eatList
+			})
+			this.$ajax.getHotelList({size:20,current:1}).then(res => {
+				this.hotelList = res.records
+			})
+			this.$ajax.getShopList({size:20,current:1}).then(res => {
+				this.shopList = res.records
 			})
 			this.show = true
 			this.show4 = true
@@ -754,12 +646,20 @@
 		background: url(../bgImages/民宿统计.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 70px;
+		top: 200px !important;
 	}
 
 	.jd-bg {
 		background: url(../bgImages/景点列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 80px;
+	}
+	
+	.shop-bg {
+		background: url(../bgImages/景点列表.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 80px;
+		top: 200px !important;
 	}
 
 	.pop-list {
@@ -886,6 +786,34 @@
 				text-align: center;
 			}
 		}
+	}
+
+	.banner-shop {
+		top: 400px;
+		left: 640px;
+		width: 1083px;
+		height: 607px;
+		border: 2px solid #fff;
+		border-radius: 0;
+		// box-sizing: border-box;
+		/deep/ .el-carousel {
+			width: 100%;
+			height: 100%;
+			.el-carousel__container {
+				border: none;
+				width: 100%;
+				height: 100%;
+				.el-carousel__item {
+					width: 100%;
+					height: 100%;
+					img {
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		}
+		 
 	}
 
 	.banner-box-left {

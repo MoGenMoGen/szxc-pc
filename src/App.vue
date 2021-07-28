@@ -239,8 +239,8 @@
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==3) {
-					// this.tabChildList = ['三资管理', '村务公开']
-					this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','风险预警','廉政宣教','监督机构']
+					this.tabChildList = ['阳光村务', '村民说事','民意体检', '清风廉韵']
+					// this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','风险预警','廉政宣教','监督机构']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {

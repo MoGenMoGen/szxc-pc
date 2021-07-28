@@ -385,6 +385,14 @@ class api {
   		})
   	})
   }
+  // 购列表
+  getShopList(data) {
+	return new Promise(resolve => {
+		get("/blade-travel/shop/list",data).then(res=>{
+		  resolve(res.data)
+		})
+	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

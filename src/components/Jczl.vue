@@ -732,7 +732,7 @@
 			</div>
 		</transition> -->
 		<transition name="fade">
-			<div v-show="show17">
+			<div v-if="show17">
 				<div class="pop-left">
 					<div class="pop-bg-box wjx-bg" v-show="!showWjxList" @click="showZhxc">
 						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">查看全部></div>
@@ -843,8 +843,8 @@
 							<div class="pop-common-box">
 								<div class="pop-two-line" v-for="(item,index) in wyList2" :key="index">
 									<span>·</span>
-									<span>{{item.dName}}</span>
-									<span>{{item.num}}mm</span>
+									<span>{{item.name}}</span>
+									<span>{{item.alert}}mm</span>
 								</div>
 							</div>
 						</div>
@@ -885,12 +885,12 @@
 						<video v-show="showZhibo" id="video" ref="video" controls width="100%" height="98%"></video>
 					</div>
 				</div>
-				<div class="pop-center" v-show="centerShow">
+				<div class="pop-center" v-if="centerShow">
 					<img @click="centerShow = false" v-show="centerShow" src="../../public/static/images/cancel.png"
 						style="position: absolute;top: -20px;right: -20px;z-index: 200;">
 					<my-charts v-show="type==1" :id='common' style="width: 1054px;height: 595px;" class="echart-class"
 						:data='commonOption'></my-charts>
-					<div class="pop-wjxBg" v-show="type==2">
+					<div class="pop-wjxBg" v-if="type==2">
 						<div class="wjx-tap">
 							<div class="wjx-top-bg">
 								<div v-for="(item,index) in wjxTapList" :key="index" @click="switchDay(index)"
@@ -912,14 +912,16 @@
 							</div>
 						</div>
 						<div class="wjx-list">
-							<div class="wjx-list-item" v-for="(item,index) in wjxList" :key="index"
-								@click="showWjxDetail(item)">
-								<span>协作人：{{item.name}}</span>
-								<span>巡查人：{{item.name2}}</span>
-								<span>检查时间：{{item.time}}</span>
-								<span>店铺名称：{{item.shopName}}</span>
-								<span>检查结果：<span :style="item.status=='异常'?'color:#FF002A':''">{{item.status}}</span></span>
-							</div>
+							<vue-seamless-scroll :data="wjxList" class="seamless-warp2" :class-option="classOption4">
+								<div class="wjx-list-item" v-for="(item,index) in wjxList" :key="index"
+									@click="showWjxDetail(item)">
+									<span>协作人：{{item.name}}</span>
+									<span>巡查人：{{item.name2}}</span>
+									<span>检查时间：{{item.time}}</span>
+									<span>店铺名称：{{item.shopName}}</span>
+									<span>检查结果：<span :style="item.status=='异常'?'color:#FF002A':''">{{item.status}}</span></span>
+								</div>
+							</vue-seamless-scroll>
 						</div>
 						<div class="wjx-detail" v-show="isShowWjxDetail">
 							<img @click="isShowWjxDetail=false" class="cancelLogo"
@@ -1669,22 +1671,8 @@
 				qyList2: [],
 				wfList: [],
 				dzList: [],
-				wyList: [],
-				wyList2: [{
-					name: '横溪地质防范点01',
-					add: '东沟',
-					stability: '-',
-					status: '安装中',
-					dName: '监测点1',
-					num: 0
-				}, {
-					name: '横溪地质防范点02',
-					add: '东沟',
-					stability: '-',
-					status: '安装中',
-					dName: '监测点2',
-					num: 0
-				}],
+				wyList: [], //内涝点
+				wyList2: [], //边坡位移
 				wgzList: [],
 				ljflglList: [],
 				centerImg: ''
@@ -2522,8 +2510,7 @@
 					this.ljflOption.series[0].data = Object.values(res)
 				})
 				this.$ajax.getCamera('边坡位移').then(res=> {
-					console.log("边坡位移",res)
-					this.wyList = res
+					this.wyList2 = res
 				})
 			},
 			clickthis(option) {
@@ -2646,6 +2633,18 @@
 				}
 			},
 			classOption3() {
+				return {
+					step: 0.3, // 数值越大速度滚动越快
+					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
+					hoverStop: true, // 是否开启鼠标悬停stop
+					direction: 1, // 0向下 1向上 2向左 3向右
+					openWatch: true, // 开启数据实时监控刷新dom
+					singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+					singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+					waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
+				}
+			},
+			classOption4() {
 				return {
 					step: 0.3, // 数值越大速度滚动越快
 					limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
@@ -3824,12 +3823,15 @@
 			position: absolute;
 			top: 170px;
 			right: 100px;
-			padding: 10px;
+			padding: 0 10px;
 			width: 390px;
 			height: 320px;
 			box-sizing: border-box;
-			overflow-y: scroll;
-
+			// overflow-y: scroll;
+			.seamless-warp2 {
+				height: 320px;
+				overflow: hidden;
+			}
 			.wjx-list-item {
 				width: 369px;
 				height: 127px;
