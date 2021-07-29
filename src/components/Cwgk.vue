@@ -203,6 +203,52 @@
 				<!-- <img :src="cmssDetail.img"/> -->
 				<div class="cmss-info">
 					<div class="cmss-title">{{cmssDetail.title}}</div>
+					<div class="cmss-infoDetail">
+						<div class="cmss-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="cmss-infoDetail-item-right">
+								<span>群众点题（说）:</span>
+								<span>王国兆：农家乐经常出现垃圾分类不到位的情况，导致归集点垃圾检查经常出现不合格情况。</span>
+							</div>
+						</div>
+						<div class="cmss-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="cmss-infoDetail-item-right">
+								<span>村名议事（议）:</span>
+								<span>王XX：对啊，农家乐厨余垃圾又特别多，还不分类</span>
+								<span>张XX：这些农家乐钱要赚的，垃圾分类不好好分，村里要管一下呀，不然影响我们村里环境</span>
+								<span>李XX：可以理解他们不太会分，村里再给培训培训，还不好好分，那就说不过去了。</span>
+							</div>
+						</div>
+						<div class="cmss-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="cmss-infoDetail-item-right">
+								<span>事项办理（办）:</span>
+								<span>九龙湖村两委召开专题会：分析垃圾未分类到位的原因，下步将加强管理，制定奖罚措施，对农家乐进行专项培训。</span>
+							</div>
+						</div>
+						<div class="cmss-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="cmss-infoDetail-item-right">
+								<span>群众评价（评）:</span>
+								<span class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 100%;height: 12px;"></div>人数108人 100%</span>
+								<span class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 0%;height: 12px;"></div>人数0人 0%</span>
+								<span class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 0%;height: 12px;"></div>人数0人 0%</span>
+							</div>
+						</div>
+						<div class="cmss-message">
+							<div class="cmss-message-top">
+								<img src="../bgImages/message.png">
+								<span>留言板</span>
+							</div>
+							<div class="cmss-message-info">
+								<div style="overflow-y: scroll;display: flex;flex-direction: column;">
+									<span>王兆国：我看最近农家乐垃圾分类比之前好些了，村里办事的效率挺高。</span>
+									<span>李XX：希望能一直这样管理，不要两三天又不管了</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="cmssDetailShow = false"
 					v-show="cmssDetailShow">
@@ -210,7 +256,56 @@
 		</transition>
 		<transition name="fade">
 			<div class="mytj-detail" v-show="mytjDetailShow">
-				<img :src="mytjDetail.img"/>
+				<!-- <img :src="mytjDetail.img"/> -->
+				<div class="mytj-info">
+					<div class="mytj-title">{{mytjDetail.name}}</div>
+					<div class="mytj-infoDetail">
+						<div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>征求意见:</span>
+								<span class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 87%;height: 12px;"></div>人数1675 87%</span>
+								<span class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数243 13%</span>
+							</div>
+						</div>
+						<div class="mytj-message">
+							<div class="mytj-message-top">
+								<img src="../bgImages/logo.png">
+								<span>其他意见建议:</span>
+							</div>
+							<div class="mytj-message-box">
+								<div style="overflow-y: scroll;">
+									<div class="mytj-message-box-item">
+										<img src="../assets/logo.png">
+										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
+									</div>
+									<div class="mytj-message-box-item">
+										<img src="../assets/logo.png">
+										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
+									</div>
+									<div class="mytj-message-box-item">
+										<img src="../assets/logo.png">
+										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>项目实施：<span style="font-size: 18px;">2020年8月9日邀请宁波大学冯老师及其团队入驻九龙湖村横溪自然村对横溪几个公共节点及农家乐、民宿提升进行设计绘制 并参与过程打造。该项目包括龙眼泉点位、墙头停车场点位、公交站旁“绿水青 山金山银山”点位和文化礼堂旁说事长廊点位。</span></span>
+								<img src="../bgImages/5+x平台空.png">
+							</div>
+						</div>
+						<div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>结果评估：<span style="font-size: 18px;">通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。</span></span>
+								<img src="../bgImages/5+x平台空.png">
+							</div>
+						</div>
+					</div>
+				</div>
 				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="mytjDetailShow = false"
 					v-show="mytjDetailShow">
 			</div>
@@ -305,6 +400,25 @@
 				</div>
 			</div>
 		</transition>
+		<transition name="fade">
+			<div v-show="qflyShow" class="pop-common qfly">
+				<div v-for="(item,index) in qflyList" :key='index' class="pop-inner-item" @click="chooseQfly(index)">
+					<span :class="qflyIndex == index ? 'qflyActive': ''">{{ item}}</span>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div v-show="qflyImgShow">
+				<div class="qfly-img">
+					<div class="qfly-bg">
+						<div class="qfly-title">红廉长廊</div>
+					</div>
+					<div class="qfly-bg">
+						<div class="qfly-title">文化礼堂</div>
+					</div>
+				</div>
+			</div>
+		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
 	</div>
 </template>
@@ -342,6 +456,7 @@
 				cjw,
 				sjh,
 				url2: "http://visual.gzvst.top/view/1405180480017412097",
+				// url2: 'http://visual.gzvst.top/view/1419558441860476930',
 				cwList: [],
 				imgShow: false,
 				imgShow2: false,
@@ -358,6 +473,8 @@
 				lzxjCont: false, //廉政宣教图片墙
 				fxyjShow: false, //风险预警
 				qflyShow: false, //清风廉韵
+				qflyImgShow: false, // 清风廉韵图片展示
+				qflyIndex: -1,
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
 				mytjDetail: {}, //民意体检详情
@@ -369,8 +486,7 @@
 				bzData: {},
 				bxData: {},
 				jfData: {},
-				// title: '',
-				// data: '',
+				qflyList: ['清廉阵地', '家风民俗', '忽危积患'],
 				tabList: [{
 					hasUrl: false,
 					title: '三资管理'
@@ -639,6 +755,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyImgShow = false
 				} else if (e == 1) {
 					// this.getSzglData()
 					this.show = false
@@ -653,6 +770,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyImgShow = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -666,6 +784,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyImgShow = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -739,6 +858,10 @@
 				this.lzxjIndex = index
 				this.lzxjCont = true
 				this.lzxjCont = this.lzxjList[index].imgWall
+			},
+			chooseQfly(index) {
+				this.qflyIndex = index
+				this.qflyImgShow = true
 			},
 			showCmssDetail(item) {
 				this.cmssDetailShow = true
@@ -899,15 +1022,166 @@
 				text-overflow: ellipsis;
 				text-align: center;
 			}
+			.cmss-infoDetail {
+				display: flex;
+				flex-direction: column;
+				width: 670px;
+				max-height: 770px;
+				margin: 0 auto;
+				overflow-y: scroll;
+				.cmss-infoDetail-item {
+					display: flex;
+					width: 620px;
+					margin-bottom: 40px;
+					img {
+						width: 22px;
+						height: 22px;
+						margin-right: 10px;
+						margin-top: 5px;
+					}
+					.cmss-infoDetail-item-right {
+						display: flex;
+						flex-direction: column;
+						font-size: 18px;
+						span:first-child {
+							font-size: 20px;
+						}
+						.cmss-infoDetail-item-right-inline {
+							display: flex;
+							div {
+								margin: 0 5px;
+							}
+						}
+					}
+				}
+				.cmss-message {
+					display: flex;
+					flex-direction: column;
+					.cmss-message-top {
+						display: flex;
+						img {
+							width: 22px;
+							height: 22px;
+							margin-right: 10px;
+							margin-top: 5px;
+						}
+						span {
+							font-size: 20px;
+						}
+					}
+					.cmss-message-info {
+						background: url(../bgImages/message-bg.png) no-repeat;
+						background-size: 100% 100%;
+						width: 660px;
+						height: 178px;
+						padding: 20px 30px;
+						box-sizing: border-box;
+						display: flex;
+						flex-direction: column;
+					}
+				}
+			}
 		}
 	}
 	
 	.mytj-detail {
-		// background: url(../bgImages/村民说事-详情.png) no-repeat;
-		// background-size: 100% 100%;
 		position: absolute;
 		top: 200px;
 		left: 700px;
+		.mytj-info {
+			background: url(../bgImages/border-back.png) no-repeat;
+			width: 800px;
+			height: 886px;
+			background-size: 100% 100%;
+			font-size: 22px;
+			color: #8BEBFF;
+			.mytj-title {
+				width: 100%;
+				padding: 15px 240px;
+				box-sizing: border-box;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-align: center;
+			}
+			.mytj-infoDetail {
+				display: flex;
+				flex-direction: column;
+				width: 670px;
+				max-height: 770px;
+				margin: 0 auto;
+				overflow-y: scroll;
+				.mytj-infoDetail-item {
+					display: flex;
+					width: 620px;
+					margin-bottom: 40px;
+					img {
+						width: 22px;
+						height: 22px;
+						margin-right: 10px;
+						margin-top: 5px;
+					}
+					.mytj-infoDetail-item-right {
+						display: flex;
+						flex-direction: column;
+						font-size: 18px;
+						span:first-child {
+							font-size: 20px;
+						}
+						img {
+							width: 620px;
+							height: 236px;
+						}
+						.mytj-infoDetail-item-right-inline {
+							display: flex;
+							div {
+								margin: 0 5px;
+							}
+						}
+					}
+				}
+				.mytj-message {
+					display: flex;
+					flex-direction: column;
+					.mytj-message-top {
+						display: flex;
+						img {
+							width: 22px;
+							height: 22px;
+							margin-right: 10px;
+							margin-top: 5px;
+						}
+						span {
+							font-size: 20px;
+						}
+					}
+					.mytj-message-box {
+						background: url(../bgImages/message-bg.png) no-repeat;
+						background-size: 100% 100%;
+						width: 660px;
+						height: 178px;
+						padding: 20px 30px;
+						box-sizing: border-box;
+						display: flex;
+						flex-direction: column;
+						.mytj-message-box-item {
+							display: flex;
+							align-items: center;
+							margin-bottom: 20px;
+							img {
+								width: 53px;
+								height: 53px;
+								margin-right: 15px;
+								border-radius: 50%;
+							}
+							span {
+								font-size: 16px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	.mytj {
@@ -974,7 +1248,6 @@
 		position: absolute;
 		top: 230px;
 		left: 700px;
-	
 		img {
 			width: 100%;
 		}
@@ -1161,6 +1434,52 @@
 						height: 5px;
 					}
 				}
+			}
+		}
+	}
+
+	.qfly {
+		width: 520px;
+		height: 298px;
+		background: url(../bgImages/清风廉韵.png) no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		top: 200px;
+		left: 35px;
+		padding-top: 100px;
+		font-size: 18px;
+		.pop-inner-item {
+			width: 100%;
+			margin-bottom: 30px;
+			text-align: center;
+			cursor: pointer;
+			.qflyActive {
+				color: #FF1E1E;
+			}
+		}
+	}
+
+	.qfly-img {
+		position: absolute;
+		top: 200px;
+		left: 650px;
+		display: flex;
+		.qfly-bg {
+			background: url(../bgImages/border-back2.png) no-repeat;
+			background-size: 100% 100%;
+			width: 612px;
+			height: 886px;
+			margin-right: 150px;
+			font-size: 22px;
+			color: #8CACF9;
+			.qfly-title {
+				width: 100%;
+				padding: 15px 240px;
+				box-sizing: border-box;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-align: center;
 			}
 		}
 	}

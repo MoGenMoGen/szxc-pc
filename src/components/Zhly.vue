@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<transition name="fade">
-			<PopBox :list="list" v-show='show4' @updata="getPopIndex"></PopBox>
-		</transition>
+		<PopBox :list="list" v-show='show4' @updata="getPopIndex"></PopBox>
 		<transition name="fade">
 			<div class="pop-common pop-list njl-bg" :class="e==1?'ms-bg':''" v-show="show">
 				<div class="pop-inner-title">
@@ -20,7 +18,55 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			
+			<div v-show="showTenList">
+				<div class="pop-common pop-list ten-bg">
+					<div v-for="(item,index) in tenList" :key='index' class="pop-inner-item" @click="chooseTen(item)">
+						<span>{{item.name}}</span>
+					</div>
+				</div>
+				<div class="ten-info" v-show="showTenInfo">
+					<div class="ten-title">{{tenInfo.name}}</div>
+					<img :src="tenInfo.img" class="ten-img">
+					<div class="ten-des">{{tenInfo.des}}</div>
+					<img src="../../public/static/images/cancel.png" style="position: absolute;top: 0;right: -10px;" @click="showTenInfo = false">
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div v-show="showWest">
+				<div class="pop-common pop-list west-bg">
+					<div class="pop-inner-title">
+						<span style="width: 60%">农家乐名称</span>
+						<span style="width: 20%">监控</span>
+						<span style="width: 20%">视频</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in tenList" :key='index' class="pop-inner-item">
+							<span style="width: 60%">{{item.name}}</span>
+							<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
+							<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div v-show="showDrive">
+				<div class="pop-common pop-list drive-bg">
+					<div class="pop-inner-title">
+						<span style="width: 60%">农家乐名称</span>
+						<span style="width: 20%">监控</span>
+						<span style="width: 20%">视频</span>
+					</div>
+					<div class="pop-inner-box">
+						<div v-for="(item,index) in tenList" :key='index' class="pop-inner-item">
+							<span style="width: 60%">{{item.name}}</span>
+							<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
+							<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</transition>
 		<transition name="fade">
 			<div v-if="show" class="banner">
@@ -356,10 +402,40 @@
 				show2: false, //每日数据
 				show3: false, 
 				show4: false, // 美食统计
+				showTenList: false, //十大碗
+				showTenInfo: false, //十大碗详情
+				showWest: false, //乡村西餐
+				showDrive: false, //代驾联盟
 				showVideo: false,
 				showShopImg: false, //购轮播
 				shopList: [], //购列表
 				shopImgList: [], //购轮播列表
+				tenList: [{
+					name: '红膏枪蟹',
+					img: 'static/images/gouS.png',
+					des: 'ssssssssssssssssssss'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				},{
+					name: '红膏枪蟹'
+				}], //十大碗列表
+				tenInfo: {}, //十大碗详情
+				westList: [], //乡村西餐列表
+				driveList: [], //代驾联盟列表
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
@@ -497,8 +573,12 @@
 					this.show2 = false
 					this.show3 = false
 					this.show4 = true
+					this.showTenList = false
+					this.showWest = false
+					this.showDrive = false
 					this.showVideo = false
 					this.showShopImg = false
+					this.showTenInfo = false
 				} else if (e == 1) {
 					//住
 					this.onOff("打开图层", "民宿")
@@ -511,8 +591,12 @@
 					this.show2 = false
 					this.show3 = false
 					this.show4 = false
+					this.showTenList = false
+					this.showWest = false
+					this.showDrive = false
 					this.showVideo = false
 					this.showShopImg = false
+					this.showTenInfo = false
 				} else if (e == 2) {
 					//玩
 					this.onOff("打开图层", "旅游景点")
@@ -523,8 +607,12 @@
 					this.show2 = true
 					this.show3 = false
 					this.show4 = false
+					this.showTenList = false
+					this.showWest = false
+					this.showDrive = false
 					this.showVideo = false
 					this.showShopImg = false
+					this.showTenInfo = false
 				} else if (e == 3) {
 					//购
 					this.onOff("关闭图层", "旅游景点")
@@ -535,8 +623,12 @@
 					this.show2 = false
 					this.show3 = true
 					this.show4 = false
+					this.showTenList = false
+					this.showWest = false
+					this.showDrive = false
 					this.showVideo = false
 					this.showShopImg = false
+					this.showTenInfo = false
 				}
 			},
 			changeIndex(e) {
@@ -545,12 +637,27 @@
 			getPopIndex(e) {
 				if(e==0) {
 					this.show = true
+					this.showTenList = false
+					this.showTenInfo = false
+					this.showWest = false
+					this.showDrive = false
 				} else if(e==1) {
 					this.show = false
+					this.showTenList = true
+					this.showWest = false
+					this.showDrive = false
 				} else if(e==2) {
 					this.show = false
+					this.showTenList = false
+					this.showTenInfo = false
+					this.showWest = true
+					this.showDrive = false
 				} else if(e==3) {
 					this.show = false
+					this.showTenList = false
+					this.showTenInfo = false
+					this.showWest = false
+					this.showDrive = true
 				}
 			},
 			random(lower, upper) {
@@ -566,6 +673,10 @@
 				}).then(res => {
 					this.shopImgList = res.records
 				})
+			},
+			chooseTen(item) {
+				this.showTenInfo = true
+				this.tenInfo = item
 			}
 		},
 		mounted() {
@@ -625,9 +736,6 @@
 
 	.pop-common {
 		width: 520px;
-		// border: 1px solid #fff;
-		// border-radius: 10px;
-		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -645,6 +753,7 @@
 	.ms-bg {
 		background: url(../bgImages/民宿统计.png) no-repeat;
 		background-size: 100% 100%;
+		min-height: 400px;
 		padding-top: 70px;
 		top: 200px !important;
 	}
@@ -656,10 +765,68 @@
 	}
 	
 	.shop-bg {
-		background: url(../bgImages/景点列表.png) no-repeat;
+		background: url(../bgImages/购物列表.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 80px;
 		top: 200px !important;
+	}
+
+	.ten-bg {
+		background: url(../bgImages/十大碗.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 80px;
+		.pop-inner-item {
+			width: 100%;
+			text-align: center;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+	}
+
+	.ten-info {
+		background: url(../bgImages/border-back.png) no-repeat;
+		background-size: 100% 100%;
+		display: flex;
+		flex-direction: column;
+		width: 800px;
+		height: 886px;
+		position: absolute;
+		left: 640px;
+		top: 200px;
+		font-size: 22px;
+		color: #8BEBFF;
+		.ten-title {
+			width: 100%;
+			padding: 15px 240px;
+			box-sizing: border-box;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-align: center;
+		}
+		.ten-img {
+			width: 700px;
+			height: 400px;
+			margin: 0 auto;
+		}
+		.ten-des {
+			width: 700px;
+			margin: 10px auto;
+			max-height: 410px;
+			overflow-y: scroll;
+		}
+	}
+	
+	.west-bg {
+		background: url(../bgImages/乡村西餐.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 90px;
+	}
+	
+	.drive-bg {
+		background: url(../bgImages/代驾联盟.png) no-repeat;
+		background-size: 100% 100%;
+		padding-top: 90px;
 	}
 
 	.pop-list {
