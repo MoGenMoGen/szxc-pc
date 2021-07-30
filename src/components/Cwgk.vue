@@ -409,12 +409,23 @@
 		</transition>
 		<transition name="fade">
 			<div v-show="qflyImgShow">
-				<div class="qfly-img">
+				<div class="qfly-img" v-if="qflyImgShow1">
 					<div class="qfly-bg">
 						<div class="qfly-title">红廉长廊</div>
 					</div>
 					<div class="qfly-bg">
 						<div class="qfly-title">文化礼堂</div>
+					</div>
+				</div>
+				<div class="qfly-imgOrWord" v-if="qflyImgShow2">
+					<div class="qfly-bg">
+						<div class="qfly-title">红廉长廊</div>
+					</div>
+					<div class="qfly-bg">
+						<div class="qfly-title">红廉长廊</div>
+					</div>
+					<div class="qfly-bg">
+						<div class="qfly-title">红廉长廊</div>
 					</div>
 				</div>
 			</div>
@@ -455,8 +466,8 @@
 				cjh,
 				cjw,
 				sjh,
-				url2: "http://visual.gzvst.top/view/1405180480017412097",
-				// url2: 'http://visual.gzvst.top/view/1419558441860476930',
+				// url2: "http://visual.gzvst.top/view/1405180480017412097",
+				url2: 'http://visual.gzvst.top/view/1419558441860476930',
 				cwList: [],
 				imgShow: false,
 				imgShow2: false,
@@ -474,6 +485,8 @@
 				fxyjShow: false, //风险预警
 				qflyShow: false, //清风廉韵
 				qflyImgShow: false, // 清风廉韵图片展示
+				qflyImgShow1: false, //两列纯图
+				qflyImgShow2: false, //3列文字图
 				qflyIndex: -1,
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
@@ -696,6 +709,9 @@
 		mounted() {
 			this.getSzglData()
 			this.cShow = true
+			this.$ajax.getDriveList({size:10,current:1}).then(res => {
+				console.log(res)
+			})
 		},
 		methods: {
 			getSzglData() {
@@ -756,6 +772,8 @@
 					this.imgShow2 = false
 					this.qflyShow = false
 					this.qflyImgShow = false
+					this.qflyImgShow1 = false
+					this.qflyImgShow2 = false
 				} else if (e == 1) {
 					// this.getSzglData()
 					this.show = false
@@ -771,6 +789,8 @@
 					this.imgShow2 = false
 					this.qflyShow = false
 					this.qflyImgShow = false
+					this.qflyImgShow1 = false
+					this.qflyImgShow2 = false
 				} else if (e == 2) {
 					this.show = false
 					this.cShow = false
@@ -785,6 +805,8 @@
 					this.imgShow2 = false
 					this.qflyShow = false
 					this.qflyImgShow = false
+					this.qflyImgShow1 = false
+					this.qflyImgShow2 = false
 				} else if (e == 3) {
 					this.show = false
 					this.cShow = false
@@ -798,6 +820,10 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = true
+					this.qflyImgShow = false
+					this.qflyImgShow1 = false
+					this.qflyImgShow2 = false
+					this.qflyIndex = -1
 				} 
 				// else if (e == 4) {
 				// 	this.show = false
@@ -862,6 +888,13 @@
 			chooseQfly(index) {
 				this.qflyIndex = index
 				this.qflyImgShow = true
+				if(index==1) {
+					this.qflyImgShow1 = false
+					this.qflyImgShow2 = true
+				} else {
+					this.qflyImgShow1 = true
+					this.qflyImgShow2 = false
+				}
 			},
 			showCmssDetail(item) {
 				this.cmssDetailShow = true
@@ -1475,6 +1508,31 @@
 			.qfly-title {
 				width: 100%;
 				padding: 15px 240px;
+				box-sizing: border-box;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-align: center;
+			}
+		}
+	}
+	
+	.qfly-imgOrWord {
+		position: absolute;
+		top: 200px;
+		left: 600px;
+		display: flex;
+		.qfly-bg {
+			background: url(../bgImages/border-back3.png) no-repeat;
+			background-size: 100% 100%;
+			width: 500px;
+			height: 886px;
+			margin-right: 40px;
+			font-size: 22px;
+			color: #8CACF9;
+			.qfly-title {
+				width: 100%;
+				padding: 15px 150px;
 				box-sizing: border-box;
 				overflow: hidden;
 				white-space: nowrap;

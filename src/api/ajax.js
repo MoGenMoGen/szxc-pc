@@ -393,6 +393,38 @@ class api {
 		})
 	})
   }
+  // 十大碗列表
+  getTenList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-travel/bowl/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
+  // 乡村西餐列表
+  getWestList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-travel/west/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
+  // 代驾联盟列表
+  getDriveList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-travel/driver/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
+  // 村民说事列表
+  getDriveList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-honest/say/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

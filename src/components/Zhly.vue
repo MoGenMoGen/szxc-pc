@@ -27,7 +27,7 @@
 				<div class="ten-info" v-show="showTenInfo">
 					<div class="ten-title">{{tenInfo.name}}</div>
 					<img :src="tenInfo.img" class="ten-img">
-					<div class="ten-des">{{tenInfo.des}}</div>
+					<div class="ten-des" v-html="tenInfo.cont"></div>
 					<img src="../../public/static/images/cancel.png" style="position: absolute;top: 0;right: -10px;" @click="showTenInfo = false">
 				</div>
 			</div>
@@ -35,18 +35,16 @@
 		<transition name="fade">
 			<div v-show="showWest">
 				<div class="pop-common pop-list west-bg">
-					<div class="pop-inner-title">
-						<span style="width: 60%">农家乐名称</span>
-						<span style="width: 20%">监控</span>
-						<span style="width: 20%">视频</span>
+					<div v-for="(item,index) in westList" :key='index' class="pop-inner-item" @click="chooseWest(item)">
+						<span>{{item.name}}</span>
 					</div>
-					<div class="pop-inner-box">
-						<div v-for="(item,index) in tenList" :key='index' class="pop-inner-item">
-							<span style="width: 60%">{{item.name}}</span>
-							<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
-							<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
-						</div>
-					</div>
+				</div>
+				<div v-show="westImgShow" class="banner">
+					<el-carousel v-if="westImgList.length>0" indicator-position='none' arrow='hover' :interval='4000'>
+						<el-carousel-item v-for="(item,index) in westImgList" :key="index">
+							<img :src="item">
+						</el-carousel-item>
+					</el-carousel>
 				</div>
 			</div>
 		</transition>
@@ -54,15 +52,19 @@
 			<div v-show="showDrive">
 				<div class="pop-common pop-list drive-bg">
 					<div class="pop-inner-title">
-						<span style="width: 60%">农家乐名称</span>
-						<span style="width: 20%">监控</span>
-						<span style="width: 20%">视频</span>
+						<span style="width: 15%">序号</span>
+						<span style="width: 20%">姓名</span>
+						<span style="width: 15%">性别</span>
+						<span style="width: 20%">驾龄</span>
+						<span style="width: 40%;">手机号</span>
 					</div>
 					<div class="pop-inner-box">
-						<div v-for="(item,index) in tenList" :key='index' class="pop-inner-item">
-							<span style="width: 60%">{{item.name}}</span>
-							<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
-							<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
+						<div v-for="(item,index) in driveList" :key='index' class="pop-inner-item">
+							<span style="width: 15%">{{index+1}}</span>
+							<span style="width: 20%">{{item.name}}</span>
+							<span style="width: 15%">{{item.sex==1?'男':'女'}}</span>
+							<span style="width: 20%">{{item.driveAge}}年</span>
+							<span style="width: 40%;">{{item.mob}}</span>
 						</div>
 					</div>
 				</div>
@@ -410,32 +412,37 @@
 				showShopImg: false, //购轮播
 				shopList: [], //购列表
 				shopImgList: [], //购轮播列表
-				tenList: [{
-					name: '红膏枪蟹',
-					img: 'static/images/gouS.png',
-					des: 'ssssssssssssssssssss'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				},{
-					name: '红膏枪蟹'
-				}], //十大碗列表
+				tenList: [], //十大碗列表
 				tenInfo: {}, //十大碗详情
 				westList: [], //乡村西餐列表
-				driveList: [], //代驾联盟列表
+				westImgShow: false, //乡村西餐轮播
+				westImgList: [], //乡村西餐轮播列表
+				driveList: [{
+					name: '沈裕琪',
+					sex: '男',
+					phone: '15067450167',
+					year: '10'
+				},{
+					name: '钱勇军',
+					sex: '男',
+					phone: '13757467322',
+					year: '20'
+				},{
+					name: '林德明',
+					sex: '男',
+					phone: '13958203063',
+					year: '22'
+				},{
+					name: '陈如良',
+					sex: '男',
+					phone: '15825571030',
+					year: '8'
+				},{
+					name: '叶锋',
+					sex: '男',
+					phone: '13968252053',
+					year: '15'
+				}], //代驾联盟列表
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
@@ -449,11 +456,11 @@
 					url: 'static/images/mingsu.png',
 					title: '十大碗'
 				}, {
-					num: 6,
+					num: 3,
 					url: 'static/images/jingdian.png',
 					title: '乡村西餐'
 				}, {
-					num: 6,
+					num: 5,
 					url: 'static/images/daijialianmeng.png',
 					title: '代驾联盟'
 				}],
@@ -579,6 +586,7 @@
 					this.showVideo = false
 					this.showShopImg = false
 					this.showTenInfo = false
+					this.westImgShow = false
 				} else if (e == 1) {
 					//住
 					this.onOff("打开图层", "民宿")
@@ -597,6 +605,7 @@
 					this.showVideo = false
 					this.showShopImg = false
 					this.showTenInfo = false
+					this.westImgShow = false
 				} else if (e == 2) {
 					//玩
 					this.onOff("打开图层", "旅游景点")
@@ -613,6 +622,7 @@
 					this.showVideo = false
 					this.showShopImg = false
 					this.showTenInfo = false
+					this.westImgShow = false
 				} else if (e == 3) {
 					//购
 					this.onOff("关闭图层", "旅游景点")
@@ -629,6 +639,7 @@
 					this.showVideo = false
 					this.showShopImg = false
 					this.showTenInfo = false
+					this.westImgShow = false
 				}
 			},
 			changeIndex(e) {
@@ -641,11 +652,13 @@
 					this.showTenInfo = false
 					this.showWest = false
 					this.showDrive = false
+					this.westImgShow = false
 				} else if(e==1) {
 					this.show = false
 					this.showTenList = true
 					this.showWest = false
 					this.showDrive = false
+					this.westImgShow = false
 				} else if(e==2) {
 					this.show = false
 					this.showTenList = false
@@ -658,6 +671,7 @@
 					this.showTenInfo = false
 					this.showWest = false
 					this.showDrive = true
+					this.westImgShow = false
 				}
 			},
 			random(lower, upper) {
@@ -677,6 +691,10 @@
 			chooseTen(item) {
 				this.showTenInfo = true
 				this.tenInfo = item
+			},
+			chooseWest(item) {
+				this.westImgShow = true
+				this.westImgList = item.img
 			}
 		},
 		mounted() {
@@ -700,6 +718,18 @@
 			})
 			this.$ajax.getShopList({size:20,current:1}).then(res => {
 				this.shopList = res.records
+			})
+			this.$ajax.getTenList({size:20,current:1}).then(res => {
+				this.tenList = res.records
+			})
+			this.$ajax.getWestList({size:20,current:1}).then(res => {
+				res.records.forEach(item => {
+					item.img = item.img.split(",")
+				})
+				this.westList = res.records
+			})
+			this.$ajax.getDriveList({size:20,current:1}).then(res => {
+				this.driveList = res.records
 			})
 			this.show = true
 			this.show4 = true
@@ -820,13 +850,24 @@
 	.west-bg {
 		background: url(../bgImages/乡村西餐.png) no-repeat;
 		background-size: 100% 100%;
-		padding-top: 90px;
+		padding-top: 100px;
+		min-height: 500px;
+		.pop-inner-item {
+			width: 100%;
+			text-align: center;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
 	}
 	
 	.drive-bg {
 		background: url(../bgImages/代驾联盟.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 90px;
+		min-height: 500px;
+		span {
+			text-align: center;
+		}
 	}
 
 	.pop-list {
@@ -925,6 +966,7 @@
 				img {
 					width: 100%;
 					height: 100%;
+					object-fit: cover;
 				}
 			}
 		}
