@@ -191,8 +191,8 @@
 					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item"
 						@click="showCmssDetail(item)">
 						<span style="width: 15%;">{{ index+1 }}</span>
-						<span style="width: 15%;">{{ item.time }}</span>
-						<span>{{ item.title }}</span>
+						<span style="width: 15%;">{{ item.handleTime }}</span>
+						<span>{{ item.name }}</span>
 						<span>{{ item.satisfaction }}%</span>
 					</div>
 				</div>
@@ -202,38 +202,36 @@
 			<div class="cmss-detail" v-show="cmssDetailShow">
 				<!-- <img :src="cmssDetail.img"/> -->
 				<div class="cmss-info">
-					<div class="cmss-title">{{cmssDetail.title}}</div>
+					<div class="cmss-title">{{cmssDetail.name}}</div>
 					<div class="cmss-infoDetail">
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>群众点题（说）:</span>
-								<span>王国兆：农家乐经常出现垃圾分类不到位的情况，导致归集点垃圾检查经常出现不合格情况。</span>
+								<span v-html="cmssDetail.theme"></span>
 							</div>
 						</div>
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>村名议事（议）:</span>
-								<span>王XX：对啊，农家乐厨余垃圾又特别多，还不分类</span>
-								<span>张XX：这些农家乐钱要赚的，垃圾分类不好好分，村里要管一下呀，不然影响我们村里环境</span>
-								<span>李XX：可以理解他们不太会分，村里再给培训培训，还不好好分，那就说不过去了。</span>
+								<span v-html="cmssDetail.discussion"></span>
 							</div>
 						</div>
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>事项办理（办）:</span>
-								<span>九龙湖村两委召开专题会：分析垃圾未分类到位的原因，下步将加强管理，制定奖罚措施，对农家乐进行专项培训。</span>
+								<span>{{cmssDetail.eventHandle}}</span>
 							</div>
 						</div>
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>群众评价（评）:</span>
-								<span class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 100%;height: 12px;"></div>人数108人 100%</span>
-								<span class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 0%;height: 12px;"></div>人数0人 0%</span>
-								<span class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 0%;height: 12px;"></div>人数0人 0%</span>
+								<span class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: cmssDetail.satisfaction + '%'}"></div>人数{{cmssDetail.satisfiedNum}}人 {{cmssDetail.satisfaction}}%</span>
+								<span class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.commonSatisfaction + '%'}"></div>人数{{cmssDetail.commonNum}}人 {{cmssDetail.commonSatisfaction}}%</span>
+								<span class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.disSatisfaction + '%'}"></div>人数{{cmssDetail.dissatisfiedNum}}人 {{cmssDetail.disSatisfaction}}%</span>
 							</div>
 						</div>
 						<div class="cmss-message">
@@ -243,8 +241,7 @@
 							</div>
 							<div class="cmss-message-info">
 								<div style="overflow-y: scroll;display: flex;flex-direction: column;">
-									<span>王兆国：我看最近农家乐垃圾分类比之前好些了，村里办事的效率挺高。</span>
-									<span>李XX：希望能一直这样管理，不要两三天又不管了</span>
+									<span v-html="cmssDetail.message"></span>
 								</div>
 							</div>
 						</div>
@@ -301,7 +298,29 @@
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>结果评估：<span style="font-size: 18px;">通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。</span></span>
-								<img src="../bgImages/5+x平台空.png">
+							</div>
+						</div>
+						<div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>群众评价:</span>
+								<span class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 87%;height: 12px;"></div>人数1675 87%</span>
+								<span class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数243 13%</span>
+								<span class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数0 0%</span>
+							</div>
+						</div>
+						<div class="mytj-message">
+							<div class="mytj-message-top">
+								<img src="../bgImages/logo.png">
+								<span>留言板:</span>
+							</div>
+							<div class="mytj-message-box">
+								<div style="overflow-y: scroll;">
+									<div class="mytj-message-box-item">
+										<img src="../assets/logo.png">
+										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -642,31 +661,7 @@
 					add: '九龙湖村长胜',
 					phone: '13857821828/679828'
 				}],
-				cmssList: [{
-					time: '2021.5.19',
-					title: '垃圾分类奖罚措施',
-					detail: '2021年5月19日横溪村民王国兆反映：农家乐经常出现垃圾分类不到位的情况，导致归集点垃圾检查经常出现不合格情况，希望村里对农家乐有罚款制度，未分类的要有罚款措施。九龙湖村两委召开专题会：分析垃圾未分类到位的原因，下步将加强管理，制定奖罚措施，对农家乐进行专项培训。',
-					satisfaction: '98',
-					img: 'static/images/ljfljfcs.png'
-				}, {
-					time: '2021.5.26',
-					title: '施工围栏设置调整',
-					detail: '2021年5月26日王海君反映：横溪高端民宿项目铁皮围栏太过超出，影响交通，出行不安全。经村班子商量后，与施工方对接，围栏已挪进。',
-					satisfaction: '98',
-					img: 'static/images/sgwlsztz.png'
-				}, {
-					time: '2021.6.2',
-					title: '路灯遮挡修整',
-					detail: '2021年6月2日村民胡彩娣反映：香山路旁树枝太过茂密，挡住了路灯的灯光，影响出行的安全。村干部进行实地勘察，已安排人员对树枝进行修剪。',
-					satisfaction: '97',
-					img: 'static/images/ldzdxz.png'
-				}, {
-					time: '2021.6.16',
-					title: '垃圾包巡查',
-					detail: '2021年6月16日村民王品岳反映：因垃圾点位靠马路边，非投放时间段游客经过时经常出现垃圾包。各网格加强垃圾点位巡查，出现垃圾包及时收集处理。',
-					satisfaction: '98',
-					img: 'static/images/ljbxc.png'
-				}],
+				cmssList: [],
 				mytjList: [{
 					name: '横溪艺术振兴乡村',
 					feasibility: '95',
@@ -709,9 +704,20 @@
 		mounted() {
 			this.getSzglData()
 			this.cShow = true
-			this.$ajax.getDriveList({size:10,current:1}).then(res => {
-				console.log(res)
+			this.$ajax.getSayList({size:10,current:1}).then(res => {
+				res.records.forEach(item => {
+					item.satisfaction = item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
+					item.commonSatisfaction = item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
+					item.disSatisfaction = item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
+				})
+				this.cmssList = res.records
 			})
+			this.$ajax.getOpinionList({size:10,current:1}).then(res => {
+				this.mytjList = res.records
+			})
+			// this.$ajax.getOpinionList({size:10,current:1}).then(res => {
+			// 	this.mytjList = res.records
+			// })
 		},
 		methods: {
 			getSzglData() {
@@ -931,7 +937,6 @@
 			width: 95%;
 			margin: 0 auto;
 			font-size: 19px;
-
 			span {
 				width: 35%;
 				text-align: center;
@@ -1083,6 +1088,9 @@
 							display: flex;
 							div {
 								margin: 0 5px;
+								img {
+									height: 12px;
+								}
 							}
 						}
 					}

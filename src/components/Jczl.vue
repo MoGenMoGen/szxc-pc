@@ -941,8 +941,9 @@
 										:style="wjxDetail.srjc=='异常'?'color:#FF002A':''">{{wjxDetail.srjc}}</span></span>
 								<span class="wjx-detail-status-item">油烟检查：<span
 										:style="wjxDetail.yyjc=='异常'?'color:#FF002A':''">{{wjxDetail.yyjc}}</span></span>
-								<span class="wjx-detail-status-item">污水排放：<span
-										:style="wjxDetail.wspf=='异常'?'color:#FF002A':''">{{wjxDetail.wspf}}</span></span>
+								<span @click="showWjxErr(wjxDetail.wspf)" class="wjx-detail-status-item">污水排放：<span
+										:style="wjxDetail.wspf=='异常'?'color:#FF002A':''"
+										>{{wjxDetail.wspf}}</span></span>
 								<span class="wjx-detail-status-item">垃圾分类：<span
 										:style="wjxDetail.ljfl=='异常'?'color:#FF002A':''">{{wjxDetail.ljfl}}</span></span>
 								<span class="wjx-detail-status-item">燃气安全：<span
@@ -950,6 +951,14 @@
 								<span class="wjx-detail-status-item">其他检查：<span
 										:style="wjxDetail.qtjc=='异常'?'color:#FF002A':''">{{wjxDetail.qtjc}}</span></span>
 							</div>
+						</div>
+						<div class="wjx-error" v-show="showWjxError">
+							<img @click="showWjxError=false" class="cancelLogo"
+								src="../../public/static/images/cancel.png" v-show="showWjxError"
+								style="position: absolute;top: -10px;right: -10px;">
+							<div class="wjx-error-title">污水排放异常</div>
+							<div class="wjx-error-cont">异常原因:污水排放异常</div>
+							<img class="wjx-error-img" src="../bgImages/污水.jpg">
 						</div>
 					</div>
 					<img :src="centerImg" v-show="type==3" style="width: 100%;height: 100%;">
@@ -1457,6 +1466,7 @@
 				wgryShow: false, //显示网格人员列表
 				showPBtn: true, //四个平台显隐按钮
 				showWjxList: false, //5+x图列表切换
+				showWjxError: false, //5+x异常
 				showZhibo: false, //显示鼎力直播
 				hls:'',
 				videoUrl: '',
@@ -1575,37 +1585,7 @@
 					title: '综合监管'
 				}],
 				stList: [],
-				skList: [{
-					name: '劈开猪头',
-					capacity: 10.84,
-					volume: 1.89
-				}, {
-					name: '杨家',
-					capacity: 5.23,
-					volume: 0.33,
-					X: '',
-					Y: ''
-				}, {
-					name: '蔡家岙',
-					capacity: 2.21,
-					volume: 0.09,
-				}, {
-					name: '安基墩',
-					capacity: 6.61,
-					volume: 0.4,
-				}, {
-					name: '石英坎',
-					capacity: 2.21,
-					volume: 0.86,
-				}, {
-					name: '三八',
-					capacity: 1.67,
-					volume: 0.53,
-				}, {
-					name: '应家',
-					capacity: 1.14,
-					volume: 0.13,
-				}],
+				skList: [],
 				fnsList: [],
 				sjs: [],
 				trackList: [],
@@ -1621,53 +1601,7 @@
 				sjList2: [],
 				sjList3: [],
 				jkList: [],
-				qyList: [{
-					name: '昱如副食品店',
-					X: '121.510998',
-					Y: '30.052114'
-				}, {
-					name: '鼎力紧定螺钉有限公司'
-				}, {
-					name: '镇海互感器厂有限公司'
-				}, {
-					name: '镇海九龙电器成套厂'
-				}, {
-					name: '镇海叶大塑料制品厂'
-				}, {
-					name: '龙居农家乐'
-				}, {
-					name: '月波农家菜馆'
-				}, {
-					name: '横溪人家'
-				}, {
-					name: '龙源农家乐'
-				}, {
-					name: '竹之林农家乐'
-				}, {
-					name: '东琴农家乐'
-				}, {
-					name: '项珍农家乐'
-				}, {
-					name: '阿飞农家乐'
-				}, {
-					name: '雅明农家乐'
-				}, {
-					name: '九龙源农家乐'
-				}, {
-					name: '食为天农家乐'
-				}, {
-					name: '山里山农家乐'
-				}, {
-					name: '赞来农家乐'
-				}, {
-					name: '闻溪阁烧烤园'
-				}, {
-					name: '青青农家菜馆'
-				}, {
-					name: '食泉农家菜馆'
-				}, {
-					name: '竹林人家农家菜馆'
-				}],
+				qyList: [],
 				qyList2: [],
 				wfList: [],
 				dzList: [],
@@ -1890,6 +1824,9 @@
 					this.showPBtn = true
 					this.centerShow = false
 					this.showZhibo = false
+					this.showWjxList = false
+					this.isShowWjxDetail = false
+					this.showWjxError = false
 				}
 				// else if (e == 2) {
 				// 	// 4个平台
@@ -1952,6 +1889,9 @@
 					this.showPBtn = false
 					this.centerShow = false
 					this.showZhibo = false
+					this.showWjxList = false
+					this.isShowWjxDetail = false
+					this.showWjxError = false
 				}
 				// else if (e == 2) {
 				// 	// 线上执法
@@ -2563,6 +2503,11 @@
 			showWjxDetail(item) {
 				this.isShowWjxDetail = true
 				this.wjxDetail = item
+			},
+			showWjxErr(item) {
+				if(item=='异常') {
+					this.showWjxError = true
+				}
 			},
 			videoPause() {
 				if (this.hls) {
@@ -3848,7 +3793,6 @@
 
 		.wjx-detail {
 			width: 574px;
-			left: 450px;
 			background-color: rgb(5, 15, 60);
 			background: url(../bgImages/wjxDetailBg.png) no-repeat;
 			background-size: 100% 100%;
@@ -3890,6 +3834,40 @@
 					color: #56DDFF;
 					margin-bottom: 10px;
 				}
+			}
+		}
+		
+		.wjx-error {
+			width: 530px;
+			height: 500px;
+			background: url(../bgImages/errorBg.png) no-repeat;
+			background-size: 100% 100%;
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 24px;
+			color: #24CBFB;
+			.wjx-error-title {
+				width: 100%;
+				padding: 15px 175px;
+				text-align: center;
+				box-sizing: border-box;
+			}
+			.wjx-error-cont {
+				width: 100%;
+				height: 110px;
+				padding: 15px 70px;
+				box-sizing: border-box;
+			}
+			.wjx-error-img {
+				width: 460px;
+				height: 200px;
+				margin: 15px auto;
+				border-radius: 10px;
+				object-fit: cover;
 			}
 		}
 	}

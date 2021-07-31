@@ -418,13 +418,29 @@ class api {
   	})
   }
   // 村民说事列表
-  getDriveList(data) {
+  getSayList(data) {
   	return new Promise(resolve => {
   		get("/blade-honest/say/list",data).then(res=>{
   		  resolve(res.data)
   		})
   	})
   }
+  // 民意体检列表
+  getOpinionList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-honest/opinion/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
+  // 清风廉韵列表
+  // getSayList(data) {
+  // 	return new Promise(resolve => {
+  // 		get("/blade-honest/opinion/list",data).then(res=>{
+  // 		  resolve(res.data)
+  // 		})
+  // 	})
+  // }
 }
 // 创建实例默认设置
 var instance = axios.create({
