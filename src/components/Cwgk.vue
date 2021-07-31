@@ -182,16 +182,16 @@
 		<transition name="fade">
 			<div v-show="cmssShow" class="pop-common cmss">
 				<div class="pop-inner-title">
-					<span style="width: 15%;">序号</span>
-					<span style="width: 15%;">时间</span>
+					<span style="width: 10%;">序号</span>
+					<span style="width: 20%;">时间</span>
 					<span>主题</span>
 					<span>满意度调查</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in cmssList" :key='index' class="pop-inner-item"
 						@click="showCmssDetail(item)">
-						<span style="width: 15%;">{{ index+1 }}</span>
-						<span style="width: 15%;">{{ item.handleTime }}</span>
+						<span style="width: 10%;">{{ index+1 }}</span>
+						<span style="width: 20%;">{{ item.handleTime }}</span>
 						<span>{{ item.name }}</span>
 						<span>{{ item.satisfaction }}%</span>
 					</div>
@@ -261,8 +261,8 @@
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>征求意见:</span>
-								<span class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 87%;height: 12px;"></div>人数1675 87%</span>
-								<span class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数243 13%</span>
+								<span class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.agree + '%'}"></div>人数{{mytjDetail.agreeNum}} {{mytjDetail.agree}}%</span>
+								<span class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disAgree + '%'}"></div>人数{{mytjDetail.disagreeNum}} {{mytjDetail.disAgree}}%</span>
 							</div>
 						</div>
 						<div class="mytj-message">
@@ -272,41 +272,30 @@
 							</div>
 							<div class="mytj-message-box">
 								<div style="overflow-y: scroll;">
-									<div class="mytj-message-box-item">
-										<img src="../assets/logo.png">
-										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
-									</div>
-									<div class="mytj-message-box-item">
-										<img src="../assets/logo.png">
-										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
-									</div>
-									<div class="mytj-message-box-item">
-										<img src="../assets/logo.png">
-										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
-									</div>
+									<div v-html="mytjDetail.opinion"></div>
 								</div>
 							</div>
 						</div>
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>项目实施：<span style="font-size: 18px;">2020年8月9日邀请宁波大学冯老师及其团队入驻九龙湖村横溪自然村对横溪几个公共节点及农家乐、民宿提升进行设计绘制 并参与过程打造。该项目包括龙眼泉点位、墙头停车场点位、公交站旁“绿水青 山金山银山”点位和文化礼堂旁说事长廊点位。</span></span>
-								<img src="../bgImages/5+x平台空.png">
+								<span>项目实施：<span style="font-size: 18px;">{{mytjDetail.eventHandle}}</span></span>
+								<img :src="item" v-for="(item,index) in mytjDetail.img2" :key="index">
 							</div>
 						</div>
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>结果评估：<span style="font-size: 18px;">通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。</span></span>
+								<span>结果评估：<span style="font-size: 18px;">{{mytjDetail.result}}</span></span>
 							</div>
 						</div>
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>群众评价:</span>
-								<span class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" style="width: 87%;height: 12px;"></div>人数1675 87%</span>
-								<span class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数243 13%</span>
-								<span class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" style="width: 13%;height: 12px;"></div>人数0 0%</span>
+								<span class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}} {{mytjDetail.satisfaction}}%</span>
+								<span class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.commonSatisfaction +'%'}"></div>人数{{mytjDetail.commonNum}} {{mytjDetail.commonSatisfaction}}%</span>
+								<span class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disSatisfaction +'%'}"></div>人数{{mytjDetail.dissatisfiedNum}} {{mytjDetail.disSatisfaction}}%</span>
 							</div>
 						</div>
 						<div class="mytj-message">
@@ -316,10 +305,7 @@
 							</div>
 							<div class="mytj-message-box">
 								<div style="overflow-y: scroll;">
-									<div class="mytj-message-box-item">
-										<img src="../assets/logo.png">
-										<span>艺术振兴乡村，这个方案看起来还不错，期待完工后的效果</span>
-									</div>
+									<div v-html="mytjDetail.message"></div>
 								</div>
 							</div>
 						</div>
@@ -342,8 +328,8 @@
 						@click="showMytjDetail(item)">
 						<span style="width: 10%;">{{ index+1 }}</span>
 						<span>{{ item.name }}</span>
-						<span>{{ item.feasibility }}%</span>
-						<span>{{ item.after }}%</span>
+						<span>{{ item.agree }}%</span>
+						<span>{{ item.satisfaction }}%</span>
 					</div>
 				</div>
 			</div>
@@ -662,19 +648,7 @@
 					phone: '13857821828/679828'
 				}],
 				cmssList: [],
-				mytjList: [{
-					name: '横溪艺术振兴乡村',
-					feasibility: '95',
-					after: '99',
-					detail: '为深入实施乡村振兴战略，加快推进九龙湖镇艺术振兴乡村发展，九龙湖村在横溪自然村推进艺术振兴乡村试点项目。2020年8月9日邀请宁波大学冯老师及其团队入驻九龙湖村横溪自然村对横溪几个公共节点及农家乐、民宿提升进行设计绘制并参与过程打造。该项目包括龙眼泉点位、墙头停车场点位、公交站旁“绿水青山金山银山”点位和文化礼堂旁说事长廊点位。通过开展艺术振兴乡村行动，村民主动参与的意识不断增强，横溪村容村貌已有明显改观，阶段性成效明显，受到了群众的一致好评。',
-					img: 'static/images/hxyszxxc.png'
-				}, {
-					name: '红色旅游',
-					feasibility: '96',
-					after: '98',
-					detail: '为庆祝建党100周年，九龙湖村结合红色元素在长胜自然村打造红色长胜主题村。该项目包括红色历史陈列馆、红色九龙湖（牌坊）、创意草野、荷花池、红廉长廊、知青馆、时光邮局等十几个点位。红色线路打造完成后，村容村貌明显改善，红色主题突出，吸引了镇海区各机关单位，各企业单位党支部先后到九龙湖村参观，共同学习革命先辈的光荣事迹，重温入党誓词等，反响好，得到了大家一致好评。',
-					img: 'static/images/hsly.png'
-				}],
+				mytjList: [],
 				lzxjList: [{
 					name: '红廉长廊',
 					imgWall: ['static/images/hlcl-1.jpg', 'static/images/hlcl-2.jpg', 'static/images/hlcl-3.jpg',
@@ -706,14 +680,25 @@
 			this.cShow = true
 			this.$ajax.getSayList({size:10,current:1}).then(res => {
 				res.records.forEach(item => {
-					item.satisfaction = item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
-					item.commonSatisfaction = item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
-					item.disSatisfaction = item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100
+					item.handleTime = item.handleTime.substring(0,10)
+					item.satisfaction = parseInt(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.commonSatisfaction = parseInt(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.disSatisfaction = parseInt(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
 				})
 				this.cmssList = res.records
 			})
 			this.$ajax.getOpinionList({size:10,current:1}).then(res => {
+				res.records.forEach(item => {
+					item.handleTime = item.handleTime.substring(0,10)
+					item.satisfaction = parseInt(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.commonSatisfaction = parseInt(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.disSatisfaction = parseInt(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.agree = parseInt(item.agreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100)
+					item.disAgree = parseInt(item.disagreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100)
+					item.img2 = item.img2.split(",")
+				})
 				this.mytjList = res.records
+				console.log(this.mytjList)
 			})
 			// this.$ajax.getOpinionList({size:10,current:1}).then(res => {
 			// 	this.mytjList = res.records
@@ -1172,11 +1157,15 @@
 						img {
 							width: 620px;
 							height: 236px;
+							object-fit: cover;
 						}
 						.mytj-infoDetail-item-right-inline {
 							display: flex;
 							div {
 								margin: 0 5px;
+								img {
+									height: 12px;
+								}
 							}
 						}
 					}
