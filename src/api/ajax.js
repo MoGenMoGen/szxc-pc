@@ -434,13 +434,13 @@ class api {
   	})
   }
   // 清风廉韵列表
-  // getSayList(data) {
-  // 	return new Promise(resolve => {
-  // 		get("/blade-honest/opinion/list",data).then(res=>{
-  // 		  resolve(res.data)
-  // 		})
-  // 	})
-  // }
+  getUprightList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-honest/upright/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

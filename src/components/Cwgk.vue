@@ -415,22 +415,17 @@
 		<transition name="fade">
 			<div v-show="qflyImgShow">
 				<div class="qfly-img" v-if="qflyImgShow1">
-					<div class="qfly-bg">
-						<div class="qfly-title">红廉长廊</div>
-					</div>
-					<div class="qfly-bg">
-						<div class="qfly-title">文化礼堂</div>
+					<div class="qfly-bg" v-for="(item,index) in qflyIList"  :key="index">
+						<div class="qfly-title">{{item.name}}</div>
+						<div class="qfly-cont">
+							<img :src="newItem.img" v-for="(newItem,newIndex) in item.imgList" :key="newIndex">
+						</div>
 					</div>
 				</div>
 				<div class="qfly-imgOrWord" v-if="qflyImgShow2">
-					<div class="qfly-bg">
-						<div class="qfly-title">红廉长廊</div>
-					</div>
-					<div class="qfly-bg">
-						<div class="qfly-title">红廉长廊</div>
-					</div>
-					<div class="qfly-bg">
-						<div class="qfly-title">红廉长廊</div>
+					<div class="qfly-bg" v-for="(item,index) in qflyIWList" :key="index">
+						<div class="qfly-title">{{item.name}}</div>
+						<div class="qfly-cont" v-html="item.cont"></div>
 					</div>
 				</div>
 			</div>
@@ -490,8 +485,10 @@
 				fxyjShow: false, //风险预警
 				qflyShow: false, //清风廉韵
 				qflyImgShow: false, // 清风廉韵图片展示
-				qflyImgShow1: false, //两列纯图
-				qflyImgShow2: false, //3列文字图
+				qflyImgShow1: false, //两列纯图显示
+				qflyImgShow2: false, //3列文字图显示
+				qflyIList: [], //两列纯图
+				qflyIWList: [], //3列文字图
 				qflyIndex: -1,
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
@@ -698,11 +695,7 @@
 					item.img2 = item.img2.split(",")
 				})
 				this.mytjList = res.records
-				console.log(this.mytjList)
 			})
-			// this.$ajax.getOpinionList({size:10,current:1}).then(res => {
-			// 	this.mytjList = res.records
-			// })
 		},
 		methods: {
 			getSzglData() {
@@ -882,9 +875,26 @@
 				if(index==1) {
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = true
-				} else {
+					this.$ajax.getUprightList({size:10,current:1,type:2}).then(res => {
+						this.qflyIWList = res.records
+					})
+				} else{
 					this.qflyImgShow1 = true
 					this.qflyImgShow2 = false
+					this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
+						this.qflyIList = res.records
+						res.records.forEach(item => {
+							this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
+								this.qflyIList.forEach(newItem => {
+									if(newItem.id == item.id) {
+										newItem.imgList = res.records
+									}
+								})
+								this.qflyIList.push()
+							})
+						})
+					})
+					console.log(this.qflyIList)
 				}
 			},
 			showCmssDetail(item) {
@@ -1511,6 +1521,19 @@
 				text-overflow: ellipsis;
 				text-align: center;
 			}
+			.qfly-cont {
+				width: 95%;
+				height: 790px;
+				padding: 15px 20px;
+				box-sizing: border-box;
+				overflow-y: scroll;
+				margin: 0 auto;
+				img {
+					width: 542px;
+					// height: 284px;
+					margin: 5px auto;
+				}
+			}
 		}
 	}
 	
@@ -1535,6 +1558,14 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				text-align: center;
+			}
+			.qfly-cont {
+				width: 95%;
+				height: 790px;
+				padding: 15px 40px;
+				box-sizing: border-box;
+				overflow-y: scroll;
+				margin: 0 auto;
 			}
 		}
 	}
