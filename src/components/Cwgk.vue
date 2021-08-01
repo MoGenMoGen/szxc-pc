@@ -229,9 +229,20 @@
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>群众评价（评）:</span>
-								<span class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: cmssDetail.satisfaction + '%'}"></div>人数{{cmssDetail.satisfiedNum}}人 {{cmssDetail.satisfaction}}%</span>
-								<span class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.commonSatisfaction + '%'}"></div>人数{{cmssDetail.commonNum}}人 {{cmssDetail.commonSatisfaction}}%</span>
-								<span class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.disSatisfaction + '%'}"></div>人数{{cmssDetail.dissatisfiedNum}}人 {{cmssDetail.disSatisfaction}}%</span>
+
+                <div style="width: 400px">
+                  <span style="float: left" class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: cmssDetail.satisfaction + '%'}"></div>人数{{cmssDetail.satisfiedNum}}人 </span><div style="float: right">{{cmssDetail.satisfaction}}%</div>
+                </div>
+                <div style="width: 400px">
+                  <span style="float: left" class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.commonSatisfaction + '%'}"></div>人数{{cmssDetail.commonNum}}人</span><div style="float: right">{{cmssDetail.commonSatisfaction}}%</div>
+                </div>
+                <div style="width: 400px">
+                  <span style="float: left" class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.disSatisfaction + '%'}"></div>人数{{cmssDetail.dissatisfiedNum}}人</span><div style="float: right">{{cmssDetail.disSatisfaction}}%</div>
+                </div>
+
+
+
+
 							</div>
 						</div>
 						<div class="cmss-message">
@@ -261,9 +272,13 @@
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>征求意见:</span>
-								<span class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.agree + '%'}"></div>人数{{mytjDetail.agreeNum}} {{mytjDetail.agree}}%</span>
-								<span class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disAgree + '%'}"></div>人数{{mytjDetail.disagreeNum}} {{mytjDetail.disAgree}}%</span>
-							</div>
+                <div style="width: 400px">
+                  <span style="float: left" class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.agree + '%'}"></div>人数{{mytjDetail.agreeNum}}  </span><div style="float:right;"> {{mytjDetail.agree}}%</div>
+                </div>
+                <div style="width: 400px">
+								<span style="float: left" class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disAgree + '%'}"></div>人数{{mytjDetail.disagreeNum}}  </span><div style="float:right;">{{mytjDetail.disAgree}}%</div>
+							 </div>
+                </div>
 						</div>
 						<div class="mytj-message">
 							<div class="mytj-message-top">
@@ -293,9 +308,19 @@
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>群众评价:</span>
-								<span class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}} {{mytjDetail.satisfaction}}%</span>
-								<span class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.commonSatisfaction +'%'}"></div>人数{{mytjDetail.commonNum}} {{mytjDetail.commonSatisfaction}}%</span>
-								<span class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disSatisfaction +'%'}"></div>人数{{mytjDetail.dissatisfiedNum}} {{mytjDetail.disSatisfaction}}%</span>
+                <div style="width: 400px">
+                  <span style="float: left" class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}}  </span><div style="float: right">{{mytjDetail.satisfaction}}%</div>
+                </div>
+                <div style="width: 400px">
+                  <span style="float: left"  class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.commonSatisfaction +'%'}"></div>人数{{mytjDetail.commonNum}}  </span><div style="float: right">{{mytjDetail.commonSatisfaction}}%</div>
+                </div>
+                <div style="width: 400px">
+                  <span style="float: left"  class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disSatisfaction +'%'}"></div>人数{{mytjDetail.dissatisfiedNum}} </span><div style="float: right">{{mytjDetail.disSatisfaction}}%</div>
+                </div>
+
+
+
+
 							</div>
 						</div>
 						<div class="mytj-message">
@@ -678,20 +703,20 @@
 			this.$ajax.getSayList({size:10,current:1}).then(res => {
 				res.records.forEach(item => {
 					item.handleTime = item.handleTime.substring(0,10)
-					item.satisfaction = parseInt(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
-					item.commonSatisfaction = parseInt(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
-					item.disSatisfaction = parseInt(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
+					item.satisfaction = parseFloat(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					item.commonSatisfaction = parseFloat(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					item.disSatisfaction = parseFloat(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
 				})
 				this.cmssList = res.records
 			})
 			this.$ajax.getOpinionList({size:10,current:1}).then(res => {
 				res.records.forEach(item => {
 					item.handleTime = item.handleTime.substring(0,10)
-					item.satisfaction = parseInt(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
-					item.commonSatisfaction = parseInt(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
-					item.disSatisfaction = parseInt(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100)
-					item.agree = parseInt(item.agreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100)
-					item.disAgree = parseInt(item.disagreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100)
+					item.satisfaction = parseFloat(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					item.commonSatisfaction = parseFloat(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					item.disSatisfaction = parseFloat(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					item.agree = parseFloat(item.agreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
+					item.disAgree = parseFloat(item.disagreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
 					item.img2 = item.img2.split(",")
 				})
 				this.mytjList = res.records
@@ -808,7 +833,7 @@
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = false
 					this.qflyIndex = -1
-				} 
+				}
 				// else if (e == 4) {
 				// 	this.show = false
 				// 	this.cShow = false
@@ -1119,7 +1144,7 @@
 			}
 		}
 	}
-	
+
 	.mytj-detail {
 		position: absolute;
 		top: 200px;
@@ -1282,7 +1307,7 @@
 			right: -20px;
 		}
 	}
-	
+
 	.cjhImg2 {
 		width: 1000px;
 		position: absolute;
@@ -1299,7 +1324,7 @@
 			right: -20px;
 		}
 	}
-	
+
 	.cancelLogo {
 		width: 40px;
 		height: 40px;
@@ -1402,24 +1427,24 @@
 				width: 95%;
 				margin: 0 auto;
 				font-size: 19px;
-			
+
 				span {
 					width: 25%;
 					text-align: center;
 				}
 			}
-			
+
 			.pop-inner-box {
 				max-height: 350px;
 				overflow-y: scroll;
-			
+
 				.pop-inner-item {
 					display: flex;
 					align-items: center;
 					width: 95%;
 					margin: 10px auto;
 					font-size: 16px;
-			
+
 					span {
 						width: 25%;
 						text-align: center;
@@ -1444,24 +1469,24 @@
 				width: 95%;
 				margin: 0 auto;
 				font-size: 19px;
-			
+
 				span {
 					width: 25%;
 					text-align: center;
 				}
 			}
-			
+
 			.pop-inner-box {
 				max-height: 350px;
 				overflow-y: scroll;
-			
+
 				.pop-inner-item {
 					display: flex;
 					align-items: center;
 					width: 95%;
 					margin: 10px auto;
 					font-size: 16px;
-			
+
 					span {
 						width: 25%;
 						text-align: center;
@@ -1536,7 +1561,7 @@
 			}
 		}
 	}
-	
+
 	.qfly-imgOrWord {
 		position: absolute;
 		top: 200px;
@@ -1560,6 +1585,7 @@
 				text-align: center;
 			}
 			.qfly-cont {
+        color: white;
 				width: 95%;
 				height: 790px;
 				padding: 15px 40px;
