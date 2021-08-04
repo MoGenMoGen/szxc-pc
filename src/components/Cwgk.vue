@@ -211,13 +211,13 @@
 								<span v-html="cmssDetail.theme"></span>
 							</div>
 						</div>
-						<div class="cmss-infoDetail-item">
+						<!-- <div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>村名议事（议）:</span>
 								<span v-html="cmssDetail.discussion"></span>
 							</div>
-						</div>
+						</div> -->
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
@@ -229,26 +229,21 @@
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>群众评价（评）:</span>
-
-                <div style="width: 400px">
-                  <span style="float: left" class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: cmssDetail.satisfaction + '%'}"></div>人数{{cmssDetail.satisfiedNum}}人 </span><div style="float: right">{{cmssDetail.satisfaction}}%</div>
-                </div>
-                <div style="width: 400px">
-                  <span style="float: left" class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.commonSatisfaction + '%'}"></div>人数{{cmssDetail.commonNum}}人</span><div style="float: right">{{cmssDetail.commonSatisfaction}}%</div>
-                </div>
-                <div style="width: 400px">
-                  <span style="float: left" class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.disSatisfaction + '%'}"></div>人数{{cmssDetail.dissatisfiedNum}}人</span><div style="float: right">{{cmssDetail.disSatisfaction}}%</div>
-                </div>
-
-
-
-
+								<div style="width: 400px">
+								  <span style="float: left" class="cmss-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: cmssDetail.satisfaction + '%'}"></div>人数{{cmssDetail.satisfiedNum}}人 </span><div style="float: right">{{cmssDetail.satisfaction}}%</div>
+								</div>
+								<div style="width: 400px">
+								  <span style="float: left" class="cmss-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.commonSatisfaction + '%'}"></div>人数{{cmssDetail.commonNum}}人</span><div style="float: right">{{cmssDetail.commonSatisfaction}}%</div>
+								</div>
+								<div style="width: 400px">
+								  <span style="float: left" class="cmss-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: cmssDetail.disSatisfaction + '%'}"></div>人数{{cmssDetail.dissatisfiedNum}}人</span><div style="float: right">{{cmssDetail.disSatisfaction}}%</div>
+								</div>
 							</div>
 						</div>
 						<div class="cmss-message">
 							<div class="cmss-message-top">
 								<img src="../bgImages/message.png">
-								<span>留言板</span>
+								<span>村民留言（议）:</span>
 							</div>
 							<div class="cmss-message-info">
 								<div style="overflow-y: scroll;display: flex;flex-direction: column;">
@@ -271,14 +266,9 @@
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>征求意见:</span>
-                <div style="width: 400px">
-                  <span style="float: left" class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.agree + '%'}"></div>人数{{mytjDetail.agreeNum}}  </span><div style="float:right;"> {{mytjDetail.agree}}%</div>
-                </div>
-                <div style="width: 400px">
-								<span style="float: left" class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disAgree + '%'}"></div>人数{{mytjDetail.disagreeNum}}  </span><div style="float:right;">{{mytjDetail.disAgree}}%</div>
-							 </div>
-                </div>
+								<span>项目实施方案：</span>
+								<img :src="item" v-for="(item,index) in mytjDetail.img3" :key="index">
+							</div>
 						</div>
 						<div class="mytj-message">
 							<div class="mytj-message-top">
@@ -294,39 +284,47 @@
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>项目实施：<span style="font-size: 18px;">{{mytjDetail.eventHandle}}</span></span>
+								<span>征求意见:</span>
+								<div style="width: 400px">
+								  <span style="float: left" class="mytj-infoDetail-item-right-inline">赞成<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.agree + '%'}"></div>人数{{mytjDetail.agreeNum}}  </span><div style="float:right;"> {{mytjDetail.agree}}%</div>
+								</div>
+								<div style="width: 400px">
+									<span style="float: left" class="mytj-infoDetail-item-right-inline">反对<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disAgree + '%'}"></div>人数{{mytjDetail.disagreeNum}}  </span><div style="float:right;">{{mytjDetail.disAgree}}%</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>结果评估：<span style="font-size: 18px;">{{mytjDetail.result}}</span></span>
+							</div>
+						</div> -->
+						<div class="mytj-infoDetail-item">
+							<img src="../bgImages/logo.png">
+							<div class="mytj-infoDetail-item-right">
+								<span>项目实施过程：<span style="font-size: 18px;">{{mytjDetail.eventHandle}}</span></span>
 								<img :src="item" v-for="(item,index) in mytjDetail.img2" :key="index">
 							</div>
 						</div>
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>结果评估：<span style="font-size: 18px;">{{mytjDetail.result}}</span></span>
-							</div>
-						</div>
-						<div class="mytj-infoDetail-item">
-							<img src="../bgImages/logo.png">
-							<div class="mytj-infoDetail-item-right">
-								<span>群众评价:</span>
-                <div style="width: 400px">
-                  <span style="float: left" class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}}  </span><div style="float: right">{{mytjDetail.satisfaction}}%</div>
-                </div>
-                <div style="width: 400px">
-                  <span style="float: left"  class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.commonSatisfaction +'%'}"></div>人数{{mytjDetail.commonNum}}  </span><div style="float: right">{{mytjDetail.commonSatisfaction}}%</div>
-                </div>
-                <div style="width: 400px">
-                  <span style="float: left"  class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disSatisfaction +'%'}"></div>人数{{mytjDetail.dissatisfiedNum}} </span><div style="float: right">{{mytjDetail.disSatisfaction}}%</div>
-                </div>
-
-
-
-
+								<span>结果评估:</span>
+								<div style="width: 400px">
+								  <span style="float: left" class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}}  </span><div style="float: right">{{mytjDetail.satisfaction}}%</div>
+								</div>
+								<div style="width: 400px">
+								  <span style="float: left"  class="mytj-infoDetail-item-right-inline">基本满意<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.commonSatisfaction +'%'}"></div>人数{{mytjDetail.commonNum}}  </span><div style="float: right">{{mytjDetail.commonSatisfaction}}%</div>
+								</div>
+								<div style="width: 400px">
+								  <span style="float: left"  class="mytj-infoDetail-item-right-inline">不满意&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/disagree.png" :style="{width: mytjDetail.disSatisfaction +'%'}"></div>人数{{mytjDetail.dissatisfiedNum}} </span><div style="float: right">{{mytjDetail.disSatisfaction}}%</div>
+								</div>
 							</div>
 						</div>
 						<div class="mytj-message">
 							<div class="mytj-message-top">
 								<img src="../bgImages/logo.png">
-								<span>留言板:</span>
+								<span>村民留言:</span>
 							</div>
 							<div class="mytj-message-box">
 								<div style="overflow-y: scroll;">
@@ -431,26 +429,35 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div v-show="qflyShow" class="pop-common qfly">
-				<div v-for="(item,index) in qflyList" :key='index' class="pop-inner-item" @click="chooseQfly(index)">
-					<span :class="qflyIndex == index ? 'qflyActive': ''">{{ item}}</span>
+			<div v-show="qflyShow">
+				<div class="pop-common qfly">
+					<div v-for="(item,index) in qflyList" :key='index' class="pop-inner-item" @click="chooseQfly(index,item)">
+						<span :class="qflyIndex == index ? 'qflyActive': ''">{{ item}}</span>
+					</div>
+				</div>
+				<div class="pop-common qfly-child" v-show="qflyChildShow">
+					<div class="qfly-title">{{qflyTitle}}</div>
+					<div v-for="(item,index) in qflyList2" :key='index' class="pop-inner-item" @click="chooseQfly2(index,item)">
+						<span>{{item.name}}</span>
+					</div>
 				</div>
 			</div>
 		</transition>
 		<transition name="fade">
 			<div v-show="qflyImgShow">
 				<div class="qfly-img" v-if="qflyImgShow1">
-					<div class="qfly-bg" v-for="(item,index) in qflyIList"  :key="index">
-						<div class="qfly-title">{{item.name}}</div>
+					<div class="qfly-bg">
+						<div class="qfly-title">{{qflyIList.name}}</div>
 						<div class="qfly-cont">
-							<img :src="newItem.img" v-for="(newItem,newIndex) in item.imgList" :key="newIndex">
+							<img :src="item.img" v-for="(item,index) in qflyIList.records" :key="index" v-if="!qflyIList.video">
+							<video width="100%" height="100%" :src="qflyIList.records[0].cont" v-if="qflyIList.video" autoplay="autoplay" loop="loop"></video>
 						</div>
 					</div>
 				</div>
 				<div class="qfly-imgOrWord" v-if="qflyImgShow2">
-					<div class="qfly-bg" v-for="(item,index) in qflyIWList" :key="index">
-						<div class="qfly-title">{{item.name}}</div>
-						<div class="qfly-cont" v-html="item.cont"></div>
+					<div class="qfly-bg">
+						<div class="qfly-title">{{qflyIWList.name}}</div>
+						<div class="qfly-cont" v-html="qflyIWList.cont"></div>
 					</div>
 				</div>
 			</div>
@@ -509,11 +516,12 @@
 				lzxjCont: false, //廉政宣教图片墙
 				fxyjShow: false, //风险预警
 				qflyShow: false, //清风廉韵
+				qflyChildShow: false, //清风廉韵二级菜单
 				qflyImgShow: false, // 清风廉韵图片展示
 				qflyImgShow1: false, //两列纯图显示
 				qflyImgShow2: false, //3列文字图显示
-				qflyIList: [], //两列纯图
-				qflyIWList: [], //3列文字图
+				qflyIList: {}, //纯图
+				qflyIWList: {}, //文字图
 				qflyIndex: -1,
 				lzxjIndex: -1,
 				cmssDetail: {}, //村民说事详情
@@ -527,6 +535,8 @@
 				bxData: {},
 				jfData: {},
 				qflyList: ['清廉阵地', '家风民俗', '忽危积患'],
+				qflyTitle: '', //清风廉韵二级标题
+				qflyList2: [],
 				tabList: [{
 					hasUrl: false,
 					title: '三资管理'
@@ -718,6 +728,7 @@
 					item.agree = parseFloat(item.agreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
 					item.disAgree = parseFloat(item.disagreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
 					item.img2 = item.img2.split(",")
+					item.img3 = item.img3.split(",")
 				})
 				this.mytjList = res.records
 			})
@@ -780,6 +791,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyChildShow = false
 					this.qflyImgShow = false
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = false
@@ -797,6 +809,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyChildShow = false
 					this.qflyImgShow = false
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = false
@@ -813,6 +826,7 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = false
+					this.qflyChildShow = false
 					this.qflyImgShow = false
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = false
@@ -829,48 +843,12 @@
 					this.fxyjShow = false
 					this.imgShow2 = false
 					this.qflyShow = true
+					this.qflyChildShow = false
 					this.qflyImgShow = false
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = false
 					this.qflyIndex = -1
 				}
-				// else if (e == 4) {
-				// 	this.show = false
-				// 	this.cShow = false
-				// 	this.superviseShow = false
-				// 	this.cmssShow = false
-				// 	this.mytjShow = false
-				// 	this.lzxjShow = false
-				// 	this.imgShow = false
-				// 	this.cmssDetailShow = false
-				// 	this.mytjDetailShow = false
-				// 	this.fxyjShow = true
-				// 	this.imgShow2 = false
-				// } else if (e == 5) {
-				// 	this.show = false
-				// 	this.cShow = false
-				// 	this.superviseShow = false
-				// 	this.cmssShow = false
-				// 	this.mytjShow = false
-				// 	this.lzxjShow = true
-				// 	this.imgShow = false
-				// 	this.cmssDetailShow = false
-				// 	this.mytjDetailShow = false
-				// 	this.fxyjShow = false
-				// 	this.imgShow2 = false
-				// } else if (e == 6) {
-				// 	this.show = false
-				// 	this.cShow = false
-				// 	this.superviseShow = true
-				// 	this.cmssShow = false
-				// 	this.mytjShow = false
-				// 	this.lzxjShow = false
-				// 	this.imgShow = false
-				// 	this.cmssDetailShow = false
-				// 	this.mytjDetailShow = false
-				// 	this.fxyjShow = false
-				// 	this.imgShow2 = false
-				// }
 			},
 			showCjhImg(img) {
 				this.imgUrl = img
@@ -894,33 +872,62 @@
 				this.lzxjCont = true
 				this.lzxjCont = this.lzxjList[index].imgWall
 			},
-			chooseQfly(index) {
+			chooseQfly(index,item) {
+				this.qflyTitle = item
+				this.qflyChildShow = true
 				this.qflyIndex = index
+				this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
+					this.qflyList2 = res.records
+				})
+			},
+			chooseQfly2(index,item) {
 				this.qflyImgShow = true
-				if(index==1) {
+				// if(index==1) {
+				// 	this.qflyImgShow1 = false
+				// 	this.qflyImgShow2 = true
+				// 	this.$ajax.getUprightList({size:10,current:1,type:2}).then(res => {
+				// 		this.qflyIWList = res.records
+				// 	})
+				// } else{
+				// 	this.qflyImgShow1 = true
+				// 	this.qflyImgShow2 = false
+				// 	this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
+				// 		this.qflyIList = res.records
+				// 		res.records.forEach(item => {
+				// 			this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
+				// 				this.qflyIList.forEach(newItem => {
+				// 					if(newItem.id == item.id) {
+				// 						newItem.imgList = res.records
+				// 					}
+				// 				})
+				// 				this.qflyIList.push()
+				// 			})
+				// 		})
+				// 	})
+				// 	console.log(this.qflyIList)
+				// }
+				if(this.qflyIndex==1) {
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = true
-					this.$ajax.getUprightList({size:10,current:1,type:2}).then(res => {
-						this.qflyIWList = res.records
-					})
-				} else{
+					this.qflyIWList = item
+				} else if(this.qflyIndex==2&&index==2) {
 					this.qflyImgShow1 = true
 					this.qflyImgShow2 = false
-					this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
-						this.qflyIList = res.records
-						res.records.forEach(item => {
-							this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
-								this.qflyIList.forEach(newItem => {
-									if(newItem.id == item.id) {
-										newItem.imgList = res.records
-									}
-								})
-								this.qflyIList.push()
-							})
-						})
+					this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
+						this.qflyIList = res
+						this.qflyIList.name = item.name
+						this.qflyIList.video = true
 					})
-					console.log(this.qflyIList)
+				} else {
+					this.qflyImgShow1 = true
+					this.qflyImgShow2 = false
+					this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
+						this.qflyIList = res
+						this.qflyIList.name = item.name
+					})
 				}
+				
+				console.log(this.qflyIList)
 			},
 			showCmssDetail(item) {
 				this.cmssDetailShow = true
@@ -1134,7 +1141,7 @@
 						background: url(../bgImages/message-bg.png) no-repeat;
 						background-size: 100% 100%;
 						width: 660px;
-						height: 178px;
+						height: 325px;
 						padding: 20px 30px;
 						box-sizing: border-box;
 						display: flex;
@@ -1224,7 +1231,7 @@
 						background: url(../bgImages/message-bg.png) no-repeat;
 						background-size: 100% 100%;
 						width: 660px;
-						height: 178px;
+						height: 325px;
 						padding: 20px 30px;
 						box-sizing: border-box;
 						display: flex;
@@ -1512,15 +1519,43 @@
 		top: 200px;
 		left: 35px;
 		padding-top: 100px;
-		font-size: 18px;
+		font-size: 22px;
+		letter-spacing: 4px;
 		.pop-inner-item {
 			width: 100%;
 			margin-bottom: 30px;
 			text-align: center;
 			cursor: pointer;
 			.qflyActive {
-				color: #FF1E1E;
+				color: #ffd800;
+				font-weight: bold;
 			}
+		}
+	}
+	
+	.qfly-child {
+		width: 520px;
+		height: 298px;
+		background: url(../bgImages/二级菜单.png) no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		top: 528px;
+		left: 35px;
+		font-size: 22px;
+		letter-spacing: 4px;
+		.qfly-title {
+			width: 100%;
+			padding: 1px 158px 30px;
+			box-sizing: border-box;
+			text-align: center;
+			font-size: 22px;
+			color: #8CACF9;
+		}
+		.pop-inner-item {
+			width: 100%;
+			margin-bottom: 30px;
+			text-align: center;
+			cursor: pointer;
 		}
 	}
 
@@ -1530,16 +1565,16 @@
 		left: 650px;
 		display: flex;
 		.qfly-bg {
-			background: url(../bgImages/border-back2.png) no-repeat;
+			background: url(../bgImages/border-back4.png) no-repeat;
 			background-size: 100% 100%;
-			width: 612px;
+			width: 1224px;
 			height: 886px;
 			margin-right: 150px;
 			font-size: 22px;
 			color: #8CACF9;
 			.qfly-title {
 				width: 100%;
-				padding: 15px 240px;
+				padding: 15px 490px;
 				box-sizing: border-box;
 				overflow: hidden;
 				white-space: nowrap;
@@ -1553,6 +1588,8 @@
 				box-sizing: border-box;
 				overflow-y: scroll;
 				margin: 0 auto;
+				display: flex;
+				flex-wrap: wrap;
 				img {
 					width: 542px;
 					// height: 284px;
@@ -1568,16 +1605,16 @@
 		left: 600px;
 		display: flex;
 		.qfly-bg {
-			background: url(../bgImages/border-back3.png) no-repeat;
+			background: url(../bgImages/border-back4.png) no-repeat;
 			background-size: 100% 100%;
-			width: 500px;
+			width: 1224px;
 			height: 886px;
 			margin-right: 40px;
 			font-size: 22px;
 			color: #8CACF9;
 			.qfly-title {
 				width: 100%;
-				padding: 15px 150px;
+				padding: 15px 490px;
 				box-sizing: border-box;
 				overflow: hidden;
 				white-space: nowrap;
@@ -1585,7 +1622,7 @@
 				text-align: center;
 			}
 			.qfly-cont {
-        color: white;
+				color: white;
 				width: 95%;
 				height: 790px;
 				padding: 15px 40px;

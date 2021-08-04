@@ -98,13 +98,13 @@
 			<div class="pop-common pop-list jd-bg" v-show="show2" >
 				<!-- <div class="pop-title"><span>景点列表</span></div> -->
 				<img src="../bgImages/视频播放.png"
-					 style="width: 30px;height: 30px;position: absolute;left: 360px;top:33px;" @click="toScenicSpot()">
+					 style="width: 30px;height: 30px;position: absolute;right: 170px;top:15px;" @click="toScenicSpot()">
 
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>景点名称</span>
 				</div>
-				<div class="pop-inner-box">
+				<div class="pop-inner-box" >
 					<div v-for="(item,index) in jdList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
@@ -417,32 +417,7 @@
 				westList: [], //乡村西餐列表
 				westImgShow: false, //乡村西餐轮播
 				westImgList: [], //乡村西餐轮播列表
-				driveList: [{
-					name: '沈裕琪',
-					sex: '男',
-					phone: '15067450167',
-					year: '10'
-				},{
-					name: '钱勇军',
-					sex: '男',
-					phone: '13757467322',
-					year: '20'
-				},{
-					name: '林德明',
-					sex: '男',
-					phone: '13958203063',
-					year: '22'
-				},{
-					name: '陈如良',
-					sex: '男',
-					phone: '15825571030',
-					year: '8'
-				},{
-					name: '叶锋',
-					sex: '男',
-					phone: '13968252053',
-					year: '15'
-				}], //代驾联盟列表
+				driveList: [], //代驾联盟列表
 				nameIndex: 0,
 				labelIndex: 0,
 				xingIndex: 0,
@@ -731,6 +706,9 @@
 			this.$ajax.getDriveList({size:20,current:1}).then(res => {
 				this.driveList = res.records
 			})
+			// this.$ajax.getSiteList({size:20,current:1}).then(res => {
+			// 	this.jdList = res.records
+			// })
 			this.show = true
 			this.show4 = true
 			let that = this
@@ -789,9 +767,10 @@
 	}
 
 	.jd-bg {
+		height: 450px;
 		background: url(../bgImages/景点列表.png) no-repeat;
 		background-size: 100% 100%;
-		padding-top: 80px;
+		padding-top: 50px;
 	}
 	
 	.shop-bg {
@@ -920,6 +899,7 @@
 		position: absolute;
 		top: 200px;
 		left: 35px;
+		height: 250px;
 		background: url(../bgImages/每日数据.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 50px;

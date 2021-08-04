@@ -441,6 +441,14 @@ class api {
   		})
   	})
   }
+  // 景点列表
+  getSiteList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-travel/site/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

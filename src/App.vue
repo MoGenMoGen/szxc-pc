@@ -151,7 +151,7 @@
 				}
 				//旅游
 				if (e === 4) {
-					this.onOff("打开图层", "农家乐")
+					// this.onOff("打开图层", "农家乐")
 					// this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()
@@ -299,7 +299,7 @@
 				} else if (index==4) {
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
-					this.onOff("打开图层", "农家乐")
+					// this.onOff("打开图层", "农家乐")
 					// this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()

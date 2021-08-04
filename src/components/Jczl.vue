@@ -1078,6 +1078,19 @@
 				common: 'common',
 				type: 0,
 				commonOption: {},
+				oldMenOption: {
+					yAxis: {
+						type: 'category',
+						data: ['60-70', '70-80', '80-85', '85-90', '90-95', '95-100']
+					},
+					xAxis: {
+						type: 'value'
+					},
+					series: [{
+						data: [120, 200, 150, 80, 70, 110],
+						type: 'bar'
+					}]
+				},
 				wfOption: {
 					xAxis: {
 						type: 'category',
@@ -1733,52 +1746,8 @@
 				this.$parent.test(a);
 
 			},
-
-			onShowP(e) {
-				//一级
-				if (e.x < 700) {
-					this.sjs = this.sjList;
-					this.title = '一级事件'
-				}
-				//二级
-				if (e.x > 700 && e.x < 1000) {
-					this.sjs = this.sjList2;
-					this.title = '二级事件'
-				}
-				//三级
-				if (e.x > 1000) {
-					this.sjs = this.sjList3;
-					this.title = '三级事件'
-				}
-				this.showP = true
-			},
 			getIndex(e) {
 				this.e = e;
-				// if (e == 0) {
-				// 	// 水库管理
-				// 	this.onOff("打开图层", "防溺水监控点")
-				// 	this.onOff("打开图层", "山塘水库")
-
-				// 	this.onOff("关闭图层", "综合监管")
-				// 	// this.onOff("关闭图层","垃圾点位")
-				// 	this.onOff("关闭图层", "危房")
-				// 	this.onOff("关闭图层", "泥石流")
-
-				// 	this.offHik()
-				// 	this.show2 = false
-				// 	this.show3 = false
-				// 	this.show = true
-				// 	this.show4 = false
-				// 	this.show5 = false
-				// 	this.show6 = false
-				// 	this.show7 = false
-				// 	this.show8 = false
-				// 	this.show9 = false
-				// 	this.show10 = false
-				// 	this.show11 = false
-				// 	this.show12 = false
-				// 	this.showXmb = false
-				// } else
 				if (e == 0) {
 					// 网格管理
 					this.getGridTotal()
@@ -1828,24 +1797,6 @@
 					this.isShowWjxDetail = false
 					this.showWjxError = false
 				}
-				// else if (e == 2) {
-				// 	// 4个平台
-				// 	this.offHik()
-
-				// 	this.show2 = false
-				// 	this.show = false
-				// 	this.show3 = false
-				// 	this.show4 = false
-				// 	this.show5 = false
-				// 	this.show6 = true
-				// 	this.show7 = false
-				// 	this.show8 = false
-				// 	this.show9 = false
-				// 	this.show10 = false
-				// 	this.show11 = false
-				// 	this.show12 = false
-				// 	this.showXmb = false
-				// }
 				else if (e == 1) {
 					// 综合监管
 					// this.$parent.isChildShow = false
@@ -1893,126 +1844,6 @@
 					this.isShowWjxDetail = false
 					this.showWjxError = false
 				}
-				// else if (e == 2) {
-				// 	// 线上执法
-				// 	this.onOff("打开图层", "执法记录仪")
-				// 	this.onOff("关闭图层", "山塘水库")
-				// 	this.onOff("关闭图层", "综合监管")
-				// 	this.onOff("关闭图层", "危房")
-				// 	this.onOff("关闭图层", "防溺水监控点")
-				// 	this.onOff("关闭图层", "泥石流")
-				// 	this.onOff("关闭图层", "五保户")
-				// 	this.onOff("关闭图层", "低保")
-				// 	this.onOff("关闭图层", "残障人员")
-				// 	this.onOff("关闭图层", "老年人")
-				// 	// this.$parent.isChildShow = false
-				// 	this.offHik()
-				// 	this.show2 = false
-				// 	this.show = false
-				// 	this.show3 = false
-				// 	this.show4 = false
-				// 	this.show5 = true
-				// 	this.show6 = false
-				// 	this.show7 = false
-				// 	this.show8 = false
-				// 	this.show9 = false
-				// 	this.show10 = false
-				// 	this.show11 = false
-				// 	this.show12 = false
-				// 	this.show13 = false
-				// 	this.show14 = false
-				// 	this.show15 = false
-				// 	this.show16 = false
-				// 	this.show17 = false
-				// 	this.show18 = false
-				// 	this.showXmb = false
-				// 	this.showP = false
-				// 	this.showPDetail = false
-				// 	this.showVideo = false
-				// } else if (e == 3) {
-				// 	// 综合巡查
-				// 	this.onOff("关闭图层", "山塘水库")
-				// 	this.onOff("关闭图层", "综合监管")
-				// 	this.onOff("关闭图层", "危房")
-				// 	this.onOff("关闭图层", "防溺水监控点")
-				// 	this.onOff("关闭图层", "泥石流")
-				// 	this.onOff("关闭图层", "五保户")
-				// 	this.onOff("关闭图层", "低保")
-				// 	this.onOff("关闭图层", "残障人员")
-				// 	this.onOff("关闭图层", "老年人")
-				// 	this.onOff("关闭图层", "执法记录仪")
-				// 	// this.$parent.isChildShow = false
-				// 	this.offHik()
-				// 	this.show2 = false
-				// 	this.show = false
-				// 	this.show3 = false
-				// 	this.show4 = false
-				// 	this.show5 = false
-				// 	this.show6 = false
-				// 	this.show7 = false
-				// 	this.show8 = false
-				// 	this.show9 = false
-				// 	this.show10 = false
-				// 	this.show11 = false
-				// 	this.show12 = false
-				// 	this.show13 = false
-				// 	this.show14 = false
-				// 	this.show15 = false
-				// 	this.show16 = false
-				// 	this.show17 = false
-				// 	this.show18 = true
-				// 	this.showXmb = false
-				// 	this.showP = false
-				// 	this.showPDetail = false
-				// 	this.showVideo = false
-				// }
-				// else if (e == 5) {
-				// 	// 危房管理
-				// 	this.onOff("打开图层", "危房")
-				// 	this.onOff("关闭图层", "防溺水监控点")
-				// 	this.onOff("关闭图层", "泥石流")
-				// 	this.onOff("关闭图层", "综合监管")
-				// 	this.onOff("关闭图层", "山塘水库")
-				// 	// this.onOff("关闭图层","垃圾点位")
-
-				// 	this.offHik()
-				// 	this.show2 = false
-				// 	this.show = false
-				// 	this.show3 = false
-				// 	this.show4 = false
-				// 	this.show5 = false
-				// 	this.show6 = false
-				// 	this.show7 = true
-				// 	this.show8 = false
-				// 	this.show9 = true
-				// 	this.show10 = false
-				// 	this.show11 = false
-				// 	this.show12 = false
-				// 	this.showXmb = false
-				// } else if (e == 6) {
-				// 	this.onOff("打开图层", "防溺水监控点")
-				// 	this.onOff("打开图层", "泥石流")
-				// 	this.onOff("关闭图层", "危房")
-				// 	this.onOff("关闭图层", "综合监管")
-				// 	this.onOff("关闭图层", "山塘水库")
-				// 	// this.onOff("关闭图层","垃圾点位")
-
-				// 	this.offHik()
-				// 	// 地质灾害防范点
-				// 	this.show2 = false
-				// 	this.show = false
-				// 	this.show3 = false
-				// 	this.show4 = false
-				// 	this.show5 = false
-				// 	this.show6 = false
-				// 	this.show7 = false
-				// 	this.show8 = false
-				// 	this.show9 = false
-				// 	this.show10 = false
-				// 	this.show11 = true
-				// 	this.show12 = false
-				// 	this.showXmb = false
-				// }
 			},
 			getTabIndex(e) {
 				if (e == 0) {
