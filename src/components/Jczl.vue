@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<!-- </div> -->
-				<div class="pop-common wglb" style="width: 460px;" v-show="!wgryShow">
+				<div class="pop-common wglb" style="width: 460px;" v-show="!wgryShow&&!tsryShow">
 					<!-- <div class="pop-title"><span>网格列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="pop-common wglb rylb" style="width: 460px;" v-show="wgryShow">
+				<div class="pop-common wglb rylb" style="width: 460px;" v-show="wgryShow&&!tsryShow">
 					<!-- <div class="pop-title"><span>人员列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
@@ -46,7 +46,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="search-box" v-show="wgryShow">
+				<div class="tsry" v-if="tsryShow">
+					<div class="tsry-title">{{info.name}}</div>
+				</div>
+				<div class="search-box" v-show="wgryShow&&!tsryShow">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
 					<img src="static/images/search.png">
 				</div>
@@ -990,6 +993,7 @@
 		data() {
 			return {
 				bpwyb,
+				info: {}, //信息
 				wjxTapList: [{
 					day: '今日',
 					order: 0,
@@ -1481,6 +1485,7 @@
 				showWjxList: false, //5+x图列表切换
 				showWjxError: false, //5+x异常
 				showZhibo: false, //显示鼎力直播
+				tsryShow:false, //特殊人员显示
 				hls:'',
 				videoUrl: '',
 				keyWord: '',
@@ -1663,6 +1668,8 @@
 						Y: item.y
 					}
 					this.show2 = false
+					this.tsryShow = true
+					this.info.name = item.name
 					// this.show12 = true
 					this.onOff("关闭图层", "五保户")
 					this.onOff("关闭图层", "低保")
@@ -1796,6 +1803,7 @@
 					this.showWjxList = false
 					this.isShowWjxDetail = false
 					this.showWjxError = false
+					this.tsryShow = false
 				}
 				else if (e == 1) {
 					// 综合监管
@@ -1843,6 +1851,7 @@
 					this.showWjxList = false
 					this.isShowWjxDetail = false
 					this.showWjxError = false
+					this.tsryShow = false
 				}
 			},
 			getTabIndex(e) {
@@ -2657,6 +2666,24 @@
 	.rylb {
 		background: url(../bgImages/人员列表.png) no-repeat;
 		background-size: 100% 100%;
+	}
+	
+	.tsry {
+		position: absolute;
+		top: 570px;
+		left: 35px;
+		background: url(../bgImages/老年人.png) no-repeat;
+		background-size: 100% 100%;
+		width: 450px;
+		height: 497px;
+		.tsry-title {
+			width: 100%;
+			padding: 22px 100px;
+			text-align: center;
+			box-sizing: border-box;
+			font-size: 22px;
+			color: #8CACF9;
+		}
 	}
 
 	.pop-box {

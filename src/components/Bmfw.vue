@@ -48,14 +48,23 @@
 
 		<transition name="fade">
 			<div class="proof-guide" v-show="showGuide">
-				<div class="guide-cont guide-left" v-if="pageCont[pageIndex]">
-					<img :src="pageCont[pageIndex]"/>
+				<div class="proof-guide-top">
+					<div class="proof-guide-top-title">村（社区）可出具的证明事项清单</div>
+					<div class="proof-guide-top-cont"></div>
 				</div>
-				<div class="guide-cont guide-right" v-if="pageCont[pageIndex+1]">
-					<img :src="pageCont[pageIndex+1]"/>
+				<div class="proof-guide-bottom">
+					<div class="proof-guide-bottom-box">
+						<div class="proof-guide-bottom-title">出具说明与证明</div>
+						<div class="search-box">
+							<input type="text" placeholder="请输入关键字" v-model="keyWord" @keyup.enter="searchKey">
+							<img src="static/images/search.png">
+						</div>
+					</div>
+					<div class="proof-guide-bottom-box">
+						<div class="proof-guide-bottom-title">详情</div>
+						<img src="../../public/static/images/cancel.png" style="position: absolute;top: 8px;right: -8px;">
+					</div>
 				</div>
-				<div class="guide-btn guide-previous" @click="pre">上一页</div>
-				<div class="guide-btn guide-next" @click="next">下一页</div>
 			</div>
 		</transition>
 		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
@@ -70,8 +79,9 @@
 		props: {},
 		data() {
 			return {
+				keyWord: '',
 				show: false, //私人建房
-        show2: false, //居家养老
+				show2: false, //居家养老
 				showPubilc: false, //公共场所
 				showGuide: false, //证明指南
 				pageIndex: 0,
@@ -210,14 +220,14 @@
 				if (e == 0) {
 					this.show = true
 					this.showPubilc = false
-          this.show2 = false
+					this.show2 = false
 					this.showGuide = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 1) {
 					this.show = false
 					this.showPubilc = false
 					this.showGuide = true
-          this.show2 = false
+					this.show2 = false
 					this.onOff('关闭图层', '公共场所')
 					let data = {
 						current: 1,
@@ -228,12 +238,12 @@
 					this.show = false
 					this.showPubilc = false
 					this.showGuide = false
-          this.show2 = true
+					this.show2 = true
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 3) {
 					this.show = false
 					this.showPubilc = true
-          this.show2 = false
+					this.show2 = false
 					this.showGuide = false
 					this.onOff('打开图层', '公共场所')
 				}
@@ -249,20 +259,9 @@
 					})
 				})
 			},
-			pre() {
-				if(this.pageIndex<2){
-					return
-				} else {
-					this.pageIndex=this.pageIndex-2
-				}
-			},
-			next() {
-				if(this.pageIndex+2>this.pageCont.length){
-					return
-				} else {
-					this.pageIndex = this.pageIndex+2
-				}
-			},
+			searchKey(e) {
+				console.log(e, this.keyWord)
+			}
 		},
 		mounted() {
 			this.show = true
@@ -425,54 +424,74 @@
 	}
 
 	.proof-guide {
-		width: 1127px;
-		height: 830px;
-		background: url(../bgImages/book.png) no-repeat;
-		background-size: 100% 100%;
+		display: flex;
+		flex-direction: column;
+		width: 1652px;
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		z-index: 100;
-		.guide-cont {
-			width: 500px;
-			height: 620px;
-			padding: 10px;
-			box-sizing: border-box;
-			img {
+		top: 188px;
+		left: 292px;
+		.proof-guide-top {
+			width: 1652px;
+			height: 299px;
+			background: url(../bgImages/减负清单-上.png) no-repeat;
+			background-size: 100% 100%;
+			margin-bottom: 30px;
+			.proof-guide-top-title {
 				width: 100%;
-				height: 100%;
+				padding: 10px 630px;
+				box-sizing: border-box;
+				font-size: 22px;
+				color: #8CACF9;
+				text-align: center;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 			}
 		}
-		.guide-left{
-			position: absolute;
-			top: 80px;
-			left: 30px;
-		}
-		.guide-right {
-			position: absolute;
-			top: 80px;
-			right: 40px;
-		}
-		.guide-btn {
-			width: 70px;
-			height: 30px;
-			line-height: 30px;
-			border-radius: 30px;
-			border: 1px solid #9e9e9e;
-			color: #000;
-			text-align: center;
-			cursor: pointer;
-		}
-		.guide-previous {
-			position: absolute;
-			bottom: 70px;
-			left: 50px;
-		}
-		.guide-next {
-			position: absolute;
-			bottom: 70px;
-			right: 50px;
+		.proof-guide-bottom {
+			display: flex;
+			justify-content: space-between;
+			.proof-guide-bottom-box {
+				width: 811px;
+				height: 616px;
+				background: url(../bgImages/减负清单-左右.png) no-repeat;
+				background-size: 100% 100%;
+				position: relative;
+				.proof-guide-bottom-title {
+					width: 100%;
+					padding: 13px 300px 10px 320px;
+					box-sizing: border-box;
+					font-size: 22px;
+					color: #8CACF9;
+					text-align: center;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+				.search-box {
+					width: 326px;
+					border: 1px solid #fff;
+					border-radius: 5px;
+					display: flex;
+					padding: 10px 20px;
+					box-sizing: border-box;
+					color: #fff;
+					margin-left: 50px;
+					margin-top: 20px;
+					input {
+						flex: 1;
+						background-color: transparent;
+						border: none;
+						color: #fff;
+						font-size: 18px;
+						opacity: 0.45;
+					}
+				
+					input::-webkit-input-placeholder {
+						color: #fff;
+					}
+				}
+			}
 		}
 	}
 </style>
