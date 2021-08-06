@@ -48,6 +48,34 @@
 				</div>
 				<div class="tsry" v-if="tsryShow">
 					<div class="tsry-title">{{info.name}}</div>
+					<img src="static/images/cancel.png" @click="tsryShow = false" style="position: absolute;top: 8px;right: -8px;">
+					<div class="tsry-box" v-show="tsryType==1">
+						<my-charts :id='oldMen' style="width: 400px;height: 320px;"
+							:data='oldMenOption'></my-charts>
+						<div class="tsry-bottom" v-show="tsryType==1">
+							<span class="tsry-bottom-item"><img src="static/images/dementia.png">失能失智老人设备配备数量：10</span>
+							<span class="tsry-bottom-item"><img src="static/images/wisdomPension.png">智慧养老报警设备配备数量：8</span>
+						</div>
+					</div>
+					<div class="tsry-box" v-show="tsryType==2">
+						<my-charts :id='disabilityMen' style="width: 400px;height: 320px;"
+							:data='disabilityMenOption'></my-charts>
+					</div>
+					<div class="tsry-box" v-show="tsryType==3">
+						<div class="pop-inner-title">
+							<span style="width: 15%;">序号</span>
+							<span style="width: 25%;">姓名</span>
+							<span style="width: 60%;">住址</span>
+						</div>
+						<div class="pop-inner-box" style="height: 350px;margin-bottom: 10px;overflow-y: scroll;">
+							<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item"
+								@click="peopleMap(item)">
+								<span style="width: 15%;">{{ index + 1 }}</span>
+								<span style="width: 25%;">{{ item.name }}</span>
+								<span style="width: 60%;">{{ item.addr }}</span>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="search-box" v-show="wgryShow&&!tsryShow">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
@@ -1080,20 +1108,100 @@
 				dzzh: 'dzzh',
 				bpwy: 'bpwy',
 				common: 'common',
+				oldMen: 'oldMen',
+				disabilityMen: 'disabilityMen',
 				type: 0,
+				tsryType: 0,
 				commonOption: {},
 				oldMenOption: {
 					yAxis: {
 						type: 'category',
-						data: ['60-70', '70-80', '80-85', '85-90', '90-95', '95-100']
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 12
+						},
+						data: ['95-100岁', '90-95岁', '85-90岁', '80-85岁', '70-80岁','60-70岁']
 					},
 					xAxis: {
-						type: 'value'
+						type: 'value',
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 12
+						},
 					},
 					series: [{
-						data: [120, 200, 150, 80, 70, 110],
-						type: 'bar'
-					}]
+						data: [0, 0, 0, 0, 0, 0],
+						type: 'bar',
+						itemStyle: {
+							normal: {
+								color:function(params){
+									var colorList = ['#FF3B24','#FD7659', '#FE8B50', '#FFBC3B', '#BCC355','#6BB67E'];
+									return colorList[params.dataIndex]
+								}
+							}
+						}
+					}],
+					grid: {
+						top: "30px",
+						left: "80px",
+						right: "10px",
+						bottom: "30px"
+					}
+				},
+				disabilityMenOption: {
+					yAxis: {
+						type: 'category',
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 12
+						},
+						data: ['残疾人1级', '残疾人2级', '残疾人3级', '残疾人4级']
+					},
+					xAxis: {
+						type: 'value',
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+						axisLabel: {
+							color: '#fff',
+							fontSize: 12
+						},
+					},
+					series: [{
+						data: [0, 0, 0, 0],
+						type: 'bar',
+						itemStyle: {
+							normal: {
+								color:function(params){
+									var colorList = ['#FF3B24','#FD7659', '#FE8B50', '#FFBC3B'];
+									return colorList[params.dataIndex]
+								}
+							}
+						}
+					}],
+					grid: {
+						top: "30px",
+						left: "80px",
+						right: "10px",
+						bottom: "30px"
+					},
 				},
 				wfOption: {
 					xAxis: {
@@ -1527,14 +1635,16 @@
 					title: '老年人',
 					name: '老年人',
 					x: '121.504574',
-					y: '30.05171'
+					y: '30.05171',
+					data: []
 				}, {
 					num: 104,
 					url: 'static/images/wg-czrs.png',
 					title: '残障人',
 					name: '残障人员',
 					x: '121.536214',
-					y: '30.033909'
+					y: '30.033909',
+					data: []
 				}, {
 					num: 7,
 					url: 'static/images/wg-tsjsjt.png',
@@ -1662,21 +1772,38 @@
 			// 网格打开图层
 			showPoints(item) {
 				// this.onOff('关闭图层','网格')
+				this.tsryShow = false
 				if (item.name) {
+					this.show2 = false
 					let a = {
 						X: item.x,
 						Y: item.y
 					}
-					this.show2 = false
-					this.tsryShow = true
-					this.info.name = item.name
-					// this.show12 = true
 					this.onOff("关闭图层", "五保户")
 					this.onOff("关闭图层", "低保")
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff('打开图层', item.name)
 					this.$parent.test(a)
+				}
+				this.tsryShow = true
+				this.info.name = item.title
+				if(item.title=='老年人') {
+					this.tsryType = 1
+					this.oldMenOption.series[0].data = item.data
+				} else if (item.title=='残障人') {
+					this.tsryType = 2
+					this.disabilityMenOption.series[0].data = item.data
+				} else if (item.title=='低保户') {
+					this.tsryType = 3
+				} else if (item.title=='计生家庭') {
+					this.tsryType = 3
+				} else if (item.title=='五保户') {
+					this.tsryType = 3
+				} else if (item.title=='矫正人员') {
+					this.tsryType = 3
+				} else {
+					this.tsryShow = false
 				}
 			},
 			//打开关闭图层
@@ -1940,6 +2067,7 @@
 					name: item.alias
 				}
 				this.wgryShow = true
+				this.tsryShow = false
 				this.$parent.test(a)
 				this.getGridDetail(item.id)
 			},
@@ -1973,6 +2101,8 @@
 					this.list2[6].num = res.special
 					this.list2[7].num = res.fives
 					this.list2[8].num = res.correction
+					this.list2[4].data = [res.aged6,res.aged5,res.aged4,res.aged3,res.aged2,res.aged1]
+					this.list2[5].data = [res.disabled1,res.disabled2,res.disabled3,res.disabled4]
 				})
 				this.getEventList(id)
 				let data = {
@@ -2218,6 +2348,8 @@
 					this.list2[6].num = res.special
 					this.list2[7].num = res.fives
 					this.list2[8].num = res.correction
+					this.list2[4].data = [res.aged6,res.aged5,res.aged4,res.aged3,res.aged2,res.aged1]
+					this.list2[5].data = [res.disabled1,res.disabled2,res.disabled3,res.disabled4]
 				})
 			},
 			getfnsList() {
@@ -2310,7 +2442,7 @@
 				this.centerImg = img
 			},
 			listenerFun(e) {
-				console.log(e)
+				this.tsryShow = false
 				if (e.data == "横溪钱家、大同高屋") {
 					this.wgryShow = true
 					this.getGridDetail('1414922323459620866')
@@ -2683,6 +2815,27 @@
 			box-sizing: border-box;
 			font-size: 22px;
 			color: #8CACF9;
+		}
+		.tsry-box {
+			width: 100%;
+			height: 420px;
+			padding: 10px 20px 20px;
+			box-sizing: border-box;
+			color: #fff;
+		}
+		.tsry-bottom {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			.tsry-bottom-item {
+				display: flex;
+				align-items: center;
+				font-size: 18px;
+				color: #fff;
+				margin-top: 5px;
+			}
 		}
 	}
 

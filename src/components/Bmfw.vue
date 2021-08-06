@@ -49,20 +49,25 @@
 		<transition name="fade">
 			<div class="proof-guide" v-show="showGuide">
 				<div class="proof-guide-top">
-					<div class="proof-guide-top-title">村（社区）可出具的证明事项清单</div>
-					<div class="proof-guide-top-cont"></div>
+					<div class="proof-guide-top-title">{{guideInfo.name}}</div>
+					<div class="proof-guide-top-cont" v-html="guideInfo.cont"></div>
 				</div>
 				<div class="proof-guide-bottom">
 					<div class="proof-guide-bottom-box">
 						<div class="proof-guide-bottom-title">出具说明与证明</div>
 						<div class="search-box">
 							<input type="text" placeholder="请输入关键字" v-model="keyWord" @keyup.enter="searchKey">
-							<img src="static/images/search.png">
+							<img src="static/images/search.png" @click="searchKey">
+						</div>
+						<div class="proof-guide-bottom-list">
+							<span v-for="(item,index) in guideList" :key="index" @click="chooseGuide(item)">{{index+1}}、{{item.name}}</span>
 						</div>
 					</div>
-					<div class="proof-guide-bottom-box">
+					<div class="proof-guide-bottom-box" v-if="guideDetailShow">
 						<div class="proof-guide-bottom-title">详情</div>
-						<img src="../../public/static/images/cancel.png" style="position: absolute;top: 8px;right: -8px;">
+						<img src="../../public/static/images/cancel.png" style="position: absolute;top: 8px;right: -8px;" @click="guideDetailShow = false">
+						<div class="proof-guide-bottom-name">{{guideDetail.name}}</div>
+						<div class="proof-guide-bottom-cont">{{guideDetail.cont}}</div>
 					</div>
 				</div>
 			</div>
@@ -83,7 +88,8 @@
 				show: false, //私人建房
 				show2: false, //居家养老
 				showPubilc: false, //公共场所
-				showGuide: false, //证明指南
+				showGuide: false, //减负清单
+				guideDetailShow: false, //减负清单详情
 				pageIndex: 0,
 				pageCont: [],
 				tabList: [{
@@ -192,7 +198,10 @@
 					name: '九龙湖镇居家养老（残）银龄互助中心',
 					lng: '121.542615',
 					lat: '30.034968'
-				}]
+				}],
+				guideList:[],
+				guideInfo: {},
+				guideDetail: {}
 			}
 		},
 		components: {
@@ -222,12 +231,14 @@
 					this.showPubilc = false
 					this.show2 = false
 					this.showGuide = false
+					this.guideDetailShow = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 1) {
 					this.show = false
 					this.showPubilc = false
 					this.showGuide = true
 					this.show2 = false
+					this.guideDetailShow = false
 					this.onOff('关闭图层', '公共场所')
 					let data = {
 						current: 1,
@@ -239,28 +250,42 @@
 					this.showPubilc = false
 					this.showGuide = false
 					this.show2 = true
+					this.guideDetailShow = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 3) {
 					this.show = false
 					this.showPubilc = true
 					this.show2 = false
 					this.showGuide = false
+					this.guideDetailShow = false
 					this.onOff('打开图层', '公共场所')
 				}
 			},
 			getGuideList(data) {
 				this.$ajax.getGuideList(data).then(res => {
-					console.log(res.records)
-					res.records.forEach(item => {
-						if(item.name == "证明指南") {
-							this.pageCont = item.img.split(",")
-						}
-						console.log(this.pageCont)
+					this.guideInfo = res.records[3]
+					this.$ajax.getAdvert({current:1,size:30,travelId:res.records[3].id}).then(resp => {
+						this.guideList = resp.records
 					})
 				})
 			},
-			searchKey(e) {
-				console.log(e, this.keyWord)
+			searchKey() {
+				this.guideDetailShow = false
+				if(this.keyWord!="") {
+					this.$ajax.getGuideList({size:10,current:1}).then(res => {
+						this.guideInfo = res.records[3]
+						this.$ajax.getAdvert({current:1,size:30,travelId:res.records[3].id}).then(resp => {
+							this.guideList = resp.records
+							this.guideList = this.guideList.filter(item=>item.name.indexOf(this.keyWord)>-1)
+						})
+					})
+				} else {
+					this.getGuideList({size:10,current: 1})
+				}
+			},
+			chooseGuide(item) {
+				this.guideDetailShow = true
+				this.guideDetail = item
 			}
 		},
 		mounted() {
@@ -447,6 +472,15 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 			}
+			.proof-guide-top-cont {
+				width: 1505px;
+				max-height: 220px;
+				overflow-y: scroll;
+				margin: 0 auto;
+				margin-top: 10px;
+				color: #fff;
+				font-size: 18px;
+			}
 		}
 		.proof-guide-bottom {
 			display: flex;
@@ -490,6 +524,42 @@
 					input::-webkit-input-placeholder {
 						color: #fff;
 					}
+				}
+				.proof-guide-bottom-list {
+					width: 780px;
+					max-height: 450px;
+					padding-left: 50px;
+					margin-top: 20px;
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+					color: #fff;
+					font-size: 18px;
+					overflow-y: scroll;
+					span {
+						margin-bottom: 20px;
+					}
+					span:last-child {
+						margin-bottom: 0;
+					}
+				}
+				.proof-guide-bottom-name {
+					width: 100%;
+					font-size: 18px;
+					color: #fff;
+					text-align: center;
+					padding: 0 30px;
+					box-sizing: border-box;
+					margin: 20px auto;
+				}
+				.proof-guide-bottom-cont {
+					width: 100%;
+					max-height: 450px;
+					overflow-y: scroll;
+					font-size: 18px;
+					color: #fff;
+					padding: 0 30px;
+					box-sizing: border-box;
 				}
 			}
 		}
