@@ -534,7 +534,7 @@
 				bzData: {},
 				bxData: {},
 				jfData: {},
-				qflyList: ['清廉阵地', '家风民俗', '忽危积患'],
+				qflyList: ['清廉阵地', '家风民俗', '忽微积患'],
 				qflyTitle: '', //清风廉韵二级标题
 				qflyList2: [],
 				tabList: [{

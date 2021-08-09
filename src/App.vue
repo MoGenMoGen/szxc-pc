@@ -200,7 +200,6 @@
 				this.onOff("关闭图层", "长胜周家港孟家毛岭党员")
 				this.onOff("关闭图层", "长胜田央沈长桥头党员")
 				this.onOff("关闭图层", "农家乐支部党员")
-				this.onOff('关闭图层', '公共场所')
 			},
 			//关闭所有旅游图层
 			offAllLy() {
@@ -277,10 +276,12 @@
 					this.$refs.Zhdj.getIndex(newindex)
 					this.onOff("打开图层", "红色景点")
 					this.onOff("打开图层", "红色路线")
+					this.onOff('关闭图层', '公共场所')
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
 				}  else if(index == 2) {
+					this.onOff('关闭图层', '公共场所')
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
 					if(this.$refs.jczl.e==0) {
@@ -293,6 +294,7 @@
 				} else if (index==3) {
 					this.tabActive = newindex
 					this.$refs.cwgk.getIndex(newindex)
+					this.onOff('关闭图层', '公共场所')
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
@@ -302,6 +304,7 @@
 					this.$refs.Zhly.getIndex(newindex)
 					// this.onOff("打开图层", "农家乐")
 					// this.onOff("打开图层", "旅游景点")
+					this.onOff('关闭图层', '公共场所')
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()

@@ -253,12 +253,12 @@
 					this.guideDetailShow = false
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 3) {
+					this.onOff('打开图层', '公共场所')
 					this.show = false
 					this.showPubilc = true
 					this.show2 = false
 					this.showGuide = false
 					this.guideDetailShow = false
-					this.onOff('打开图层', '公共场所')
 				}
 			},
 			getGuideList(data) {

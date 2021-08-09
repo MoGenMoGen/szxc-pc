@@ -1790,6 +1790,7 @@
 				}
 				this.tsryShow = true
 				this.info.name = item.title
+				console.log(this.grid)
 				if(item.title=='老年人') {
 					this.tsryType = 1
 					this.oldMenOption.series[0].data = item.data
@@ -2374,12 +2375,12 @@
 					this.list2[1].num = res.population
 					this.list2[2].num = res.tenants
 					this.list2[3].num = res.lowIncome
-					this.list2[4].num = res.aged
+					this.list2[4].num = res.age
 					this.list2[5].num = res.disabled
 					this.list2[6].num = res.special
 					this.list2[7].num = res.fives
 					this.list2[8].num = res.correction
-					this.list2[4].data = [res.aged6,res.aged5,res.aged4,res.aged3,res.aged2,res.aged1]
+					this.list2[4].data = [res.age6,res.age5,res.age4,res.age3,res.age2,res.age1]
 					this.list2[5].data = [res.disabled1,res.disabled2,res.disabled3,res.disabled4]
 				})
 			},
