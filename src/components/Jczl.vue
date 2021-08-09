@@ -772,7 +772,7 @@
 						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">返回></div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
-								@click="toQiye(index,item)">· {{item.name}}</div>
+								@click.stop="toQiye(index,item)">· {{item.name}}</div>
 						</div>
 					</div>
 					<div class="pop-bg-box wfgl-bg" @click="showWf">
@@ -785,7 +785,7 @@
 								<span>建造年代</span>
 							</div>
 							<div class="pop-common-box">
-								<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)"
+								<div class="pop-three-line" v-for="(item,index) in wfList" @click.stop="toFns(item)"
 									:key="index">
 									<span>·</span>
 									<span>{{item.addr}}</span>
@@ -812,7 +812,7 @@
 							</div>
 							<div class="pop-common-box">
 								<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index"
-									@click="toFns(item)">
+									@click.stop="toFns(item)">
 									<span>·</span>
 									<span>{{item.name}}</span>
 									<span :style="{color:item.alert>=15?'#D00E00':''}">{{item.alert}}</span>
@@ -827,7 +827,7 @@
 						<div class="pop-bg-list" v-show="shantangshuiku">
 							<div class="pop-common-box" style="height: 200px;">
 								<div class="pop-one-line" v-for="(item,index) in stList" :key="index"
-									@click="toFns(item)">·
+									@click.stop="toFns(item)">·
 									{{item.name}}
 								</div>
 							</div>
@@ -846,7 +846,7 @@
 						<div class="pop-bg-list">
 							<div class="pop-common-box" style="height: 200px;">
 								<div class="pop-one-line" v-for="(item,index) in dzList" :key="index"
-									@click="toFns(item)">
+									@click.stop="toFns(item)">
 									{{item.name}}
 								</div>
 							</div>
@@ -863,7 +863,7 @@
 					</div>
 
 
-					<div class="pop-bg-box bpwy-bg" style="width: 331px;">
+					<div class="pop-bg-box bpwy-bg" style="width: 331px;" @click="showBpwy">
 						<div class="pop-bg-btn" @click="bianpoweiyi=!bianpoweiyi">查看全部></div>
 						<div class="pop-bg-list" v-show="bianpoweiyi">
 							<div class="pop-common-title2">
@@ -872,7 +872,7 @@
 								<span>位移量</span>
 							</div>
 							<div class="pop-common-box">
-								<div class="pop-two-line" v-for="(item,index) in wyList2" :key="index">
+								<div class="pop-two-line" v-for="(item,index) in wyList2" :key="index" @click.stop="toFns(item)">
 									<span>·</span>
 									<span>{{item.name}}</span>
 									<span>{{item.alert}}mm</span>
@@ -893,7 +893,7 @@
 							</div>
 							<div class="pop-common-box">
 								<div class="pop-two-line" v-for="(item,index) in ljflglList" :key="index"
-									@click="toMap(item)">
+									@click.stop="toMap(item)">
 									<span>·</span>
 									<span>{{item.name}}</span>
 									<span>{{item.putTime}}</span>
@@ -907,7 +907,7 @@
 				<div class="pop-right">
 					<div class="pop-bg-box xszh-bg">
 						<div class="pop-xszh">
-							<div class="pop-item" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">
+							<div class="pop-item" v-for="(item,index) in jkList" :key="index" @click.stop="toZf(item)">
 								<span>{{item.name}}</span>
 							</div>
 						</div>
@@ -1873,6 +1873,7 @@
 				this.$refs.videoPlayer5.off()
 				this.codes = item.code;
 				this.$refs.videoPlayer5.initPlugin()
+				console.log(item)
 				let a = {
 					X: item.lng,
 					Y: item.lat,
@@ -1893,6 +1894,7 @@
 					this.onOff("关闭图层", "危房")
 					this.onOff("关闭图层", "防溺水监控点")
 					this.onOff("关闭图层", "泥石流")
+					this.onOff("关闭图层", "边坡位移")
 					this.onOff("关闭图层", "五保户")
 					this.onOff("关闭图层", "低保")
 					this.onOff("关闭图层", "残障人员")
@@ -1942,6 +1944,7 @@
 					this.onOff("关闭图层", "危房")
 					this.onOff("关闭图层", "防溺水监控点")
 					this.onOff("关闭图层", "泥石流")
+					this.onOff("关闭图层", "边坡位移")
 					this.onOff("关闭图层", "五保户")
 					this.onOff("关闭图层", "低保")
 					this.onOff("关闭图层", "残障人员")
@@ -2088,6 +2091,7 @@
 				this.$ajax.getGridDetail({
 					id: id
 				}).then(res => {
+					console.log(res)
 					this.wgList[0].num = res.name
 					this.wgList[1].num = res.leader
 					this.wgList[2].num = res.technician
@@ -2117,7 +2121,6 @@
 			},
 			getPeopleList(data) {
 				this.$ajax.getPeopleList(data).then(res => {
-					console.log(res)
 					this.wgryList = res.records
 				})
 			},
@@ -2493,6 +2496,7 @@
 				this.onOff("关闭图层", "危房")
 				this.onOff("关闭图层", "防溺水监控点")
 				this.onOff("关闭图层", "泥石流")
+				this.onOff("关闭图层", "边坡位移")
 				this.onOff("关闭图层", "垃圾点位")
 				this.onOff("关闭图层", "企业")
 				this.onOff("关闭图层", "山塘水库")
@@ -2518,6 +2522,10 @@
 			showDzzh() {
 				this.closeZhjg()
 				this.onOff("打开图层", "泥石流")
+			},
+			showBpwy() {
+				this.closeZhjg()
+				this.onOff("打开图层", "边坡位移")
 			},
 			showLjfl() {
 				this.closeZhjg()

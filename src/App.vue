@@ -219,6 +219,7 @@
 				this.onOff("关闭图层", "危房")
 				this.onOff("关闭图层", "防溺水监控点")
 				this.onOff("关闭图层", "泥石流")
+				this.onOff("关闭图层", "边坡位移")
 				this.onOff("关闭图层", "垃圾点位")
 				this.onOff("关闭图层", "企业")
 				this.onOff("关闭图层", "山塘水库")
