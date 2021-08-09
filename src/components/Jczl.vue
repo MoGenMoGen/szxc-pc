@@ -68,7 +68,7 @@
 							<span style="width: 60%;">住址</span>
 						</div>
 						<div class="pop-inner-box" style="height: 350px;margin-bottom: 10px;overflow-y: scroll;">
-							<div v-for="(item,index) in wgryList" :key='index' class="pop-inner-item"
+							<div v-for="(item,index) in tsryList" :key='index' class="pop-inner-item"
 								@click="peopleMap(item)">
 								<span style="width: 15%;">{{ index + 1 }}</span>
 								<span style="width: 25%;">{{ item.name }}</span>
@@ -1022,6 +1022,8 @@
 			return {
 				bpwyb,
 				info: {}, //信息
+				tsryList: [],
+				grid: '',
 				wjxTapList: [{
 					day: '今日',
 					order: 0,
@@ -1795,12 +1797,34 @@
 					this.tsryType = 2
 					this.disabilityMenOption.series[0].data = item.data
 				} else if (item.title=='低保户') {
+					let data = {
+						grid: this.grid,
+						poorType: 1,
+						size: 30,
+						current: 1
+					}
+					this.getTsryList(data)
 					this.tsryType = 3
 				} else if (item.title=='计生家庭') {
+					let data = {
+						grid: this.grid,
+						poorType: 3,
+						size: 30,
+						current: 1
+					}
+					this.getTsryList(data)
 					this.tsryType = 3
 				} else if (item.title=='五保户') {
+					let data = {
+						grid: this.grid,
+						poorType: 2,
+						size: 30,
+						current: 1
+					}
+					this.getTsryList(data)
 					this.tsryType = 3
 				} else if (item.title=='矫正人员') {
+					this.tsryList = []
 					this.tsryType = 3
 				} else {
 					this.tsryShow = false
@@ -1831,6 +1855,7 @@
 				this.offHik()
 				this.getEventList("")
 				this.getGridTotal()
+				this.grid = ""
 			},
 			toMap(item) {
 				this.$refs.videoPlayer5.off()
@@ -1885,6 +1910,7 @@
 				this.e = e;
 				if (e == 0) {
 					// 网格管理
+					this.grid = ""
 					this.getGridTotal()
 					this.getEventList('')
 					// this.$parent.isChildShow = false
@@ -1937,6 +1963,7 @@
 				else if (e == 1) {
 					// 综合监管
 					// this.$parent.isChildShow = false
+					this.grid = ""
 					this.offHik()
 					this.onOff("关闭图层", "综合监管")
 					this.onOff("关闭图层", "山塘水库")
@@ -2072,6 +2099,7 @@
 				this.wgryShow = true
 				this.tsryShow = false
 				this.$parent.test(a)
+				this.grid = item.id
 				this.getGridDetail(item.id)
 			},
 			peopleMap(item) {
@@ -2448,27 +2476,35 @@
 				this.tsryShow = false
 				if (e.data == "横溪钱家、大同高屋") {
 					this.wgryShow = true
+					this.grid = '1414922323459620866'
 					this.getGridDetail('1414922323459620866')
 				} else if (e.data == "横溪冷水井、后厢") {
 					this.wgryShow = true
+					this.grid = '1414921956684513281'
 					this.getGridDetail('1414921956684513281')
 				} else if (e.data == "横溪坝下、桥头") {
 					this.wgryShow = true
-					this.getGridDetail('1414921956684513281')
+					this.grid = '1415144767758651394'
+					this.getGridDetail('1415144767758651394')
 				} else if (e.data == "横溪田中央、墙头") {
 					this.wgryShow = true
+					this.grid = '1415146940391346178'
 					this.getGridDetail('1415146940391346178')
 				} else if (e.data == "长胜毛领、孟家") {
 					this.wgryShow = true
+					this.grid = '1415147015662325761'
 					this.getGridDetail('1415147015662325761')
 				} else if (e.data == "长胜周家港") {
 					this.wgryShow = true
+					this.grid = '1415147152245641218'
 					this.getGridDetail('1415147152245641218')
 				} else if (e.data == "长胜长桥头") {
 					this.wgryShow = true
+					this.grid = '1415147082129461249'
 					this.getGridDetail('1415147082129461249')
 				} else if (e.data == "长胜田央沈") {
 					this.wgryShow = true
+					this.grid = '1415147217374793730'
 					this.getGridDetail('1415147217374793730')
 				}
 			},
@@ -2530,6 +2566,11 @@
 			showLjfl() {
 				this.closeZhjg()
 				this.onOff("打开图层", "垃圾点位")
+			},
+			getTsryList(data) {
+				this.$ajax.getPeopleList(data).then(res => {
+					this.tsryList = res.records
+				})
 			}
 		},
 		computed: {
