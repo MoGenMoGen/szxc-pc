@@ -134,7 +134,7 @@
 			</div>
 		</transition>
 		<hik6 :codes="codes" ref="videoPlayer6" :playMode="1"></hik6>
-		<!-- <BottomTab :list="tabList" @updata="getIndex"></BottomTab> -->
+		<BottomTab ref="botTab" :list="tabList" @updata="getIndex"></BottomTab>
 
 		<div class="model" v-if="dialogVisible">
 			<img src="../bgImages/关闭.png" @click="toStopScenicSpot">
@@ -164,6 +164,7 @@
 		},
 		data() {
 			return {
+				isActive: 0,
 				codes: '',
 				preVideo:'',
 				option: {
@@ -723,6 +724,11 @@
 				that.option4.title.text = '{a|' + option4 + '}\n{c|人流量}'
 				that.option5.title.text = '{a|' + option5 + '}\n{c|车流量}'
 			}, 60000)
+		},
+		watch:{
+			isActive(val,oVal) {
+				this.$refs.botTab.isActive = val
+			}
 		}
 	}
 </script>

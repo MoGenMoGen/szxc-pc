@@ -20,7 +20,7 @@ export default {
   },
   data() {
 	  return {
-		  isActive: 0
+		isActive: 0
 	  }
   },
   methods:{

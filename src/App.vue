@@ -302,6 +302,7 @@
 				} else if (index==4) {
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
+					this.$refs.Zhly.isActive = newindex
 					// this.onOff("打开图层", "农家乐")
 					// this.onOff("打开图层", "旅游景点")
 					this.onOff('关闭图层', '公共场所')
