@@ -740,7 +740,6 @@
 					size: 30
 				}
 				this.$ajax.getCwgk(data).then(res => {
-					console.log(res.records)
 					res.records.forEach(item => {
 						item.img = item.img.split(",")
 					})

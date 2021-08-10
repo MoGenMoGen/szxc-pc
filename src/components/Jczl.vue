@@ -1116,6 +1116,7 @@
 				tsryType: 0,
 				commonOption: {},
 				oldMenOption: {
+					tooltip: {},
 					yAxis: {
 						type: 'category',
 						axisLine: {
@@ -1161,6 +1162,7 @@
 					}
 				},
 				disabilityMenOption: {
+					tooltip: {},
 					yAxis: {
 						type: 'category',
 						axisLine: {
@@ -1356,7 +1358,7 @@
 					dataZoom : [{}],
 					grid: {
 						top: "30px",
-						left: "30px",
+						left: "60px",
 						right: "30px",
 						bottom: "30px"
 					}
@@ -2456,6 +2458,9 @@
 				this.$ajax.getCamera('边坡位移').then(res=> {
 					this.wyList2 = res
 				})
+				// this.$ajax.getPatrolList({size:100,current:1}).then(res => {
+				// 	this.wjxList = res.records
+				// })
 			},
 			clickthis(option) {
 				this.centerShow = true

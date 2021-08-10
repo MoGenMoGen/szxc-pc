@@ -449,6 +449,22 @@ class api {
   		})
   	})
   }
+  // 巡查列表
+  getPatrolList(data) {
+  	return new Promise(resolve => {
+  		get("/blade-govern/patrol/list",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
+  // 巡查详情
+  getPatrolDetail(data) {
+  	return new Promise(resolve => {
+  		get("/blade-govern/patrol/detail",data).then(res=>{
+  		  resolve(res.data)
+  		})
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

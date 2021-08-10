@@ -104,7 +104,7 @@
 		</transition>
 		<transition name="fade">
 			<div class="pop-common qianyi" v-show="show5">
-				<div class="pop-title"><span>党员信息</span></div>
+				<div class="qianyi-title">党员信息</div>
 				<span class="qianyi-tips">此网格支部人员已迁至【九龙家苑】和【骆驼街道】</span>
 				<img src="static/images/cancel.png" class="qianyi-cancel" @click="cancel">
 			</div>
@@ -388,7 +388,6 @@
 			}
 		},
 		mounted() {
-      console.log(123)
 			this.show = true
 			let that = this
 			setInterval(function(){
@@ -701,9 +700,22 @@
 	.qianyi{
 		top: 300px;
 		right: 80px;
+		background: url(../bgImages/二级菜单.png) no-repeat;
+		background-size: 100% 100%;
+		width: 520px;
+		height: 298px;
+		padding: 0;
+		.qianyi-title {
+			width: 100%;
+			padding: 10px 200px;
+			box-sizing: border-box;
+			font-size: 22px;
+			text-align: center;
+			color: #8CACF9;
+		}
 		.qianyi-tips {
 			width: 70%;
-			margin: 20px auto;
+			margin: 70px auto;
 			font-size: 28px;
 			color: #CF1508;
 		}
