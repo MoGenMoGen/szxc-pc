@@ -466,31 +466,7 @@
 				eatList: [],
 				hotelList: [],
 				njlList: [],
-				jdList: [{
-					name: '香山教寺',
-					lng: '121.518298',
-					lat: '30.055497',
-				}, {
-					name: '九龙源',
-					lng: '121.511168',
-					lat: '30.052821',
-				}, {
-					name: '滑草场',
-					lng: '121.539236',
-					lat: '30.04344',
-				}, {
-					name: '猴岛穿越时空',
-					lng: '121.529372',
-					lat: '30.041006',
-				}, {
-					name: '香山源',
-					lng: '121.518298',
-					lat: '30.055497',
-				}, {
-					name: '九龙湖景区',
-					lng: '121.527141',
-					lat: '30.045825',
-				}],
+				jdList: [],
 				imgList: [],
 				dialogVisible:false,
 			}
@@ -707,9 +683,9 @@
 			this.$ajax.getDriveList({size:20,current:1}).then(res => {
 				this.driveList = res.records
 			})
-			// this.$ajax.getSiteList({size:20,current:1}).then(res => {
-			// 	this.jdList = res.records
-			// })
+			this.$ajax.getSiteList({size:20,current:1}).then(res => {
+				this.jdList = res.records
+			})
 			this.show = true
 			this.show4 = true
 			let that = this
