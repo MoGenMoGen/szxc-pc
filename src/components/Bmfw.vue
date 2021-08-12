@@ -43,7 +43,7 @@
 
 
 
-    <iframe v-if="show2" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" src="http://124.70.199.84:8200/" frameborder="0"></iframe>
+    <iframe v-if="show2" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe" src="http://36.134.5.123:8200" frameborder="0"></iframe>
 
 
 		<transition name="fade">
