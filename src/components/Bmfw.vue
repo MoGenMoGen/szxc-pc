@@ -106,45 +106,21 @@
 					title: '公共场所'
 				}],
 				srjfList: [{
-					name: '周国栋',
-					num: 3,
+					name: '刘飞',
+					num: 4,
 					solve: '拆除',
 					newArea: 100,
-					newAdd: '村庄集镇规划区',
-					schedule: '计划申请',
-					sort: '困难户'
+					newAdd: '横溪墙头25号',
+					schedule: '审核中',
+					sort: '2'
 				}, {
-					name: '邱世云',
-					num: 3,
-					solve: '无',
-					newArea: 80,
-					newAdd: '村庄集镇规划区',
-					schedule: '计划申请',
-					sort: '无房户'
-				}, {
-					name: '叶敏华',
-					num: 4,
-					solve: '无',
-					newArea: 120,
-					newAdd: '村庄集镇规划区',
-					schedule: '计划申请',
-					sort: '无房户'
-				}, {
-					name: '项舜',
-					num: 1,
-					solve: '无',
-					newArea: 80,
-					newAdd: '村庄集镇规划区',
-					schedule: '计划申请',
-					sort: '无房户'
-				}, {
-					name: '陈雪宝',
+					name: '俞棋辉',
 					num: 2,
-					solve: '村集体回购',
-					newArea: 48,
-					newAdd: '村庄集镇规划区',
-					schedule: '计划申请',
-					sort: '危房户'
+					solve: '拆除',
+					newArea: 100,
+					newAdd: '九龙湖横溪',
+					schedule: '申请',
+					sort: '1'
 				}],
 				publicList: [{
 					name: '九龙湖镇九龙湖社区卫生服务站',
@@ -263,8 +239,8 @@
 			},
 			getGuideList(data) {
 				this.$ajax.getGuideList(data).then(res => {
-					this.guideInfo = res.records[3]
-					this.$ajax.getAdvert({current:1,size:30,travelId:res.records[3].id}).then(resp => {
+					this.guideInfo = res.records[0]
+					this.$ajax.getAdvert({current:1,size:30,travelId:res.records[0].id}).then(resp => {
 						this.guideList = resp.records
 					})
 				})
@@ -273,8 +249,8 @@
 				this.guideDetailShow = false
 				if(this.keyWord!="") {
 					this.$ajax.getGuideList({size:10,current:1}).then(res => {
-						this.guideInfo = res.records[3]
-						this.$ajax.getAdvert({current:1,size:30,travelId:res.records[3].id}).then(resp => {
+						this.guideInfo = res.records[0]
+						this.$ajax.getAdvert({current:1,size:30,travelId:res.records[0].id}).then(resp => {
 							this.guideList = resp.records
 							this.guideList = this.guideList.filter(item=>item.name.indexOf(this.keyWord)>-1)
 						})
@@ -385,6 +361,7 @@
 	.srjf {
 		position: absolute;
 		width: 1450px;
+		min-height: 298px;
 		top: 200px;
 		left: 35px;
 		background: url(../bgImages/私人建房统计.png) no-repeat;

@@ -16,7 +16,6 @@
           <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"
                  autoplay="autoplay"
                  muted loop="loop"></video>
-          <!--          <div class="introduction">{{ introduction }}</div>-->
           <div class="demo03">
             <div class="content">
               <div>
@@ -43,6 +42,7 @@
           </div>
           <div class="info-middle">
             <div style="display: flex;flex-direction: column;">
+			  <span>党员人数：<span class="typeBlue">111</span> 人</span>
               <span>当地人口：<span class="typeBlue">1627</span>人</span>
               <span>外来人口：<span class="typeBlue">388</span> 人</span>
               <span>男女比率: <span class="typeBlue">

@@ -6,32 +6,6 @@
 				<img :src="icBj" class="bg">
 				<div class="wrapper">
 					<div class="cun-top">
-						<!-- <div class="cun-left">
-							<div class="chd">
-								<p>招租信息</p>
-								<img :src="icChd">
-							</div>
-							<div class="zhaozu-info">
-								<div class="zhaozu-title">
-									<span>序号</span>
-									<span>承租方</span>
-									<span>面积</span>
-									<span>租期</span>
-									<span>租金支付</span>
-									<span>联系人</span>
-								</div>
-								<div style="max-height: 400px;overflow-y: auto;">
-									<div v-for="(item,index) in zhaozuList" :key="index" class="zhaozu-item">
-										<span>{{index+1}}</span>
-										<span>{{item.name}}</span>
-										<span>{{item.area}}</span>
-										<span>{{item.time}}</span>
-										<span>{{item.money}}</span>
-										<span>{{item.phone}}</span>
-									</div>
-								</div>
-							</div>
-						</div> -->
 						<div class="cun-left" style="width: 100%">
 							<div class="chd">
 								<p>财务公开</p>
@@ -54,28 +28,6 @@
 						</div>
 					</div>
 					<div class="cun-top">
-						<!-- <div class="cun-left">
-							<div class="chd">
-								<p>业务公开</p>
-								<img :src="icChd">
-							</div>
-							<div class="yewu-info">
-								<div class="yewu-title">
-									<span>序号</span>
-									<span>承租方</span>
-									<span>租期</span>
-									<span>租金支付</span>
-								</div>
-								<div style="max-height: 400px;overflow-y: auto;">
-									<div class="yewu-item" v-for="(item,index) in yewuList" :key="index">
-										<span>{{index+1}}</span>
-										<span>{{item.name}}</span>
-										<span>{{item.time}}</span>
-										<span>{{item.money}}</span>
-									</div>
-								</div>
-							</div>
-						</div> -->
 						<div class="cun-left" style="width: 100%">
 							<div class="reverseArrow">
 								<div v-for="item in list4" :key="item.id">
@@ -221,7 +173,7 @@
 						<div class="cmss-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
-								<span>事项办理（办）:</span>
+								<span>村委会回复（办）:</span>
 								<span>{{cmssDetail.eventHandle}}</span>
 							</div>
 						</div>
@@ -246,8 +198,10 @@
 								<span>村民留言（议）:</span>
 							</div>
 							<div class="cmss-message-info">
-								<div style="overflow-y: scroll;display: flex;flex-direction: column;">
-									<span v-html="cmssDetail.message"></span>
+								<div class="cmss-message-comment" v-for="(item,index) in cmssCommentList" :key="index">
+									<div><img :src="item.avatar">{{item.nickName||item.realName}}</div>
+									<span>{{item.cont}}</span>
+									<span>{{item.createTime}}</span>
 								</div>
 							</div>
 						</div>
@@ -288,8 +242,10 @@
 								<span>其他意见建议:</span>
 							</div>
 							<div class="mytj-message-box">
-								<div style="overflow-y: scroll;">
-									<div v-html="mytjDetail.opinion"></div>
+								<div class="mytj-message-comment" v-for="(item,index) in mytjCommentList" :key="index">
+									<div><img :src="item.avatar">{{item.nickName||item.realName}}</div>
+									<span>{{item.cont}}</span>
+									<span>{{item.createTime}}</span>
 								</div>
 							</div>
 						</div>
@@ -321,7 +277,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="mytj-message">
+						<!-- <div class="mytj-message">
 							<div class="mytj-message-top">
 								<img src="../bgImages/logo.png">
 								<span>村民留言:</span>
@@ -331,7 +287,7 @@
 									<div v-html="mytjDetail.message"></div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<img src="../../public/static/images/cancel.png" class="cancelLogo" @click="mytjDetailShow = false"
@@ -432,7 +388,7 @@
 			<div v-show="qflyShow">
 				<div class="pop-common qfly">
 					<div v-for="(item,index) in qflyList" :key='index' class="pop-inner-item" @click="chooseQfly(index,item)">
-						<span :class="qflyIndex == index ? 'qflyActive': ''">{{ item}}</span>
+						<span :class="qflyIndex == index ? 'qflyActive': ''">{{ item.dictValue}}</span>
 					</div>
 				</div>
 				<div class="pop-common qfly-child" v-show="qflyChildShow">
@@ -535,6 +491,8 @@
 				bxData: {},
 				jfData: {},
 				qflyList: ['清廉阵地', '家风民俗', '忽微积患'],
+				cmssCommentList: [],
+				mytjCommentList: [],
 				qflyTitle: '', //清风廉韵二级标题
 				qflyList2: [],
 				tabList: [{
@@ -681,27 +639,7 @@
 				}],
 				cmssList: [],
 				mytjList: [],
-				lzxjList: [{
-					name: '红廉长廊',
-					imgWall: ['static/images/hlcl-1.jpg', 'static/images/hlcl-2.jpg', 'static/images/hlcl-3.jpg',
-						'static/images/hlcl-4.jpg', 'static/images/hlcl-5.jpg', 'static/images/hlcl-6.jpg'
-					]
-				}, {
-					name: '清廉村居十问',
-					imgWall: ['static/images/qlcjsw-1.png', 'static/images/qlcjsw-2.png',
-						'static/images/qlcjsw-3.png', 'static/images/qlcjsw-4.png',
-						'static/images/qlcjsw-5.png',
-						'static/images/qlcjsw-6.png', 'static/images/qlcjsw-7.png',
-						'static/images/qlcjsw-8.png', 'static/images/qlcjsw-9.png',
-						'static/images/qlcjsw-10.png'
-					]
-				}, {
-					name: '小微权利漫画',
-					imgWall: ['static/images/xwqlmh-1.png', 'static/images/xwqlmh-2.png',
-						'static/images/xwqlmh-3.png', 'static/images/xwqlmh-4.png',
-						'static/images/xwqlmh-5.png'
-					]
-				}]
+				lzxjList: []
 			}
 		},
 		components: {
@@ -710,27 +648,50 @@
 		mounted() {
 			this.getSzglData()
 			this.cShow = true
-			this.$ajax.getSayList({size:10,current:1}).then(res => {
+			this.$ajax.getSayList({size:10,current:1,status:2}).then(res => {
 				res.records.forEach(item => {
 					item.handleTime = item.handleTime.substring(0,10)
-					item.satisfaction = parseFloat(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
-					item.commonSatisfaction = parseFloat(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
-					item.disSatisfaction = parseFloat(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
+					let all = Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)
+					if(all==0) {
+						item.satisfaction = 0
+						item.commonSatisfaction = 0
+						item.disSatisfaction = 0
+					} else {
+						item.satisfaction = parseFloat(item.satisfiedNum / all * 100).toFixed(1)
+						item.commonSatisfaction = parseFloat(item.commonNum / all * 100).toFixed(1)
+						item.disSatisfaction = parseFloat(item.dissatisfiedNum / all * 100).toFixed(1)
+					}
 				})
 				this.cmssList = res.records
 			})
 			this.$ajax.getOpinionList({size:10,current:1}).then(res => {
 				res.records.forEach(item => {
 					item.handleTime = item.handleTime.substring(0,10)
-					item.satisfaction = parseFloat(item.satisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
-					item.commonSatisfaction = parseFloat(item.commonNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
-					item.disSatisfaction = parseFloat(item.dissatisfiedNum / (Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)) * 100).toFixed(1)
-					item.agree = parseFloat(item.agreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
-					item.disAgree = parseFloat(item.disagreeNum / (Number(item.agreeNum)+Number(item.disagreeNum)) * 100).toFixed(1)
+					let all = Number(item.satisfiedNum)+Number(item.commonNum)+Number(item.dissatisfiedNum)
+					if(all==0) {
+						item.satisfaction = 0
+						item.commonSatisfaction = 0
+						item.disSatisfaction = 0
+					} else {
+						item.satisfaction = parseFloat(item.satisfiedNum / all * 100).toFixed(1)
+						item.commonSatisfaction = parseFloat(item.commonNum / all * 100).toFixed(1)
+						item.disSatisfaction = parseFloat(item.dissatisfiedNum / all * 100).toFixed(1)
+					}
+					let agreeAll = Number(item.agreeNum)+Number(item.disagreeNum)
+					if(agreeAll == 0) {
+						item.agree = 0
+						item.disAgree = 0
+					} else {
+						item.agree = parseFloat(item.agreeNum / agreeAll * 100).toFixed(1)
+						item.disAgree = parseFloat(item.disagreeNum / agreeAll * 100).toFixed(1)
+					}
 					item.img2 = item.img2.split(",")
 					item.img3 = item.img3.split(",")
 				})
 				this.mytjList = res.records
+			})
+			this.$ajax.getDictionary('honestType').then(res => {
+			  this.qflyList = res
 			})
 		},
 		methods: {
@@ -872,39 +833,15 @@
 				this.lzxjCont = this.lzxjList[index].imgWall
 			},
 			chooseQfly(index,item) {
-				this.qflyTitle = item
+				this.qflyTitle = item.dictValue
 				this.qflyChildShow = true
 				this.qflyIndex = index
-				this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
+				this.$ajax.getUprightList({size:10,current:1,type:item.dictKey}).then(res => {
 					this.qflyList2 = res.records
 				})
 			},
 			chooseQfly2(index,item) {
 				this.qflyImgShow = true
-				// if(index==1) {
-				// 	this.qflyImgShow1 = false
-				// 	this.qflyImgShow2 = true
-				// 	this.$ajax.getUprightList({size:10,current:1,type:2}).then(res => {
-				// 		this.qflyIWList = res.records
-				// 	})
-				// } else{
-				// 	this.qflyImgShow1 = true
-				// 	this.qflyImgShow2 = false
-				// 	this.$ajax.getUprightList({size:10,current:1,type:Number(index+1)}).then(res => {
-				// 		this.qflyIList = res.records
-				// 		res.records.forEach(item => {
-				// 			this.$ajax.getAdvert({size:10,current:1,travelId:item.id}).then(res => {
-				// 				this.qflyIList.forEach(newItem => {
-				// 					if(newItem.id == item.id) {
-				// 						newItem.imgList = res.records
-				// 					}
-				// 				})
-				// 				this.qflyIList.push()
-				// 			})
-				// 		})
-				// 	})
-				// 	console.log(this.qflyIList)
-				// }
 				if(this.qflyIndex==1) {
 					this.qflyImgShow1 = false
 					this.qflyImgShow2 = true
@@ -931,10 +868,22 @@
 			showCmssDetail(item) {
 				this.cmssDetailShow = true
 				this.cmssDetail = item
+				this.$ajax.getCommentList({size:10,current:1,articleId:item.id,status:2}).then(res => {
+					res.records.forEach(item => {
+						item.createTime = item.createTime.substring(0,10)
+					})
+					this.cmssCommentList = res.records
+				})
 			},
 			showMytjDetail(item) {
 				this.mytjDetailShow = true
 				this.mytjDetail = item
+				this.$ajax.getCommentList({size:10,current:1,articleId:item.id,status:2}).then(res => {
+					res.records.forEach(item => {
+						item.createTime = item.createTime.substring(0,10)
+					})
+					this.mytjCommentList = res.records
+				})
 			}
 		}
 	}
@@ -1145,6 +1094,28 @@
 						box-sizing: border-box;
 						display: flex;
 						flex-direction: column;
+						.cmss-message-comment {
+							display: flex;
+							flex-direction: column;
+							font-size: 14px;
+							div {
+								display: flex;
+								align-items: center;
+								img {
+									width: 32px;
+									height: 32px;
+									border-radius: 50%;
+									margin-right: 10px;
+								}
+							}
+							span {
+								padding-left: 42px;
+								box-sizing: border-box;
+							}
+							span:last-child {
+								font-size: 12px;
+							}
+						}
 					}
 				}
 			}
@@ -1235,18 +1206,26 @@
 						box-sizing: border-box;
 						display: flex;
 						flex-direction: column;
-						.mytj-message-box-item {
+						.mytj-message-comment {
 							display: flex;
-							align-items: center;
-							margin-bottom: 20px;
-							img {
-								width: 53px;
-								height: 53px;
-								margin-right: 15px;
-								border-radius: 50%;
+							flex-direction: column;
+							font-size: 14px;
+							div {
+								display: flex;
+								align-items: center;
+								img {
+									width: 32px;
+									height: 32px;
+									border-radius: 50%;
+									margin-right: 10px;
+								}
 							}
 							span {
-								font-size: 16px;
+								padding-left: 42px;
+								box-sizing: border-box;
+							}
+							span:last-child {
+								font-size: 12px;
 							}
 						}
 					}

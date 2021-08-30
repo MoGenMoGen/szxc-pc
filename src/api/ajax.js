@@ -433,6 +433,14 @@ class api {
   		})
   	})
   }
+  // 获取回复列表
+  getCommentList(data) {
+	return new Promise(resolve => {
+		get("/blade-honest/comment/list",data).then(res=>{
+		  resolve(res.data)
+		})
+	})
+  }
   // 清风廉韵列表
   getUprightList(data) {
   	return new Promise(resolve => {

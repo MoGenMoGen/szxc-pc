@@ -24,20 +24,6 @@
 		<Cwgk v-show="isActive==3&&flag" ref="cwgk"></Cwgk>
 		<Zhly ref="Zhly" v-show="isActive==4&&flag"></Zhly>
 		<Bmfw ref="bmfw" v-show="isActive==5&&flag"></Bmfw>
-		<!-- 显示综合指挥 -->
-		<!-- <div class="imgBtn" v-if="!flag">
-      <img style="width: 100%; height: 100%;" src="../public/static/images/sgptBg.png">
-      <div class="btn btn1" @click="openPop(1)"></div>
-      <div class="btn btn2" @click="openPop(2)"></div>
-      <div class="btn btn3" @click="openPop(3)"></div>
-      <div class="btn btn4" @click="openImg(1)"></div>
-      <div class="btn btn5" @click="openImg(2)"></div>
-      <div class="btn btn6" @click="openImg(3)"></div>
-      <div>
-        <img :src="imgUrl" class="show-img" v-if="showImg">
-        <img src="../public/static/images/cancel.png" class="cancelLogo" v-if="showImg">
-      </div>
-    </div> -->
 
 
 		<iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>

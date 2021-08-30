@@ -3998,7 +3998,7 @@
 
 				.sgpt-left {
 					width: 36%;
-					height: 100%;
+					height: 520px;
 					background-color: #fff;
 					padding: 10px 0 0 10px;
 					border-radius: 5px;
@@ -4039,7 +4039,7 @@
 
 				.sgpt-right {
 					width: 60%;
-					height: 100%;
+					height: 520px;
 					background-color: #fff;
 					padding: 10px 0 0 10px;
 					border-radius: 5px;
@@ -4048,7 +4048,7 @@
 
 					.sgpt-right-top {
 						.sgpt-over {
-							height: 200px;
+							height: 180px;
 							padding-bottom: 10px;
 							overflow-y: scroll;
 
