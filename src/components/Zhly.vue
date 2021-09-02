@@ -96,7 +96,6 @@
 		</transition>
 		<transition name="fade">
 			<div class="pop-common pop-list jd-bg" v-show="show2" >
-				<!-- <div class="pop-title"><span>景点列表</span></div> -->
 				<img src="../bgImages/视频播放.png"
 					 style="width: 30px;height: 30px;position: absolute;right: 170px;top:15px;" @click="toScenicSpot()">
 
@@ -710,20 +709,6 @@
 </script>
 
 <style lang="less" scoped>
-	.pop-title {
-		width: 485px;
-		height: 32px;
-		background: url(../../public/static/images/line.png) no-repeat;
-		font-size: 20px;
-		padding: 0 20px;
-		margin: 0 auto;
-		box-sizing: border-box;
-
-		span {
-			margin-left: 20px;
-		}
-	}
-
 	.pop-common {
 		width: 520px;
 		display: flex;
@@ -1026,9 +1011,6 @@
 
 	.banner-box {
 		width: 500px;
-		// position: absolute;
-		// top: 200px;
-		// transform: translate(-50%, -50%);
 		display: flex;
 		flex-direction: column;
 

@@ -16,7 +16,6 @@
 			</div>
 			<span class="top-time">{{ nowTime }}</span>
 		</div>
-		<!-- <router-view></router-view> -->
 		<Summary ref="summary" v-show="isActive==0&&flag"></Summary>
 		<!-- <Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd> -->
 		<Zhdj ref="Zhdj" v-show="isActive==1&&flag"></Zhdj>
@@ -106,7 +105,6 @@
 				}
 				if (e == 0) {
 					this.isChildShow = false
-					// this.$router.push({name:'Summary'})
 					this.$refs.summary.onLoad()
 				}
 				if (e == 5) {
@@ -114,17 +112,8 @@
 					this.offAllJc()
 					this.offAllLy()
 					this.offAllYh()
-
-					// this.isChildShow2 = false
 				}
 				this.isActive = e
-				// //一档一户
-				// if (e === 1) {
-				//   this.onOff("打开图层","总览")
-				//   this.offAllDj()
-				//   this.offAllLy()
-				//   this.offAllJc()
-				// }
 				//智慧党建
 				if (e === 1) {
 					this.onOff("打开图层", "红色景点")
@@ -132,33 +121,21 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-					// this.$router.push({name:'Zhdj'})
-					// this.isChildShow2 = false
 				}
 				//旅游
 				if (e === 4) {
-					// this.onOff("打开图层", "农家乐")
-					// this.onOff("打开图层", "旅游景点")
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-					// this.$router.push({name:'Zhly'})
-					// this.isChildShow2 = false
 				}
 				//基层治理
 				if (e === 2) {
-					// this.onOff("打开图层","山塘水库")
-					// this.onOff("打开图层","垃圾点位")
-					// this.onOff("打开图层","防溺水监控点")
 					if(this.$refs.jczl.e==0) {
-						// this.test("网格")
 						this.onOff("打开图层", "网格")
 					}
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-
-					// this.isChildShow2 = false
 				}
 				//村务管理
 				if (e === 3) {
@@ -166,8 +143,6 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-
-					// this.isChildShow2 = false
 				}
 			},
 			//打开图层
@@ -217,7 +192,7 @@
 			},
 			showChild(e) {
 				if(e==1){
-					this.tabChildList = ['红色路线', '党员信息','党务公开','党员活动']
+					this.tabChildList = ['红色课堂', '牢记使命','支部力量','红色足迹']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==2) {
@@ -226,7 +201,6 @@
 					this.isActive2 = e
 				} else if (e==3) {
 					this.tabChildList = ['阳光村务', '村民说事','民意体检', '清风廉韵']
-					// this.tabChildList = ['村务公开', '财务公开','村民说事','民意体检','风险预警','廉政宣教','监督机构']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {
@@ -259,10 +233,11 @@
 				}
 				if(index == 1) {
 					this.tabActive = newindex
-					this.$refs.Zhdj.getIndex(newindex)
-					this.onOff("打开图层", "红色景点")
-					this.onOff("打开图层", "红色路线")
+					this.onOff("关闭图层", "红色景点")
+					this.onOff("关闭图层", "红色路线")
 					this.onOff('关闭图层', '公共场所')
+					this.$refs.Zhdj.getIndex(newindex)
+					this.$refs.Zhdj.isActive = newindex
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
@@ -271,7 +246,6 @@
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
 					if(this.$refs.jczl.e==0) {
-						// this.test("网格")
 						this.onOff("打开图层", "网格")
 					}
 					this.offAllDj()
@@ -289,8 +263,6 @@
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
 					this.$refs.Zhly.isActive = newindex
-					// this.onOff("打开图层", "农家乐")
-					// this.onOff("打开图层", "旅游景点")
 					this.onOff('关闭图层', '公共场所')
 					this.offAllDj()
 					this.offAllJc()
@@ -306,10 +278,6 @@
 			}
 		},
 		mounted() {
-			// if (window.location.hash == '#/Sgpt') {
-			// 	this.flag = false
-			// 	console.log(this.flag)
-			// }
 			let _this = this
 			this.nowTime = this.getDate()
 			this.timer = setInterval(function() {

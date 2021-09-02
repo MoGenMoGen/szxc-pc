@@ -473,6 +473,62 @@ class api {
   		})
   	})
   }
+  // 红色课堂视频列表
+  getRedClassVideo(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclassvideo/home",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 红色课堂视频详情
+  getRedClassVideoDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclassvideo/detail",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 红色历史列表
+  getRedHistoryList(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclasshistory/apiList",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 红色历史详情
+  getRedHistoryDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclasshistory/detail",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 红色百宝箱列表
+  getRedCaseList(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclasscase/apiList",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 红色百宝箱详情
+  getRedCaseDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/redclasscase/detail",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 精品课程
+  getRedCourse() {
+    return new Promise(resolve => {
+      get("/blade-xc/redclasscourse/home",{}).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

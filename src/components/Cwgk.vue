@@ -433,9 +433,6 @@
 	import cjh from '../../public/static/images/cjh.png'
 	import cjw from '../../public/static/images/cjw.png'
 	import sjh from '../../public/static/images/sjh.png'
-	import hlcj from '../bgImages/hlcl.png'
-	import qlcjsw from '../bgImages/qlcjsw.png'
-	import xwqlmh from '../bgImages/xwqlmh.png'
 
 	export default {
 		name: 'Cwgk',
@@ -448,9 +445,6 @@
 				icChf,
 				icChd,
 				icBb,
-				hlcj,
-				qlcjsw,
-				xwqlmh,
 				cjh,
 				cjw,
 				sjh,
@@ -1327,8 +1321,6 @@
 		.tab-bg {
 			width: 545px;
 			height: 418px;
-			background: url(../bgImages/lzxj-tab.png) no-repeat;
-			background-size: 100% 100%;
 			display: flex;
 			flex-direction: column;
 			color: #000;

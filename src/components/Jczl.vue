@@ -2,21 +2,15 @@
 	<div>
 		<transition name="fade">
 			<div v-show="show13">
-				<!-- <div @click="toUserMap"> -->
-				<!-- <PopBox :list="list2" style="width: 460px;"></PopBox> -->
 				<div class="pop-common pop-zl" style="width: 460px;">
-					<!-- <div class="pop-title"><span>概览</span></div> -->
 					<div class="pop-zl-box">
 						<div class="pop-zl-item" v-for="(item,index) in list2" :key="index" @click="showPoints(item)">
 							<span>{{item.num}}</span>
-							<!-- <img :src="item.url"> -->
 							<span style="font-size: 18px;">{{item.title}}</span>
 						</div>
 					</div>
 				</div>
-				<!-- </div> -->
 				<div class="pop-common wglb" style="width: 460px;" v-show="!wgryShow&&!tsryShow">
-					<!-- <div class="pop-title"><span>网格列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span>网格名称</span>
@@ -31,7 +25,6 @@
 					</div>
 				</div>
 				<div class="pop-common wglb rylb" style="width: 460px;" v-show="wgryShow&&!tsryShow">
-					<!-- <div class="pop-title"><span>人员列表</span></div> -->
 					<div class="pop-inner-title">
 						<span>序号</span>
 						<span style="width: 25%;">姓名</span>
@@ -84,103 +77,10 @@
 			</div>
 		</transition>
 
-		<!-- <transition name="fade">
-			<div class="pop-box" v-show="show">
-				<div class="pop-common sttj">
-					<div class="pop-title"><span>山塘统计</span></div>
-					<div class="pop-inner-title">
-						<span>序号</span>
-						<span>山塘名称</span>
-						<span>总容积 <span style="font-size: 14px;">(万m³)</span></span>
-						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
-					</div>
-					<div v-for="(item,index) in stList" :key='index' @click="toFns(item)" class="pop-inner-item">
-						<span>{{ index + 1 }}</span>
-						<span>{{ item.name }}</span>
-						<span>{{ item.capacity }}</span>
-						<span>{{ item.volume }}</span>
-					</div>
-				</div> -->
-
-		<!-- <div class="pop-common sktj">
-					<div class="pop-title" style="display: flex;justify-content: space-between;">
-						<span>防溺水监控</span>
-						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox">示例</span>
-					</div>
-					<div class="pop-inner-title">
-						<span style="flex: 1;">序号</span>
-						<span style="flex: 2;">点位名称</span>
-						<span style="flex: 2;">所属水库</span>
-					</div>
-					<div style="overflow-y: auto;">
-						<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item" @click="toFns(item)">
-							<span style="flex: 1;">{{ index + 1 }}</span>
-							<span style="flex: 2;">{{ item.name }}</span>
-							<span style="flex: 2;">{{ item.area }}</span>
-						</div>
-					</div>
-				</div> -->
-		<!-- </div>
-		</transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-box" v-show="show16">
-				<div class="pop-common sktj">
-					<div class="pop-title"><span>水库统计</span></div>
-					<div class="pop-inner-title">
-						<span>序号</span>
-						<span>水库名称</span>
-						<span>库容 <span style="font-size: 14px;">(万m³)</span></span>
-						<span>积雨面积 <span style="font-size: 14px;">(km²)</span></span>
-					</div>
-					<div v-for="(item,index) in skList" :key='index' class="pop-inner-item">
-						<span>{{ index + 1 }}</span>
-						<span>{{ item.name }}</span>
-						<span>{{ item.capacity }}</span>
-						<span>{{ item.volume }}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
 		<div class="videoClass" v-if="showVideo">
 			<video :src="videoUrl" autoplay="autoplay" loop="loop"></video>
 			<img src="static/images/cancel.png" class="cancelVideo" @click="closeVideo">
 		</div>
-		<!-- <transition name="fade">
-			<div v-show="show2">
-				<img src="static/images/bg.png"
-					style="position: absolute;top: 0;left: 0;z-index: 1000;width: 100%;height: 100%;" @click="showWg">
-			</div>
-		</transition> -->
-
-		<!-- <transition name="fade">
-			<div class="pop-list2" v-show="show20">
-				<div class="pop-common" style="width: 460px;margin-bottom: 30px;">
-					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>垃圾分类</span></div>
-					<div class="pop-inner-title">
-						<span style="width: 100%;text-align: left;">点位名称</span>
-					</div>
-					<div class="pop-inner-box">
-						<div v-for="(item,index) in ljflList" :key='index' class="pop-inner-item" @click="toMap(item)">
-							<span style="width: 100%;text-align: left;">{{ item.name }}</span>
-						</div>
-					</div>
-				</div>
-				<div class="pop-common" style="width: 460px;top: 620px;">
-					<div class="pop-title" style="width: 420px;background-size: 100%;"><span>乡村关爱</span></div>
-					<div class="pop-inner-title">
-						<span>姓名</span>
-						<span>类别</span>
-					</div>
-					<div class="pop-inner-box">
-						<div v-for="(item,index) in xcgaList" :key='index' class="pop-inner-item">
-							<span>{{ item.name }}</span>
-							<span>{{ item.type }}</span>
-						</div>
-					</div>
-				</div>
-								<div class="monitorBox"></div>
-			</div>
-		</transition> -->
 		<transition name="fade">
 			<div class="pop-top" v-show="show8">
 				<div class="pop-top-content">
@@ -192,135 +92,6 @@
 				</div>
 			</div>
 		</transition>
-		<!-- <transition name="fade"> -->
-		<!-- <div class="xcga" v-show="show4">
-        <div class="xcga-title"><span>乡村关爱</span></div>
-        <div class="content">
-          <div v-for="(item,index) in xcgaList" :key="index" class="item">
-            <span>{{ item.num }}</span>
-            <img :src="item.url">
-            <span>{{ item.title }}</span>
-          </div>
-        </div>
-      </div> -->
-		<!-- </transition> -->
-		<!-- <transition name="fade">
-      <div class="xcga-tab" v-show="show4">
-        <div v-for="(item,index) in xcgaList" :key="index" class="item" @click="toMap(item)">
-          <img :src="item.url">
-        </div>
-      </div>
-    </transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-box" v-show="show5"> -->
-		<!-- <div class="pop-common fns">
-					<div class="pop-title"><span>报警统计</span></div>
-					<div class="pop-inner-title">
-						<span>序号</span>
-						<span>水库名称</span>
-						<span>报警次数</span>
-					</div>
-					<div v-for="(item,index) in fnsList" :key='index' class="pop-inner-item">
-						<span>{{ index + 1 }}</span>
-						<span>{{ item.name }}</span>
-						<span :style="{color:item.capacity>=15?'#D00E00':''}">{{ item.capacity }}</span>
-					</div>
-				</div> -->
-		<!--        <hik v-if="hikShow" ref="videoPlayer"  :playMode="1"></hik>-->
-		<!-- </div> -->
-		<!-- </transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-common pop-list" v-show="show4">
-				<div class="pop-title"><span>商家统计</span></div>
-				<div class="pop-inner-title">
-					<span>序号</span>
-					<span>商家名称</span>
-				</div>
-				<div class="pop-inner-box">
-					<div v-for="(item,index) in qyList" :key='index' class="pop-inner-item" @click="toQiye(index,item)">
-						<span>{{ index+1 }}</span>
-						<span>{{ item.name }}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
-		<!-- <img src="static/images/zhu2.png" v-if="showXmb"
-			style="width: 500px;position: absolute;top: 700px;right: 35px;border: 2px solid white;"> -->
-		<!-- <transition name="fade">
-			<div class="pop-list2" v-show="show5">
-				<div class="pop-common">
-					<div class="pop-title" style="display: flex;align-items: center;justify-content: space-between;">
-						<span>线上指挥</span>
-						<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(2)">查看示例</span>
-					</div>
-					<div class="pop-inner-title">
-						<span>巡查序号</span>
-						<span>查看今日轨迹</span>
-					</div>
-					<div class="pop-inner-box">
-						<div v-for="(item,index) in jkList" :key='index' class="pop-inner-item" @click="toZf(item)">
-							<span>{{ item.name }}</span>
-							<span
-								style="display: flex;justify-content: space-between;"><span>上午轨迹</span><span>下午未生成</span></span>
-						</div>
-					</div>
-				</div>
-				<div class="pop-common" style="height: 300px;margin-top: 20px;">
-					<div class="pop-title"><span>巡查列表</span></div>
-					<div class="pop-common-box">
-						<div class="pop-one-line" v-for="(item,index) in qyList" :key="index"
-							@click="toQiye(index,item)">· {{item.name}}</div>
-					</div>
-				</div>
-			</div>
-		</transition> -->
-		<!-- <transition name="fade">
-			<PopBox :list="list" v-show='show7' @updata="getPopIndex"></PopBox>
-		</transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-common pop-wf" v-show="show9">
-				<div class="pop-title"><span>危房统计</span></div>
-				<div class="pop-wf-title">
-					<span>序号</span>
-					<span>行政村</span>
-					<span>户主姓名</span>
-					<span>建造年代</span>
-				</div>
-				<div class="pop-wf-box">
-					<div v-for="(item,index) in wfList" :key='index' class="pop-wf-item" @click="toMap(item)">
-						<span>{{ index+1 }}</span>
-						<span>{{ item.area }}</span>
-						<span>{{ item.name }}</span>
-						<span>{{ item.time }}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-common srjf" v-show="show10">
-				<div class="pop-title"><span>私人建房统计</span></div>
-				<div class="srjf-title">
-					<span>序号</span>
-					<span>户主姓名</span>
-					<span>户内人口</span>
-					<span>原有宅基地房屋处置方式</span>
-					<span>新申请用地面积</span>
-					<span>预选建房地址</span>
-					<span>办理进展情况</span>
-					<span>优先排序</span>
-				</div>
-				<div class="srjf-item" v-for="(item, index) in srjfList" :key="index">
-					<span>{{index+1}}</span>
-					<span>{{item.name}}</span>
-					<span>{{item.num}}</span>
-					<span>{{item.solve}}</span>
-					<span>{{item.newArea}}</span>
-					<span>{{item.newArea}}</span>
-					<span>{{item.schedule}}</span>
-					<span>{{item.sort}}</span>
-				</div>
-			</div>
-		</transition> -->
 		<!--执法仪监控-->
 		<el-button type="primary" @click="offHikShow" v-if="hikShow"
 			style="position: absolute;margin-left: 2052px; margin-top: 200px">关闭执法仪</el-button>
@@ -328,16 +99,11 @@
 		<!-- 危房监控 山塘防溺水监控-->
 		<hik5 :codes="codes" ref="videoPlayer5" :playMode="1"></hik5>
 
-		<!-- <transition name="fade">
-			<img src="static/images/sgptBg.png" @click="onShowP" style="height: 1124px;width: 2236px;margin-top: 100px"
-				v-show="show6">
-		</transition> -->
 		<img v-if="showPBtn" src="../bgImages/网格事件.png"
 			style="z-index: 20;position: fixed;right: 0;bottom: 469px;cursor: pointer;" @click="showP = !showP">
 		<transition name="fade">
 			<div class="sj" v-if="showP">
 				<div class="sj-pop sj-yiji">
-					<!-- <div class="sj-pop-title"><span>一级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -357,7 +123,6 @@
 					</vue-seamless-scroll>
 				</div>
 				<div class="sj-pop sj-erji">
-					<!-- <div class="sj-pop-title"><span>二级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -377,7 +142,6 @@
 					</vue-seamless-scroll>
 				</div>
 				<div class="sj-pop sj-sanji">
-					<!-- <div class="sj-pop-title"><span>三级事件</span></div> -->
 					<div class="sj-pop-info">
 						<span style="width: 10%;">序号</span>
 						<span style="width: 45%;">内容</span>
@@ -399,20 +163,6 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<!-- <div class="sj-pop" v-show="showPDetail" style="right: 570px;">
-				<img src="static/images/cancel.png" class="cancelLogo" @click="showPDetail=false">
-				<div class="sj-pop-title"><span>事件编号:{{sjDetail.id}}</span></div>
-				<div class="sj-pop-box">
-					<div><span>内容:</span><span>{{sjDetail.content}}</span></div>
-					<div><span>地址:</span><span>{{sjDetail.add}}</span></div>
-					<div><span>问题类型:</span><span>{{sjDetail.type}}</span></div>
-					<div><span>时间分类:</span><span>{{sjDetail.timeType}}</span></div>
-					<div><span>上报时间:</span><span>{{sjDetail.reportTime}}</span></div>
-					<div><span>职能科室/部门:</span><span>{{sjDetail.department}}</span></div>
-					<div><span>办结时间:</span><span>{{sjDetail.overTime}}</span></div>
-					<div><span>是否超时关闭:</span><span>{{sjDetail.timeOut}}</span></div>
-				</div>
-			</div> -->
 			<div class="sgpt-pop" v-show="showPDetail">
 				<div class="sgpt-top">查看<img src="static/images/cancel.png" @click="showPDetail=false" /></div>
 				<div class="sgpt-box">
@@ -588,180 +338,9 @@
 				</div>
 			</div>
 		</transition>
-		<!-- <transition name="fade">
-			<div class="pop-common dzxx" v-show="show11">
-				<div class="pop-title"><span>泥石流监控</span></div>
-				<div class="pop-dz-title">
-					<span>监控点名称</span>
-					<span>具体位置</span>
-				</div>
-				<div class="pop-dz-box">
-					<div class="pop-dz-item" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">
-						<span>{{item.name}}</span>
-						<span>{{item.add}}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
-		<!-- <transition name="fade">
-			<div class="pop-common dzxx" v-show="show15">
-				<div class="pop-title"><span>位移监测点列表</span></div>
-				<div class="pop-dz-title">
-					<span style="flex: 2;">监测点名称</span>
-					<span>位置</span>
-					<span>边坡稳定性</span>
-					<span>状态</span>
-				</div>
-				<div class="pop-dz-box">
-					<div class="pop-dz-item" v-for="(item,index) in wyList" :key="index">
-						<span style="flex: 2;">{{item.name}}</span>
-						<span>{{item.add}}</span>
-						<span>{{item.stability}}</span>
-						<span>{{item.status}}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
 		<img src="static/images/bgBtn.png"
 			style="width: 192px;height: 122px;position: fixed;bottom: 130px;left: 1022px;" v-if="show12"
 			@click="toMapA">
-		<!-- <transition name="fade">
-			<div class="pop-common pop-list2" v-show="show14">
-				<div class="pop-title"><span>总览</span></div>
-				<div class="zl-box">
-					<div class="zl-item" v-for="(item,index) in zlList" :key="index" @click="getTabIndex(index)">
-						<img :src="item.url">
-						<span>{{item.name}}</span>
-					</div>
-				</div>
-			</div>
-		</transition> -->
-		<!-- <transition name="fade">
-			<div v-show="show17">
-				<div class="pop-left">
-					<div class="pop-common" style="width:404px;height: 250px;margin-bottom: 20px;">
-						<div class="pop-title title-bg-yqyd"><span>巡查监管</span></div>
-						<p class="tip-style">{{qyList2.length}}</p>
-						<div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
-								@click="toQiye(index,item)">· {{item.name}}</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width:404px;height: 370px;margin-bottom: 20px;">
-						<div class="pop-title title-bg-wfgl"><span>危房管理</span></div>
-						<p class="tip-style">{{wfList.length}}</p>
-						<div class="pop-common-title">
-							<span></span>
-							<span>行政村</span>
-							<span>户主姓名</span>
-							<span>建造年代</span>
-						</div>
-						<div class="pop-common-box">
-							<div class="pop-three-line" v-for="(item,index) in wfList" @click="toFns(item)" :key="index">
-								<span>·</span>
-								<span>{{item.addr}}</span>
-								<span>{{item.name}}</span>
-								<span>{{item.putTime}}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="pop-bottom">
-					<div class="pop-common" style="width:404px;height: 370px;">
-						<div class="pop-title title-bg-fns" style="display: flex;align-items: center;justify-content: space-between;">
-							<span>防溺水管理</span>
-							<p class="tip-style">{{fnsList.length}}</p>
-							<span style="margin-right: 40px;cursor: pointer;" @click="showVideoBox(1)">查看示例</span>
-						</div>
-						<div class="pop-common-title2">
-							<span></span>
-							<span>水库名称</span>
-							<span>报警次数</span>
-						</div>
-						<div class="pop-common-box">
-							<div class="pop-two-line" v-for="(item,index) in fnsList" :key="index" @click="toFns(item)">
-								<span>·</span>
-								<span>{{item.name}}</span>
-								<span :style="{color:item.alert>=15?'#D00E00':''}">{{item.alert}}</span>
-							</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-stsk"><span>山塘水库</span></div>
-						<p class="tip-style">{{stList.length}}</p>
-						<div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in stList" :key="index" @click="toFns(item)">·
-								{{item.name}}</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-nsl"><span>泥石流监管</span></div>
-						<p class="tip-style">{{dzList.length}}</p>
-						<div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in dzList" :key="index" @click="toFns(item)">·
-								{{item.name}}</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-nld"><span>内涝点监管</span></div>
-						<p class="tip-style">{{wyList.length}}</p>
-						<div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in wyList" :key="index" @click="toFns(item)">·
-								{{item.name}}</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 312px;height: 370px;">
-						<div class="pop-title title-bg-bpwy"><span>边坡位移</span></div>
-						<p class="tip-style">{{wyList2.length}}</p>
-						<div class="pop-common-title2">
-							<span></span>
-							<span>点位名称</span>
-							<span>位移量</span>
-						</div>
-						<div class="pop-common-box">
-							<div class="pop-two-line" v-for="(item,index) in wyList2" :key="index">
-								<span>·</span>
-								<span>{{item.dName}}</span>
-								<span>{{item.num}}mm</span>
-							</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 404px;height: 370px;">
-						<div class="pop-title title-bg-ljfl"><span>垃圾分类管理</span></div>
-						<p class="tip-style">{{ljflglList.length}}</p>
-						<div class="pop-common-title2">
-							<span></span>
-							<span>点位名称</span>
-							<span style="text-align: center;">督导员姓名</span>
-							<span>投放时间</span>
-						</div>
-						<div class="pop-common-box">
-							<div class="pop-two-line" v-for="(item,index) in ljflglList" :key="index"
-								@click="toMap(item)">
-								<span>·</span>
-								<span>{{item.name}}</span>
-								<span style="text-align: center;">{{item.supervisorName}}</span>
-								<span>{{item.putTime}}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="pop-right">
-					<div class="pop-common" style="width: 404px;height: 250px;margin-bottom: 20px;">
-						<div style="display: none;"></div> 执法仪监控区域
-						<div class="pop-title title-bg-xszh"><span>线上指挥</span></div>
-						<p class="tip-style">{{jkList.length}}</p>
-						<div class="pop-common-box">
-							<div class="pop-one-line" v-for="(item,index) in jkList" :key="index" @click="toZf(item)">·
-								{{item.name}}</div>
-						</div>
-					</div>
-					<div class="pop-common" style="width: 404px;height: 370px;margin-bottom: 10px;">
-						右侧中间监控区域
-					</div>
-				</div>
-			</div>
-		</transition> -->
 		<transition name="fade">
 			<div v-if="show17">
 				<div class="pop-left">
@@ -851,18 +430,7 @@
 								</div>
 							</div>
 						</div>
-
-
-
-						<!--          <div class="pop-bg-box dzzh-bg" style="width: 331px;" v-show="!dizhizaihai">-->
-						<!--            <div class="pop-bg-btn" @click="dizhizaihai=!dizhizaihai">查看全部></div>-->
-
-						<!--            </div>-->
-						<!--            &lt;!&ndash;						<img src="../bgImages/list.png" v-show="!dizhizaihai" style="width: 290px;height: 190px;"&ndash;&gt;-->
-						<!--            &lt;!&ndash;							@click="clickImg">&ndash;&gt;-->
 					</div>
-
-
 					<div class="pop-bg-box bpwy-bg" style="width: 331px;" @click="showBpwy">
 						<div class="pop-bg-btn" @click="bianpoweiyi=!bianpoweiyi">查看全部></div>
 						<div class="pop-bg-list" v-show="bianpoweiyi">
@@ -879,8 +447,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- <my-charts v-show="!bianpoweiyi" :id='bpwy' style="width: 300px;" class="echart-class"
-							:data='bpwyOption' @click.native="clickthis(bpwyOption)"></my-charts> -->
 						<img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;">
 					</div>
 					<div class="pop-bg-box ljfl-bg" @click="showLjfl">
@@ -963,7 +529,6 @@
 							<span>检查时间：{{wjxDetail.time}}</span>
 							<span>协作人：{{wjxDetail.name}}</span>
 							<span>店铺名称：{{wjxDetail.shopName}}</span>
-							<!-- <span>查询时间：{{wjxDetail.time2}}</span> -->
 							<div class="wjx-detail-status">
 								<span style="margin-bottom: 0;" class="wjx-detail-status-item">检查结果：<span
 										:style="wjxDetail.status=='异常'?'color:#FF002A':''">{{wjxDetail.status}}</span></span>
@@ -1965,12 +1530,10 @@
 				}
 				else if (e == 1) {
 					// 综合监管
-					// this.$parent.isChildShow = false
 					this.grid = ""
 					this.offHik()
 					this.onOff("关闭图层", "综合监管")
 					this.onOff("关闭图层", "山塘水库")
-					// this.onOff("关闭图层","垃圾点位")
 					this.onOff("关闭图层", "危房")
 					this.onOff("关闭图层", "防溺水监控点")
 					this.onOff("关闭图层", "泥石流")
@@ -2154,41 +1717,6 @@
 				this.$ajax.getPeopleList(data).then(res => {
 					this.wgryList = res.records
 				})
-			},
-			showWg(e) {
-				let x = e.x,
-					y = e.y
-				if (510 < x && x < 660 && 200 < y && y < 370) {
-					console.log('横溪冷水井，后厢', '左')
-					this.getGridDetail('1414921956684513281')
-				} else if (510 < x && x < 760 && 140 < y && y < 180) {
-					console.log('横溪钱家，大同高屋，大圆地', '左上')
-					this.getGridDetail('1414922323459620866')
-				} else if (540 < x && x < 690 && 500 < y && y < 750) {
-					console.log('横溪坝下桥头', '左中')
-					this.getGridDetail('1415144767758651394')
-				} else if (760 < x && x < 1100 && 310 < y && y < 740) {
-					console.log('横溪田中央，墙头，长坂地', '左右')
-					this.getGridDetail('1415146940391346178')
-				} else if (1280 < x && x < 1420 && 690 < y && y < 970) {
-					console.log('长胜毛岭、孟家', '右左')
-					this.getGridDetail('1415147015662325761')
-				} else if (1450 < x && x < 1580 && 740 < y && y < 780) {
-					console.log('长胜长桥头', '右中上')
-					this.getGridDetail('1415147082129461249')
-				} else if (1450 < x && x < 1580 && 790 < y && y < 950) {
-					console.log('长胜周家巷', '右中下')
-					this.getGridDetail('1415147152245641218')
-				} else if (1590 < x && x < 1750 && 580 < y && y < 900) {
-					console.log('长胜田央沈', '右')
-					this.getGridDetail('1415147217374793730')
-				}
-				// this.show8 = true
-				//     this.hikShow = true
-				//     this.$refs.videoPlayer.off()
-				//     this.cType = "0"
-				//     this.$refs.videoPlayer.initPlugin()
-				// this.$refs.videoPlayer.show()
 			},
 			getPopIndex(e) {
 				if (e == 1) {
@@ -2577,6 +2105,15 @@
 				this.$ajax.getPeopleList(data).then(res => {
 					this.tsryList = res.records
 				})
+			},
+			searchKey() {
+				let data = {
+					name: this.keyWord,
+					grid: this.grid,
+					size: 200,
+					current:1
+				}
+				this.getPeopleList(data)
 			}
 		},
 		computed: {
@@ -2640,66 +2177,8 @@
 			}
 		}
 	}
-
-	.pop-title {
-		width: 100%;
-		height: 32px;
-		background: url(../../public/static/images/line.png) no-repeat;
-		background-size: 100% 32px;
-		font-size: 20px;
-		padding: 0 20px;
-		margin: 0 auto;
-		box-sizing: border-box;
-		line-height: 20px;
-
-		span {
-			margin-left: 20px;
-		}
-	}
-
-	.title-bg-yqyd {
-		background: url(../../public/static/images/yqyd-title.png) no-repeat;
-	}
-
-	.title-bg-wfgl {
-		background: url(../../public/static/images/wfgl-title.png) no-repeat;
-	}
-
-	.title-bg-fns {
-		background: url(../../public/static/images/fns-title.png) no-repeat;
-	}
-
-	.title-bg-stsk {
-		background: url(../../public/static/images/stsk-title.png) no-repeat;
-	}
-
-	.title-bg-nsl {
-		background: url(../../public/static/images/nsl-title.png) no-repeat;
-	}
-
-	.title-bg-nld {
-		background: url(../../public/static/images/nld-title.png) no-repeat;
-	}
-
-	.title-bg-bpwy {
-		background: url(../../public/static/images/bp-title.png) no-repeat;
-	}
-
-	.title-bg-ljfl {
-		background: url(../../public/static/images/ljfl-title.png) no-repeat;
-	}
-
-	.title-bg-xszh {
-		background: url(../../public/static/images/xszh-title.png) no-repeat;
-	}
-
 	.pop-common {
 		width: 520px;
-		// border: 1px solid #fff;
-		// border-image-outset: 10px;
-		// border-image-slice: 20 20 20 20;
-		// border-radius: 10px;
-		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -2736,12 +2215,6 @@
 			span:first-child {
 				margin-bottom: 5px;
 			}
-
-			// img {
-			// 	width: 38px;
-			// 	height: 38px;
-			// 	margin: 20px 0;
-			// }
 		}
 	}
 
@@ -3080,84 +2553,6 @@
 		}
 	}
 
-	.xcga {
-		width: 680px;
-		// height: 270px;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.64);
-		display: flex;
-		flex-direction: column;
-		padding: 10px;
-		box-sizing: border-box;
-		color: #fff;
-		position: absolute;
-		top: 200px;
-		left: 35px;
-		z-index: 1998;
-
-		.xcga-title {
-			width: 620px;
-			height: 30px;
-			background: url(../../public/static/images/lineL.png) no-repeat;
-			font-size: 20px;
-			padding: 0 20px;
-			margin: 0 auto;
-			box-sizing: border-box;
-
-			span {
-				margin-left: 20px;
-			}
-		}
-
-		.content {
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			font-size: 32px;
-			margin-top: 30px;
-
-			.item {
-				width: 16.7%;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-
-				img {
-					// width: 38px;
-					// height: 38px;
-					margin: 20px 0;
-				}
-
-				span:last-child {
-					font-size: 18px;
-				}
-			}
-		}
-	}
-
-	.xcga-tab {
-		position: absolute;
-		bottom: 60px;
-		left: 35px;
-		display: flex;
-		flex-direction: column;
-
-		.item {
-			width: 80px;
-			height: 80px;
-			cursor: pointer;
-			margin-bottom: 10px;
-
-			img {
-				width: 100%;
-				height: 100%;
-			}
-		}
-	}
-
 	.fns {
 		position: absolute;
 
@@ -3235,9 +2630,6 @@
 
 	.sj-pop {
 		width: 100%;
-		// border: 1px solid #fff;
-		// border-radius: 10px;
-		// background-color: rgba(0, 0, 0, 0.64);
 		display: flex;
 		flex-direction: column;
 		padding: 10px;
@@ -3245,20 +2637,6 @@
 		color: #fff;
 		margin-bottom: 10px;
 		height: 300px;
-
-		.sj-pop-title {
-			width: 485px;
-			background: url(../../public/static/images/line.png) no-repeat;
-			background-size: 100% 100%;
-			font-size: 20px;
-			padding: 0 20px;
-			margin: 0 auto;
-			box-sizing: border-box;
-
-			span {
-				margin-left: 20px;
-			}
-		}
 
 		.sj-pop-info {
 			width: 100%;
@@ -3355,53 +2733,6 @@
 		z-index: 1000;
 	}
 
-	.srjf {
-		position: absolute;
-		width: 1450px;
-		top: 200px;
-		right: 35px;
-
-		.pop-title {
-			width: 1420px;
-			background: url(../../public/static/images/lineBL.png);
-		}
-
-		.srjf-title {
-			display: flex;
-			align-items: center;
-
-			span {
-				margin: 5px 0;
-				text-align: center;
-				flex: 1;
-				font-size: 18px;
-			}
-
-			span:nth-child(4) {
-				flex: 2;
-			}
-		}
-
-		.srjf-item {
-			display: flex;
-			align-items: center;
-
-			span {
-				margin: 5px 0;
-				text-align: center;
-				flex: 1;
-				font-size: 18px;
-			}
-
-			span:nth-child(4) {
-				flex: 2;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-		}
-	}
-
 	.dzxx {
 		position: absolute;
 		top: 200px;
@@ -3444,7 +2775,6 @@
 
 	.videoClass {
 		width: 1000px;
-		// height: 700px;
 		position: absolute;
 		top: 45%;
 		left: 50%;
