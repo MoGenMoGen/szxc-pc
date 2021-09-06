@@ -239,7 +239,7 @@
 						<div class="mytj-message">
 							<div class="mytj-message-top">
 								<img src="../bgImages/logo.png">
-								<span>其他意见建议:</span>
+								<span>意见建议:</span>
 							</div>
 							<div class="mytj-message-box">
 								<div class="mytj-message-comment" v-for="(item,index) in mytjCommentList" :key="index">
@@ -255,17 +255,17 @@
 								<span>结果评估：<span style="font-size: 18px;">{{mytjDetail.result}}</span></span>
 							</div>
 						</div> -->
-						<div class="mytj-infoDetail-item">
+						<!-- <div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
 								<span>项目实施过程：</span>
 								<img :src="item" v-for="(item,index) in mytjDetail.img2" :key="index">
 							</div>
-						</div>
+						</div> -->
 						<div class="mytj-infoDetail-item">
 							<img src="../bgImages/logo.png">
 							<div class="mytj-infoDetail-item-right">
-								<span>结果评估:</span>
+								<span>满意度调查:</span>
 								<div style="width: 400px">
 								  <span style="float: left" class="mytj-infoDetail-item-right-inline">满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 120px;"><img src="../bgImages/agree.png" :style="{width: mytjDetail.satisfaction +'%'}"></div>人数{{mytjDetail.satisfiedNum}}  </span><div style="float: right">{{mytjDetail.satisfaction}}%</div>
 								</div>

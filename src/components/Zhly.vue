@@ -429,7 +429,7 @@
 				}, {
 					num: 10,
 					url: 'static/images/mingsu.png',
-					title: '十大碗'
+					title: '九大碗'
 				}, {
 					num: 3,
 					url: 'static/images/jingdian.png',

@@ -529,6 +529,102 @@ class api {
       })
     })
   }
+  // 先锋榜列表
+  getTopList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/partvan/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 获取户居分离列表
+  getSeparateList(data){
+    return new Promise(resolve => {
+      get("/blade-part/mbr/separateList",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 微心愿
+  getWishList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/wish/apiList",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 党费缴纳
+  getPartCost(data){
+    return new Promise(resolve => {
+      get("/blade-part/partcost/costLog",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 获取荣誉列表
+  getHonorList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/parthonor/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 村委两班子
+  getLeaderList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/open/page",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 发展党员列表
+  getDevelopList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/partgrow/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 党支部人员
+  getPartyList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/mbr/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 党员详情
+  getPartyMemberDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-part/mbr/detail",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 先锋榜详情
+  getTopDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-part/partvan/detail",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 党员活动
+  getActiveList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/activity/listPc",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 党员活动详情
+  partyActiveDetail(data) {
+    return new Promise(resolve => {
+      get("/blade-part/activity/infoPc",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
