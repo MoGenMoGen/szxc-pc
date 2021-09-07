@@ -586,13 +586,13 @@ class api {
     })
   }
   // 党支部人员
-  getPartyList(data) {
-    return new Promise(resolve => {
-      get("/blade-part/mbr/list",data).then(res => {
-        resolve(res.data)
-      })
-    })
-  }
+  // getPartyList(data) {
+  //   return new Promise(resolve => {
+  //     get("/blade-part/mbr/list",data).then(res => {
+  //       resolve(res.data)
+  //     })
+  //   })
+  // }
   // 党员详情
   getPartyMemberDetail(data) {
     return new Promise(resolve => {
@@ -621,6 +621,14 @@ class api {
   partyActiveDetail(data) {
     return new Promise(resolve => {
       get("/blade-part/activity/infoPc",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 网格党支部
+  getPartyList(data) {
+    return new Promise(resolve => {
+      get("/blade-part/mbr/pcData",data).then(res => {
         resolve(res.data)
       })
     })

@@ -425,7 +425,7 @@
 				},{
 					name: '112',
 					url: 'static/images/zrs.png',
-					post: '支部书记'
+					post: '党员人数'
 				}]
 			}
 		},
@@ -672,12 +672,15 @@
 						this.branchList = res.records
 					})
 				} else if(index==3) {
-					this.$ajax.getPartyList(data).then(res => {
-						res.records.forEach(item => {
+					this.$ajax.getPartyList({type:this.partyKey2}).then(res => {
+						res.list.forEach(item => {
 							item.birthday = item.birthday.substring(0,10)
 							item.joinTime = item.joinTime.substring(0,10)
 						})
-						this.branchList = res.records
+						this.branchLeaderList[0].name=res.boss || '无'
+						this.branchLeaderList[1].name=res.wy || '无'
+						this.branchLeaderList[2].name=res.num
+						this.branchList = res.list
 					})
 				} else if(index==4) {
 					this.$ajax.getHonorList(data).then(res => {
@@ -707,17 +710,16 @@
 				})
 			},
 			getPartyMember(dept) {
-				let data = {
-					dept: dept||this.partyKey2,
-					current: 1,
-					size: 200
-				}
-				this.$ajax.getPartyList(data).then(res => {
-					res.records.forEach(item => {
+				this.$ajax.getPartyList({type:this.partyKey2}).then(res => {
+					res.list.forEach(item => {
 						item.birthday = item.birthday.substring(0,10)
 						item.joinTime = item.joinTime.substring(0,10)
 					})
-					this.branchList = res.records
+					console.log(res)
+					this.branchLeaderList[0].name=res.boss || '无'
+					this.branchLeaderList[1].name=res.wy || '无'
+					this.branchLeaderList[2].name=res.num
+					this.branchList = res.list
 				})
 			}
 		},
