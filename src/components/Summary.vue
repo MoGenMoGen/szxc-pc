@@ -10,7 +10,7 @@
       <div class="box lt" v-show="show">
         <div class="box-top">
           <img src="static/images/icon.png">
-          <span>万安庄村介绍</span>
+          <span>九龙湖村介绍</span>
         </div>
         <div class="box-bottom lt-bottom">
           <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"

@@ -1,8 +1,8 @@
 <template>
 	<div id="app">
 		<div class="top-tab" v-if="flag">
-			<!-- <img src="static/images/logo.png" /> -->
-			<span class="top-title" @click="test2">万安庄村数字平台</span>
+			<img src="static/images/logo.png" />
+			<span class="top-title" @click="test2">九龙湖村数字平台</span>
 			<div class="top-tab-box">
 				<div class="top-tab-item" :class="{'active':isActive==index}" v-for="(item,index) in tabList"
 					:key="index" @click="changeIndex(index)" @mouseover="showChild(index)">
