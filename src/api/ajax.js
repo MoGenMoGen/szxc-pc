@@ -633,6 +633,14 @@ class api {
       })
     })
   }
+  // 客流量
+  getPassengerFlow() {
+    return new Promise(resolve => {
+      get("/blade-xc/hik/passengerFlow",{}).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
