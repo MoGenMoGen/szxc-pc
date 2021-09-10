@@ -650,7 +650,6 @@
 			},
 			chooseWest(item) {
 				this.westImgShow = true
-				console.log(item)
 				this.westImgList = item
 			}
 		},
