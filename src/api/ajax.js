@@ -572,7 +572,7 @@ class api {
   // 村委两班子
   getLeaderList(data) {
     return new Promise(resolve => {
-      get("/blade-part/open/page",data).then(res => {
+      get("/blade-part/open/list",data).then(res => {
         resolve(res.data)
       })
     })

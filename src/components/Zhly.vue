@@ -40,11 +40,12 @@
 					</div>
 				</div>
 				<div v-show="westImgShow" class="banner">
-					<el-carousel v-if="westImgList.length>0" indicator-position='none' arrow='hover' :interval='4000'>
-						<el-carousel-item v-for="(item,index) in westImgList" :key="index">
+					<el-carousel v-if="westImgList" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex2">
+						<el-carousel-item v-for="(item,index) in westImgList.img" :key="index">
 							<img :src="item">
 						</el-carousel-item>
 					</el-carousel>
+					<div class="banner-name" v-if="westImgList&&westImgList.name">{{westImgList.name}}</div>
 				</div>
 			</div>
 		</transition>
@@ -419,6 +420,7 @@
 				westImgList: [], //乡村西餐轮播列表
 				driveList: [], //代驾联盟列表
 				nameIndex: 0,
+				nameIndex2:0,
 				labelIndex: 0,
 				xingIndex: 0,
 				e: 0,
@@ -596,6 +598,9 @@
 			changeIndex(e) {
 				this.nameIndex = e
 			},
+			changeIndex2(e) {
+				this.nameIndex2 = e
+			},
 			getPopIndex(e) {
 				if(e==0) {
 					this.show = true
@@ -645,7 +650,8 @@
 			},
 			chooseWest(item) {
 				this.westImgShow = true
-				this.westImgList = item.img
+				console.log(item)
+				this.westImgList = item
 			}
 		},
 		mounted() {

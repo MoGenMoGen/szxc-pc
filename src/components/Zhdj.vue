@@ -124,7 +124,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="mission-center" v-show="showMissionInfo">
+				<div class="mission-center" v-show="showMissionInfo" :class="{'mission-hujufenli':missionTabIndex==3}">
 					<div class="mission-title">{{missionInfoTitle}}</div>
 					<div class="mission-info-two" v-show="missionTabIndex==3">
 						<div class="mission-info-two-top">
@@ -145,10 +145,10 @@
 								<div>党员评级： {{missionInfo.grade}}</div>
 							</div>
 						</div>
-						<div class="mission-info-two-bottom">
+						<!-- <div class="mission-info-two-bottom">
 							<div class="mission-info-two-bottom-title"><div></div>个人简介</div>
 							<div v-html="missionInfo.introduce" class="mission-info-two-bottom-cont"></div>
-						</div>
+						</div> -->
 					</div>
 					<div class="mission-info" v-show="missionTabIndex==5">
 						<div class="mission-avatar">
@@ -175,18 +175,18 @@
 			<div v-show="branch">
 				<div class="branch-left">
 					<div class="branch-top">
-						<div v-for="(item,index) in branchTab" :key="index" @click="branchClick(index)">
+						<div v-for="(item,index) in branchTab" :key="index" @click="branchClick(index)" >
 							<img :src="item.url">
 							<span>{{item.name}}</span>
 						</div>
 					</div>
 					<div class="branch-bottom" v-show="showBranchList">
 						<div class="branch-title">{{branchTitle}}</div>
-						<div class="branch-honor" v-show="branchTabIndex==4">
+						<div class="branch-honor" v-show="branchTabIndex==3">
 							<span class="branch-honor-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">{{item.name}}</span>
 						</div>
 						<div class="branch-list" v-show="branchTabIndex!=4">
-							<el-select v-model="partyKey2" placeholder="请选择" v-show="branchTabIndex==3">
+							<el-select v-model="partyKey2" placeholder="请选择" v-show="branchTabIndex==2">
 							    <el-option
 							      v-for="item in partyList"
 							      :key="item.dictKey"
@@ -194,44 +194,44 @@
 							      :value="item.dictKey">
 							    </el-option>
 							</el-select>
-							<div class="branch-list-info" v-show="branchTabIndex==3">
+							<div class="branch-list-info" v-show="branchTabIndex==2">
 								<div v-for="(item,index) in branchLeaderList" :key="index">
 									<span>{{item.name}}</span>
 									<img :src="item.url">
 									<span>{{item.post}}</span>
 								</div>
 							</div>
-							<div v-show="branchTabIndex==1" class="branch-list-develop">发展党员<div></div>计划{{branchList.length}}人</div>
-							<div class="branch-list-title" v-show="branchTabIndex==1">
+							<div v-show="branchTabIndex==0" class="branch-list-develop">发展党员<div></div>计划{{branchList.length}}人</div>
+							<div class="branch-list-title" v-show="branchTabIndex==0">
 								<span>姓名</span>
 								<span>培养联系人</span>
 								<span>状态</span>
 							</div>
-							<div class="branch-list-box" v-show="branchTabIndex==1">
+							<div class="branch-list-box" v-show="branchTabIndex==0">
 								<div class="branch-list-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">
 									<span>{{item.name}}</span>
 									<span>{{item.contacts1}}</span>
 									<span>{{item.state}}</span>
 								</div>
 							</div>
-							<div class="branch-list-title"  v-show="branchTabIndex==2">
+							<div class="branch-list-title"  v-show="branchTabIndex==1">
 								<span style="width: 15%;">姓名</span>
 								<span style="width: 60%;">职位</span>
 								<span style="width: 25%;">电话</span>
 							</div>
-							<div class="branch-list-box" v-show="branchTabIndex==2">
+							<div class="branch-list-box" v-show="branchTabIndex==1">
 								<div class="branch-list-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">
 									<span style="width: 15%;">{{item.name}}</span>
 									<span style="width: 60%;">{{item.post}}</span>
 									<span style="width: 25%;">{{item.mob}}</span>
 								</div>
 							</div>
-							<div class="branch-list-title" style="margin-top: 10px;" v-show="branchTabIndex==3">
+							<div class="branch-list-title" style="margin-top: 10px;" v-show="branchTabIndex==2">
 								<span>姓名</span>
 								<span>出生年月</span>
 								<span>入党时间</span>
 							</div>
-							<div class="branch-list-box" style="max-height: 220px;" v-show="branchTabIndex==3">
+							<div class="branch-list-box" style="max-height: 220px;" v-show="branchTabIndex==2">
 								<div class="branch-list-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">
 									<span>{{item.name}}</span>
 									<span>{{item.birthday}}</span>
@@ -252,18 +252,18 @@
 					<div class="branch-info">
 						<div class="branch-avatar">
 							<img :src="branchInfo.img" class="branch-avatar-img">
-							<img v-show="branchTabIndex!=1" src="static/images/partyLogo.png" class="branch-avatar-logo">
+							<img v-show="branchTabIndex!=0" src="static/images/partyLogo.png" class="branch-avatar-logo">
 						</div>
 						<div class="branch-detail">
 							<span>姓名：{{branchInfo.name}}</span>
-							<span v-show="branchTabIndex==3">出生年月：{{branchInfo.birthday}}</span>
-							<span v-show="branchTabIndex==3">入党时间：{{branchInfo.joinTime}}</span>
-							<span v-show="branchTabIndex==2">职位：{{branchInfo.post}}</span>
-							<span v-show="branchTabIndex==2">电话：{{branchInfo.mob}}</span>
-							<span v-show="branchTabIndex==2">干事承诺：{{branchInfo.promise}}</span>
-							<span v-show="branchTabIndex==1">培养联系人：{{branchInfo.contacts1}}</span>
-							<span v-show="branchTabIndex==1">培养联系人：{{branchInfo.contacts2}}</span>
-							<span v-show="branchTabIndex==1">状态：{{branchInfo.state}}</span>
+							<span v-show="branchTabIndex==2">出生年月：{{branchInfo.birthday}}</span>
+							<span v-show="branchTabIndex==2">入党时间：{{branchInfo.joinTime}}</span>
+							<span v-show="branchTabIndex==1">职位：{{branchInfo.post}}</span>
+							<span v-show="branchTabIndex==1">电话：{{branchInfo.mob}}</span>
+							<span v-show="branchTabIndex==1">干事承诺：{{branchInfo.promise}}</span>
+							<span v-show="branchTabIndex==0">培养联系人：{{branchInfo.contacts1}}</span>
+							<span v-show="branchTabIndex==0">培养联系人：{{branchInfo.contacts2}}</span>
+							<span v-show="branchTabIndex==0">状态：{{branchInfo.state}}</span>
 						</div>
 					</div>
 				</div>
@@ -388,12 +388,14 @@
 				branchTabIndex: 0, //支部力量概览下标
 				branchList: [], //支部力量列表
 				branchHonor: {}, //支部力量荣誉详情
-				branchTab: [{
-					num: 0,
-					name: '党员总数',
-					detailTitle: '',
-					url: 'static/images/branch-all.png'
-				},{
+				branchTab: [
+				// 	{
+				// 	num: 0,
+				// 	name: '党员总数',
+				// 	detailTitle: '',
+				// 	url: 'static/images/branch-all.png'
+				// },
+				{
 					num: 0,
 					name: '发展党员',
 					detailTitle: '发展党员详情',
@@ -653,25 +655,25 @@
 				}
 				this.branchTabIndex = index
 				this.branchInfoTitle = this.branchTab[index].detailTitle
-				if(index!=0) {
+				// if(index!=0) {
 					this.showBranchList = true
 					this.showBranchInfo = false
 					this.showBranchHonor = false
 					this.branchTitle = this.branchTab[index].name
-				} else {
-					this.showBranchList = false
-					this.showBranchInfo = false
-					this.showBranchHonor = false
-				}
-				if(index==1) {
+				// } else {
+				// 	this.showBranchList = false
+				// 	this.showBranchInfo = false
+				// 	this.showBranchHonor = false
+				// }
+				if(index==0) {
 					this.$ajax.getDevelopList(data).then(res => {
 						this.branchList = res.records
 					})
-				} else if(index==2) {
+				} else if(index==1) {
 					this.$ajax.getLeaderList(data).then(res => {
 						this.branchList = res.records
 					})
-				} else if(index==3) {
+				} else if(index==2) {
 					this.$ajax.getPartyList({type:this.partyKey2}).then(res => {
 						res.list.forEach(item => {
 							item.birthday = item.birthday.substring(0,10)
@@ -682,18 +684,18 @@
 						this.branchLeaderList[2].name=res.num
 						this.branchList = res.list
 					})
-				} else if(index==4) {
+				} else if(index==3) {
 					this.$ajax.getHonorList(data).then(res => {
 						this.branchList = res.records
 					})
 				}
 			},
 			branchListClick(item,index) {
-				if(this.branchTabIndex!=4) {
+				if(this.branchTabIndex!=3) {
 					this.branchInfo = item
 					this.showBranchInfo = true
 					this.showBranchHonor = false
-				} else if(this.branchTabIndex==4) {
+				} else if(this.branchTabIndex==3) {
 					this.showBranchInfo = false
 					this.showBranchHonor = true
 					this.branchHonor = item
@@ -1092,6 +1094,7 @@
 		}
 	}
 	
+	
 	.mission-center {
 		width: 752px;
 		height: 746px;
@@ -1149,7 +1152,6 @@
 			.mission-info-two-top {
 				display: flex;
 				align-items: flex-start;
-				border-bottom: 1px solid rgba(179,179,179,0.2);
 				padding-bottom: 20px;
 				.mission-avatar {
 					position: relative;
@@ -1219,6 +1221,12 @@
 				text-align: center;
 			}
 		}
+	}
+	
+	.mission-hujufenli {
+		height: 543px;
+		background: url(../bgImages/户居分离党员.png) no-repeat;
+		background-size: 100% 100%;
 	}
 	
 	.mission-center-money {
@@ -1296,7 +1304,7 @@
 			padding: 66px 35px 44px;
 			box-sizing: border-box;
 			div {
-				width: 20%;
+				width: 25%;
 				height: 100%;
 				display: flex;
 				flex-direction: column;
