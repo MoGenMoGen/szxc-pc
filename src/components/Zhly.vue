@@ -427,7 +427,7 @@
 					url: 'static/images/house.png',
 					title: '农家乐'
 				}, {
-					num: 10,
+					num: 9,
 					url: 'static/images/mingsu.png',
 					title: '九大碗'
 				}, {
