@@ -72,7 +72,7 @@
 				</div>
 				<div class="search-box" v-show="wgryShow&&!tsryShow">
 					<input type="text" placeholder="请输入户名" v-model="keyWord" @keyup.enter="searchKey">
-					<img src="static/images/search.png">
+					<img src="static/images/search.png" @click="searchKey">
 				</div>
 			</div>
 		</transition>
