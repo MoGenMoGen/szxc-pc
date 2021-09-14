@@ -1353,7 +1353,7 @@
 					this.onOff("关闭图层", "残障人员")
 					this.onOff("关闭图层", "老年人")
 					this.onOff('打开图层', item.name)
-					this.$parent.test(a)
+					// this.$parent.test(a)
 				}
 				this.tsryShow = true
 				this.info.name = item.title
