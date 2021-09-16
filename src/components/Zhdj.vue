@@ -735,12 +735,21 @@
 				})
 			},
 			getPartyMember(dept) {
+				this.offP()
+				if(this.partyKey2==1) {
+					this.onOff("打开图层", "横溪党员")
+				} else if (this.partyKey2==2) {
+					this.onOff("打开图层", "长胜周家港孟家毛岭党员")
+				} else if (this.partyKey2==3) {
+					this.onOff("打开图层", "长胜田央沈长桥头党员")
+				} else if (this.partyKey2==5) {
+					this.onOff("打开图层", "农家乐支部党员")
+				}
 				this.$ajax.getPartyList({type:this.partyKey2}).then(res => {
 					res.list.forEach(item => {
 						item.birthday = item.birthday.substring(0,10)
 						item.joinTime = item.joinTime.substring(0,10)
 					})
-					console.log(res)
 					this.branchLeaderList[0].name=res.boss || '无'
 					this.branchLeaderList[1].name=res.wy || '无'
 					this.branchLeaderList[2].name=res.num
