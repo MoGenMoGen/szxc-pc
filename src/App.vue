@@ -279,6 +279,19 @@
 		},
 		mounted() {
 			let _this = this
+			this.$ajax.getAlarmList().then(res => {
+				res.forEach(item => {
+					setTimeout(()=> {
+						this.$notify({
+						  title: '警告',
+						  message: item.content,
+						  duration: 0,
+						  type: 'warning',
+						  offset: 100
+						});
+					},100)
+				})
+			})
 			this.nowTime = this.getDate()
 			this.timer = setInterval(function() {
 				_this.nowTime = _this.getDate()

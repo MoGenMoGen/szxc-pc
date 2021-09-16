@@ -12,11 +12,17 @@
 					</div>
 					<div class="red-class-bottom" v-show="showRedClassList">
 						<div class="red-class-title">{{redClassTitle}}</div>
-						<div class="red-class-list" v-show="redClassTabIndex!=1">
+						<div class="red-class-list" v-show="redClassTabIndex!=1&&redClassTabIndex!=2">
 							<span v-for="(item,index) in redClassList" :key="index" @click="redClassListClick(item.id,index)">· {{item.title}}</span>
 						</div>
 						<div class="red-class-list2" v-show="redClassTabIndex==1">
 							<span v-for="(item,index) in redClassList" :key="index" @click="redClassListClick(item.id,index)">{{item.title}}</span>
+						</div>
+						<div class="red-class-list3" v-show="redClassTabIndex==2">
+							<div v-for="(item,index) in redClassList" :key="index" @click="redClassListClick(item.id,index)">
+								<span>{{item.title}}</span>
+								<span>{{item.synopsis}}</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -85,6 +91,7 @@
 							<div class="mission-list-box">
 								<div class="mission-list-item" v-for="(item,index) in missionList" :key="index" @click="missionListClick(item,index)">
 									<span>· {{item.name}}</span>
+									<span>{{item.startTime}}</span>
 								</div>
 							</div>
 						</div>
@@ -92,6 +99,7 @@
 							<div class="mission-list-box" style="max-height: 250px;">
 								<div class="mission-list-item" v-for="(item,index) in missionList" :key="index" @click="missionListClick(item,index)">
 									<span>· {{item.name}}</span>
+									<span>{{item.startTime}}</span>
 								</div>
 							</div>
 						</div>
@@ -585,18 +593,27 @@
 					if(this.activeIndex==0) {
 						data.startTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
 						this.$ajax.getActiveList(data).then(res => {
+							res.records.forEach(item => {
+								item.startTime = item.startTime.substring(0,10)
+							})
 							this.missionList = res.records
 						})
 					} else {
 						data.startTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
 						data.endTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
 						this.$ajax.getActiveList(data).then(res => {
+							res.records.forEach(item => {
+								item.startTime = item.startTime.substring(0,10)
+							})
 							this.missionList = res.records
 						})
 					}
 				} else if (index==1) {
 					data.endTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
 					this.$ajax.getActiveList(data).then(res => {
+						res.records.forEach(item => {
+							item.startTime = item.startTime.substring(0,10)
+						})
 						this.missionList = res.records
 					})
 				} else if(index==2) {
@@ -622,12 +639,18 @@
 				if(this.activeIndex==0) {
 					data.startTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
 					this.$ajax.getActiveList(data).then(res => {
+						res.records.forEach(item => {
+							item.startTime = item.startTime.substring(0,10)
+						})
 						this.missionList = res.records
 					})
 				} else {
 					data.startTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
 					data.endTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
 					this.$ajax.getActiveList(data).then(res => {
+						res.records.forEach(item => {
+							item.startTime = item.startTime.substring(0,10)
+						})
 						this.missionList = res.records
 					})
 				}
@@ -792,7 +815,7 @@
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
-				color: #8CACF9;
+				color: #F38E93;
 			}
 			.red-class-list {
 				width: 100%;
@@ -826,6 +849,36 @@
 					text-align: center;
 				}
 			}
+			.red-class-list3 {
+				width: 100%;
+				max-height: 390px;
+				overflow-y: scroll;
+				padding: 0 30px;
+				margin-top: 30px;
+				box-sizing: border-box;
+				font-size: 18px;
+				color: #fff;
+				div {
+					width: 516px;
+					margin: 0 auto;
+					padding: 10px 0;
+					display: flex;
+					flex-direction: column;
+					border-bottom: 1px solid rgba(184,184,184,0.2);
+					span:last-child {
+						font-size: 14px;
+						opacity: .5;
+						margin-top: 10px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						word-wrap: break-word;
+						/*! autoprefixer: ignore next */
+						-webkit-box-orient: vertical;
+					}
+				}
+			}
 		}
 	}
 	
@@ -843,7 +896,7 @@
 			box-sizing: border-box;
 			text-align: center;
 			font-size: 22px;
-			color: #8CACF9;
+			color: #F38E93;
 		}
 		.red-class-detail {
 			width: 100%;
@@ -959,7 +1012,7 @@
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
-				color: #8CACF9;
+				color: #F38E93;
 			}
 			.mission-list {
 				width: 90%;
@@ -1082,11 +1135,20 @@
 					.mission-list-item {
 						font-size: 18px;
 						color: #fff;
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
 						span {
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
+							// overflow: hidden;
+							// text-overflow: ellipsis;
+							// white-space: nowrap;
 							margin-bottom: 10px;
+						}
+						span:first-child {
+							width: 70%;
+						}
+						span:last-child {
+							width: 25%;
 						}
 					}
 				}
@@ -1109,7 +1171,7 @@
 			box-sizing: border-box;
 			text-align: center;
 			font-size: 22px;
-			color: #8CACF9;
+			color: #F38E93;
 		}
 		.mission-info {
 			display: flex;
@@ -1246,7 +1308,7 @@
 			box-sizing: border-box;
 			text-align: center;
 			font-size: 22px;
-			color: #8CACF9;
+			color: #F38E93;
 		}
 		/deep/ .el-select {
 			width: 326px;
@@ -1331,7 +1393,7 @@
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
-				color: #8CACF9;
+				color: #F38E93;
 			}
 			.branch-honor {
 				width: 90%;
@@ -1444,7 +1506,7 @@
 			box-sizing: border-box;
 			text-align: center;
 			font-size: 22px;
-			color: #8CACF9;
+			color: #F38E93;
 		}
 		.branch-info {
 			width: 90%;
@@ -1473,7 +1535,7 @@
 			box-sizing: border-box;
 			text-align: center;
 			font-size: 22px;
-			color: #8CACF9;
+			color: #F38E93;
 		}
 		.branch-info {
 			display: flex;

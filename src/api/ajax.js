@@ -641,6 +641,14 @@ class api {
       })
     })
   }
+  // 警报列表
+  getAlarmList() {
+	return new Promise(resolve => {
+	  get("/blade-xc/alarminfo/listData",{}).then(res => {
+	    resolve(res)
+	  })
+	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
