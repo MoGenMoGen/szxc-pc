@@ -168,6 +168,7 @@
 				this.onOff("关闭图层", "旅游景点")
 				this.onOff("关闭图层", "民宿")
 				this.onOff("关闭图层", "农家乐")
+				this.onOff("关闭图层", "乡村西餐")
 			},
 			//关闭所有一户一档
 			offAllYh() {

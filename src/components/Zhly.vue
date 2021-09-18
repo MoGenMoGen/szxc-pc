@@ -527,6 +527,7 @@
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "民宿")
+					this.onOff("关闭图层", "乡村西餐")
 					this.imgList = []
 					this.njlList = this.eatList
 					this.show = true
@@ -546,6 +547,7 @@
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
+					this.onOff("关闭图层", "乡村西餐")
 					this.imgList = []
 					this.njlList = this.hotelList
 					this.show = true
@@ -565,6 +567,7 @@
 					this.onOff("打开图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
 					this.onOff("关闭图层", "民宿")
+					this.onOff("关闭图层", "乡村西餐")
 					this.show = false
 					this.show2 = true
 					this.show3 = false
@@ -582,6 +585,7 @@
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
 					this.onOff("关闭图层", "民宿")
+					this.onOff("关闭图层", "乡村西餐")
 					this.show = false
 					this.show2 = false
 					this.show3 = true
@@ -603,6 +607,11 @@
 			},
 			getPopIndex(e) {
 				if(e==0) {
+					this.onOff("打开图层", "农家乐")
+					this.onOff("关闭图层", "旅游景点")
+					this.onOff("关闭图层", "旅游路线")
+					this.onOff("关闭图层", "民宿")
+					this.onOff("关闭图层", "乡村西餐")
 					this.show = true
 					this.showTenList = false
 					this.showTenInfo = false
@@ -616,6 +625,11 @@
 					this.showDrive = false
 					this.westImgShow = false
 				} else if(e==2) {
+					this.onOff("打开图层", "乡村西餐")
+					this.onOff("关闭图层", "旅游景点")
+					this.onOff("关闭图层", "旅游路线")
+					this.onOff("关闭图层", "民宿")
+					this.onOff("关闭图层", "农家乐")
 					this.show = false
 					this.showTenList = false
 					this.showTenInfo = false
@@ -649,6 +663,11 @@
 				this.tenInfo = item
 			},
 			chooseWest(item) {
+				let a = {
+					X: item.lng,
+					Y: item.lat,
+				}
+				this.$parent.test(a)
 				this.westImgShow = true
 				this.westImgList = item
 			}
