@@ -233,6 +233,13 @@
 					this.show2 = false
 					this.showGuide = false
 					this.guideDetailShow = false
+					let data = {
+						current: 1,
+						size: 50
+					}
+					this.$ajax.getPub(data).then(res => {
+						this.publicList = res.records
+					})
 				}
 			},
 			getGuideList(data) {

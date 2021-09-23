@@ -649,6 +649,14 @@ class api {
 	  })
 	})
   }
+  // 公共场所
+  getPub(data){
+	return new Promise(resolve => {
+	  get("/blade-govern/pub/list",data).then(res => {
+	    resolve(res.data)
+	  })
+	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
