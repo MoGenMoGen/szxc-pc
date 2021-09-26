@@ -345,10 +345,16 @@
 			<div v-if="show17">
 				<div class="pop-left">
 					<div class="pop-bg-box wjx-bg" v-show="!showWjxList" @click="showZhxc">
-						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">查看全部></div>
+						<div class="pop-bg-btn2" style="position: relative;z-index: 9999">
+							<div @click.stop="showVideoBox(2)">查看示例</div>
+							<div @click="showWjx">查看全部></div>
+						</div>
 					</div>
 					<div class="pop-bg-box wjx-bg2"  v-show="showWjxList" @click="showZhxc">
-						<div class="pop-bg-btn" @click="showWjx" style="position: relative;z-index: 9999">返回></div>
+						<div class="pop-bg-btn2" style="position: relative;z-index: 9999">
+							<div @click.stop="showVideoBox(2)">查看示例</div>
+							<div @click="showWjx">查看全部></div>
+						</div>
 						<div class="pop-common-box">
 							<div class="pop-one-line" v-for="(item,index) in qyList2" :key="index"
 								@click.stop="toQiye(index,item)">· {{item.name}}</div>
