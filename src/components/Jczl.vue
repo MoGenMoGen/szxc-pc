@@ -1736,7 +1736,7 @@
 			showVideoBox(e) {
 				if (e == 1) {
 					this.videoUrl =
-						'http://llzx.jinkworld.com:9000/llzx/upload/20210714/dc5c19672ab68fe1da85fc27a563f83e.mp4'
+						'http://szxc.jinkworld.com/dist/example.mp4'
 				} else if (e == 2) {
 					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
 				}

@@ -746,9 +746,11 @@ export default {
       that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
       that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5 / 1000)
       that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
-      that.option5.title.text = '{a|' + option5 + '}\n{c|车流量}'
 	  this.$ajax.getPassengerFlow().then(res => {
 	  		  this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+	  })
+	  this.$ajax.getCarNum().then(res => {
+	  		this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
 	  })
     }, 60000)
   },
@@ -772,6 +774,9 @@ export default {
       })
 	  this.$ajax.getPassengerFlow().then(res => {
 		  this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+	  })
+	  this.$ajax.getCarNum().then(res => {
+		this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
 	  })
       this.$refs.videoPlayer.initPlugin()
       this.$refs.videoPlayer3.initPlugin()

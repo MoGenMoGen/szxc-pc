@@ -657,6 +657,14 @@ class api {
 	  })
 	})
   }
+  // 公共场所
+  getCarNum(){
+  	return new Promise(resolve => {
+  	  get("/blade-xc/hik/carNum?type=0",{}).then(res => {
+  	    resolve(res.data)
+  	  })
+  	})
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
