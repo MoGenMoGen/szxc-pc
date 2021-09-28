@@ -853,7 +853,7 @@
 					series: [{
 						data: [28, 30, 36, 34, 38, 39, 47],
 						type: 'line',
-						areaStyle: {}
+						// areaStyle: {}
 					}],
 					grid: {
 						top: "30px",
