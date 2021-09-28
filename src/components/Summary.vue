@@ -236,13 +236,13 @@
               </div>
             </div>
           </div>
-          <!-- <div class="ywgk">
-            <div class="fontBig">业务公开<img src="static/images/ywgk.png" class="imgStyle"></div>
-            <div style="height: 36px;overflow: hidden;">
+          <div class="ywgk">
+            <div class="fontBig">资产管理<img src="static/images/ywgk.png" class="imgStyle"></div>
+            <div style="height: 72px;overflow: hidden;">
               <dv-scroll-board v-if="show" :config="config" style="width:400px;height:180px;margin-top: 10px;"/>
             </div>
           </div>
-          <div class="zzxx">
+          <!-- <div class="zzxx">
             <div class="fontBig">招租信息<img src="static/images/zzxx.png" class="imgStyle"></div>
             <div class="zzxx-bottom"><span>1</span><span>长胜毛竹山</span><span>229亩</span><span>5年以内</span><span>租金面议</span>
             </div>
@@ -397,8 +397,6 @@ export default {
         columnWidth: [50],
         evenRowBGC: "rgba(206,218,222,0)",
         oddRowBGC: "rgba(206,218,222,0)"
-        // align: ['center']
-
       },
       isLoading: 0,
       rlss: 'rlss',
