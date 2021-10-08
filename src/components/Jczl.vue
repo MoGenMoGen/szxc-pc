@@ -1736,9 +1736,9 @@
 			showVideoBox(e) {
 				if (e == 1) {
 					this.videoUrl =
-						'http://szxc.jinkworld.com/dist/example.mp4'
+						'https://example-szxc.oss-cn-hangzhou.aliyuncs.com/%E9%98%B2%E6%BA%BA%E6%B0%B4%E8%A7%86%E9%A2%91.mp4'
 				} else if (e == 2) {
-					this.videoUrl = 'https://jl-dev.oss-cn-shanghai.aliyuncs.com/5x.mp4'
+					this.videoUrl = 'https://example-szxc.oss-cn-hangzhou.aliyuncs.com/5%2BX%E8%A7%86%E9%A2%91.mp4'
 				}
 				this.show = false
 				this.show3 = false

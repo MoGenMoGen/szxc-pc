@@ -13,7 +13,7 @@
           <span>九龙湖村介绍</span>
         </div>
         <div class="box-bottom lt-bottom">
-          <video src="https://hsyxxcx.oss-cn-hangzhou.aliyuncs.com/9235c9418604435ebaec65c087c125bd.mp4"
+          <video src="https://example-szxc.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E5%B1%8F%E9%A6%96%E9%A1%B5%E8%A7%86%E9%A2%91.mp4"
                  autoplay="autoplay"
                  muted loop="loop"></video>
           <div class="demo03">
