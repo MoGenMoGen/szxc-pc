@@ -138,7 +138,7 @@
 
 		<div class="model" v-if="dialogVisible">
 			<img src="../bgImages/关闭.png" @click="toStopScenicSpot">
-			<video controls="controls" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"  width="100%" height="100%"></video>
+			<video controls="controls" :src="videoUrl"  width="100%" height="100%" autoplay></video>
 		</div>
 
 
@@ -470,6 +470,7 @@
 				jdList: [],
 				imgList: [],
 				dialogVisible:false,
+				videoUrl: ''
 			}
 		},
 		methods: {
@@ -541,6 +542,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
+					this.dialogVisible=false
 				} else if (e == 1) {
 					//住
 					this.onOff("打开图层", "民宿")
@@ -561,6 +563,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
+					this.dialogVisible=false
 				} else if (e == 2) {
 					//玩
 					this.onOff("打开图层", "旅游景点")
@@ -579,6 +582,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
+					this.dialogVisible=false
 				} else if (e == 3) {
 					//购
 					this.onOff("关闭图层", "旅游景点")
@@ -597,6 +601,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
+					this.dialogVisible=false
 				}
 			},
 			changeIndex(e) {
@@ -708,6 +713,7 @@
 			})
 			this.$ajax.getSiteList({size:20,current:1}).then(res => {
 				this.jdList = res.records
+				this.videoUrl = res.records[0].video
 			})
 			this.$ajax.getPassengerFlow().then(res => {
 				this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
