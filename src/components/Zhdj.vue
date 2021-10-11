@@ -591,7 +591,7 @@
 				}
 				if(index==0) {
 					if(this.activeIndex==0) {
-						data.startTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
+						data.type = 0
 						this.$ajax.getActiveList(data).then(res => {
 							res.records.forEach(item => {
 								item.startTime = item.startTime.substring(0,10)
@@ -599,8 +599,7 @@
 							this.missionList = res.records
 						})
 					} else {
-						data.startTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
-						data.endTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
+						data.type=1
 						this.$ajax.getActiveList(data).then(res => {
 							res.records.forEach(item => {
 								item.startTime = item.startTime.substring(0,10)
@@ -609,7 +608,7 @@
 						})
 					}
 				} else if (index==1) {
-					data.endTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
+					data.type=2
 					this.$ajax.getActiveList(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)
@@ -637,7 +636,7 @@
 				}
 				this.activeIndex = index
 				if(this.activeIndex==0) {
-					data.startTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
+					data.type = 0
 					this.$ajax.getActiveList(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)
@@ -645,8 +644,7 @@
 						this.missionList = res.records
 					})
 				} else {
-					data.startTime_lt = this.formatTime(new Date().getTime()).substring(0,10)
-					data.endTime_gt = this.formatTime(new Date().getTime()).substring(0,10)
+					data.type=1
 					this.$ajax.getActiveList(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)

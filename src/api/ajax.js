@@ -612,7 +612,7 @@ class api {
   // 党员活动
   getActiveList(data) {
     return new Promise(resolve => {
-      get("/blade-part/activity/listPc",data).then(res => {
+      get("/blade-part/activity/list22",data).then(res => {
         resolve(res.data)
       })
     })
