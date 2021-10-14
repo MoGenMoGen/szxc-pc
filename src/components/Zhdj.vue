@@ -27,6 +27,7 @@
 					</div>
 				</div>
 				<div class="red-class-center" v-if="showRedClassInfo">
+					<img src="static/images/cancel-2.png" @click="showRedClassInfo = false" style="position: absolute;top: 8px;right: -8px;">
 					<div class="red-class-title">{{redClassInfoTitle}}</div>
 					<div class="red-class-detail" v-if="redClassTabIndex==0||redClassTabIndex==4">
 						<video :src="redClassInfoDetail.url" autoplay></video>
@@ -41,6 +42,7 @@
 					</div>
 				</div>
 				<div class="red-class-center2" v-show="showRedClassHistory">
+					<img src="static/images/cancel-2.png" @click="showRedClassHistory = false" style="position: absolute;top: 8px;right: -8px;">
 					<img :src="redClassInfoDetail.img">
 					<span>{{redClassInfoDetail.title}}</span>
 					<div v-html="redClassInfoDetail.content"></div>
@@ -106,6 +108,7 @@
 					</div>
 				</div>
 				<div class="mission-center-money" v-show="showMissionMoney">
+					<img src="static/images/cancel-2.png" @click="showMissionMoney = false" style="position: absolute;top: 8px;right: -8px;">
 					<div class="mission-title">{{missionInfoTitle}}</div>
 					<el-select v-model="partyKey" placeholder="请选择">
 					    <el-option
@@ -133,6 +136,7 @@
 					</div>
 				</div>
 				<div class="mission-center" v-show="showMissionInfo" :class="{'mission-hujufenli':missionTabIndex==3}">
+					<img src="static/images/cancel-2.png" @click="showMissionInfo = false" style="position: absolute;top: 8px;right: -8px;">
 					<div class="mission-title">{{missionInfoTitle}}</div>
 					<div class="mission-info-two" v-show="missionTabIndex==3">
 						<div class="mission-info-two-top">
@@ -250,12 +254,14 @@
 					</div>
 				</div>
 				<div class="branch-center" v-show="showBranchHonor">
+					<img src="static/images/cancel-2.png" @click="showBranchHonor = false" style="position: absolute;top: 8px;right: -8px;">
 					<div class="branch-title">{{branchInfoTitle}}</div>
 					<div class="branch-info">
 						<el-image class="branch-detail-img" fit="cover" :src="branchHonor.img"  :preview-src-list="branchHonor.imgList"></el-image>
 					</div>
 				</div>
 				<div class="branch-center2" v-show="showBranchInfo">
+					<img src="static/images/cancel-2.png" @click="showBranchInfo = false" style="position: absolute;top: 8px;right: -8px;">
 					<div class="branch-title">{{branchInfoTitle}}</div>
 					<div class="branch-info">
 						<div class="branch-avatar">
