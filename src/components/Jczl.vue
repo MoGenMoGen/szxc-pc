@@ -829,7 +829,7 @@
 					xAxis: {
 						type: 'category',
 						boundaryGap: false,
-						data: ['0-4点', '4-8点', '8-12点', '12-16点', '16-20点', '20-24点'],
+						data: ['4点', '8点', '12点', '16点', '20点', '24点'],
 						axisLabel: {
 							color: '#fff'
 						},
