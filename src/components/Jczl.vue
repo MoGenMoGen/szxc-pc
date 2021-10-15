@@ -1939,7 +1939,10 @@
 			},
 			getList() {
 				let that = this
-				this.$ajax.getCamera('移动执法').then(res => {
+				this.$ajax.getCamera2({
+					type: '移动执法',
+					order: 'one'
+				}).then(res => {
 					this.jkList = res
 				})
 				this.$ajax.getCamera('危房管理').then(res => {
