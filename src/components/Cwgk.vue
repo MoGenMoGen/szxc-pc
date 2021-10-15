@@ -403,6 +403,8 @@
 			<div v-show="qflyImgShow">
 				<div class="qfly-img" v-if="qflyImgShow1">
 					<div class="qfly-bg">
+						<img src="../../public/static/images/cancel.png" @click="qflyImgShow1 = false" style="position: absolute;top: 10px;
+						right: 130px;">
 						<div class="qfly-title">{{qflyIList.name}}</div>
 						<div class="qfly-cont">
 							<img :src="item.img" v-for="(item,index) in qflyIList.records" :key="index" v-if="!qflyIList.video">
@@ -412,6 +414,8 @@
 				</div>
 				<div class="qfly-imgOrWord" v-if="qflyImgShow2">
 					<div class="qfly-bg">
+						<img src="../../public/static/images/cancel.png" @click="qflyImgShow2 = false" style="position: absolute;top: 10px;
+						right: 130px;">
 						<div class="qfly-title">{{qflyIWList.name}}</div>
 						<div class="qfly-cont" v-html="qflyIWList.cont"></div>
 					</div>

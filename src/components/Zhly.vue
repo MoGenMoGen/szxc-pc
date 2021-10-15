@@ -137,7 +137,7 @@
 		<BottomTab ref="botTab" :list="tabList" @updata="getIndex"></BottomTab>
 
 		<div class="model" v-if="dialogVisible">
-			<img src="../bgImages/关闭.png" @click="toStopScenicSpot">
+			<img src="static/images/cancel.png" @click="toStopScenicSpot">
 			<video controls="controls" :src="videoUrl"  width="100%" height="100%" autoplay></video>
 		</div>
 
