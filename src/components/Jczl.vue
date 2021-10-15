@@ -937,195 +937,36 @@
 					}
 				},
 				bpwyOption: {
-					// 三个图表位置配置
-					grid: [{
-						top: '2%',
-						height: "25%",
-						width: "85%"
-					}, {
-						top: '35%',
-						height: "25%",
-						width: "85%"
-					}, {
-						top: '70%',
-						height: "25%",
-						width: "85%"
-					}],
-					title: [{
-							left: 'center',
-							text: '监测点1',
-							textStyle: {
-								color: '#DDD'
-							}
-						}, {
-							top: '30%',
-							left: 'center',
-							text: '监测点2',
-							textStyle: {
-								color: '#DDD'
-							}
-						},
-						{
-							top: '65%',
-							left: 'center',
-							text: '监测点3',
-							textStyle: {
-								color: '#DDD'
-							}
-						}
-					],
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'shadow',
+						trigger: 'axis'
+					  },
+					  legend: {},
+					  xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+					  },
+					  yAxis: {
+						type: 'value',
+						minInterval: 1
+					  },
+					  series: [
+						{
+						  name: '横溪东沟',
+						  type: 'line',
+						  data: [0, 0, 0, 0, 0, 0, 0],
+						},
+						{
+						  name: '开元云顶',
+						  type: 'line',
+						  data: [0, 0, 0, 0, 0, 0, 0],
+						},
+						{
+						  name: '九龙山大坝',
+						  type: 'line',
+						  data: [0, 0, 0, 0, 0, 0, 0],
 						}
-					},
-					// x轴配置
-					xAxis: [{
-							gridIndex: 0,
-							type: 'category',
-							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
-							axisLine: {
-								lineStyle: {
-									color: "#999"
-								}
-							}
-						},
-						{
-							gridIndex: 1,
-							type: 'category',
-							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
-							axisLine: {
-								lineStyle: {
-									color: "#999"
-								}
-							}
-						},
-						{
-							gridIndex: 2,
-							type: 'category',
-							data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '22:00'],
-							axisLine: {
-								lineStyle: {
-									color: "#999"
-								}
-							}
-						}
-					],
-					// y轴配置
-					yAxis: [{
-							type: 'value',
-							gridIndex: 0, //对应前面grid的索引位置（第1个）
-							splitNumber: 4,
-							splitLine: {
-								lineStyle: {
-									type: 'dashed',
-									color: '#DDD'
-								}
-							},
-							axisLine: {
-								show: false,
-								lineStyle: {
-									color: "#333"
-								},
-							},
-							nameTextStyle: {
-								color: "#999"
-							},
-							splitArea: {
-								show: false
-							}
-						}, {
-							type: 'value',
-							gridIndex: 1, //对应前面grid的索引位置（第2个）
-							splitNumber: 4,
-							splitLine: {
-								lineStyle: {
-									type: 'dashed',
-									color: '#DDD'
-								}
-							},
-							axisLine: {
-								show: false,
-								lineStyle: {
-									color: "#333"
-								},
-							},
-							nameTextStyle: {
-								color: "#999"
-							},
-							splitArea: {
-								show: false
-							}
-						},
-						{
-							type: 'value',
-							gridIndex: 2, //对应前面grid的索引位置（第3个）
-							splitNumber: 4,
-							splitLine: {
-								lineStyle: {
-									type: 'dashed',
-									color: '#DDD'
-								}
-							},
-							axisLine: {
-								show: false,
-								lineStyle: {
-									color: "#333"
-								},
-							},
-							nameTextStyle: {
-								color: "#999"
-							},
-							splitArea: {
-								show: false
-							}
-						}
-					],
-					series: [{
-							xAxisIndex: 0,
-							yAxisIndex: 0,
-							type: 'line',
-							smooth: true,
-							symbolSize: 8,
-							data: [0, 0, 0, 0, 0, 0, 0],
-							barWidth: '30%',
-							itemStyle: {
-								normal: {
-									color: '#f0c725'
-								}
-							}
-						},
-						{
-							xAxisIndex: 1,
-							yAxisIndex: 1,
-							type: 'line',
-							smooth: true,
-							symbolSize: 8,
-							data: [0, 0, 0, 0, 0, 0, 0],
-							barWidth: '30%',
-							itemStyle: {
-								normal: {
-									color: '#16f892'
-								}
-							}
-						},
-
-						{
-							xAxisIndex: 2,
-							yAxisIndex: 2,
-							type: 'line',
-							smooth: true,
-							symbolSize: 8,
-							data: [0, 0, 0, 0, 0, 0, 0],
-							barWidth: '30%',
-							itemStyle: {
-								normal: {
-									color: '#f0c725'
-								}
-							}
-						}
-					]
+					  ]
 				},
 				beforeIndex: 0,
 				afterIndex: 0,
