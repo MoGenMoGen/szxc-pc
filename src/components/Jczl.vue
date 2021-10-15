@@ -454,6 +454,8 @@
 							</div>
 						</div>
 						<img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;">
+						<!-- <my-charts v-show="!bianpoweiyi" :id='bpwy' class="echart-class" :data='bpwyOption'
+							@click.native="clickthis(bpwyOption)"></my-charts> -->
 					</div>
 					<div class="pop-bg-box ljfl-bg" @click="showLjfl">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
@@ -591,7 +593,7 @@
 		props: {},
 		data() {
 			return {
-				bpwyb,
+				 bpwyb,
 				info: {}, //信息
 				tsryList: [],
 				grid: '',
@@ -829,7 +831,7 @@
 					xAxis: {
 						type: 'category',
 						boundaryGap: false,
-						data: ['4点', '8点', '12点', '16点', '20点', '24点'],
+						data: ['0点', '2点', '4点', '6点', '8点', '10点','12点', '14点', '16点', '18点', '20点', '22点'],
 						axisLabel: {
 							color: '#fff'
 						},
@@ -1124,7 +1126,6 @@
 							}
 						}
 					]
-
 				},
 				beforeIndex: 0,
 				afterIndex: 0,
