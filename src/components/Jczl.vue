@@ -453,9 +453,9 @@
 								</div>
 							</div>
 						</div>
-						<img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;">
-						<!-- <my-charts v-show="!bianpoweiyi" :id='bpwy' class="echart-class" :data='bpwyOption'
-							@click.native="clickthis(bpwyOption)"></my-charts> -->
+						<!-- <img :src="bpwyb" @click="clickImg(bpwyb)" v-show="!bianpoweiyi" style="height: 180px;"> -->
+						<my-charts v-show="!bianpoweiyi" :id='bpwy' class="echart-class" style="width: 300px;" :data='bpwyOption'
+							@click.native="clickthis(bpwyOption)"></my-charts>
 					</div>
 					<div class="pop-bg-box ljfl-bg" @click="showLjfl">
 						<div class="pop-bg-btn" @click="lajifenlei=!lajifenlei">查看全部></div>
@@ -937,20 +937,39 @@
 					}
 				},
 				bpwyOption: {
-					tooltip: {
-						trigger: 'axis'
-					  },
-					  legend: {},
-					  xAxis: {
+					legend: {
+						textStyle: {
+							color: '#fff'
+						}
+					},
+					xAxis: {
 						type: 'category',
 						boundaryGap: false,
-						data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-					  },
-					  yAxis: {
+						data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+					},
+					yAxis: {
 						type: 'value',
-						minInterval: 1
-					  },
-					  series: [
+						minInterval: 1,
+						axisLabel: {
+							color: '#fff',
+							fontSize: 16
+						},
+						axisLine: {
+							lineStyle: {
+								color: "#fff"
+							}
+						},
+					},
+					series: [
 						{
 						  name: '横溪东沟',
 						  type: 'line',
@@ -966,7 +985,7 @@
 						  type: 'line',
 						  data: [0, 0, 0, 0, 0, 0, 0],
 						}
-					  ]
+					]
 				},
 				beforeIndex: 0,
 				afterIndex: 0,
@@ -1833,6 +1852,7 @@
 				})
 				this.$ajax.getRubbishData().then(res => {
 					this.ljflOption.series[0].data = Object.values(res)
+					this.ljflOption.xAxis.data = Object.keys(res)
 				})
 				this.$ajax.getCamera('边坡位移').then(res=> {
 					this.wyList2 = res

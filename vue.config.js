@@ -12,6 +12,7 @@ module.exports = {
 		proxy: {
 			"/api": {
 				target: "http://szxc.jinkworld.com/api",
+				// target: "http://smgdjaf.nat.ipyingshe.com",
 				changeOrigin: true,
 				pathRewrite: {
 					"^/api": ""
