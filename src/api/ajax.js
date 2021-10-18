@@ -657,11 +657,19 @@ class api {
 	  })
 	})
   }
-  // 公共场所
+  // 车流量
   getCarNum(){
   	return new Promise(resolve => {
   	  get("/blade-xc/hik/carNum?type=0",{}).then(res => {
   	    resolve(res.data)
+  	  })
+  	})
+  }
+  // 边坡位移量
+  getDistance(){
+  	return new Promise(resolve => {
+  	  get("/tb-records/records/list",{}).then(res => {
+  	    resolve(res)
   	  })
   	})
   }

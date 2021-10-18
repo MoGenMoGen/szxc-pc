@@ -11,8 +11,8 @@ module.exports = {
 		port: 8012,
 		proxy: {
 			"/api": {
-				target: "http://szxc.jinkworld.com/api",
-				// target: "http://smgdjaf.nat.ipyingshe.com",
+				// target: "http://szxc.jinkworld.com/api",
+				target: "http://smgdjaf.nat.ipyingshe.com",
 				changeOrigin: true,
 				pathRewrite: {
 					"^/api": ""

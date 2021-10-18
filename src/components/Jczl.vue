@@ -945,7 +945,7 @@
 					xAxis: {
 						type: 'category',
 						boundaryGap: false,
-						data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+						data: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
 						axisLabel: {
 							color: '#fff',
 							fontSize: 16
@@ -973,17 +973,17 @@
 						{
 						  name: '横溪东沟',
 						  type: 'line',
-						  data: [0, 0, 0, 0, 0, 0, 0],
+						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						},
 						{
 						  name: '开元云顶',
 						  type: 'line',
-						  data: [0, 0, 0, 0, 0, 0, 0],
+						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						},
 						{
 						  name: '九龙山大坝',
 						  type: 'line',
-						  data: [0, 0, 0, 0, 0, 0, 0],
+						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						}
 					]
 				},
@@ -1799,6 +1799,9 @@
 			},
 			getList() {
 				let that = this
+				this.$ajax.getDistance().then(res => {
+					console.log('边坡位移量：',res)
+				})
 				this.$ajax.getCamera2({
 					type: '移动执法',
 					order: 'one'
