@@ -155,7 +155,7 @@
 								<div>入党时间： {{missionInfo.joinTime}}</div>
 								<div>党内职务： {{missionInfo.post}}</div>
 								<div>所属党支部： {{missionInfo.deptNm}}</div>
-								<div>党员评级： {{missionInfo.grade}}</div>
+								<!-- <div>党员评级： {{missionInfo.grade}}</div> -->
 							</div>
 						</div>
 						<!-- <div class="mission-info-two-bottom">
@@ -870,7 +870,7 @@
 				padding: 0 30px;
 				margin-top: 30px;
 				box-sizing: border-box;
-				font-size: 18px;
+				font-size: 24px;
 				color: #fff;
 				div {
 					width: 516px;
@@ -880,7 +880,7 @@
 					flex-direction: column;
 					border-bottom: 1px solid rgba(184,184,184,0.2);
 					span:last-child {
-						font-size: 14px;
+						font-size: 20px;
 						opacity: .5;
 						margin-top: 10px;
 						overflow: hidden;
