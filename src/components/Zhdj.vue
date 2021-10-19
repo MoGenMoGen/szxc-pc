@@ -42,7 +42,8 @@
 					</div>
 				</div>
 				<div class="red-class-center2" v-show="showRedClassHistory">
-					<img src="static/images/cancel-2.png" @click="showRedClassHistory = false" style="position: absolute;top: 8px;right: -8px;">
+					<img src="static/images/cancel-2.png" @click="showRedClassHistory = false" 
+					style="position: absolute;top: 8px;right: -8px;width: 38px;height: 38px;border: none;margin-top: 0;">
 					<img :src="redClassInfoDetail.img">
 					<span>{{redClassInfoDetail.title}}</span>
 					<div v-html="redClassInfoDetail.content"></div>
