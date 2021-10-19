@@ -93,7 +93,7 @@
 							</div>
 							<div class="mission-list-box">
 								<div class="mission-list-item" v-for="(item,index) in missionList" :key="index" @click="missionListClick(item,index)">
-									<span>· {{item.name}}</span>
+									<span style="display: flex;"><p style="margin-right: 5px;">· </p><p>{{item.name}}</p></span>
 									<span>{{item.startTime}}</span>
 								</div>
 							</div>
@@ -101,7 +101,7 @@
 						<div class="mission-list-active" v-show="missionTabIndex==1">
 							<div class="mission-list-box" style="max-height: 250px;">
 								<div class="mission-list-item" v-for="(item,index) in missionList" :key="index" @click="missionListClick(item,index)">
-									<span>· {{item.name}}</span>
+									<span style="display: flex;"><p style="margin-right: 5px;">· </p><p>{{item.name}}</p></span>
 									<span>{{item.startTime}}</span>
 								</div>
 							</div>
@@ -818,14 +818,14 @@
 			}
 		}
 		.red-class-bottom {
-			width: 616px;
+			width: 516px;
 			height: 506px;
 			background: url(../bgImages/红色课堂-左下框.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.red-class-title {
 				width: 100%;
-				padding: 13px 208px;
+				padding: 13px 158px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
@@ -873,7 +873,7 @@
 				font-size: 24px;
 				color: #fff;
 				div {
-					width: 516px;
+					width: 416px;
 					margin: 0 auto;
 					padding: 10px 0;
 					display: flex;
@@ -1015,14 +1015,14 @@
 			}
 		}
 		.mission-bottom {
-			width: 552px;
+			width: 502px;
 			height: 380px;
 			background: url(../bgImages/牢记使命-左下.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.mission-title {
 				width: 100%;
-				padding: 13px 208px;
+				padding: 13px 183px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
@@ -1396,14 +1396,14 @@
 			}
 		}
 		.branch-bottom {
-			width: 616px;
+			width: 516px;
 			height: 557px;
 			background: url(../bgImages/支部力量-左下.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.branch-title {
 				width: 100%;
-				padding: 13px 208px;
+				padding: 13px 158px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
