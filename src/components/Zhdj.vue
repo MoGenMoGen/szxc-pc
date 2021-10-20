@@ -193,7 +193,7 @@
 							<span>{{item.name}}</span>
 						</div>
 					</div>
-					<div class="branch-bottom" v-show="showBranchList">
+					<div class="branch-bottom" v-show="showBranchList" :class="[branchTabIndex==2?'branch-bottom2':'']">
 						<div class="branch-title">{{branchTitle}}</div>
 						<div class="branch-honor" v-show="branchTabIndex==3">
 							<span class="branch-honor-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">{{item.name}}</span>
@@ -244,7 +244,7 @@
 								<span>出生年月</span>
 								<span>入党时间</span>
 							</div>
-							<div class="branch-list-box" style="max-height: 220px;" v-show="branchTabIndex==2">
+							<div class="branch-list-box" style="max-height: 170px;" v-show="branchTabIndex==2">
 								<div class="branch-list-item" v-for="(item,index) in branchList" :key="index" @click="branchListClick(item,index)">
 									<span>{{item.name}}</span>
 									<span>{{item.birthday}}</span>
@@ -818,14 +818,14 @@
 			}
 		}
 		.red-class-bottom {
-			width: 516px;
-			height: 506px;
+			width: 616px;
+			height: 356px;
 			background: url(../bgImages/红色课堂-左下框.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.red-class-title {
 				width: 100%;
-				padding: 13px 158px;
+				padding: 13px 208px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
@@ -833,7 +833,7 @@
 			}
 			.red-class-list {
 				width: 100%;
-				max-height: 390px;
+				max-height: 250px;
 				overflow-y: scroll;
 				padding: 0 30px;
 				margin-top: 30px;
@@ -848,7 +848,7 @@
 			}
 			.red-class-list2 {
 				width: 100%;
-				max-height: 390px;
+				max-height: 250px;
 				overflow-y: scroll;
 				padding: 0 30px;
 				margin-top: 30px;
@@ -865,7 +865,7 @@
 			}
 			.red-class-list3 {
 				width: 100%;
-				max-height: 390px;
+				max-height: 250px;
 				overflow-y: scroll;
 				padding: 0 30px;
 				margin-top: 30px;
@@ -873,7 +873,7 @@
 				font-size: 24px;
 				color: #fff;
 				div {
-					width: 416px;
+					width: 516px;
 					margin: 0 auto;
 					padding: 10px 0;
 					display: flex;
@@ -1015,14 +1015,14 @@
 			}
 		}
 		.mission-bottom {
-			width: 502px;
-			height: 380px;
+			width: 552px;
+			height: 280px;
 			background: url(../bgImages/牢记使命-左下.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.mission-title {
 				width: 100%;
-				padding: 13px 183px;
+				padding: 13px 208px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
@@ -1030,7 +1030,7 @@
 			}
 			.mission-list {
 				width: 90%;
-				max-height: 270px;
+				max-height: 170px;
 				overflow-y: scroll;
 				margin: 0 auto;
 				display: flex;
@@ -1068,6 +1068,7 @@
 			.mission-list2 {
 				width: 90%;
 				margin: 0 auto;
+				max-height: 170px;
 				overflow-y: scroll;
 				font-size: 18px;
 				color: #fff;
@@ -1085,7 +1086,7 @@
 			.mission-list-wish {
 				width: 90%;
 				margin: 0 auto;
-				max-height: 270px;
+				max-height: 170px;
 				overflow-y: scroll;
 				display: flex;
 				flex-direction: column;
@@ -1123,6 +1124,7 @@
 				width: 90%;
 				margin: 0 auto;
 				margin-top: 30px;
+				max-height: 170px;
 				.mission-list-active-tab {
 					display: flex;
 					span {
@@ -1144,7 +1146,7 @@
 				.mission-list-box {
 					display: flex;
 					flex-direction: column;
-					max-height: 220px;
+					max-height: 120px;
 					margin-top: 10px;
 					.mission-list-item {
 						font-size: 18px;
@@ -1169,7 +1171,6 @@
 			}
 		}
 	}
-	
 	
 	.mission-center {
 		width: 752px;
@@ -1396,14 +1397,14 @@
 			}
 		}
 		.branch-bottom {
-			width: 516px;
-			height: 557px;
+			width: 616px;
+			height: 366px;
 			background: url(../bgImages/支部力量-左下.png) no-repeat;
 			background-size: 100% 100%;
 			margin-top: 60px;
 			.branch-title {
 				width: 100%;
-				padding: 13px 158px;
+				padding: 13px 208px;
 				box-sizing: border-box;
 				text-align: center;
 				font-size: 22px;
@@ -1414,7 +1415,7 @@
 				margin: 30px auto;
 				display: flex;
 				flex-direction: column;
-				max-height: 430px;
+				max-height: 250px;
 				overflow-y: scroll;
 				padding: 0 30px;
 				box-sizing: border-box;
@@ -1487,7 +1488,7 @@
 					}
 				}
 				.branch-list-box {
-					max-height: 380px;
+					max-height: 220px;
 					overflow-y: scroll;
 					.branch-list-item {
 						display: flex;
@@ -1503,6 +1504,12 @@
 					}
 				}
 			}
+		}
+		.branch-bottom2 {
+			width: 616px;
+			height: 506px;
+			background: url(../bgImages/支部力量-左下大.png) no-repeat;
+			background-size: 100% 100%;
 		}
 	}
 	
