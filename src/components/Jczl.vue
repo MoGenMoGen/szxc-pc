@@ -1800,6 +1800,23 @@
 			getList() {
 				let that = this
 				this.$ajax.getDistance().then(res => {
+					let bpwyData1=[],bpwyData2=[],bpwyData3=[],
+					bpwyDate=[]
+					res[0].forEach(item => {
+						item.updateTime = item.updateTime.substring(8,10)
+						bpwyDate.push(item.updateTime)
+						bpwyData3.push(item.distance)
+					})
+					res[1].forEach(item => {
+						bpwyData1.push(item.distance)
+					})
+					res[2].forEach(item => {
+						bpwyData2.push(item.distance)
+					})
+					this.bpwyOption.series[0].data = bpwyData3
+					this.bpwyOption.series[1].data = bpwyData1
+					this.bpwyOption.series[2].data = bpwyData2
+					this.bpwyOption.xAxis.data = bpwyDate
 					console.log('边坡位移量：',res)
 				})
 				this.$ajax.getCamera2({
