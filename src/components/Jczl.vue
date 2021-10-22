@@ -1208,27 +1208,59 @@
 			// 网格打开图层
 			showPoints(item) {
 				// this.onOff('关闭图层','网格')
+				console.log(item)
 				this.tsryShow = false
-				if (item.name) {
-					this.show2 = false
-					let a = {
-						X: item.x,
-						Y: item.y
+				this.onOffTsry()
+				if(!this.grid) {
+					if (item.name) {
+						let a = {
+							X: item.x,
+							Y: item.y 
+						}
+						this.onOff('打开图层', item.name)
 					}
-					this.onOff("关闭图层", "五保户")
-					this.onOff("关闭图层", "低保")
-					this.onOff("关闭图层", "残障人员")
-					this.onOff("关闭图层", "老年人")
-					this.onOff('打开图层', item.name)
-					// this.$parent.test(a)
 				}
 				this.tsryShow = true
 				this.info.name = item.title
 				console.log(this.grid)
 				if(item.title=='老年人') {
+					if(this.grid == '1414922323459620866') {
+						this.onOff('打开图层', '横溪钱家大同高屋老年人')
+					} else if (this.grid == '1414921956684513281') {
+						this.onOff('打开图层', '横溪冷水井后厢老年人')
+					} else if (this.grid == '1415144767758651394') {
+						this.onOff('打开图层', '横溪坝下桥头老年人')
+					} else if (this.grid == '1415146940391346178') {
+						this.onOff('打开图层', '横溪田中央墙头老年人')
+					} else if (this.grid == '1415147015662325761') {
+						this.onOff('打开图层', '长胜毛领孟家老年人')
+					} else if (this.grid == '1415147152245641218') {
+						this.onOff('打开图层', '长胜周家港老年人')
+					} else if (this.grid == '1415147082129461249') {
+						this.onOff('打开图层', '长胜长桥头老年人')
+					} else if (this.grid == '1415147217374793730') {
+						this.onOff('打开图层', '长胜田央沈老年人')
+					}
 					this.tsryType = 1
 					this.oldMenOption.series[0].data = item.data
 				} else if (item.title=='残障人') {
+					if(this.grid == '1414922323459620866') {
+						this.onOff('打开图层', '横溪钱家大同高屋残障人员')
+					} else if (this.grid == '1414921956684513281') {
+						this.onOff('打开图层', '横溪冷水井后厢残障人员')
+					} else if (this.grid == '1415144767758651394') {
+						this.onOff('打开图层', '横溪坝下桥头残障人员')
+					} else if (this.grid == '1415146940391346178') {
+						this.onOff('打开图层', '横溪田中央墙头残障人员')
+					} else if (this.grid == '1415147015662325761') {
+						this.onOff('打开图层', '长胜毛领孟家残障人员')
+					} else if (this.grid == '1415147152245641218') {
+						this.onOff('打开图层', '长胜周家港残障人员')
+					} else if (this.grid == '1415147082129461249') {
+						this.onOff('打开图层', '长胜长桥头残障人员')
+					} else if (this.grid == '1415147217374793730') {
+						this.onOff('打开图层', '长胜田央沈残障人员')
+					}
 					this.tsryType = 2
 					this.disabilityMenOption.series[0].data = item.data
 				} else if (item.title=='低保户') {
@@ -1264,6 +1296,29 @@
 				} else {
 					this.tsryShow = false
 				}
+			},
+			// 关闭特殊人员图层
+			onOffTsry() {
+				this.onOff("关闭图层", "五保户")
+				this.onOff("关闭图层", "低保")
+				this.onOff("关闭图层", "残障人员")
+				this.onOff("关闭图层", "老年人")
+				this.onOff("关闭图层", "长胜田央沈残障人员")
+				this.onOff("关闭图层", "长胜长桥头残障人员")
+				this.onOff("关闭图层", "长胜周家港残障人员")
+				this.onOff("关闭图层", "长胜毛领孟家残障人员")
+				this.onOff("关闭图层", "横溪田中央墙头残障人员")
+				this.onOff("关闭图层", "横溪坝下桥头残障人员")
+				this.onOff("关闭图层", "横溪冷水井后厢残障人员")
+				this.onOff("关闭图层", "横溪钱家大同高屋残障人员")
+				this.onOff("关闭图层", "长胜田央沈老年人")
+				this.onOff("关闭图层", "长胜长桥头老年人")
+				this.onOff("关闭图层", "长胜周家港老年人")
+				this.onOff("关闭图层", "长胜毛领孟家老年人")
+				this.onOff("关闭图层", "横溪田中央墙头老年人")
+				this.onOff("关闭图层", "横溪坝下桥头老年人")
+				this.onOff("关闭图层", "横溪冷水井后厢老年人")
+				this.onOff("关闭图层", "横溪钱家大同高屋老年人")
 			},
 			//打开关闭图层
 			onOff(type, name) {
@@ -1313,7 +1368,10 @@
 			},
 			//点击执法仪看监控
 			toZf(item) {
-				this.onOff("打开图层","执法记录仪")
+				this.closeZhjg()
+				setTimeout(()=>{
+					this.onOff("打开图层","执法记录仪")
+				},1000)
 				this.showZhibo = false
 				this.hikShow = true;
 				this.$refs.videoPlayer2.off()
@@ -1355,10 +1413,7 @@
 					this.onOff("关闭图层", "防溺水监控点")
 					this.onOff("关闭图层", "泥石流")
 					this.onOff("关闭图层", "边坡位移")
-					this.onOff("关闭图层", "五保户")
-					this.onOff("关闭图层", "低保")
-					this.onOff("关闭图层", "残障人员")
-					this.onOff("关闭图层", "老年人")
+					this.onOffTsry()
 					this.onOff("关闭图层", "执法记录仪")
 					this.onOff('关闭图层', '一户一档人口')
 					this.$parent.test("网格");
@@ -1404,10 +1459,7 @@
 					this.onOff("关闭图层", "防溺水监控点")
 					this.onOff("关闭图层", "泥石流")
 					this.onOff("关闭图层", "边坡位移")
-					this.onOff("关闭图层", "五保户")
-					this.onOff("关闭图层", "低保")
-					this.onOff("关闭图层", "残障人员")
-					this.onOff("关闭图层", "老年人")
+					this.onOffTsry()
 					this.onOff("关闭图层", "执法记录仪")
 					this.onOff('关闭图层', '一户一档人口')
 					this.onOff("关闭图层", "网格")
@@ -1524,6 +1576,7 @@
 				this.imgShow = false
 			},
 			gridMap(item) {
+				this.onOffTsry()
 				let a = {
 					grid: "网格",
 					name: item.alias
