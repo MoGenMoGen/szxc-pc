@@ -11,8 +11,10 @@
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span style="width: 60%">{{item.name}}</span>
-						<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%" v-if="item.monitor"></span>
-						<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video" @click.stop="toPre(item)"></span>
+						<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%"
+								v-if="item.monitor"></span>
+						<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video"
+								@click.stop="toPre(item)"></span>
 					</div>
 				</div>
 			</div>
@@ -28,7 +30,8 @@
 					<div class="ten-title">{{tenInfo.name}}</div>
 					<img :src="tenInfo.img" class="ten-img">
 					<div class="ten-des" v-html="tenInfo.cont"></div>
-					<img src="../../public/static/images/cancel.png" style="position: absolute;top: 0;right: -10px;" @click="showTenInfo = false">
+					<img src="../../public/static/images/cancel.png" style="position: absolute;top: 0;right: -10px;"
+						@click="showTenInfo = false">
 				</div>
 			</div>
 		</transition>
@@ -40,7 +43,8 @@
 					</div>
 				</div>
 				<div v-show="westImgShow" class="banner">
-					<el-carousel v-if="westImgList" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex2">
+					<el-carousel v-if="westImgList" indicator-position='none' arrow='hover' :interval='4000'
+						@change="changeIndex2">
 						<el-carousel-item v-for="(item,index) in westImgList.img" :key="index">
 							<img :src="item">
 						</el-carousel-item>
@@ -73,12 +77,14 @@
 		</transition>
 		<transition name="fade">
 			<div v-if="show" class="banner">
-				<el-carousel v-if="imgList.length>0" indicator-position='none' arrow='hover' :interval='4000' @change="changeIndex">
+				<el-carousel v-if="imgList.length>0" indicator-position='none' arrow='hover' :interval='4000'
+					@change="changeIndex">
 					<el-carousel-item v-for="(item,index) in imgList" :key="index">
 						<img :src="item.img">
 					</el-carousel-item>
 				</el-carousel>
-				<div class="banner-name" v-if="imgList.length>0&&imgList[nameIndex].name">{{imgList[nameIndex].name}}</div>
+				<div class="banner-name" v-if="imgList.length>0&&imgList[nameIndex].name">{{imgList[nameIndex].name}}
+				</div>
 				<div class="banner-top-img" v-show="showVideo">
 					<video controls="controls" :src="preVideo" ref="preVideo" width="100%" height="100%"></video>
 				</div>
@@ -96,15 +102,15 @@
 			</div>
 		</transition>
 		<transition name="fade">
-			<div class="pop-common pop-list jd-bg" v-show="show2" >
+			<div class="pop-common pop-list jd-bg" v-show="show2">
 				<img src="../bgImages/视频播放.png"
-					 style="width: 30px;height: 30px;position: absolute;right: 170px;top:15px;" @click="toScenicSpot()">
+					style="width: 30px;height: 30px;position: absolute;right: 170px;top:15px;" @click="toScenicSpot()">
 
 				<div class="pop-inner-title">
 					<span>序号</span>
 					<span>景点名称</span>
 				</div>
-				<div class="pop-inner-box" >
+				<div class="pop-inner-box">
 					<div v-for="(item,index) in jdList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span>{{ index + 1 }}</span>
 						<span>{{ item.name }}</span>
@@ -138,7 +144,7 @@
 
 		<div class="model" v-if="dialogVisible">
 			<img src="static/images/cancel.png" @click="toStopScenicSpot">
-			<video controls="controls" :src="videoUrl"  width="100%" height="100%" autoplay></video>
+			<video controls="controls" :src="videoUrl" width="100%" height="100%" autoplay></video>
 		</div>
 
 
@@ -166,7 +172,7 @@
 			return {
 				isActive: 0,
 				codes: '',
-				preVideo:'',
+				preVideo: '',
 				option: {
 					title: {
 						text: '{a|480}\n{c|剩余车位数}',
@@ -281,7 +287,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[113 / 1000, '#3cd868'],
+										[113 / 375, '#3cd868'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -358,7 +364,7 @@
 								show: true,
 								lineStyle: {
 									color: [
-										[187 / 1000, '#f7dc46'],
+										[187 / 2000, '#f7dc46'],
 										[1, 'rgba(32,187,252,0.15)']
 									],
 									width: 30
@@ -403,7 +409,7 @@
 				clgy1: 'clgy1',
 				show: false, //美食列表
 				show2: false, //每日数据
-				show3: false, 
+				show3: false,
 				show4: false, // 美食统计
 				showTenList: false, //十大碗
 				showTenInfo: false, //十大碗详情
@@ -420,7 +426,7 @@
 				westImgList: [], //乡村西餐轮播列表
 				driveList: [], //代驾联盟列表
 				nameIndex: 0,
-				nameIndex2:0,
+				nameIndex2: 0,
 				labelIndex: 0,
 				xingIndex: 0,
 				e: 0,
@@ -469,20 +475,20 @@
 				njlList: [],
 				jdList: [],
 				imgList: [],
-				dialogVisible:false,
+				dialogVisible: false,
 				videoUrl: ''
 			}
 		},
 		methods: {
-			toStopScenicSpot(){
-				this.dialogVisible=false
+			toStopScenicSpot() {
+				this.dialogVisible = false
 			},
-			toScenicSpot(){
-				this.dialogVisible=true
+			toScenicSpot() {
+				this.dialogVisible = true
 			},
-			toPre(item){
+			toPre(item) {
 				this.showVideo = true
-				this.preVideo=item.video
+				this.preVideo = item.video
 				this.$refs.preVideo.play()
 			},
 			goto(item) {
@@ -496,10 +502,10 @@
 					this.codes = item.monitor;
 					this.$refs.videoPlayer6.initPlugin()
 				}
-				if(item.video){
-					this.preVideo=item.video
+				if (item.video) {
+					this.preVideo = item.video
 				}
-				if(this.e == 1 || this.e == 0) {
+				if (this.e == 1 || this.e == 0) {
 					this.imgList = []
 					this.$ajax.getAdvert({
 						travelId: item.id,
@@ -542,7 +548,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
-					this.dialogVisible=false
+					this.dialogVisible = false
 				} else if (e == 1) {
 					//住
 					this.onOff("打开图层", "民宿")
@@ -563,7 +569,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
-					this.dialogVisible=false
+					this.dialogVisible = false
 				} else if (e == 2) {
 					//玩
 					this.onOff("打开图层", "旅游景点")
@@ -582,7 +588,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
-					this.dialogVisible=false
+					this.dialogVisible = false
 				} else if (e == 3) {
 					//购
 					this.onOff("关闭图层", "旅游景点")
@@ -601,7 +607,7 @@
 					this.showShopImg = false
 					this.showTenInfo = false
 					this.westImgShow = false
-					this.dialogVisible=false
+					this.dialogVisible = false
 				}
 			},
 			changeIndex(e) {
@@ -611,7 +617,7 @@
 				this.nameIndex2 = e
 			},
 			getPopIndex(e) {
-				if(e==0) {
+				if (e == 0) {
 					this.onOff("打开图层", "农家乐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -623,13 +629,13 @@
 					this.showWest = false
 					this.showDrive = false
 					this.westImgShow = false
-				} else if(e==1) {
+				} else if (e == 1) {
 					this.show = false
 					this.showTenList = true
 					this.showWest = false
 					this.showDrive = false
 					this.westImgShow = false
-				} else if(e==2) {
+				} else if (e == 2) {
 					this.onOff("打开图层", "乡村西餐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -640,7 +646,7 @@
 					this.showTenInfo = false
 					this.showWest = true
 					this.showDrive = false
-				} else if(e==3) {
+				} else if (e == 3) {
 					this.show = false
 					this.showTenList = false
 					this.showTenInfo = false
@@ -693,53 +699,73 @@
 				this.eatList = res.records
 				this.njlList = this.eatList
 			})
-			this.$ajax.getHotelList({size:20,current:1}).then(res => {
+			this.$ajax.getHotelList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				this.hotelList = res.records
 			})
-			this.$ajax.getShopList({size:20,current:1}).then(res => {
+			this.$ajax.getShopList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				this.shopList = res.records
 			})
-			this.$ajax.getTenList({size:20,current:1}).then(res => {
+			this.$ajax.getTenList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				this.tenList = res.records
 			})
-			this.$ajax.getWestList({size:20,current:1}).then(res => {
+			this.$ajax.getWestList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				res.records.forEach(item => {
 					item.img = item.img.split(",")
 				})
 				this.westList = res.records
 			})
-			this.$ajax.getDriveList({size:20,current:1}).then(res => {
+			this.$ajax.getDriveList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				this.driveList = res.records
 			})
-			this.$ajax.getSiteList({size:20,current:1}).then(res => {
+			this.$ajax.getSiteList({
+				size: 20,
+				current: 1
+			}).then(res => {
 				this.jdList = res.records
 				this.videoUrl = res.records[0].video
 			})
 			this.$ajax.getPassengerFlow().then(res => {
 				this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+				this.option4.series[0].axisLine.lineStyle.color[0][0] = Number(res.list[0].flowInNum / 375)
 			})
 			this.$ajax.getCarNum().then(res => {
-					this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+				this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+				this.option5.series[0].axisLine.lineStyle.color[0][0] = Number(res.total / 2000)
 			})
 			this.show = true
 			this.show4 = true
 			let that = this
-			setInterval(()=>{
-			  let option = that.random(297, 512)
-			  let option5 = that.random(113, 286)
-			  that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
-			  that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5 / 1000)
-			  that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
-			  this.$ajax.getPassengerFlow().then(res => {
-			  		  this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
-			  })
-			  this.$ajax.getCarNum().then(res => {
-			  		this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
-			  })
+			setInterval(() => {
+				let option = that.random(297, 512)
+				that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
+				that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
+				that.$ajax.getPassengerFlow().then(res => {
+					that.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+					that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(res.list[0].flowInNum / 375)
+				})
+				that.$ajax.getCarNum().then(res => {
+					that.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+					that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(res.total / 2000)
+				})
 			}, 60000)
 		},
-		watch:{
-			isActive(val,oVal) {
+		watch: {
+			isActive(val, oVal) {
 				this.$refs.botTab.isActive = val
 			}
 		}
@@ -777,7 +803,7 @@
 		background-size: 100% 100%;
 		padding-top: 50px;
 	}
-	
+
 	.shop-bg {
 		background: url(../bgImages/购物列表.png) no-repeat;
 		background-size: 100% 100%;
@@ -789,6 +815,7 @@
 		background: url(../bgImages/十大碗.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 80px;
+
 		.pop-inner-item {
 			width: 100%;
 			text-align: center;
@@ -809,6 +836,7 @@
 		top: 200px;
 		font-size: 22px;
 		color: #8BEBFF;
+
 		.ten-title {
 			width: 100%;
 			padding: 15px 240px;
@@ -818,11 +846,13 @@
 			text-overflow: ellipsis;
 			text-align: center;
 		}
+
 		.ten-img {
 			width: 700px;
 			height: 400px;
 			margin: 0 auto;
 		}
+
 		.ten-des {
 			width: 700px;
 			margin: 10px auto;
@@ -830,12 +860,13 @@
 			overflow-y: scroll;
 		}
 	}
-	
+
 	.west-bg {
 		background: url(../bgImages/乡村西餐.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 100px;
 		min-height: 500px;
+
 		.pop-inner-item {
 			width: 100%;
 			text-align: center;
@@ -843,12 +874,13 @@
 			margin-bottom: 10px;
 		}
 	}
-	
+
 	.drive-bg {
 		background: url(../bgImages/代驾联盟.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 90px;
 		min-height: 500px;
+
 		span {
 			text-align: center;
 		}
@@ -908,6 +940,7 @@
 		background: url(../bgImages/每日数据.png) no-repeat;
 		background-size: 100% 100%;
 		padding-top: 50px;
+
 		.rm-bottom {
 			width: 95%;
 			margin: 0 auto;
@@ -938,7 +971,7 @@
 			margin-bottom: 20px;
 			border: 2px solid #fff;
 			box-sizing: border-box;
-			object-fit:cover;
+			object-fit: cover;
 		}
 
 		/deep/ .el-carousel__container {
@@ -989,17 +1022,21 @@
 		height: 607px;
 		border: 2px solid #fff;
 		border-radius: 0;
+
 		// box-sizing: border-box;
 		/deep/ .el-carousel {
 			width: 100%;
 			height: 100%;
+
 			.el-carousel__container {
 				border: none;
 				width: 100%;
 				height: 100%;
+
 				.el-carousel__item {
 					width: 100%;
 					height: 100%;
+
 					img {
 						width: 100%;
 						height: 100%;
@@ -1007,7 +1044,7 @@
 				}
 			}
 		}
-		 
+
 	}
 
 	.banner-box-left {
@@ -1134,22 +1171,23 @@
 	.fade-leave-to {
 		opacity: 0;
 	}
-	.model{
+
+	.model {
 
 		width: 1000px;
 		height: 500px;
 		position: fixed;
 		left: 50%;
 		top: 50%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 		z-index: 10000;
-		img{
+
+		img {
 			position: absolute;
 			right: 0;
-			top:0;
+			top: 0;
 			width: 30px;
 			z-index: 10001;
 		}
 	}
-
 </style>

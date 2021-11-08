@@ -668,6 +668,7 @@
 					})
 				} else if (this.missionTabIndex==3) {
 					this.$ajax.getPartyMemberDetail({id:item.id}).then(res => {
+						res.joinTime = res.joinTime.substring(0,10)
 						this.missionInfo = res
 					})
 				} else if (this.missionTabIndex==5) {

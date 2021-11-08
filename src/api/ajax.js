@@ -673,6 +673,14 @@ class api {
   	  })
   	})
   }
+  // 宅基地申请列表
+  perApplyAllList(data) {
+    return new Promise(resolve => {
+      get("/blade-base/open/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({

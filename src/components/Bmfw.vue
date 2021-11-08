@@ -3,24 +3,28 @@
 		<transition name="fade">
 			<div class="pop-common srjf" v-show="show">
 				<div class="srjf-title">
-					<span>序号</span>
+					<!-- <span>序号</span> -->
+					<span>优先排序</span>
 					<span>户主姓名</span>
 					<span>户内人口</span>
 					<span>原有宅基地房屋处置方式</span>
+					<span>申请状态</span>
 					<span>新申请用地面积</span>
 					<span>预选建房地址</span>
 					<span>办理进展情况</span>
-					<span>优先排序</span>
 				</div>
-				<div class="srjf-item" v-for="(item, index) in srjfList" :key="index">
-					<span>{{index+1}}</span>
-					<span>{{item.name}}</span>
-					<span>{{item.num}}</span>
-					<span>{{item.solve}}</span>
-					<span>{{item.newArea}}</span>
-					<span>{{item.newArea}}</span>
-					<span>{{item.schedule}}</span>
-					<span>{{item.sort}}</span>
+				<div class="srjf-box">
+					<div class="srjf-item" v-for="(item, index) in srjfList" :key="index">
+						<!-- <span>{{index+1}}</span> -->
+						<span>{{item.sort}}</span>
+						<span>{{item.name}}</span>
+						<span>{{item.population}}</span>
+						<span>{{item.manager}}</span>
+						<span>{{statusType2[item.status]}}</span>
+						<span>{{item.area}}</span>
+						<span>{{item.address}}</span>
+						<span>{{item.progress}}</span>
+					</div>
 				</div>
 			</div>
 		</transition>
@@ -90,6 +94,7 @@
 				guideDetailShow: false, //减负清单详情
 				pageIndex: 0,
 				pageCont: [],
+				statusType2: ['审核拒绝','待审核','审核通过'],
 				tabList: [{
 					hasUrl: false,
 					title: '建房申请'
@@ -103,23 +108,7 @@
 					hasUrl: false,
 					title: '公共场所'
 				}],
-				srjfList: [{
-					name: '刘飞',
-					num: 4,
-					solve: '拆除',
-					newArea: 100,
-					newAdd: '横溪墙头25号',
-					schedule: '审核中',
-					sort: '2'
-				}, {
-					name: '俞棋辉',
-					num: 2,
-					solve: '拆除',
-					newArea: 100,
-					newAdd: '九龙湖横溪',
-					schedule: '申请',
-					sort: '1'
-				}],
+				srjfList: [],
 				publicList: [{
 					name: '九龙湖镇九龙湖社区卫生服务站',
 					lng: '121.504729',
@@ -206,6 +195,9 @@
 					this.show2 = false
 					this.showGuide = false
 					this.guideDetailShow = false
+					this.$ajax.perApplyAllList({current:1,size:50}).then(res => {
+						this.srjfList = res.records
+					})
 					this.onOff('关闭图层', '公共场所')
 				} else if (e == 1) {
 					this.show = false
@@ -350,7 +342,7 @@
 	.srjf {
 		position: absolute;
 		width: 1450px;
-		min-height: 298px;
+		height: 298px;
 		top: 200px;
 		left: 35px;
 		background: url(../bgImages/私人建房统计.png) no-repeat;
@@ -371,7 +363,10 @@
 				flex: 2;
 			}
 		}
-
+		.srjf-box {
+			height: 190px;
+			overflow-y: auto;
+		}
 		.srjf-item {
 			display: flex;
 			align-items: center;

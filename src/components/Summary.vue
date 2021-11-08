@@ -520,7 +520,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [113 / 1000, '#3cd868'],
+                  [113/375, '#3cd868'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -598,7 +598,7 @@ export default {
               show: true,
               lineStyle: {
                 color: [
-                  [187 / 1000, '#f7dc46'],
+                  [187 / 2000, '#f7dc46'],
                   [1, 'rgba(32,187,252,0.15)']
                 ],
                 width: 30
@@ -738,18 +738,18 @@ export default {
   mounted() {
     this.onLoad()
     let that = this
-    setInterval(()=>{
-      let option = that.random(297, 512)
-      let option5 = that.random(113, 286)
-      that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
-      that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(option5 / 1000)
-      that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
-	  this.$ajax.getPassengerFlow().then(res => {
-	  		  this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
-	  })
-	  this.$ajax.getCarNum().then(res => {
-	  		this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
-	  })
+    setInterval(() => {
+    	let option = that.random(297, 512)
+    	that.option.series[0].axisLine.lineStyle.color[0][0] = Number(option / 1000)
+    	that.option.title.text = '{a|' + option + '}\n{c|剩余车位}'
+    	that.$ajax.getPassengerFlow().then(res => {
+    		that.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+    		that.option4.series[0].axisLine.lineStyle.color[0][0] = Number(res.list[0].flowInNum / 375)
+    	})
+    	that.$ajax.getCarNum().then(res => {
+    		that.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+    		that.option5.series[0].axisLine.lineStyle.color[0][0] = Number(res.total / 2000)
+    	})
     }, 60000)
   },
   components: {
@@ -771,10 +771,12 @@ export default {
         this.tq = res;
       })
 	  this.$ajax.getPassengerFlow().then(res => {
-		  this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+	  	this.option4.title.text = '{a|' + res.list[0].flowInNum + '}\n{c|人流量}'
+	  	this.option4.series[0].axisLine.lineStyle.color[0][0] = Number(res.list[0].flowInNum / 375)
 	  })
 	  this.$ajax.getCarNum().then(res => {
-		this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+	  	this.option5.title.text = '{a|' + res.total + '}\n{c|车流量}'
+	  	this.option5.series[0].axisLine.lineStyle.color[0][0] = Number(res.total / 2000)
 	  })
       this.$refs.videoPlayer.initPlugin()
       this.$refs.videoPlayer3.initPlugin()
