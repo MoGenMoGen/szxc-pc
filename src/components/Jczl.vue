@@ -829,6 +829,8 @@
 				},
 				ljflOption: {
 					xAxis: {
+						name: '时间点',
+						// nameLocation: 'center',
 						type: 'category',
 						boundaryGap: false,
 						data: ['0点', '2点', '4点', '6点', '8点', '10点','12点', '14点', '16点', '18点', '20点', '22点'],
@@ -842,6 +844,7 @@
 						},
 					},
 					yAxis: {
+						name: '次数',
 						type: 'value',
 						axisLabel: {
 							color: '#fff'
@@ -860,7 +863,7 @@
 					grid: {
 						top: "30px",
 						left: "30px",
-						right: "30px",
+						right: "60px",
 						bottom: "30px"
 					}
 				},
@@ -943,6 +946,8 @@
 						}
 					},
 					xAxis: {
+						name: '日期',
+						// nameLocation: 'center',
 						type: 'category',
 						boundaryGap: false,
 						data: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
@@ -957,6 +962,10 @@
 						},
 					},
 					yAxis: {
+						max: function (value) {
+						    return value.max * 2;
+						},
+						name: '位移值',
 						type: 'value',
 						minInterval: 1,
 						axisLabel: {
@@ -973,19 +982,43 @@
 						{
 						  name: '横溪东沟',
 						  type: 'line',
+						  itemStyle: {
+							  normal: {
+								  lineStyle: {
+									  color: '#5da7f5'
+								  }
+							  }
+						  },
 						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						},
 						{
 						  name: '开元云顶',
 						  type: 'line',
+						  itemStyle: {
+							  normal: {
+								  lineStyle: {
+									  color: '#FF8352'
+								  }
+							  }
+						  },
 						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						},
 						{
 						  name: '九龙山大坝',
 						  type: 'line',
+						  itemStyle: {
+							  normal: {
+								  lineStyle: {
+									  color: '#E271DE'
+								  }
+							  }
+						  },
 						  data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0],
 						}
-					]
+					],
+					grid: {
+						right: "40px",
+					}
 				},
 				beforeIndex: 0,
 				afterIndex: 0,

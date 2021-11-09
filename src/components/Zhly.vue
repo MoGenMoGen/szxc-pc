@@ -530,6 +530,7 @@
 			getIndex(e) {
 				this.e = e
 				if (e == 0) {
+					this.offHik()
 					this.onOff("打开图层", "农家乐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -551,6 +552,7 @@
 					this.dialogVisible = false
 				} else if (e == 1) {
 					//住
+					this.offHik()
 					this.onOff("打开图层", "民宿")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -572,6 +574,7 @@
 					this.dialogVisible = false
 				} else if (e == 2) {
 					//玩
+					this.offHik()
 					this.onOff("打开图层", "旅游景点")
 					this.onOff("打开图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
@@ -591,6 +594,7 @@
 					this.dialogVisible = false
 				} else if (e == 3) {
 					//购
+					this.offHik()
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
 					this.onOff("关闭图层", "农家乐")
@@ -618,6 +622,7 @@
 			},
 			getPopIndex(e) {
 				if (e == 0) {
+					this.offHik()
 					this.onOff("打开图层", "农家乐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -630,12 +635,14 @@
 					this.showDrive = false
 					this.westImgShow = false
 				} else if (e == 1) {
+					this.offHik()
 					this.show = false
 					this.showTenList = true
 					this.showWest = false
 					this.showDrive = false
 					this.westImgShow = false
 				} else if (e == 2) {
+					this.offHik()
 					this.onOff("打开图层", "乡村西餐")
 					this.onOff("关闭图层", "旅游景点")
 					this.onOff("关闭图层", "旅游路线")
@@ -647,6 +654,7 @@
 					this.showWest = true
 					this.showDrive = false
 				} else if (e == 3) {
+					this.offHik()
 					this.show = false
 					this.showTenList = false
 					this.showTenInfo = false

@@ -174,7 +174,7 @@
 							<img src="../bgImages/logo.png">
 							<div class="cmss-infoDetail-item-right">
 								<span>村委会回复（办）:</span>
-								<span>{{cmssDetail.eventHandle}}</span>
+								<span v-html="cmssDetail.eventHandle"></span>
 							</div>
 						</div>
 						<div class="cmss-infoDetail-item">
@@ -199,7 +199,7 @@
 							</div>
 							<div class="cmss-message-info">
 								<div class="cmss-message-comment" v-for="(item,index) in cmssCommentList" :key="index">
-									<div><img :src="item.avatar">{{item.nickName||item.realName}}</div>
+									<div><img :src="item.avatar?item.avatar:avatar">{{item.nickName||item.realName||'游客'}}</div>
 									<span>{{item.cont}}</span>
 									<span>{{item.createTime}}</span>
 								</div>
@@ -243,7 +243,7 @@
 							</div>
 							<div class="mytj-message-box">
 								<div class="mytj-message-comment" v-for="(item,index) in mytjCommentList" :key="index">
-									<div><img :src="item.avatar">{{item.nickName||item.realName}}</div>
+									<div><img :src="item.avatar?item.avatar:avatar">{{item.nickName||item.realName||'游客'}}</div>
 									<span>{{item.cont}}</span>
 									<span>{{item.createTime}}</span>
 								</div>
@@ -428,6 +428,7 @@
 
 <script>
 	import BottomTab from '@/components/BottomTab.vue'
+	import avatar from '../../public/static/images/avatar.png'
 	import icBj from '../images/村务管理背景图.png'
 	import icJts from '../images/上箭头.png'
 	import icJtx from '../images/下箭头.png'
@@ -443,6 +444,7 @@
 		props: {},
 		data() {
 			return {
+				avatar,
 				icBj,
 				icJts,
 				icJtx,
@@ -992,7 +994,7 @@
 		}
 
 		.pop-inner-box {
-			max-height: 350px;
+			max-height: 300px;
 			overflow-y: scroll;
 
 			.pop-inner-item {
@@ -1253,7 +1255,7 @@
 		}
 
 		.pop-inner-box {
-			max-height: 350px;
+			max-height: 300px;
 			overflow-y: scroll;
 
 			.pop-inner-item {
