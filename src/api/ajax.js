@@ -609,10 +609,18 @@ class api {
       })
     })
   }
+  // 党员活动 筛选条件
+  getActiveList2(data) {
+    return new Promise(resolve => {
+      get("/blade-part/activity/list22",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
   // 党员活动
   getActiveList(data) {
     return new Promise(resolve => {
-      get("/blade-part/activity/list22",data).then(res => {
+      get("/blade-part/activity/list",data).then(res => {
         resolve(res.data)
       })
     })

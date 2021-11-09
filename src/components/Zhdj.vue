@@ -599,7 +599,7 @@
 				if(index==0) {
 					if(this.activeIndex==0) {
 						data.type = 0
-						this.$ajax.getActiveList(data).then(res => {
+						this.$ajax.getActiveList2(data).then(res => {
 							res.records.forEach(item => {
 								item.startTime = item.startTime.substring(0,10)
 							})
@@ -607,7 +607,7 @@
 						})
 					} else {
 						data.type=1
-						this.$ajax.getActiveList(data).then(res => {
+						this.$ajax.getActiveList2(data).then(res => {
 							res.records.forEach(item => {
 								item.startTime = item.startTime.substring(0,10)
 							})
@@ -615,7 +615,7 @@
 						})
 					}
 				} else if (index==1) {
-					data.type=2
+					data.typet = 1
 					this.$ajax.getActiveList(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)
@@ -644,7 +644,7 @@
 				this.activeIndex = index
 				if(this.activeIndex==0) {
 					data.type = 0
-					this.$ajax.getActiveList(data).then(res => {
+					this.$ajax.getActiveList2(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)
 						})
@@ -652,7 +652,7 @@
 					})
 				} else {
 					data.type=1
-					this.$ajax.getActiveList(data).then(res => {
+					this.$ajax.getActiveList2(data).then(res => {
 						res.records.forEach(item => {
 							item.startTime = item.startTime.substring(0,10)
 						})
