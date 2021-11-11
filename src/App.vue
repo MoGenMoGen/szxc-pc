@@ -19,10 +19,11 @@
 		<Summary ref="summary" v-show="isActive==0&&flag"></Summary>
 		<!-- <Yhyd ref="Yhyd" v-show="isActive==1&&flag"></Yhyd> -->
 		<Zhdj ref="Zhdj" v-show="isActive==1&&flag"></Zhdj>
-		<Jczl v-show="isActive==2&&flag" ref="jczl"></Jczl>
-		<Cwgk v-show="isActive==3&&flag" ref="cwgk"></Cwgk>
-		<Zhly ref="Zhly" v-show="isActive==4&&flag"></Zhly>
-		<Bmfw ref="bmfw" v-show="isActive==5&&flag"></Bmfw>
+		<Fzzf ref="Fzzf" v-show="isActive==2&&flag"></Fzzf>
+		<Jczl v-show="isActive==3&&flag" ref="jczl"></Jczl>
+		<Cwgk v-show="isActive==4&&flag" ref="cwgk"></Cwgk>
+		<Zhly ref="Zhly" v-show="isActive==5&&flag"></Zhly>
+		<Bmfw ref="bmfw" v-show="isActive==6&&flag"></Bmfw>
 
 
 		<iframe width="2236" height="1204" id="iframe" src="http://218.0.7.176:90/" frameborder="0"></iframe>
@@ -41,7 +42,7 @@
 	import Jczl from '@/components/Jczl.vue'
 	import Cwgk from '@/components/Cwgk.vue'
 	import Bmfw from '@/components/Bmfw.vue'
-
+	import Fzzf from '@/components/Fzzf.vue'
 	export default {
 		data() {
 			return {
@@ -55,7 +56,7 @@
 				isActive: 0,
 				isActive2: 0,
 				tabActive: 0,
-				tabList: ['概要', '智慧党建', '基层治理', '清廉九龙', '智慧旅游', '便民服务'],
+				tabList: ['概要', '智慧党建','法治政府', '基层治理', '清廉九龙', '智慧旅游', '便民服务'],
 				tabChildList: []
 			}
 		},
@@ -69,7 +70,8 @@
 			Zhly,
 			Jczl,
 			Cwgk,
-			Bmfw
+			Bmfw,
+			Fzzf
 		},
 		methods: {
 			test(val) {
@@ -91,23 +93,23 @@
 				return data
 			},
 			changeIndex(e) {
-				if (e !== 3&&e!==5) {
+				if (e !== 4&&e!==6) {
 					this.$refs.cwgk.offShow()
 				}
 				if (e !== 0) {
 					this.$refs.summary.offHik()
 				}
-				if (e !== 4){
+				if (e !== 5){
           this.$refs.Zhly.offHik()
         }
-				if (e !== 2) {
+				if (e !== 3) {
 					this.$refs.jczl.offHik()
 				}
 				if (e == 0) {
 					this.isChildShow = false
 					this.$refs.summary.onLoad()
 				}
-				if (e == 5) {
+				if (e == 6) {
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllLy()
@@ -122,14 +124,21 @@
 					this.offAllJc()
 					this.offAllYh()
 				}
+				// 法治政府
+				if ( e===2 ) {
+					this.offAllDj()
+					this.offAllLy()
+					this.offAllJc()
+					this.offAllYh()
+				}
 				//旅游
-				if (e === 4) {
+				if (e === 5) {
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
 				}
 				//基层治理
-				if (e === 2) {
+				if (e === 3) {
 					if(this.$refs.jczl.e==0) {
 						this.onOff("打开图层", "网格")
 					}
@@ -138,7 +147,7 @@
 					this.offAllYh()
 				}
 				//村务管理
-				if (e === 3) {
+				if (e === 4) {
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
@@ -197,18 +206,22 @@
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==2) {
-					this.tabChildList = ['网格管理','综合监管']
+					this.tabChildList = ['普法宣传','线上调解','数字监管','执法改革']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==3) {
-					this.tabChildList = ['阳光村务', '村民说事','民意体检', '清风廉韵']
+					this.tabChildList = ['网格管理','综合监管']
 					this.isChildShow = true
 					this.isActive2 = e
 				} else if (e==4) {
+					this.tabChildList = ['阳光村务', '村民说事','民意体检', '清风廉韵']
+					this.isChildShow = true
+					this.isActive2 = e
+				} else if (e==6) {
 					this.tabChildList = ['美食', '住宿','游玩','购物']
 					this.isChildShow = true
 					this.isActive2 = e
-				} else if (e==5) {
+				} else if (e==6) {
 					this.tabChildList = ['建房申请', '减负清单','居家养老','公共场所']
 					this.isChildShow = true
 					this.isActive2 = e
@@ -220,16 +233,16 @@
 			choose(newindex,index) {
 				this.isActive = index
 				this.isChildShow = false
-				if (index !== 3&&index!==5) {
+				if (index !== 4&&index!==6) {
 					this.$refs.cwgk.offShow()
 				}
 				if (index !== 0) {
 					this.$refs.summary.offHik()
 				}
-				if (index !== 4){
+				if (index !== 5){
 				  this.$refs.Zhly.offHik()
 				}
-				if (index !== 2) {
+				if (index !== 3) {
 					this.$refs.jczl.offHik()
 				}
 				if(index == 1) {
@@ -242,7 +255,15 @@
 					this.offAllLy()
 					this.offAllJc()
 					this.offAllYh()
-				}  else if(index == 2) {
+				} else if (index==2) {
+					this.tabActive = newindex
+					this.offAllDj()
+					this.offAllLy()
+					this.offAllJc()
+					this.offAllYh()
+					this.$refs.Fzzf.getIndex(newindex)
+					this.$refs.Fzzf.isActive = newindex
+				} else if(index == 3) {
 					this.onOff('关闭图层', '公共场所')
 					this.tabActive = newindex
 					this.$refs.jczl.getIndex(newindex)
@@ -252,7 +273,7 @@
 					this.offAllDj()
 					this.offAllLy()
 					this.offAllYh()
-				} else if (index==3) {
+				} else if (index==4) {
 					this.tabActive = newindex
 					this.$refs.cwgk.getIndex(newindex)
 					this.onOff('关闭图层', '公共场所')
@@ -260,7 +281,7 @@
 					this.offAllJc()
 					this.offAllYh()
 					this.offAllLy()
-				} else if (index==4) {
+				} else if (index==5) {
 					this.tabActive = newindex
 					this.$refs.Zhly.getIndex(newindex)
 					this.$refs.Zhly.isActive = newindex
@@ -268,7 +289,7 @@
 					this.offAllDj()
 					this.offAllJc()
 					this.offAllYh()
-				} else if (index==5) {
+				} else if (index==6) {
 					this.tabActive = newindex
 					this.$refs.bmfw.getIndex(newindex)
 					this.offAllDj()
