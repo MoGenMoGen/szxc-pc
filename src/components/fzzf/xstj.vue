@@ -49,7 +49,7 @@
 	import ggflfwd from '../../bgImages/fzzf/公共法律服务点.png';
 	import tjy from '../../bgImages/fzzf/调解员.png';
 	import lxlf from '../../bgImages/fzzf/来信来访.png';
-	import mapUrl from '../../bgImages/fzzf/公共法律服务点地图.jpg'
+	import mapUrl from '../../bgImages/fzzf/公共法律服务点地图(1).png'
 	export default {
 		name: 'zfgg',
 		props: {},
@@ -128,6 +128,11 @@
 					name: '郑国振',
 					position: '治调主任',
 					phone: '13968276009'
+				},{
+					area: '九龙湖司法所',
+					name: '朱美菊',
+					position: '治调主任',
+					phone: '15865124302'
 				},{
 					area: '思源社区',
 					name: '胡文浩',
