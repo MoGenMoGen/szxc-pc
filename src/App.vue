@@ -217,7 +217,7 @@
 					this.tabChildList = ['阳光村务', '村民说事','民意体检', '清风廉韵']
 					this.isChildShow = true
 					this.isActive2 = e
-				} else if (e==6) {
+				} else if (e==5) {
 					this.tabChildList = ['美食', '住宿','游玩','购物']
 					this.isChildShow = true
 					this.isActive2 = e

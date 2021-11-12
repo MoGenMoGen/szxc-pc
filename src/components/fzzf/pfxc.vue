@@ -78,16 +78,21 @@
 		</div>
 		<!-- 促进条例 -->
 		<div v-if="cjtlShow">
-			<div class="cjtl-box">
+			<!-- <div class="cjtl-box">
 				<div class="title">宁波市法治乡村建设促进条例</div>
 				<div class="list-box">
 					<span class="list-item" v-for="(item,index) in cjtlList" :key="index" @click="cjtlClick(item)">{{index+1}}、{{item.title}}</span>
 				</div>
-			</div>
-			<div class="cjtl-center-box" v-if="cjtlInfoShow">
-				<div class="title">详情</div>
-				<div class="info-name">{{cjtlInfo.title}}</div>
-				<div class="info-cont">{{cjtlInfo.cont}}</div>
+			</div> -->
+			<div class="cjtl-center-box">
+				<div class="title">宁波市法治乡村建设促进条例</div>
+				<div class="swiper-box">
+					<el-carousel interval="3000" direction="vertical">
+					  <el-carousel-item v-for="item in cjtlImgList" :key="item">
+						<img :src="item" style="width: 100%;height: 100%;">
+					  </el-carousel-item>
+					</el-carousel>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -110,6 +115,23 @@
 	import img9 from '../../bgImages/fzzf/9.png';
 	import img10 from '../../bgImages/fzzf/10.png';
 	import avatar from '../../bgImages/fzzf/头像.png';
+	import cjtlImg1 from '../../bgImages/cjtl/1.png';
+	import cjtlImg2 from '../../bgImages/cjtl/2.png';
+	import cjtlImg3 from '../../bgImages/cjtl/3.png';
+	import cjtlImg4 from '../../bgImages/cjtl/4.png';
+	import cjtlImg5 from '../../bgImages/cjtl/5.png';
+	import cjtlImg6 from '../../bgImages/cjtl/6.png';
+	import cjtlImg7 from '../../bgImages/cjtl/7.png';
+	import cjtlImg8 from '../../bgImages/cjtl/8.png';
+	import cjtlImg9 from '../../bgImages/cjtl/9.png';
+	import cjtlImg10 from '../../bgImages/cjtl/10.png';
+	import cjtlImg11 from '../../bgImages/cjtl/11.png';
+	import cjtlImg12 from '../../bgImages/cjtl/12.png';
+	import cjtlImg13 from '../../bgImages/cjtl/13.png';
+	import cjtlImg14 from '../../bgImages/cjtl/14.png';
+	import cjtlImg15 from '../../bgImages/cjtl/15.png';
+	import cjtlImg16 from '../../bgImages/cjtl/16.png';
+	import cjtlImg17 from '../../bgImages/cjtl/17.png';
 	export default {
 		name: 'zfgg',
 		props: {},
@@ -122,7 +144,6 @@
 				fzdwTitle: '',
 				fzdwIndex: 0,
 				fzdwCenterShow: false,
-				cjtlInfoShow: false,
 				list: [{
 					name: '八五普法规划',
 					detailTitle: '',
@@ -311,7 +332,9 @@
 				},{
 					title: '《条例》明确了提高乡村公众法治意识，开展普法和依法治理工作。',
 					cont: '《条例》第二十七条第一款规定，“市和区县（市）人民政府有关部门和乡（镇）人民政府应当开展对村级组织成员、村民代表、村民小组长、网格员、人民调解员等人员的法律知识培训，培育法治带头人、乡村法律明白人。”第二十八条对民主法治示范村创建工作作了规定，第二十九条对法治教育、传统文化与法治文化融合等作了规定。'
-				}]
+				}],
+				cjtlImgList: [cjtlImg1,cjtlImg2,cjtlImg3,cjtlImg4,cjtlImg5,cjtlImg6,cjtlImg7,cjtlImg8,
+				cjtlImg9,cjtlImg10,cjtlImg11,cjtlImg12,cjtlImg13,cjtlImg14,cjtlImg15,cjtlImg16,cjtlImg17]
 			}
 		},
 		components: {},
@@ -355,10 +378,6 @@
 					this.fzdwTitle = '片区民警'
 				}
 			},
-			cjtlClick(item) {
-				this.cjtlInfoShow = true
-				this.cjtlInfo = item
-			}
 		},
 		watch: {},
 		mounted() {}
@@ -647,8 +666,8 @@
 	}
 	.cjtl-center-box {
 		width: 752px;
-		height: 614px;
-		background: url(../../bgImages/fzzf/普法宣传-宁波市法治乡村建设促进条例-详情.png) no-repeat;
+		height: 746px;
+		background: url(../../bgImages/fzzf/普法宣传-宁波市法治乡村建设促进条例.png) no-repeat;
 		background-size: 100% 100%;
 		display: flex;
 		flex-direction: column;
@@ -660,7 +679,7 @@
 		z-index: 1998;
 		.title {
 			width: 100%;
-			padding: 10px 300px;
+			padding: 10px 230px;
 			text-align: center;
 			box-sizing: border-box;
 			font-size: 22px;
@@ -678,6 +697,30 @@
 			font-size: 18px;
 			max-height: 460px;
 			overflow: auto;
+		}
+		.swiper-box {
+			width: 491px;
+			height: 622px;
+			margin: 20px auto;
+			/deep/ .el-carousel__container {
+				width: 100%;
+				height: 622px;
+			
+				.el-carousel__item {
+					width: 100%;
+					height: 100%;
+			
+					img {
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+			/deep/ .el-carousel__indicator--vertical {
+				.el-carousel__button {
+					background-color: red;
+				}
+			} 
 		}
 	}
 </style>
