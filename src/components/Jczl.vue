@@ -1621,6 +1621,7 @@
 				this.getGridDetail(item.id)
 			},
 			peopleMap(item) {
+				this.onOffTsry()
 				this.onOff('打开图层', '一户一档人口')
 				let a = {
 					layer: '一户一档',
