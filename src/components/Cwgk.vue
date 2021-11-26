@@ -1,59 +1,10 @@
 <template>
 	<!-- 村情公示 -->
 	<div>
-		<transition name="fade" v-if="show">
-			<div class="cun-container">
-				<img :src="icBj" class="bg">
-				<div class="wrapper">
-					<div class="cun-top">
-						<div class="cun-left" style="width: 100%">
-							<div class="chd">
-								<p>财务公开</p>
-								<img :src="icChf">
-							</div>
-
-							<ul>
-								<li v-for="item in list3" :key="item.id">
-									<div class="border-out">
-										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img">
-										</el-image>
-									</div>
-									<div class="top-label">
-										<img :src="icJts">
-										<p>{{item.name}}</p>
-									</div>
-
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="cun-top">
-						<div class="cun-left" style="width: 100%">
-							<div class="reverseArrow">
-								<div v-for="item in list4" :key="item.id">
-									<img :src="icJtx">
-									<p>{{item.name}}</p>
-
-								</div>
-							</div>
-
-							<ul>
-								<li v-for="item in list4" :key="item.id">
-									<div class="border-out">
-										<el-image class="moreImg" :src="item.img[0]" :preview-src-list="item.img">
-										</el-image>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</transition>
 		<transition name="fade">
-			<iframe v-if="cShow" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe"
-				:src="url2" frameborder="0"></iframe>
+			<!-- <iframe v-if="cShow" style="margin-top: 120px ;z-index: 9999999" width="2236" height="1104" id="iframe"
+				:src="url2" frameborder="0"></iframe> -->
+			<ygcw v-if="cShow"></ygcw>
 		</transition>
 		<transition name="fade">
 			<div class="supervise-box" v-show="superviseShow">
@@ -428,6 +379,7 @@
 
 <script>
 	import BottomTab from '@/components/BottomTab.vue'
+	import ygcw from '@/components/ygcw.vue'
 	import avatar from '../../public/static/images/avatar.png'
 	import icBj from '../images/村务管理背景图.png'
 	import icJts from '../images/上箭头.png'
@@ -643,7 +595,7 @@
 			}
 		},
 		components: {
-			BottomTab
+			BottomTab,ygcw
 		},
 		mounted() {
 			this.getSzglData()
