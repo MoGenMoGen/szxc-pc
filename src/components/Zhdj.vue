@@ -941,6 +941,7 @@
 			.red-class-detail-cont {
 				width: 100%;
 				color: #fff !important;
+				font-size: 30px !important;
 			}
 			.red-class-detail-img {
 				width: 650px;
@@ -977,6 +978,7 @@
 			overflow-y: scroll;
 			margin: 0 auto;
 			color: #fff;
+			font-size: 22px !important;
 		}
 	}
 	
@@ -1215,7 +1217,7 @@
 			.mission-detail {
 				width: 70%;
 				margin: 0 auto;
-				font-size: 18px;
+				font-size: 18px !important;
 				color: #fff;
 			}
 		}
@@ -1282,7 +1284,7 @@
 			flex-direction: column;
 			align-items: center;
 			color: #fff;
-			font-size: 18px;
+			font-size: 18px !important;
 			width: 90%;
 			max-height: 660px;
 			overflow: scroll;

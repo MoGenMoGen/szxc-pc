@@ -1550,13 +1550,14 @@
 				text-align: center;
 			}
 			.qfly-cont {
-				color: white;
 				width: 95%;
 				height: 790px;
 				padding: 15px 40px;
 				box-sizing: border-box;
 				overflow-y: scroll;
 				margin: 0 auto;
+				color: #fff !important;
+				font-size: 30px !important;
 			}
 		}
 	}

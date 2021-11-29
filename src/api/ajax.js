@@ -689,6 +689,38 @@ class api {
       })
     })
   }
+  // 阳关村务相关列表
+  getSunShineList(data) {
+    return new Promise(resolve => {
+      get("/blade-honest/value/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 监督机构列表
+  getSuperviseList(data){
+    return new Promise(resolve => {
+      get("/blade-honest/supervise/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 实时公开列表
+  getRealTimeList(data) {
+    return new Promise(resolve => {
+      get("/tb-notices/notices/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 资产管理列表
+  getAssetsList(data) {
+    return new Promise(resolve => {
+      get("/blade-honest/assets/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
