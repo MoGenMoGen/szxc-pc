@@ -15,19 +15,19 @@
 					<div class="box-info">
 						<div>
 							<p class="box-info-circle">
-								<span>222</span>
+								<span>{{economyInfo[20].cont}}</span>
 								<span>万元</span>
 							</p>
 							<p>本年度经济总收入目标</p>
-							<p>比去年<span>+8%</span></p>
+							<p>比去年<span>{{economyInfo[18].cont}}</span></p>
 						</div>
 						<div>
 							<p class="box-info-circle" style="border-color: #00CED1;">
-								<span style="color: #00CED1;">129</span>
+								<span style="color: #00CED1;">{{economyInfo[21].cont}}</span>
 								<span style="color: #00CED1;">万元</span>
 							</p>
 							<p>本年度村级可用收入目标</p>
-							<p>比去年<span style="color: #00CED1;">+持平</span></p>
+							<p>比去年<span style="color: #00CED1;">{{economyInfo[19].cont}}</span></p>
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 					<div class="box-title">
 						<img src="../bgImages/ygcw/logo.png">
 						本季度要求建房户数
-						<div>2</div>
+						<div>{{economyInfo[22].cont}}</div>
 					</div>
 				</div>
 			</div>
@@ -51,9 +51,9 @@
 					<span>小微权力</span>
 				</div>
 				<div class="box-bottom xwql" style="height: 300px;">
-					<div v-for="(item,index) in 11" :key="index">
+					<div v-for="(item,index) in powerList" :key="index" @click="showPop(item,1)">
 						<img src="../bgImages/ygcw/pdf.png">
-						<p>资产管理</p>
+						<p>{{item.name}}</p>
 					</div>
 				</div>
 			</div>
@@ -65,8 +65,8 @@
 					<span>财务公开</span>
 				</div>
 				<div class="box-bottom cwgk2" style="height: 240px;">
-					<div v-for="(item,index) in 19" :key="index">
-						资产负债表
+					<div v-for="(item,index) in financeopenList" :key="index" @click="showPop(item,1)">
+						{{item.name}}
 					</div>
 				</div>
 			</div>
@@ -89,9 +89,9 @@
 						<el-table-column prop="rent" label="租金支付" width="180"></el-table-column>
 						<el-table-column label="预警" width="75">
 							<template slot-scope="scope">
-								<div v-if="scope.row.status==0" style="width: 5px;height: 5px;border-radius: 50%;background-color: #90EE90;margin: 0 auto;"></div>
-								<div v-if="scope.row.status==1" style="width: 5px;height: 5px;border-radius: 50%;background-color: yellow;margin: 0 auto;"></div>
-								<div v-if="scope.row.status==2" style="width: 5px;height: 5px;border-radius: 50%;background-color: red;margin: 0 auto;"></div>
+								<div v-if="scope.row.status==0" style="width: 5px;height: 5px;border-radius: 50%;background-color: #2D9842;margin: 0 auto;"></div>
+								<div v-if="scope.row.status==1" style="width: 5px;height: 5px;border-radius: 50%;background-color: #FFA421;margin: 0 auto;"></div>
+								<div v-if="scope.row.status==2" style="width: 5px;height: 5px;border-radius: 50%;background-color: #EC2C17;margin: 0 auto;"></div>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -102,8 +102,22 @@
 					<img src="static/images/icon.png">
 					<span>村级工程</span>
 				</div>
-				<div class="box-bottom cjgc" style="height: 190px;">
-
+				<div class="box-bottom zcgl" style="height: 190px;">
+					<el-table :data="cjgcData" style="width: 100%" max-height="170px" :row-class-name="tableRowClassName"
+							:cell-style="{'text-align': 'center',color: '#fff','font-weight': '500',}" 
+							:header-cell-style="{color: '#fff',background: 'rgba(30, 144, 255, 0.25)','text-align': 'center'}">
+						<el-table-column prop="name" label="项目" min-width="300"></el-table-column>
+						<el-table-column prop="fundSource" label="资金来源" min-width="100"></el-table-column>
+						<el-table-column prop="fund" label="金额" min-width="100"></el-table-column>
+						<el-table-column prop="contractor" label="承包单位" min-width="300"></el-table-column>
+						<el-table-column label="进展情况" min-width="100">
+							<template slot-scope="scope">
+								<div v-if="scope.row.status==0">未开始</div>
+								<div v-if="scope.row.status==1">进行中</div>
+								<div v-if="scope.row.status==2">已结束</div>
+							</template>
+						</el-table-column>
+					</el-table>
 				</div>
 			</div>
 		</div>
@@ -115,13 +129,13 @@
 				</div>
 				<div class="box-bottom tdzy" style="height: 115px;">
 					<div>
-						<p>征用时间：<span class="greenBlue">13人</span></p>
-						<p>征用面积：<span class="greenBlue">11.92亩</span></p>
+						<p>征用时间：<span class="greenBlue">{{economyInfo[0].cont}}</span></p>
+						<p>征用面积：<span class="greenBlue">{{economyInfo[1].cont}}</span></p>
 					</div>
 					<div>
-						<p>征用总费用：<span class="yellow">296693元</span></p>
-						<p>已到位金额：<span class="yellow">296693元</span></p>
-						<p>已发放金额：<span class="yellow">36956元</span></p>
+						<p>征用总费用：<span class="yellow">{{economyInfo[2].cont}}</span></p>
+						<p>已到位金额：<span class="yellow">{{economyInfo[3].cont}}</span></p>
+						<p>已发放金额：<span class="yellow">{{economyInfo[4].cont}}</span></p>
 					</div>
 				</div>
 			</div>
@@ -133,29 +147,29 @@
 				<div class="box-bottom shbz" style="height: 150px;">
 					<div>
 						<p>
-							<span class="yellow">13人</span>
+							<span class="yellow">{{economyInfo[5].cont}}</span>
 							<span>享受低保人数</span>
 						</p>
 						<p>
-							<span class="greenBlue">1627人</span>
+							<span class="greenBlue">{{economyInfo[6].cont}}</span>
 							<span>医疗保险人数</span>
 						</p>
 						<p>
-							<span class="orange">1455人</span>
+							<span class="orange">{{economyInfo[7].cont}}</span>
 							<span>各类养老保险人数</span>
 						</p>
 					</div>
 					<div>
 						<p>
-							<span class="yellow">0人</span>
+							<span class="yellow">{{economyInfo[8].cont}}</span>
 							<span>本季新增低保人数</span>
 						</p>
 						<p>
-							<span class="greenBlue">0人</span>
+							<span class="greenBlue">{{economyInfo[9].cont}}</span>
 							<span>本季新增医疗保险人数</span>
 						</p>
 						<p>
-							<span class="orange">0人</span>
+							<span class="orange">{{economyInfo[10].cont}}</span>
 							<span>本季新增养老人数</span>
 						</p>
 					</div>
@@ -169,29 +183,29 @@
 				<div class="box-bottom shbz" style="height: 150px;">
 					<div>
 						<p>
-							<span class="yellow">4人</span>
+							<span class="yellow">{{economyInfo[11].cont}}</span>
 							<span>本季度补助人数</span>
 						</p>
 						<p>
-							<span class="greenBlue">1人</span>
+							<span class="greenBlue">{{economyInfo[12].cont}}</span>
 							<span>本季度补贴人数</span>
 						</p>
 						<p>
-							<span class="orange">2人</span>
+							<span class="orange">{{economyInfo[13].cont}}</span>
 							<span>本村享受优待抚恤对象</span>
 						</p>
 					</div>
 					<div>
 						<p>
-							<span class="yellow">600元</span>
+							<span class="yellow">{{economyInfo[14].cont}}</span>
 							<span>本季度补助金额</span>
 						</p>
 						<p>
-							<span class="greenBlue">5000元</span>
+							<span class="greenBlue">{{economyInfo[15].cont}}</span>
 							<span>本季度补贴金额</span>
 						</p>
 						<p>
-							<span class="orange">0人</span>
+							<span class="orange">{{economyInfo[16].cont}}</span>
 							<span>本季度新增抚恤对象</span>
 						</p>
 					</div>
@@ -213,7 +227,7 @@
 						<span>监督机构</span>
 					</div>
 					<div class="box-bottom jdjg" style="height: 120px;">
-						<div v-for="(item,index) in superviseList" :key="index">
+						<div v-for="(item,index) in superviseList" :key="index" @click="showPop(item,2)">
 							<span class="greenBlue">{{item.name}}</span>
 							<img src="../bgImages/ygcw/right.png">
 						</div>
@@ -231,13 +245,52 @@
 						<span>内容</span>
 						<span>时间</span>
 					</div>
-					<div>
+					<div @click="showPop(ssgkList[0],3)">
 						<span>{{ssgkList[0].title}}</span>
-						<span>{{ssgkList[0].content}}</span>
+						<span v-html="ssgkList[0].content"></span>
 						<span>{{ssgkList[0].timePoint}}</span>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div v-show="showMask" class="mask"></div>
+		<div v-show="showMask" class="pop-mask-box">
+			<img src="../bgImages/ygcw/cancel.png" class="pop-cancel" @click="showMask=false">
+			<div class="pop-title" v-if="type!=3">{{detailInfo.name}}</div>
+			<div class="pop-title" v-if="type==3">{{detailInfo.title}}</div>
+			<div class="pop-swiper" v-if="type==1">
+				<el-carousel indicator-position='none' arrow='hover' :interval='4000'>
+					<el-carousel-item v-for="(item,index) in detailInfo.img" :key="index">
+						<img :src="item" v-viewer>
+					</el-carousel-item>
+				</el-carousel>
+			</div>
+			<div class="pop-word-table" v-if="type==2">
+				<div class="pop-word-table-title">
+					<img src="../bgImages/ygcw/logo.png">工作职能
+				</div>
+				<div class="pop-word-table-cont" v-html="detailInfo.cont"></div>
+				<div class="pop-word-table-title">
+					<img src="../bgImages/ygcw/logo.png">人员组成
+				</div>
+				<div class="build-inner-box" style="flex-direction: column;margin-top: 10px;">
+				  <div class="build-line-title">
+				    <div style="width: 60px;">序号</div>
+				    <div style="width: 120px;">姓名</div>
+				    <div style="width: 130px;">出生年月</div>
+				    <div style="width: 200px;">工作单位</div>
+				    <div style="width: 180px;">联系电话</div>
+				  </div>
+				  <div :class="{odd:index%2==1,even:index%2==0}" class="build-line-item" v-for="(item,index) in detailInfo.list" :key="index">
+				    <div style="width: 60px;">{{index+1}}</div>
+				    <div style="width: 120px;">{{item.name}}</div>
+				    <div style="width: 130px;">{{item.birthday}}</div>
+				    <div style="width: 200px;">{{item.address}}</div>
+				    <div style="width: 180px;">{{item.mob}}</div>
+				  </div>
+				</div>
+			</div>
+			<div class="pop-rich-text" v-html="detailInfo.content" v-if="type==3"></div>
 		</div>
 	</div>
 </template>
@@ -251,7 +304,13 @@
 				economyInfo: [],
 				superviseList: [],
 				ssgkList: [],
-				zcglData: []
+				zcglData: [],
+				cjgcData: [],
+				powerList: [],
+				financeopenList: [],
+				showMask: false,
+				type: '',
+				detailInfo: {}
 			}
 		},
 		components: {},
@@ -259,6 +318,25 @@
 			tableRowClassName({row, rowIndex}) {
 				if (rowIndex%2 == 1) {
 				  return 'bg-row';
+				}
+			},
+			showPop(data,type) {
+				this.showMask = true
+				this.type = type
+				this.detailInfo = data
+				if(type==2) {
+					let param = {
+					  pid: data.id,
+					  current: 1,
+					  size: 20
+					}
+					this.$ajax.getSupervisorList(param).then(res => {
+					  res.records.forEach(item => {
+					    item.birthday = item.birthday.substring(0,7)
+					  })
+					  this.$set(this.detailInfo, 'list', res.records )
+					})
+					console.log(this.detailInfo)
 				}
 			}
 		},
@@ -290,6 +368,26 @@
 			  })
 			  this.zcglData = res.records
 			})
+			this.$ajax.getProjectList({size:10,current:1,project:'0'}).then(res => {
+			  this.cjgcData = res.records
+			})
+			let powerData = {
+			  pid: '1428651807502376961',
+			  current: 1,
+			  size: 15
+			}
+			this.$ajax.getSunShineList(powerData).then(res => {
+			  res.records.forEach(item => {
+			    item.img = item.img.split(",")
+			  })
+			  this.powerList = res.records
+			})
+			this.$ajax.getFinanceopenList({current:1,size:20}).then(res => {
+			  res.records.forEach(item => {
+			    item.img = item.img.split(",")
+			  })
+			  this.financeopenList = res.records
+			})
 		}
 	}
 </script>
@@ -299,7 +397,6 @@
 	}
 </style>
 <style scoped lang="less">
-	
 	.greenBlue {
 		color: #00CED1;
 	}
@@ -669,6 +766,146 @@
 			flex-direction: column;
 			width: 646px;
 			margin-top: 40px;
+		}
+	}
+	
+	.mask {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: rgba(0,0,0,0.5);
+		z-index: 2000;
+	}
+	.pop-mask-box {
+		width: 750px;
+		height: 943px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		z-index: 2001;
+		background: url(../bgImages/ygcw/popBg.png) no-repeat;
+		background-size: 100% 100%;
+		.pop-cancel {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 31px;
+			height: 31px;
+			cursor: pointer;
+		}
+		.pop-title {
+			width: 100%;
+			text-align: center;
+			padding: 24px 200px 24px 220px;
+			box-sizing: border-box;
+			color: #00CED1;
+			font-size: 28px;
+		}
+		.pop-swiper {
+			width: 590px;
+			height: 780px;
+			margin: 10px auto;
+			/deep/ .el-carousel {
+				width: 100%;
+				height: 100%;
+				.el-carousel__container {
+					width: 100%;
+					height: 100%;
+					.el-carousel__item {
+						width: 100%;
+						height: 100%;
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
+		}
+		.pop-word-table {
+			width: 650px;
+			max-height: 780px;
+			overflow: auto;
+			font-size: 24px;
+			color: #00CED1;
+			margin: 20px auto;
+			.pop-word-table-title {
+				display: flex;
+				align-items: center;
+				font-size: 30px;
+				color: #00CED1;
+				font-weight: bolder;
+				img {
+					width: 22px;
+					height: 22px;
+					margin-right: 20px;
+				}
+			}
+			.build-inner-box {
+			  .build-line-title {
+			    background-color: #265EFF;
+			    font-size: 24px;
+			    color: #fff;
+			    border-top-left-radius: 8px;
+			    border-top-right-radius: 8px;
+			    display: flex;
+			    align-items: center;
+			    height: 90px;
+			    div {
+			      display: flex;
+			      justify-content: center;
+			      align-items: center;
+			      border-right: 1px solid #fff;
+			      box-sizing: border-box;
+			      height: 100%;
+			      text-align: center;
+			      flex-shrink: 1;
+			    }
+			    div:last-child {
+			      border-right: none;
+			    }
+			  }
+			  .build-line-item {
+			    font-size: 24px;
+			    color: #fff;
+			    display: flex;
+			    align-items: center;
+			    height: 90px;
+			    div {
+			      display: flex;
+			      justify-content: center;
+			      align-items: center;
+			      border-right: 1px solid #fff;
+			      box-sizing: border-box;
+			      text-align: center;
+			      padding: 5px;
+			      height: 100%;
+			      line-height: 45px;
+			      flex-shrink: 1;
+			    }
+			    div:last-child {
+			      word-break: break-all;
+			      border-right: none;
+			    }
+			  }
+			  .odd {
+			    background-color: #599BFF;
+			  }
+			  .even {
+			    background-color: #A6C9FF;
+			  }
+			}
+		}
+		.pop-rich-text {
+			width: 590px;
+			max-height: 780px;
+			overflow: auto;
+			font-size: 24px;
+			color: #00CED1;
+			margin: 20px auto;
 		}
 	}
 </style>

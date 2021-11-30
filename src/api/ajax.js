@@ -721,6 +721,30 @@ class api {
       })
     })
   }
+  // 项目进度列表
+  getProjectList(data) {
+    return new Promise(resolve => {
+      get("/blade-honest/project/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 财务公开列表
+  getFinanceopenList(data) {
+    return new Promise(resolve => {
+      get("/blade-xc/financeopen/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
+  // 监督机构人员列表
+  getSupervisorList(data){
+    return new Promise(resolve => {
+      get("/blade-honest/supervisor/list",data).then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 }
 // 创建实例默认设置
 var instance = axios.create({
