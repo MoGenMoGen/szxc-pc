@@ -5,13 +5,13 @@
 			<div class="pop-common pop-list njl-bg" :class="e==1?'ms-bg':''" v-show="show">
 				<div class="pop-inner-title">
 					<span style="width: 60%">农家乐名称</span>
-					<span style="width: 20%">监控</span>
+					<span style="width: 20%" v-if="e!=1">监控</span>
 					<span style="width: 20%">视频</span>
 				</div>
 				<div class="pop-inner-box">
 					<div v-for="(item,index) in njlList" :key='index' class="pop-inner-item" @click="goto(item)">
 						<span style="width: 60%">{{item.name}}</span>
-						<span style="width: 20%"><img src="../bgImages/监控.png" style="width:30%"
+						<span style="width: 20%" v-if="e!=1"><img src="../bgImages/监控.png" style="width:30%"
 								v-if="item.monitor"></span>
 						<span style="width: 20%"><img src="../bgImages/视频播放.png" style="width:30%" v-if="item.video"
 								@click.stop="toPre(item)"></span>

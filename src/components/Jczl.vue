@@ -942,7 +942,7 @@
 				bpwyOption: {
 					legend: {
 						textStyle: {
-							color: '#fff'
+							color: '#FF8352'
 						}
 					},
 					xAxis: {
@@ -1240,7 +1240,8 @@
 		methods: {
 			// 网格打开图层
 			showPoints(item) {
-				// this.onOff('关闭图层','网格')
+				this.onOff('关闭图层','网格')
+				this.show12 = true
 				console.log(item)
 				this.tsryShow = false
 				this.onOffTsry()
@@ -1372,9 +1373,11 @@
 				this.show12 = false
 				this.show8 = false
 				this.wgryShow = false
+				this.tsryShow = false
 				this.$parent.test("网格");
 				this.onOff('打开图层', '网格')
 				this.onOff('关闭图层', '一户一档人口')
+				this.onOffTsry()
 				this.offHik()
 				this.getEventList("")
 				this.getGridTotal()
