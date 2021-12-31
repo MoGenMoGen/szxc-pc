@@ -942,7 +942,8 @@
 				bpwyOption: {
 					legend: {
 						textStyle: {
-							color: '#FF8352'
+							color: '#FF8352',
+							fontSize: 25
 						}
 					},
 					xAxis: {
@@ -2857,8 +2858,9 @@
 		position: absolute;
 		top: 242px;
 		left: 590px;
-		background-color: rgba(30, 42, 108, 0.6);
+		background-color: rgba(30, 42, 108, 0.8);
 		box-sizing: border-box;
+		padding-top: 15px;
 	}
 
 	.pop-common-title {
