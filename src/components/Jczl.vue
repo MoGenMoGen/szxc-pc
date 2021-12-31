@@ -940,9 +940,10 @@
 					}
 				},
 				bpwyOption: {
+					color: ['#5da7f5','#FF8352','#E271DE'],
 					legend: {
 						textStyle: {
-							color: function(params){},
+							color: '#3DD1F9',
 							fontSize: 25
 						}
 					},
