@@ -942,7 +942,7 @@
 				bpwyOption: {
 					legend: {
 						textStyle: {
-							color: '#FF8352',
+							color: function(params){},
 							fontSize: 25
 						}
 					},
